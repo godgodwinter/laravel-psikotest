@@ -76,9 +76,6 @@ Pengaturan
               </form>
 
                 </div>
-                <div class="card-footer bg-whitesmoke">
-                This is card footer
-                </div>
             </div>
             </div>
         </section>
