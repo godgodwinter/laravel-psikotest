@@ -12,7 +12,7 @@
             <li><a class="nav-link" href="{{route('settings')}}"><i class="fas fa-cog"></i> <span>Pengaturan</span></a>
             <li class="menu-header">Mastering</li>
 
-            <li><a class="nav-link" href="#"><i class="fas fa-school"></i> <span>Sekolah</span></a>
+            <li><a class="nav-link" href="{{route('sekolah')}}"><i class="fas fa-school"></i> <span>Sekolah</span></a>
             {{-- <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-school"></i>
                     <span>Sekolah</span></a>

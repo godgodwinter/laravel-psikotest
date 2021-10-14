@@ -4,17 +4,19 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class TableTapelAdd extends Component
+class sweetalertsession extends Component
 {
-    public $pages;
+    public $tipe;
+    public $status;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($pages)
+    public function __construct($tipe,$status)
     {
-        $this->pages=$pages;
+        $this->tipe=$tipe;
+        $this->status=$status;
     }
 
     /**
@@ -24,6 +26,6 @@ class TableTapelAdd extends Component
      */
     public function render()
     {
-        return view('components.table-tapel-add');
+        return view('components.sweetalertsession');
     }
 }
