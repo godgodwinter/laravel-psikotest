@@ -39,7 +39,7 @@
     <a href="https://github.com/godgodwinter/laravel-psikotest"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://laravel-psikotest.baemon.web.id">View Demo https://laravel-psikotest.baemon.web.id</a>
+    <a href="https://psikotest.baemon.web.id">View Demo https://psikotest.baemon.web.id</a>
     ·
     <a href="https://twitter.com/kakadlz">Report Bug</a>
     ·
