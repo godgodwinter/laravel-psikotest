@@ -31,7 +31,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Judul Versi PreAlpha 1.21.03.05</h3>
+  <h3 align="center">Psikotest PreAlpha 1.21.10.14</h3>
 
   <p align="center">
     Keterangan Sistem yang dibuat
