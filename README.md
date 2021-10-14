@@ -27,7 +27,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/godgodwinter/README-TEMPLATE-laravel">
+  <a href="https://github.com/godgodwinter/laravel-psikotest">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -36,10 +36,10 @@
   <p align="center">
     Keterangan Sistem yang dibuat 2
     <br />
-    <a href="https://github.com/godgodwinter/README-TEMPLATE-laravel"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/godgodwinter/laravel-psikotest"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://inetwork.baemon.web.id">View Demo https://inetwork.baemon.web.id</a>
+    <a href="https://laravel-psikotest.baemon.web.id">View Demo https://laravel-psikotest.baemon.web.id</a>
     ·
     <a href="https://twitter.com/kakadlz">Report Bug</a>
     ·
@@ -74,7 +74,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot-dashboardluar]](https://github.com/godgodwinter/README-TEMPLATE-laravel)
+[![Product Name Screen Shot][product-screenshot-dashboardluar]](https://github.com/godgodwinter/laravel-psikotest)
 
 Sistem .
 
@@ -114,7 +114,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
 1. Clone the repo
    ```sh
-   git clone https://github.com/godgodwinter/README-TEMPLATE-laravel.git
+   git clone https://github.com/godgodwinter/laravel-psikotest.git
    ```
 2. Install menggunakan composer
    ```sh
@@ -143,7 +143,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 6. Jika ingin menggunakan data palsu untuk testing lanjutkan langkah 6 ini
    ```sh
-   php artisan db:seed --class=oneseeder  //untuk meload data user admin@gmail.com pass 12345678
+   php artisan db:seed //untuk meload data user admin@gmail.com pass 12345678
    ```
    
 
@@ -167,7 +167,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Kukuh Setya Nugraha - [@kakadlz](https://twitter.com/kakadlz) 
 Kukuh Setya Nugraha - [@kukuh.sn](https://www.instagram.com/kukuh.sn/) 
 
-Project Link: [https://github.com/godgodwinter/inetwork](https://github.com/godgodwinter/inetwork)
+Project Link: [https://github.com/godgodwinter/laravel-psikotest](https://github.com/godgodwinter/laravel-psikotest)
 
 
 
@@ -176,16 +176,16 @@ Project Link: [https://github.com/godgodwinter/inetwork](https://github.com/godg
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/godgodwinter/inetwork.svg?style=for-the-badge
-[contributors-url]: https://github.com/godgodwinter/inetwork/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/godgodwinter/inetwork.svg?style=for-the-badge
-[forks-url]: https://github.com/godgodwinter/inetwork/network/members
-[stars-shield]: https://img.shields.io/github/stars/godgodwinter/inetwork.svg?style=for-the-badge
-[stars-url]: https://github.com/godgodwinter/inetwork/stargazers
-[issues-shield]: https://img.shields.io/github/issues/godgodwinter/inetwork.svg?style=for-the-badge
-[issues-url]: https://github.com/godgodwinter/inetwork/issues
-[license-shield]: https://img.shields.io/github/license/godgodwinter/inetwork.svg?style=for-the-badge
-[license-url]: https://github.com/godgodwinter/inetwork/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/godgodwinter/laravel-psikotest.svg?style=for-the-badge
+[contributors-url]: https://github.com/godgodwinter/laravel-psikotest/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/godgodwinter/laravel-psikotest.svg?style=for-the-badge
+[forks-url]: https://github.com/godgodwinter/laravel-psikotest/network/members
+[stars-shield]: https://img.shields.io/github/stars/godgodwinter/laravel-psikotest.svg?style=for-the-badge
+[stars-url]: https://github.com/godgodwinter/laravel-psikotest/stargazers
+[issues-shield]: https://img.shields.io/github/issues/godgodwinter/laravel-psikotest.svg?style=for-the-badge
+[issues-url]: https://github.com/godgodwinter/laravel-psikotest/issues
+[license-shield]: https://img.shields.io/github/license/godgodwinter/laravel-psikotest.svg?style=for-the-badge
+[license-url]: https://github.com/godgodwinter/laravel-psikotest/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.instagram.com/kukuh.sn/
 [product-screenshot-dashboardluar]: images/dashboardluar.png
