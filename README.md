@@ -34,7 +34,7 @@
   <h3 align="center">Psikotest PreAlpha 1.21.10.14</h3>
 
   <p align="center">
-    Keterangan Sistem yang dibuat
+    Keterangan Sistem yang dibuat 2
     <br />
     <a href="https://github.com/godgodwinter/README-TEMPLATE-laravel"><strong>Explore the docs »</strong></a>
     <br />
