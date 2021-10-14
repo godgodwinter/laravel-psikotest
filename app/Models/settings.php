@@ -12,20 +12,8 @@ class settings extends Model
     use HasFactory;
 
     protected $fillable = [
+        'app_nama',
+        'app_namapendek',
         'paginationjml',
-        'sekolahnama',
-        'sekolahalamat',
-        'sekolahtelp',
-        'aplikasijudul',
-        'aplikasijudulsingkat',
-        'defaultdenda',
-        'defaultminbayar',
-        'defaultmaxbukupinjam',
-        'defaultmaxharipinjam',
-        'passdefaultpegawai',
-        'passdefaultadmin',
-        'sekolahlogo',
-        'sekolahttd',
-        'sekolahttd2',
     ];
 }

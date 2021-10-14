@@ -2,6 +2,7 @@
 
 use App\Helpers\Fungsi;
 use App\Http\Controllers\admindashboardcontroller;
+use App\Http\Controllers\adminsettingscontroller;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
+    Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
+    Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
 
 });

@@ -1,16 +1,19 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Nama App</a>
+            <a href="{{route('dashboard')}}">{{Fungsi::app_nama()}}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="{{route('dashboard')}}">{{Fungsi::app_namapendek()}}</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Layout v1.0</li>
-            <li><a class="nav-link" href="#"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="{{route('settings')}}"><i class="fas fa-cog"></i> <span>Pengaturan</span></a>
             <li class="menu-header">Mastering</li>
-            <li class="nav-item dropdown ">
+
+            <li><a class="nav-link" href="#"><i class="fas fa-school"></i> <span>Sekolah</span></a>
+            {{-- <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-school"></i>
                     <span>Sekolah</span></a>
                 <ul class="dropdown-menu">
@@ -19,7 +22,7 @@
                     <li><a class="nav-link" href="#">Wali kelas</a></li>
                     <li><a class="nav-link" href="#">Kelas</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li><a class="nav-link" href="#"><i class="fas fa-chalkboard"></i> <span>Referensi Psikologis</span></a>
             </li>
             <li><a class="nav-link" href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Deteksi Psikologis</span></a></li>

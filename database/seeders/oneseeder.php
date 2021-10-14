@@ -17,7 +17,7 @@ class oneseeder extends Seeder
      */
     public function run()
     {
-
+        DB::table('users')->truncate();
         //ADMIN SEEDER
         DB::table('users')->insert([
             'name' => 'Admin',
@@ -59,11 +59,12 @@ class oneseeder extends Seeder
          ]);
 
 
-
+         DB::table('settings')->truncate();
          //settings SEEDER
         DB::table('settings')->insert([
             'app_nama' => 'Nama App',
             'app_namapendek' => 'St',
+            'paginationjml' => '10',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

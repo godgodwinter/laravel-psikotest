@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('app_nama')->nullable();
             $table->string('app_namapendek')->nullable();
+            $table->string('paginationjml')->nullable();
             $table->timestamps();
         });
     }

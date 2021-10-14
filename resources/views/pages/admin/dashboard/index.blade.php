@@ -1,22 +1,26 @@
 @extends('layouts.default')
 
+@section('title')
+Beranda
+@endsection
+
 @section('content')
         <section class="section">
             <div class="section-header">
-            <h1>Default Layout</h1>
+            <h1>@yield('title')</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Layout</a></div>
-                <div class="breadcrumb-item">Default Layout</div>
+                <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
+                {{-- <div class="breadcrumb-item"><a href="#">Layout</a></div> --}}
+                {{-- <div class="breadcrumb-item">Default Layout</div> --}}
             </div>
             </div>
 
             <div class="section-body">
-            <h2 class="section-title">This is Example Page</h2>
-            <p class="section-lead">This page is just an example for you to create your own page.</p>
+            <h2 class="section-title">Ini halaman beranda</h2>
+            <p class="section-lead">Halaman pertama setelah login.</p>
             <div class="card">
                 <div class="card-header">
-                <h4>Example Card</h4>
+                <h4>Contoh Halaman</h4>
                 </div>
                 <div class="card-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
