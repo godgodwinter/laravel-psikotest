@@ -20,11 +20,11 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 |
 */
 
-Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
+// Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
 
 //halaman admin fixed
 Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
-    // Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
+    Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
 
 });

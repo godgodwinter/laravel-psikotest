@@ -7,6 +7,7 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
+            <li class="menu-header">Layout v1.0</li>
             <li><a class="nav-link" href="#"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
             <li class="menu-header">Mastering</li>
             <li class="nav-item dropdown ">
