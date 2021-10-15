@@ -21,9 +21,8 @@ class adminsekolahcontroller extends Controller
             return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
         }
 
-        $pages='sekolah';
-        // dd(Auth::user()->tipeuser);
         #WAJIB
+        $pages='sekolah';
         $datas=DB::table('sekolah')->whereNull('deleted_at')
         ->paginate(Fungsi::paginationjml());
 
@@ -36,9 +35,8 @@ class adminsekolahcontroller extends Controller
         }
 
         $cari=$request->cari;
-        $pages='sekolah';
-        // dd(Auth::user()->tipeuser);
         #WAJIB
+        $pages='sekolah';
         $datas=DB::table('sekolah')->whereNull('deleted_at')
         ->where('nama','like',"%".$cari."%")
         ->orWhere('alamat','like',"%".$cari."%")
@@ -133,6 +131,22 @@ class adminsekolahcontroller extends Controller
 
         sekolah::destroy($id->id);
         return redirect()->route('sekolah')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
+
+    public function multidel(Request $request)
+    {
+
+        $ids=$request->ids;
+        sekolah::whereIn('id',$ids)->delete();
+
+        // load ulang
+        #WAJIB
+        $pages='sekolah';
+        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.admin.sekolah.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
 }

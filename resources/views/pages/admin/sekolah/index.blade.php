@@ -91,6 +91,14 @@ Sekolah
                             success:function(response){
                                 $.each(allids,function($key,val){
                                         $("#sid"+val).remove();
+
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Data berhasil dihapus!',
+                                            // text: 'Something went wrong!',
+                                            showConfirmButton: true,
+                                            timer: 1000
+                                        })
                                 })
                             }
                         });
@@ -99,15 +107,17 @@ Sekolah
 
                     });
                 </script>
-                <script>
-                    $(document).ready(function() {
-                        $('#example').DataTable({
-                            paging: false,
-                            info: false,
-                            searching: false,
-                        });
-                    } );
-                </script>
+                @if($datas->count()>0)
+                    <script>
+                        $(document).ready(function() {
+                            $('#example').DataTable({
+                                paging: false,
+                                info: false,
+                                searching: false,
+                            });
+                        } );
+                    </script>
+                @endif
 
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -121,7 +131,7 @@ Sekolah
                     </thead>
                     <tbody>
                         @forelse ($datas as $data)
-                            <tr>
+                        <tr id="sid{{ $data->id }}">
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
