@@ -37,10 +37,11 @@ class adminsekolahcontroller extends Controller
         $cari=$request->cari;
         #WAJIB
         $pages='sekolah';
-        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        $datas=DB::table('sekolah')
+        ->whereNull('deleted_at')
         ->where('nama','like',"%".$cari."%")
-        ->orWhere('alamat','like',"%".$cari."%")
-        ->orWhere('status','like',"%".$cari."%")
+        ->orWhere('alamat','like',"%".$cari."%")->whereNull('deleted_at')
+        ->orWhere('status',$cari)->whereNull('deleted_at')
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.sekolah.index',compact('datas','request','pages'));
