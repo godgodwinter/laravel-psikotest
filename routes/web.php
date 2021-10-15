@@ -41,11 +41,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datasekolah/create', [adminsekolahcontroller::class, 'create'])->name('sekolah.create');
     Route::post('/admin/datasekolah', [adminsekolahcontroller::class, 'store'])->name('sekolah.store');
     Route::delete('/admin/datasekolah/multidel', [adminsekolahcontroller::class, 'multidel'])->name('sekolah.multidel');
-    Route::get('/admin/sekolah/{id}/detail', [adminsekolahcontroller::class, 'show'])->name('sekolah.show');
+    Route::get('/admin/sekolah/{id}/detail', [admintahunajarancontroller::class, 'index'])->name('sekolah.show');
 
     //detailsekolah
     Route::get('/admin/sekolah/{id}/tahun', [admintahunajarancontroller::class, 'index'])->name('sekolah.tahun');
     Route::get('/admin/sekolah/{id}/tahun/create', [admintahunajarancontroller::class, 'create'])->name('sekolah.tahun.create');
-    Route::get('/admin/sekolah/{id}/tahun/cari', [adminsekolahcontroller::class, 'showcari'])->name('sekolah.tahun.cari');
+    Route::post('/admin/sekolah/{id}/tahun/create', [admintahunajarancontroller::class, 'store'])->name('sekolah.tahun.store');
+    Route::get('/admin/sekolah/{id}/tahun/cari', [admintahunajarancontroller::class, 'cari'])->name('sekolah.tahun.cari');
+    Route::get('/admin/sekolah/{id}/tahun/{data}', [admintahunajarancontroller::class, 'edit'])->name('sekolah.tahun.edit');
+    Route::put('/admin/sekolah/{id}/tahun/{data}', [admintahunajarancontroller::class, 'update'])->name('sekolah.tahun.update');
+    Route::delete('/admin/sekolah/{id}/tahun/{data}', [admintahunajarancontroller::class, 'destroy'])->name('sekolah.tahun.destroy');
 
 });

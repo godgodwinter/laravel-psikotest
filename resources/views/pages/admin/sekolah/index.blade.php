@@ -5,7 +5,6 @@ Sekolah
 @endsection
 
 @push('before-script')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if (session('status'))
 <x-sweetalertsession tipe="{{session('tipe')}}" status="{{session('status')}}"/>
@@ -112,7 +111,6 @@ Sekolah
                             <tr>
                                 <td colspan="5" class="text-center">Data tidak ditemukan</td>
                             </tr>
-
                         @endforelse
                     </tbody>
                 </table>

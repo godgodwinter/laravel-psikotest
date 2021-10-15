@@ -1,5 +1,6 @@
 
-            <form id="setting-form" method="POST" action="{{route('sekolah.tahun.store',$id->id)}}">
+            <form id="setting-form" method="POST" action="{{route('sekolah.tahun.update',[$id->id,$data->id])}}">
+                @method('put')
                 @csrf
                 <div class="card" id="settings-card">
                   <div class="card-header">
@@ -20,7 +21,7 @@
     {{-- <script src="{{asset('assets/jquery-year-picker/js/yearpicker.js')}}" type="text/javascript"></script> --}}
     <link href="{{asset('assets/jquery-year-picker/css/yearpicker.css')}}" rel="stylesheet" type="text/css" />
 @endpush
-    <input type="text" name="nama" class="yearpicker form-control @error('nama') is-invalid @enderror"/>
+    <input type="text" name="nama" class="yearpicker form-control @error('nama') is-invalid @enderror" value="{{old('nama') ? old('nama') : $data->nama}}" />
       @error('nama')<div class="invalid-feedback"> {{$message}}</div>
       @enderror
 <script>

@@ -5,21 +5,9 @@ Sekolah
 @endsection
 
 @push('before-script')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if (session('status'))
-<script>
-    Swal.fire({
-        icon: '{{session('
-        tipe ')}}',
-        title: '{{session('
-        status ')}}',
-        // text: 'Something went wrong!',
-        showConfirmButton: true,
-        timer: 1500
-    })
-
-</script>
+<x-sweetalertsession tipe="{{session('tipe')}}" status="{{session('status')}}"/>
 @endif
 @endpush
 

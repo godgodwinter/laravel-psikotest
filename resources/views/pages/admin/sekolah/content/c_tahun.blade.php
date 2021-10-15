@@ -9,12 +9,12 @@
                         <div id="babeng-row ">
 
                             <form action="{{route('sekolah.tahun.cari',$id->id)}}" method="GET">
-                                <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                                {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                                 <span>
                                     <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                         value="Cari">
-                                </span>
+                                </span> --}}
 
                                 <a href="{{route('sekolah.tahun.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
@@ -35,10 +35,29 @@
                     <tr>
                         <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
                         <th>Nama Tahun</th>
-                        <th width="10%" class="text-center">Aksi</th>
+                        <th width="150px" class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                @forelse ($datas as $data)
+                        <tr id="sid{{ $data->id }}">
+                                <td class="text-center">
+                                    <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
+                                    {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+                                <td>{{Str::limit($data->nama,25,' ...')}}
+                                </td>
+                               
+                                <td class="text-center">
+                                    {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
+                                    <x-button-edit link="{{ route('sekolah.tahun.edit',[$id->id,$data->id])}}" />
+                                    <x-button-delete link="{{ route('sekolah.tahun.edit',[$id->id,$data->id])}}" />
+                                </td>
+                            </tr>
+                @empty
+                            <tr>
+                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                            </tr>
+                @endforelse
 
                 </tbody>
             </table>

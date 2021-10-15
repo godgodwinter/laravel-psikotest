@@ -152,10 +152,12 @@ class adminsekolahcontroller extends Controller
     }
 
     //DETAILSEKOLAH
-    public function show(sekolah $id)
+    public function show(sekolah $id,Request $request)
     {
         $pages='sekolah';
+        $datas=DB::table('tahun')->whereNull('deleted_at')
+        ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.sekolah.show',compact('pages','id'));
+        return view('pages.admin.sekolah.show',compact('pages','id','request','datas'));
     }
 }
