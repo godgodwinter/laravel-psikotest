@@ -4,6 +4,7 @@ use App\Helpers\Fungsi;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\adminsekolahcontroller;
 use App\Http\Controllers\adminsettingscontroller;
+use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -37,8 +38,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/admin/sekolah/{id}', [adminsekolahcontroller::class, 'update'])->name('sekolah.update');
     Route::delete('/admin/sekolah/{id}', [adminsekolahcontroller::class, 'destroy'])->name('sekolah.destroy');
     Route::get('/admin/datasekolah/cari', [adminsekolahcontroller::class, 'cari'])->name('sekolah.cari');
-    Route::get('/admin/sekolah/{id}/detail', [adminsekolahcontroller::class, 'show'])->name('sekolah.show');
     Route::get('/admin/datasekolah/create', [adminsekolahcontroller::class, 'create'])->name('sekolah.create');
     Route::post('/admin/datasekolah', [adminsekolahcontroller::class, 'store'])->name('sekolah.store');
     Route::delete('/admin/datasekolah/multidel', [adminsekolahcontroller::class, 'multidel'])->name('sekolah.multidel');
+    Route::get('/admin/sekolah/{id}/detail', [adminsekolahcontroller::class, 'show'])->name('sekolah.show');
+
+    //detailsekolah
+    Route::get('/admin/sekolah/{id}/tahun', [admintahunajarancontroller::class, 'index'])->name('sekolah.tahun');
+    Route::get('/admin/sekolah/{id}/tahun/create', [admintahunajarancontroller::class, 'create'])->name('sekolah.tahun.create');
+    Route::get('/admin/sekolah/{id}/tahun/cari', [adminsekolahcontroller::class, 'showcari'])->name('sekolah.tahun.cari');
+
 });
