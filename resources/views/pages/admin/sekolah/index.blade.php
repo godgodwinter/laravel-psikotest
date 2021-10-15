@@ -65,61 +65,12 @@ Sekolah
                     </div>
                 </div>
 
-                <script>
-                    // console.log('asdad');
-                    $().jquery;
-                    $.fn.jquery;
-                    $(function(e){
-                        $("#chkCheckAll").click(function(){
-                            $(".checkBoxClass").prop('checked',$(this).prop('checked'));
-                        })
-
-                        $("#deleteAllSelectedRecord").click(function(e){
-                            e.preventDefault();
-                            var allids=[];
-                                $("input:checkbox[name=ids]:checked").each(function(){
-                                    allids.push($(this).val());
-                                });
-
-                        $.ajax({
-                            url:"{{ route('sekolah.multidel') }}",
-                            type:"DELETE",
-                            data:{
-                                _token:$("input[name=_token]").val(),
-                                ids:allids
-                            },
-                            success:function(response){
-                                $.each(allids,function($key,val){
-                                        $("#sid"+val).remove();
-
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            title: 'Data berhasil dihapus!',
-                                            // text: 'Something went wrong!',
-                                            showConfirmButton: true,
-                                            timer: 1000
-                                        })
-                                })
-                            }
-                        });
-
-                        })
-
-                    });
-                </script>
+                <x-jsmultidel link="{{route('sekolah.multidel')}}" />
                 @if($datas->count()>0)
-                    <script>
-                        $(document).ready(function() {
-                            $('#example').DataTable({
-                                paging: false,
-                                info: false,
-                                searching: false,
-                            });
-                        } );
-                    </script>
+                    <x-jsdatatable/>
                 @endif
 
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>
                         <tr>
                             <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
@@ -140,6 +91,7 @@ Sekolah
                                 <td class="text-center">{{$data->status}}</td>
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
+                                    <x-button-detail link="/admin/{{ $pages }}/{{$data->id}}/detail" />
                                     <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
                                     <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
                                 </td>

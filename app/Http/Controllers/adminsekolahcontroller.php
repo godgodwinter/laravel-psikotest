@@ -149,4 +149,12 @@ class adminsekolahcontroller extends Controller
         return view('pages.admin.sekolah.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
+
+    //DETAILSEKOLAH
+    public function show(sekolah $id)
+    {
+        $pages='sekolah';
+
+        return view('pages.admin.sekolah.show',compact('pages','id'));
+    }
 }
