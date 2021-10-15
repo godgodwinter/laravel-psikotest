@@ -86,12 +86,13 @@ Sekolah
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td>{{$data->nama}}</td>
+                                <td>{{$data->nama}}
+                                    <x-button-detail link="/admin/{{ $pages }}/{{$data->id}}/detail" />
+                                </td>
                                 <td>{{$data->alamat}}</td>
                                 <td class="text-center">{{$data->status}}</td>
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                    <x-button-detail link="/admin/{{ $pages }}/{{$data->id}}/detail" />
                                     <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
                                     <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
                                 </td>
