@@ -40,4 +40,5 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     // Route::get('/admin/datasekolah/{id}', [adminsekolahcontroller::class, 'show'])->name('sekolah.show');
     Route::get('/admin/datasekolah/create', [adminsekolahcontroller::class, 'create'])->name('sekolah.create');
     Route::post('/admin/datasekolah', [adminsekolahcontroller::class, 'store'])->name('sekolah.store');
+    Route::post('/admin/datasekolah/multidel', [adminsekolahcontroller::class, 'multidel'])->name('sekolah.multidel');
 });

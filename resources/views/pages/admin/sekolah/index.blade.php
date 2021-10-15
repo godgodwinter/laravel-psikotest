@@ -26,7 +26,7 @@ Sekolah
 
     <div class="section-body">
         <div class="card">
-            <div class="card-header">
+            <div class="card-body">
 
                 <div id="babeng-bar" class="text-center mt-2">
 
@@ -43,15 +43,15 @@ Sekolah
                                 <option>Z - A</option>
                             </select> --}}
 
+                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
-
-                            {{-- <span>
-                                <input class="btn btn-info ml-2 mt-2 mt-sm-0" type="submit" id="babeng-submit"
+                            <span>
+                                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
-                            </span> --}}
+                            </span>
 
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
@@ -64,8 +64,41 @@ Sekolah
 
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
+
+                <script>
+                    // console.log('asdad');
+                    $().jquery;
+                    $.fn.jquery;
+                    $(function(e){
+                        $("#chkCheckAll").click(function(){
+                            $(".checkBoxClass").prop('checked',$(this).prop('checked'));
+                        })
+
+                        $("#deleteAllSelectedRecord").click(function(e){
+                            e.preventDefault();
+                            var allids=[];
+                                $("input:checkbox[name=ids]:checked").each(function(){
+                                    allids.push($(this).val());
+                                });
+
+                        $.ajax({
+                            url:"{{ route('sekolah.multidel') }}",
+                            type:"DELETE",
+                            data:{
+                                _token:$("input[name=_token]").val(),
+                                ids:allids
+                            },
+                            success:function(response){
+                                $.each(allids,function($key,val){
+                                        $("#sid"+val).remove();
+                                })
+                            }
+                        });
+
+                        })
+
+                    });
+                </script>
                 <script>
                     $(document).ready(function() {
                         $('#example').DataTable({
@@ -79,7 +112,7 @@ Sekolah
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="5%" class="text-center">No</th>
+                            <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th width="20%">Nama</th>
                             <th>Alamat</th>
                             <th width="10%" class="text-center">Status</th>
@@ -89,7 +122,9 @@ Sekolah
                     <tbody>
                         @forelse ($datas as $data)
                             <tr>
-                                <td class="text-center"> {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+                                <td class="text-center">
+                                    <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
+                                    {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>{{$data->nama}}</td>
                                 <td>{{$data->alamat}}</td>
                                 <td class="text-center">{{$data->status}}</td>
@@ -119,12 +154,16 @@ $kelas_nama=$request->kelas_nama;
 //   ->appends(['tapel_nama'=>$tapel_nama])
 //   ->appends(['kelas_nama'=>$kelas_nama])
   ->links() }}
-<nav aria-label="breadcrumb">
+{{-- <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Data ditemukan</li>
 
 </ol>
-</nav>
+</nav> --}}
+<a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
+            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
+        </a>
             </div>
         </div>
     </div>

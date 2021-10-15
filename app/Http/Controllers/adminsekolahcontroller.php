@@ -29,6 +29,24 @@ class adminsekolahcontroller extends Controller
 
         return view('pages.admin.sekolah.index',compact('datas','request','pages'));
     }
+    public function cari(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        $cari=$request->cari;
+        $pages='sekolah';
+        // dd(Auth::user()->tipeuser);
+        #WAJIB
+        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        ->where('nama','like',"%".$cari."%")
+        ->orWhere('alamat','like',"%".$cari."%")
+        ->orWhere('status','like',"%".$cari."%")
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.admin.sekolah.index',compact('datas','request','pages'));
+    }
     public function create()
     {
         $pages='sekolah';
@@ -66,7 +84,7 @@ class adminsekolahcontroller extends Controller
             array(
                    'nama'     =>   $request->nama,
                    'alamat'     =>   $request->alamat,
-                   'status'     =>   $request->nama,
+                   'status'     =>   $request->status,
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
