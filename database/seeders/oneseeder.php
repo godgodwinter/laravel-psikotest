@@ -22,7 +22,7 @@ class oneseeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('admin'),
             // 'password' => '$2y$10$oOhE/tcF8MC9crGCw/Zv5.zFMGu0JLm591undChCaHJM6YrnGjgCu',
             'tipeuser' => 'admin',
             'nomerinduk' => '123',
@@ -36,7 +36,7 @@ class oneseeder extends Seeder
         DB::table('users')->insert([
             'name' => 'bk',
             'email' => 'bk@gmail.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('bk'),
             'tipeuser' => 'bk',
             'nomerinduk' => '111',
             'username' => 'bk',
@@ -50,7 +50,7 @@ class oneseeder extends Seeder
         DB::table('users')->insert([
             'name' => 'yayasan',
             'email' => 'yayasan@gmail.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('yayasan'),
             'tipeuser' => 'yayasan',
             'nomerinduk' => '111',
             'username' => 'yayasan',
