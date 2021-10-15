@@ -67,8 +67,23 @@
         <div class="footer-left">
           Copyright &copy; 2021 <div class="bullet"></div> Design By <a href="https://baemon.web.id/">BaemonTeam</a>
         </div>
+        
+        @php
+        // exec('git rev-parse --verify HEAD 2> /dev/null', $output);
+        // $hash = $output[0];
+        // dd($hash)
+
+        $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+
+        $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+        $commitDate->setTimezone(new \DateTimeZone('UTC'));
+
+        // dd($commitDate);
+        // dd($commitDate->format('Y-m-d H:i:s'));
+        $versi=$commitDate->format('Ymd.H.i.s');
+    @endphp
         <div class="footer-right">
-          1.0.0
+          v0. {{ $versi }}
         </div>
       </footer>
     </div>

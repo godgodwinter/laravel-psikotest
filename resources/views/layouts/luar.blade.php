@@ -74,7 +74,26 @@
                   </div>
                 </form>
 
+
+                
+
+
               </div>
+            </div>
+
+            
+            <div class="card card-primary">
+                <div class="card-body">
+                    
+                <div class="form-group">
+                    <div class="d-block">
+                        <h5>Demo</h5>
+                    	<label for="username" class="control-label">Username : admin</label><br>
+                    	<label for="password" class="control-label">Password : admin</label>
+                    </div>
+                    
+                  </div>
+                </div>
             </div>
             <div class="simple-footer">
               Copyright &copy; BaemonTeam 2021
