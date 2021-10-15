@@ -16,6 +16,7 @@ class CreateTahunTable extends Migration
         Schema::create('tahun', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
+            $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -12,6 +12,7 @@ class semester extends Model
         use HasFactory;
     
         protected $fillable = [
-            'nama'
+            'nama',
+            'sekolah_id'
         ];
 }

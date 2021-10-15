@@ -17,6 +17,7 @@ class CreateWalikelasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('nomerinduk');
+            $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -2,41 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sekolah;
-use Illuminate\Http\Request;
 use App\Helpers\Fungsi;
-use App\Models\tahun;
+use App\Models\sekolah;
+use App\Models\semester;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class admintahunajarancontroller extends Controller
+class adminsemestercontroller extends Controller
 {
     public function index(sekolah $id,Request $request)
     {
-        $pages='tahun';
-        $datas=DB::table('tahun')->whereNull('deleted_at')
+        $pages='semester';
+        $datas=DB::table('semester')->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.sekolah.pages.tahun_index',compact('pages','id','request','datas'));
+        return view('pages.admin.sekolah.pages.semester_index',compact('pages','id','request','datas'));
     }
     public function create(sekolah $id)
     {
-        $pages='tahun';
+        $pages='semester';
 
-        return view('pages.admin.sekolah.pages.tahun_create',compact('pages','id'));
+        return view('pages.admin.sekolah.pages.semester_create',compact('pages','id'));
     }
     
     public function store(sekolah $id,Request $request)
     {
         // dd($request);
-        $cek=DB::table('tahun')->whereNull('deleted_at')->where('nama',$request->nama)
+        $cek=DB::table('semester')->whereNull('deleted_at')->where('nama',$request->nama)
         ->where('sekolah_id',$id->id)
         ->count();
         // dd($cek);
             if($cek>0){
                     $request->validate([
-                    'nama'=>'required|unique:tahun,nama',
+                    'nama'=>'required|unique:semester,nama',
 
                     ],
                     [
@@ -55,7 +55,7 @@ class admintahunajarancontroller extends Controller
 
 
         //inser siswa
-        DB::table('tahun')->insert(
+        DB::table('semester')->insert(
             array(
                    'nama'     =>   $request->nama,
                    'sekolah_id'     =>   $id->id,
@@ -63,23 +63,23 @@ class admintahunajarancontroller extends Controller
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
 
-    return redirect()->route('sekolah.tahun',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('sekolah.semester',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
     
-    public function edit(sekolah $id,tahun $data)
+    public function edit(sekolah $id,semester $data)
     {
-        $pages='tahun';
+        $pages='semester';
 
-        return view('pages.admin.sekolah.pages.tahun_edit',compact('pages','id','data'));
+        return view('pages.admin.sekolah.pages.semester_edit',compact('pages','id','data'));
     }
-    public function update(sekolah $id,tahun $data,Request $request)
+    public function update(sekolah $id,semester $data,Request $request)
     {
 
         if($request->nama!==$data->nama){
 
             $request->validate([
-                'nama' => "required|unique:tahun,nama,".$request->nama,
+                'nama' => "required|unique:semester,nama,".$request->nama,
             ],
             [
                 'nama.unique'=>'Nama sudah digunakan',
@@ -94,18 +94,18 @@ class admintahunajarancontroller extends Controller
             'nama.required'=>'nama sudah digunakan',
         ]);
 
-        tahun::where('id',$data->id)
+        semester::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
             'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
-    return redirect()->route('sekolah.tahun',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('sekolah.semester',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(sekolah $id,tahun $data){
+    public function destroy(sekolah $id,semester $data){
 
-        tahun::destroy($data->id);
-        return redirect()->route('sekolah.tahun',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+        semester::destroy($data->id);
+        return redirect()->route('sekolah.semester',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
 

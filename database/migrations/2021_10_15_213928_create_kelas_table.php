@@ -17,6 +17,7 @@ class CreateKelasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('tipe');
+            $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();
         });

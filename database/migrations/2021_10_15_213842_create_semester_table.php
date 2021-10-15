@@ -16,6 +16,7 @@ class CreateSemesterTable extends Migration
         Schema::create('semester', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
+            $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();
         });

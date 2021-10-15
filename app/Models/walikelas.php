@@ -14,5 +14,6 @@ class walikelas extends Model
         protected $fillable = [
             'nama',
             'nomerinduk',
+            'sekolah_id'
         ];
 }
