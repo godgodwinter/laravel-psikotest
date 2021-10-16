@@ -49,7 +49,8 @@
                                 <td> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td>
-                                    {{$data->walikelas->nama}}
+                                    {{$data->walikelas!=null ? $data->walikelas->nama : 'Data tidak ditemukan'}}
+                                    {{-- {{$data->walikelas->nama}} --}}
                                 </td>
 
                                 <td class="text-center">

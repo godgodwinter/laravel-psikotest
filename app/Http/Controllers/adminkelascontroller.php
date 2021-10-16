@@ -21,7 +21,7 @@ class adminkelascontroller extends Controller
         // ->orderBy('nama','asc')
         // ->paginate(Fungsi::paginationjml());
 
-        $datas = kelas::where('nama', 'like', '%a%')->with('walikelas')
+        $datas = kelas::with('walikelas')
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
         // dd($datas);

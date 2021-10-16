@@ -20,6 +20,6 @@ class walikelas extends Model
 
     public function kelas()
     {
-        return $this->hasOne('App\Models\kelas');
+        return $this->belongsTo('App\Models\kelas');
     }
 }
