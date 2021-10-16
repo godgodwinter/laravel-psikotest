@@ -44,18 +44,6 @@
 
                         </div>
                         </div>
-                        <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat</label>
-                        <div class="col-sm-6 col-md-9">
-
-                          <input type="text" class="form-control  @error('alamat') is-invalid @enderror" name="alamat" required>
-
-                          @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
-                          @enderror
-
-                        </div>
-                      </div>
-                      </div>
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
                         <div class="col-sm-6 col-md-9">
@@ -67,6 +55,180 @@
                   
                       </div>
                       </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tempat Lahir</label>
+                      <div class="col-sm-6 col-md-9">
+
+                        <input type="text" class="form-control  @error('tempatlahir') is-invalid @enderror" name="tempatlahir" required>
+
+                          @error('tempatlahir')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Lahir</label>
+                      <div class="col-sm-6 col-md-9">
+                      <div class="form-group">
+                        <input type="date" class="form-control datepicker" name="tanggallahir">
+                      </div>
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Usia</label>
+                      <div class="col-sm-6 col-md-9">
+
+                        <input type="text" class="form-control  @error('usia') is-invalid @enderror" name="usia" required>
+
+                          @error('usia')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
+                        <div class="col-sm-6 col-md-9">
+  
+                      <select name="warnanegara" class="form-control">
+                        <option>WNI</option>
+                        <option>WNA</option>
+                      </select>
+                  
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Agama</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('agama') is-invalid @enderror" name="agama" required>
+
+                          @error('agama')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Anak Ke</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('anak') is-invalid @enderror" name="anak" required>
+
+                          @error('anak')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah Saudara Kandung</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('kandung') is-invalid @enderror" name="kandung" required>
+
+                          @error('kandung')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah Saudara Angkat</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('angkat') is-invalid @enderror" name="angkat" required>
+
+                          @error('angkat')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah Saudara Tiri</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('tiri') is-invalid @enderror" name="tiri" required>
+
+                          @error('tiri')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Status Anak</label>
+                      <div class="col-sm-6 col-md-9">
+                      <div class="selectgroup w-100">
+                        <label class="selectgroup-item">
+                          <input type="radio" name="statusanak" value="Yatim" class="selectgroup-input" checked="">
+                          <span class="selectgroup-button">Yatim</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="statusanak" value="Piatu" class="selectgroup-input">
+                          <span class="selectgroup-button">Piatu</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="statusanak" value="Yatim Piatu" class="selectgroup-input">
+                          <span class="selectgroup-button">Yatim Piatu</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="statusanak" value="Lengkap" class="selectgroup-input">
+                          <span class="selectgroup-button">Lengkap</span>
+                        </label>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Bahasa Sehari-Hari Dirumah</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('bahasa') is-invalid @enderror" name="bahasa" required>
+
+                          @error('bahasa')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">No. Handphone</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('nohp') is-invalid @enderror" name="nohp" required>
+
+                          @error('nohp')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tinggal Dengan</label>
+                      <div class="col-sm-6 col-md-9">
+                      <div class="selectgroup w-100">
+                        <label class="selectgroup-item">
+                          <input type="radio" name="tinggal" value="Orang Tua" class="selectgroup-input" checked="">
+                          <span class="selectgroup-button">Orang Tua</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="tinggal" value="Saudara" class="selectgroup-input">
+                          <span class="selectgroup-button">Saudara</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="tinggal" value="asrama" class="selectgroup-input">
+                          <span class="selectgroup-button">Asrama/Kost</span>
+                        </label>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jarak Ke Sekolah</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('jarak') is-invalid @enderror" name="jarak" required>
+
+                          @error('jarak')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                      </div>
+                      </div>
+                      
+                      <!-- --------- -->
+                      
                       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
