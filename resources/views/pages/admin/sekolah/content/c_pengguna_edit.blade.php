@@ -12,7 +12,7 @@
               <div class="card-body">
 
                 <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama pengguna</label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Lengkap</label>
                     <div class="col-sm-6 col-md-9">
 
                       <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required value="{{old('nama') ? old('nama') : $data->nama}}">
@@ -23,54 +23,53 @@
                     </div>
                   </div>
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tipe pengguna</label>
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Username</label>
+                      <div class="col-sm-6 col-md-9">
+
+                        <input type="text" class="form-control  @error('username') is-invalid @enderror" name="username" required  value="{{old('username') ? old('username') : $data->users->username}}" readonly>
+
+                        @error('username')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+
+                      </div>
+                    </div>
+
+                  <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Email</label>
                     <div class="col-sm-6 col-md-9">
 
+                      <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email" required  value="{{old('email') ? old('email') : $data->users->email}}">
+
+                      @error('email')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+
+                    </div>
+                  </div>
 
 
+                  <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Password</label>
+                    <div class="col-sm-6 col-md-9">
 
-                    <select class="form-control @error('tipe')
-                            is-invalid
-                        @enderror" name="tipe"  required>
-                        @if(old('tipe'))
-                            <option>{{old('tipe')}}</option>
-                        @else
-                            <option selected>{{$data->tipe}}</option>
-                        @endif
-                            <option disabled  value=""> Pilih Tipe</option>
-                            <option>Umum</option>
-                            <option>Khusus</option>
+                      <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password" >
 
-                    </select>
-
-                      @error('tipe')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('password')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
                   </div>
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali pengguna</label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Konfirmasi Password</label>
                     <div class="col-sm-6 col-md-9">
 
-                        <select class="js-example-basic-single form-control-sm @error('walipengguna_id')
-                            is-invalid
-                            @enderror" name="walipengguna_id"  style="width: 75%" required>
-                                @if($data->walipengguna!=null)
-                                    <option value="{{ $data->walipengguna->id }}" selected> {{ $data->walipengguna->nama }}</option>
-                                @else
-                                    <option disabled  value="" selected> Pilih Walipengguna</option>
+                      <input type="password" class="form-control  @error('password2') is-invalid @enderror" name="password2" >
 
-                                @endif
-                                @foreach ($walipengguna as $t)
-                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
-                                @endforeach
-                            </select>
-
-                        @error('walipengguna_id')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
+                      @error('password2')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
 
                     </div>
                   </div>
+
                   </div>
 
 

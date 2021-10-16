@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Fungsi;
 use App\Models\pengguna;
 use App\Models\sekolah;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -102,30 +103,53 @@ class adminpenggunacontroller extends Controller
 
             $request->validate([
                 'nama' => "required",
-                'nomerinduk' => "required|unique:pengguna,nomerinduk,".$request->nomerinduk,
             ],
             [
-                'nomerinduk.unique'=>'Nomer induk sudah digunakan',
             ]);
         }
 
-
         $request->validate([
             'nama'=>'required',
-            'nomerinduk'=>'required',
+            'email'=>'required',
+            'username'=>'required',
         ],
         [
             'nama.required'=>'nama harus diisi',
-            'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
+
+
+        if($request->password!=null OR $request->password!=''){
+
+        $request->validate([
+            'password' => 'min:8|required_with:password2|same:password2',
+            'password2' => 'min:8',
+        ],
+        [
+            'nama.required'=>'nama harus diisi',
+        ]);
+            User::where('id',$data->users_id)
+            ->update([
+                'name'     =>   $request->nama,
+                'email'     =>   $request->email,
+                'password' => Hash::make($request->password),
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+        }else{
+            User::where('id',$data->users_id)
+            ->update([
+                'name'     =>   $request->nama,
+                'email'     =>   $request->email,
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
 
         pengguna::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
-            'nomerinduk'     =>   $request->nomerinduk,
-            'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
+
     return redirect()->route('sekolah.pengguna',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(sekolah $id,pengguna $data){
