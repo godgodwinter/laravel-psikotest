@@ -1,65 +1,100 @@
 
-            <form id="setting-form" method="POST" action="{{route('sekolah.kelas.update',[$id->id,$data->id])}}">
-                @method('put')
-                @csrf
-                <div class="card" id="settings-card">
-                  <div class="card-header">
-                    <h4>kelas </h4>
-                  </div>
-                  <div class="card-body">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Identitas Pribadi</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Orang Tua</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                      </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                    <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama</label>
-                        <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required value="{{old('nama') ? old('nama') : $data->nama}}">
 
-                          @error('nama')<div class="invalid-feedback"> {{$message}}</div>
-                          @enderror
+           <form id="setting-form" method="POST" action="{{route('sekolah.kelas.update',[$id->id,$data->id])}}">
+            @method('put')
+            @csrf
+            <div class="card" id="settings-card">
+              <div class="card-header">
+                <h4>Kelas </h4>
+              </div>
+              <div class="card-body">
 
-                        </div>
-                      </div>
-                      <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">NIP</label>
-                        <div class="col-sm-6 col-md-9">
+                <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Kelas</label>
+                    <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required value="{{old('nomerinduk') ? old('nomerinduk') : $data->nomerinduk}}">
+                      <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required value="{{old('nama') ? old('nama') : $data->nama}}">
 
-                          @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
-                          @enderror
+                      @error('nama')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
 
-                        </div>
-                      </div>
-                      </div>
-                      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        Sed sed metus vel lacus hendrerit tempus. Sed efficitur velit tortor, ac efficitur est lobortis quis. Nullam lacinia metus erat, sed fermentum justo rutrum ultrices. Proin quis iaculis tellus. Etiam ac vehicula eros, pharetra consectetur dui. Aliquam convallis neque eget tellus efficitur, eget maximus massa imperdiet. Morbi a mattis velit. Donec hendrerit venenatis justo, eget scelerisque tellus pharetra a.
-                      </div>
-                      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin ligula massa, gravida in lacinia efficitur, hendrerit eget mauris. Pellentesque fermentum, sem interdum molestie finibus, nulla diam varius leo, nec varius lectus elit id dolor. Nam malesuada orci non ornare vulputate. Ut ut sollicitudin magna. Vestibulum eget ligula ut ipsum venenatis ultrices. Proin bibendum bibendum augue ut luctus.
-                      </div>
                     </div>
-
-                  <div class="card-footer bg-whitesmoke text-md-right">
-                    <button class="btn btn-primary" id="save-btn">Simpan</button>
                   </div>
-                </div>
-              </form>
+                  <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tipe Kelas</label>
+                    <div class="col-sm-6 col-md-9">
+
+
+
+
+                    <select class="form-control @error('tipe')
+                            is-invalid
+                        @enderror" name="tipe"  required>
+                        @if(old('tipe'))
+                            <option>{{old('tipe')}}</option>
+                        @else
+                            <option selected>{{$data->tipe}}</option>
+                        @endif
+                            <option disabled  value=""> Pilih Tipe</option>
+                            <option>Umum</option>
+                            <option>Khusus</option>
+
+                    </select>
+
+                      @error('tipe')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+
+                    </div>
+                  </div>
+                  <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
+                    <div class="col-sm-6 col-md-9">
+
+
+
+
+                        <select class="js-example-basic-single form-control-sm @error('walikelas_id')
+                            is-invalid
+                        @enderror" name="walikelas_id"  style="width: 75%" required>
+                            @if($data->walikelas!=null)
+                                <option value="{{ $data->walikelas->id }}" selected> {{ $data->walikelas->nama }}</option>
+                            @else
+                                <option disabled  value="" selected> Pilih Walikelas</option>
+
+                            @endif
+                            @foreach ($walikelas as $t)
+                                <option value="{{ $t->nomerinduk }}"> {{ $t->nama }}</option>
+                            @endforeach
+                          </select>
+
+                      @error('walikelas_id')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+
+                    </div>
+                  </div>
+                  </div>
+
+
+
+
+              <div class="card-footer bg-whitesmoke text-md-right">
+                <button class="btn btn-primary" id="save-btn">Simpan</button>
+              </div>
+            </div>
+          </form>
+
+          <script type="text/javascript">
+            $(document).ready(function() {
+
+                // In your Javascript (external .js resource or <script> tag)
+                    $(document).ready(function() {
+                        $('.js-example-basic-single').select2({
+                            // theme: "classic",
+                            // allowClear: true,
+                            width: "resolve"
+                        });
+                    });
+            });
+           </script>

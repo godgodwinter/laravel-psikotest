@@ -83,8 +83,11 @@ class adminkelascontroller extends Controller
     public function edit(sekolah $id,kelas $data)
     {
         $pages='kelas';
+        $walikelas=DB::table('walikelas')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')->get();
 
-        return view('pages.admin.sekolah.pages.kelas_edit',compact('pages','id','data'));
+        return view('pages.admin.sekolah.pages.kelas_edit',compact('pages','id','data','walikelas'));
     }
     public function update(sekolah $id,kelas $data,Request $request)
     {
