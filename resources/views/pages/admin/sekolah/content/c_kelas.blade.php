@@ -48,6 +48,9 @@
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
+                                <td>
+                                    {{$data->walikelas->nama}}
+                                </td>
 
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}

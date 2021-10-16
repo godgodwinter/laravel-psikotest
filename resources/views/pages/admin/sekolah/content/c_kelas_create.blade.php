@@ -31,7 +31,7 @@
                             <select class="form-control @error('tipe')
                                 is-invalid
                             @enderror" name="tipe"  required>
-                                <option disabled selected> Pilih Tipe</option>
+                                <option disabled selected value=""> Pilih Tipe</option>
                                 <option>Umum</option>
                                 <option>Khusus</option>
 
@@ -52,7 +52,7 @@
                             <select class="js-example-basic-single form-control-sm @error('walikelas_id')
                                 is-invalid
                             @enderror" name="walikelas_id"  style="width: 75%" required>
-                                <option disabled selected> Pilih Walikelas</option>
+                                <option disabled selected value=""> Pilih Walikelas</option>
                                 @foreach ($walikelas as $t)
                                     <option value="{{ $t->nomerinduk }}" > {{ $t->nama }}</option>
                                 @endforeach

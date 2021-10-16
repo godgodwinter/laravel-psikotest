@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class bukurakresource extends JsonResource
+class kelasindexresource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,8 @@ class bukurakresource extends JsonResource
         return[
             'id'=>$this->id,
             'nama'=>$this->nama,
-            'kode'=>$this->kode,
+            'walikelas_id'=>$this->walikelas_id,
+            'walikelas_nama'=>$this->walikelas_nama,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
         ];

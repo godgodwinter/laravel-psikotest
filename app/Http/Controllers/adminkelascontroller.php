@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Http\Resources\kelasindexresource;
 use App\Models\kelas;
 use App\Models\sekolah;
+use App\Models\walikelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,10 +15,16 @@ class adminkelascontroller extends Controller
     public function index(sekolah $id,Request $request)
     {
         $pages='kelas';
-        $datas=DB::table('kelas')->whereNull('deleted_at')
-        ->where('sekolah_id',$id->id)
+        // $datas=DB::table('kelas')->whereNull('deleted_at')
+        // ->where('sekolah_id',$id->id)
+        // // ->with('walikelas','nama')
+        // ->orderBy('nama','asc')
+        // ->paginate(Fungsi::paginationjml());
+
+        $datas = kelas::where('nama', 'like', '%a%')->with('walikelas')
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
+        // dd($datas);
 
         return view('pages.admin.sekolah.pages.kelas_index',compact('pages','id','request','datas'));
     }
@@ -32,7 +40,7 @@ class adminkelascontroller extends Controller
 
     public function store(sekolah $id,Request $request)
     {
-        dd($request);
+        // dd($request);
         $cek=DB::table('kelas')->whereNull('deleted_at')->where('nama',$request->nama)
         ->where('sekolah_id',$id->id)
         ->count();
@@ -61,6 +69,8 @@ class adminkelascontroller extends Controller
         DB::table('kelas')->insert(
             array(
                    'nama'     =>   $request->nama,
+                   'tipe'     =>   $request->tipe,
+                   'walikelas_id'     =>   $request->walikelas_id,
                    'sekolah_id'     =>   $id->id,
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
@@ -100,6 +110,8 @@ class adminkelascontroller extends Controller
         kelas::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
+            'tipe'     =>   $request->tipe,
+            'walikelas_id'     =>   $request->walikelas_id,
             'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);

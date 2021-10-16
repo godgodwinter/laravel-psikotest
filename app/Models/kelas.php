@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// use App\Models\walikelas;
 
 class kelas extends Model
 {
@@ -17,4 +18,9 @@ class kelas extends Model
             'tipe',
             'sekolah_id'
         ];
+
+        public function walikelas()
+        {
+            return $this->belongsTo('App\Models\walikelas');
+        }
 }
