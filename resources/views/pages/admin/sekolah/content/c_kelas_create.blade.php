@@ -22,13 +22,32 @@
                         </div>
                       </div>
                       <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pilih Wali Kelas</label>
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tipe Kelas</label>
                         <div class="col-sm-6 col-md-9">
 
 
 
 
-                            <select class="js-example-basic-single form-control-sm" name="walikelas_id"  style="width: 75%" >
+                            <select class="form-control" name="tipe"  srequired>
+                                <option disabled selected> Pilih Tipe</option>
+                                <option>Umum</option>
+                                <option>Khusus</option>
+
+                              </select>
+
+                          @error('walikelas_id')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
+                        <div class="col-sm-6 col-md-9">
+
+
+
+
+                            <select class="js-example-basic-single form-control-sm" name="walikelas_id"  style="width: 75%" required>
                                 <option disabled selected> Pilih Walikelas</option>
                                 @foreach ($walikelas as $t)
                                     <option value="{{ $t->nomerinduk }}" > {{ $t->nama }}</option>

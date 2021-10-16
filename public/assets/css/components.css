@@ -727,6 +727,7 @@ tr:first-child > td > .fc-day-grid-event {
   min-height: 42px;
   line-height: 42px;
   padding-top: 6px;
+  margin-left: 10px;
   padding-left: 20px;
   padding-right: 20px; }
 
