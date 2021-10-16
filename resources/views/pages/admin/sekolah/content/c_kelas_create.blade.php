@@ -28,14 +28,16 @@
 
 
 
-                            <select class="form-control" name="tipe"  srequired>
+                            <select class="form-control @error('tipe')
+                                is-invalid
+                            @enderror" name="tipe"  required>
                                 <option disabled selected> Pilih Tipe</option>
                                 <option>Umum</option>
                                 <option>Khusus</option>
 
                               </select>
 
-                          @error('walikelas_id')<div class="invalid-feedback"> {{$message}}</div>
+                          @error('tipe')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
 
                         </div>
@@ -47,7 +49,9 @@
 
 
 
-                            <select class="js-example-basic-single form-control-sm" name="walikelas_id"  style="width: 75%" required>
+                            <select class="js-example-basic-single form-control-sm @error('walikelas_id')
+                                is-invalid
+                            @enderror" name="walikelas_id"  style="width: 75%" required>
                                 <option disabled selected> Pilih Walikelas</option>
                                 @foreach ($walikelas as $t)
                                     <option value="{{ $t->nomerinduk }}" > {{ $t->nama }}</option>

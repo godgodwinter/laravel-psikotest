@@ -32,7 +32,7 @@ class adminkelascontroller extends Controller
 
     public function store(sekolah $id,Request $request)
     {
-        // dd($request);
+        dd($request);
         $cek=DB::table('kelas')->whereNull('deleted_at')->where('nama',$request->nama)
         ->where('sekolah_id',$id->id)
         ->count();
