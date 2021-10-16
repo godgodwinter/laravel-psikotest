@@ -1,11 +1,10 @@
 
-
-
-           <form id="setting-form" method="POST" action="{{route('sekolah.siswa.store',$id->id)}}">
+            <form id="setting-form" method="POST" action="{{route('sekolah.walikelas.update',[$id->id,$data->id])}}">
+                @method('put')
                 @csrf
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>Siswa </h4>
+                    <h4>Walikelas </h4>
                   </div>
                   <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -26,7 +25,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required>
+                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required value="{{old('nama') ? old('nama') : $data->nama}}">
 
                           @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -34,10 +33,10 @@
                         </div>
                       </div>
                       <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">NISN</label>
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">NIP</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required>
+                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required value="{{old('nomerinduk') ? old('nomerinduk') : $data->nomerinduk}}">
 
                           @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror

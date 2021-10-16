@@ -1,7 +1,6 @@
 
-
-
-           <form id="setting-form" method="POST" action="{{route('sekolah.siswa.store',$id->id)}}">
+            <form id="setting-form" method="POST" action="{{route('sekolah.siswa.update',[$id->id,$data->id])}}">
+                @method('put')
                 @csrf
                 <div class="card" id="settings-card">
                   <div class="card-header">
@@ -26,7 +25,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required>
+                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required value="{{old('nama') ? old('nama') : $data->nama}}">
 
                           @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -37,7 +36,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">NISN</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required>
+                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required value="{{old('nomerinduk') ? old('nomerinduk') : $data->nomerinduk}}">
 
                           @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror

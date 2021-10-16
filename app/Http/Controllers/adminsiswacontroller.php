@@ -26,27 +26,29 @@ class adminsiswacontroller extends Controller
 
         return view('pages.admin.sekolah.pages.siswa_create',compact('pages','id'));
     }
-    
+
     public function store(sekolah $id,Request $request)
     {
         // dd($request);
-        $cek=DB::table('siswa')->whereNull('deleted_at')->where('nama',$request->nama)
+        $cek=DB::table('siswa')->whereNull('deleted_at')->where('nomerinduk',$request->nomerinduk)
         ->where('sekolah_id',$id->id)
         ->count();
         // dd($cek);
             if($cek>0){
                     $request->validate([
-                    'nama'=>'required|unique:siswa,nama',
+                    // 'nama'=>'required|unique:siswa,nama',
+                    'nomerinduk'=>'required|unique:siswa,nomerinduk',
 
                     ],
                     [
-                        'nama.unique'=>'Nama sudah digunakan',
+                        'nomerinduk.unique'=>'Nomer Induk sudah digunakan',
                     ]);
 
             }
 
             $request->validate([
                 'nama'=>'required',
+                'nomerinduk'=>'required',
 
             ],
             [
@@ -58,6 +60,7 @@ class adminsiswacontroller extends Controller
         DB::table('siswa')->insert(
             array(
                    'nama'     =>   $request->nama,
+                   'nomerinduk'     =>   $request->nomerinduk,
                    'sekolah_id'     =>   $id->id,
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
@@ -66,7 +69,7 @@ class adminsiswacontroller extends Controller
     return redirect()->route('sekolah.siswa',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
-    
+
     public function edit(sekolah $id,siswa $data)
     {
         $pages='siswa';
@@ -76,27 +79,31 @@ class adminsiswacontroller extends Controller
     public function update(sekolah $id,siswa $data,Request $request)
     {
 
-        if($request->nama!==$data->nama){
+        if($request->nomerinduk!==$data->nomerinduk){
 
             $request->validate([
-                'nama' => "required|unique:siswa,nama,".$request->nama,
+                'nama' => "required",
+                'nomerinduk' => "required|unique:siswa,nomerinduk,".$request->nomerinduk,
             ],
             [
-                'nama.unique'=>'Nama sudah digunakan',
+                'nomerinduk.unique'=>'Nomer induk sudah digunakan',
             ]);
         }
 
 
         $request->validate([
             'nama'=>'required',
+            'nomerinduk'=>'required',
         ],
         [
-            'nama.required'=>'nama sudah digunakan',
+            'nama.required'=>'nama harus diisi',
+            'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 
         siswa::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
+            'nomerinduk'     =>   $request->nomerinduk,
             'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);

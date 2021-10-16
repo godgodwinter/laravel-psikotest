@@ -1,11 +1,11 @@
 
 
 
-           <form id="setting-form" method="POST" action="{{route('sekolah.siswa.store',$id->id)}}">
+           <form id="setting-form" method="POST" action="{{route('sekolah.walikelas.store',$id->id)}}">
                 @csrf
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>Siswa </h4>
+                    <h4>Wali kelas </h4>
                   </div>
                   <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -13,11 +13,11 @@
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Identitas Pribadi</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Orang Tua</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pendidikan Terakhir</a>
                       </li>
-                      <li class="nav-item">
+                      {{-- <li class="nav-item">
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                      </li>
+                      </li> --}}
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -34,7 +34,7 @@
                         </div>
                       </div>
                       <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">NISN</label>
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">NIP</label>
                         <div class="col-sm-6 col-md-9">
 
                           <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required>

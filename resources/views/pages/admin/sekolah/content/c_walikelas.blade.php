@@ -1,14 +1,14 @@
 
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>Siswa </h4>
+                    <h4>walikelas </h4>
                   </div>
                   <div class="card-body">
                     <div id="babeng-bar" class="text-right mt-2">
 
                         <div id="babeng-row ">
 
-                            <form action="{{route('sekolah.siswa.cari',$id->id)}}" method="GET">
+                            <form action="{{route('sekolah.walikelas.cari',$id->id)}}" method="GET">
                                 <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                                 <span>
@@ -16,7 +16,7 @@
                                         value="Cari">
                                 </span>
 
-                                <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
+                                <a href="{{route('sekolah.walikelas.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
                                             <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
@@ -35,7 +35,7 @@
                 <thead>
                     <tr>
                         <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
-                        <th>Nama siswa</th>
+                        <th>Nama walikelas</th>
                         <th width="150px" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -50,8 +50,8 @@
 
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                    <x-button-edit link="{{ route('sekolah.siswa.edit',[$id->id,$data->id])}}" />
-                                    <x-button-delete link="{{ route('sekolah.siswa.edit',[$id->id,$data->id])}}" />
+                                    <x-button-edit link="{{ route('sekolah.walikelas.edit',[$id->id,$data->id])}}" />
+                                    <x-button-delete link="{{ route('sekolah.walikelas.edit',[$id->id,$data->id])}}" />
                                 </td>
                             </tr>
                 @empty
