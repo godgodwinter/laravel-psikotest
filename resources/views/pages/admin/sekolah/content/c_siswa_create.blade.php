@@ -43,6 +43,28 @@
                           @enderror
 
                         </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="text" class="form-control  @error('alamat') is-invalid @enderror" name="alamat" required>
+
+                          @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                      </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
+                        <div class="col-sm-6 col-md-9">
+  
+                      <select name="jeniskelamin" class="form-control">
+                        <option>Laki-laki</option>
+                        <option>Perempuan</option>
+                      </select>
+                  
                       </div>
                       </div>
                       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
