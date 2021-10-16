@@ -18,8 +18,8 @@ class walikelas extends Model
         ];
 
 
-    public function kelas()
-    {
-        return $this->belongsTo('App\Models\kelas');
-    }
+    // public function kelas()
+    // {
+    //     return $this->belongsTo('App\Models\kelas');
+    // }
 }

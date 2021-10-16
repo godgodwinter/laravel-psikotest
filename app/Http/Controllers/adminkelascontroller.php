@@ -91,7 +91,7 @@ class adminkelascontroller extends Controller
     }
     public function update(sekolah $id,kelas $data,Request $request)
     {
-
+        // dd($request);
         if($request->nama!==$data->nama){
 
             $request->validate([

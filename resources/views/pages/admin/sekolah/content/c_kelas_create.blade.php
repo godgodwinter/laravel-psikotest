@@ -54,7 +54,7 @@
                             @enderror" name="walikelas_id"  style="width: 75%" required>
                                 <option disabled selected value=""> Pilih Walikelas</option>
                                 @foreach ($walikelas as $t)
-                                    <option value="{{ $t->nomerinduk }}"> {{ $t->nama }}</option>
+                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
                                 @endforeach
                               </select>
 

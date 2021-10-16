@@ -52,25 +52,22 @@
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
                     <div class="col-sm-6 col-md-9">
 
-
-
-
                         <select class="js-example-basic-single form-control-sm @error('walikelas_id')
                             is-invalid
-                        @enderror" name="walikelas_id"  style="width: 75%" required>
-                            @if($data->walikelas!=null)
-                                <option value="{{ $data->walikelas->id }}" selected> {{ $data->walikelas->nama }}</option>
-                            @else
-                                <option disabled  value="" selected> Pilih Walikelas</option>
+                            @enderror" name="walikelas_id"  style="width: 75%" required>
+                                @if($data->walikelas!=null)
+                                    <option value="{{ $data->walikelas->id }}" selected> {{ $data->walikelas->nama }}</option>
+                                @else
+                                    <option disabled  value="" selected> Pilih Walikelas</option>
 
-                            @endif
-                            @foreach ($walikelas as $t)
-                                <option value="{{ $t->nomerinduk }}"> {{ $t->nama }}</option>
-                            @endforeach
-                          </select>
+                                @endif
+                                @foreach ($walikelas as $t)
+                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                                @endforeach
+                            </select>
 
-                      @error('walikelas_id')<div class="invalid-feedback"> {{$message}}</div>
-                      @enderror
+                        @error('walikelas_id')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
 
                     </div>
                   </div>
