@@ -85,8 +85,8 @@ Sekolah
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td>{{Str::limit($data->nama,25,' ...')}}
-                                    <x-button-detail link="/admin/{{ $pages }}/{{$data->id}}/detail" />
+                                <td>
+                                    <x-button-detail link="/admin/{{ $pages }}/{{$data->id}}/detail" text="{{Str::limit($data->nama,25,' ...')}}"/>
                                 </td>
                                 <td>{{Str::limit($data->alamat,25,' ...')}}</td>
                                 <td class="text-center">
