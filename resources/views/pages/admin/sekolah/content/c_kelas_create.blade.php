@@ -14,7 +14,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Kelas</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required>
+                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required  value="{{old('nama')}}">
 
                           @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror

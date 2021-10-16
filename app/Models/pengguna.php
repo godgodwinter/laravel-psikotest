@@ -6,24 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-// use App\Models\walikelas;
-
-class kelas extends Model
+class pengguna extends Model
 {
-        public $table = "kelas";
+        public $table = "pengguna";
 
         use SoftDeletes;
         use HasFactory;
 
         protected $fillable = [
             'nama',
-            'walikelas_id',
-            'tipe',
-            'sekolah_id'
+            'users_id',
         ];
 
-        public function walikelas()
+        public function users()
         {
-            return $this->belongsTo('App\Models\walikelas');
+            return $this->belongsTo('App\Models\User');
         }
 }
