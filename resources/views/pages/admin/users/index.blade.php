@@ -65,6 +65,7 @@ Administrator
                 </div>
 
                 <x-jsmultidel link="{{route('users.multidel')}}" />
+
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif

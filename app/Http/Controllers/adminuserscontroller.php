@@ -34,9 +34,13 @@ class adminuserscontroller extends Controller
         #WAJIB
         $pages='users';
         $datas=DB::table('users')
+        ->where('tipeuser','=','admin')
         ->where('name','like',"%".$cari."%")
         ->orWhere('email','like',"%".$cari."%")
-        ->orWhere('username','like',"%".$cari."%")
+        ->where('tipeuser','=','admin')
+        ->orWhere('username','like',"%".$cari."% ")
+        ->where('tipeuser','=','admin')
+
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.users.index',compact('datas','request','pages'));
@@ -72,7 +76,7 @@ class adminuserscontroller extends Controller
             }
 
             $request->validate([
-                'nama'=>'required',
+                'name'=>'required',
                 'username'=>'required',
                 'password' => 'min:8|required_with:password2|same:password2',
                 'password2' => 'min:8',
@@ -84,7 +88,7 @@ class adminuserscontroller extends Controller
 
             DB::table('users')->insert(
                 array(
-                       'name'     =>   $request->nama,
+                       'name'     =>   $request->name,
                        'email'     =>   $request->email,
                        'username'     =>   $request->username,
                        'nomerinduk'     => date('YmdHis'),
@@ -176,10 +180,10 @@ class adminuserscontroller extends Controller
         // load ulang
         #WAJIB
         $pages='users';
-        $datas=DB::table('users')->whereNull('deleted_at')
+        $datas=DB::table('users')->where('tipeuser','admin')
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.users.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+        return view('pages.admin.users.index',compact('datas','request','pages'));
 
     }
 }
