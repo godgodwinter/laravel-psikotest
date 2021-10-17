@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 // use App\Models\walikelas;
 
-class referensi extends Model
+class informasipsikologi extends Model
 {
-        public $table = "referensi";
+        public $table = "informasipsikologi";
 
         use SoftDeletes;
         use HasFactory;
@@ -20,7 +20,6 @@ class referensi extends Model
             'tipe',
             'link',
             'file',
-            // 'sekolah_id'
         ];
 
 }

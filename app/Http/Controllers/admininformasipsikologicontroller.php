@@ -3,35 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
-use App\Models\referensi;
-use App\Models\sekolah;
+use App\Models\informasipsikologi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class adminreferensicontroller extends Controller
+class admininformasipsikologicontroller extends Controller
 {
     public function index(Request $request)
     {
-        $pages='referensi';
-        // $datas=DB::table('referensi')->whereNull('deleted_at')
-        // ->where('sekolah_id',$id->id)
-        // // ->with('walireferensi','nama')
+        $pages='informasipsikologi';
+        // $datas=DB::table('informasipsikologi')->whereNull('deleted_at')
+        // ->where('informasipsikologi_id',$id->id)
+        // // ->with('waliinformasipsikologi','nama')
         // ->orderBy('nama','asc')
         // ->paginate(Fungsi::paginationjml());
 
-        $datas = DB::table('referensi')
+        $datas = DB::table('informasipsikologi')
         ->whereNull('deleted_at')
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
         // dd($datas);
 
-        return view('pages.admin.referensi.index',compact('pages','request','datas'));
+        return view('pages.admin.informasipsikologi.index',compact('pages','request','datas'));
     }
-    public function create(sekolah $id)
+    public function create(informasipsikologi $id)
     {
-        $pages='referensi';
+        $pages='informasipsikologi';
 
-        return view('pages.admin.referensi.create',compact('pages'));
+        return view('pages.admin.informasipsikologi.create',compact('pages'));
     }
 
     public function store(Request $request)
@@ -82,14 +81,14 @@ class adminreferensicontroller extends Controller
             echo 'File Mime Type: '.$file->getMimeType();
 
                       // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'referensi/';
+            $tujuan_upload = 'informasipsikologi/';
 
                     // upload file
-            $file->move($tujuan_upload,"referensi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
-                $namafileku="referensi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
+            $file->move($tujuan_upload,"informasipsikologi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
+                $namafileku="informasipsikologi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
             }
 
-        DB::table('referensi')->insert(
+        DB::table('informasipsikologi')->insert(
             array(
                    'nama'     =>   $request->nama,
                    'tipe'     =>   $request->tipe,
@@ -98,17 +97,17 @@ class adminreferensicontroller extends Controller
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
-            return redirect()->route('referensi')->with('status','Data berhasil di tambahkan!')->with('tipe','success');
+            return redirect()->route('informasipsikologi')->with('status','Data berhasil di tambahkan!')->with('tipe','success');
 
      }
 
-    public function edit(referensi $data)
+    public function edit(informasipsikologi $data)
     {
-        $pages='referensi';
+        $pages='informasipsikologi';
 
-        return view('pages.admin.referensi.edit',compact('pages','data'));
+        return view('pages.admin.informasipsikologi.edit',compact('pages','data'));
     }
-    public function update(referensi $data,Request $request)
+    public function update(informasipsikologi $data,Request $request)
     {
         // dd($request);
         if($request->file!=null){
@@ -158,15 +157,15 @@ class adminreferensicontroller extends Controller
                 echo 'File Mime Type: '.$file->getMimeType();
 
                           // isi dengan nama folder tempat kemana file diupload
-                $tujuan_upload = 'referensi/';
+                $tujuan_upload = 'informasipsikologi/';
 
                         // upload file
-                $file->move($tujuan_upload,"referensi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
-                    $namafileku="referensi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
+                $file->move($tujuan_upload,"informasipsikologi/".$namafilebaru.'.'.$file->getClientOriginalExtension());
+                    $namafileku="informasipsikologi/".$namafilebaru.'.'.$file->getClientOriginalExtension();
                 }
 
 
-        referensi::where('id',$data->id)
+        informasipsikologi::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
             'tipe'     =>   $request->tipe,
@@ -185,7 +184,7 @@ class adminreferensicontroller extends Controller
 
             ]);
 
-        referensi::where('id',$data->id)
+        informasipsikologi::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
             'tipe'     =>   $request->tipe,
@@ -195,12 +194,12 @@ class adminreferensicontroller extends Controller
         }
 
 
-    return redirect()->route('referensi')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('informasipsikologi')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(referensi $data){
+    public function destroy(informasipsikologi $data){
 
-        referensi::destroy($data->id);
-        return redirect()->route('referensi')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+        informasipsikologi::destroy($data->id);
+        return redirect()->route('informasipsikologi')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
 
@@ -208,15 +207,15 @@ class adminreferensicontroller extends Controller
     {
 
         $ids=$request->ids;
-        sekolah::whereIn('id',$ids)->delete();
+        informasipsikologi::whereIn('id',$ids)->delete();
 
         // load ulang
         #WAJIB
-        $pages='sekolah';
-        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        $pages='informasipsikologi';
+        $datas=DB::table('informasipsikologi')->whereNull('deleted_at')
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.sekolah.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+        return view('pages.admin.informasipsikologi.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
 }

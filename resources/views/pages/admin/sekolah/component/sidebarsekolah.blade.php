@@ -15,7 +15,8 @@
                     <li class="nav-item"><a href="{{route('sekolah.referensi',$id->id)}}" class="nav-link {{$pages=='referensi' ? 'active' : ''}}">Referensi Psikologis</a></li>
                     {{-- <li class="nav-item"><a href="{{route('sekolah.deteksi',$id->id)}}" class="nav-link">Deteksi Psikologis</a></li> --}}
                     <li class="nav-item"><a href="{{route('sekolah.masternilaipsikologi',$id->id)}}" class="nav-link {{$pages=='masternilaipsikologi' ? 'active' : ''}}">Master Nilai Psikologi</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.masternilaibidangstudi',$id->id)}}" class="nav-link {{$pages=='masternilaibidangstudi' ? 'active' : ''}}">Master Nilai Bidang Studi</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link {{$pages=='masternilaipsikologi' ? 'active' : ''}}">Informasi Psikologi</a></li>
+                    {{-- <li class="nav-item"><a href="{{route('sekolah.masternilaibidangstudi',$id->id)}}" class="nav-link {{$pages=='masternilaibidangstudi' ? 'active' : ''}}">Master Nilai Bidang Studi</a></li> --}}
                   </ul>
                   <br>
                   <h5>Proses</h5>
