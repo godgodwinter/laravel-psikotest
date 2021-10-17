@@ -14,9 +14,9 @@
 
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i class="fas fa-school"></i> <span>Sekolah</span></a></li>
 
-            <li class="nav-item"><a href="{{route('referensi')}}" class="nav-link {{$pages=='referensi' ? 'active' : ''}}"> <i class="fas fa-greater-than-equal"></i>  <span>Referensi Psikologis</span> </a></li>
+            <li {{$pages=='referensi' ? 'class=active' : ''}}><a href="{{route('referensi')}}" class="nav-link "> <i class="fas fa-greater-than-equal"></i>  <span>Referensi Psikologis</span> </a></li>
 
-            <li class="nav-item"><a href="{{route('informasipsikologi')}}" class="nav-link {{$pages=='informasipsikologi' ? 'active' : ''}}"> <i class="fas fa-info-circle"></i>  <span>Informasi Psikologis</span> </a></li>
+            <li {{$pages=='informasipsikologi' ? 'class=active' : ''}}><a href="{{route('informasipsikologi')}}" class="nav-link "> <i class="fas fa-info-circle"></i>  <span>Informasi Psikologis</span> </a></li>
 
             <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('users')}}"><i class="fas fa-user-shield"></i> <span>Administrator</span></a></li>
             {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li> --}}
