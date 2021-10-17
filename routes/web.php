@@ -8,6 +8,7 @@ use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminpenggunacontroller;
 use App\Http\Controllers\adminreferensicontroller;
+use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsekolahcontroller;
 use App\Http\Controllers\adminsemestercontroller;
 use App\Http\Controllers\adminsettingscontroller;
@@ -148,4 +149,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::get('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'edit'])->name('sekolah.masternilaibidangstudi.edit');
       Route::put('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'update'])->name('sekolah.masternilaibidangstudi.update');
       Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
+
+
+        //Seeder
+        Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
+        Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
+
 });

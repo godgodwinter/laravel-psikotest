@@ -68,6 +68,27 @@ Pengaturan
 
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                <h4>Seeder dan Reset Data</h4>
+                </div>
+                <div class="card-body">
+
+                    <form action="{{route('seeder.sekolah')}}" method="post" class="d-inline">
+                        @csrf
+                        <button class="btn btn-warning">Seeder Data Sekolah</button>
+                    </form>
+
+                    <br>
+                    <br>
+
+                    <form action="{{route('seeder.hard')}}" method="post"  class="d-inline ">
+                        @csrf
+                        <button class="btn btn-danger">Hard Reset</button>
+                    </form>
+
+                </div>
+            </div>
             </div>
         </section>
 @endsection
