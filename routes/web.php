@@ -4,6 +4,7 @@ use App\Helpers\Fungsi;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
+use App\Http\Controllers\admininformasipsikologicontroller;
 use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
@@ -127,13 +128,25 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::delete('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'destroy'])->name('sekolah.pengguna.destroy');
 
       //referensi
-      Route::get('/admin/sekolah/{id}/referensi', [adminreferensicontroller::class, 'index'])->name('sekolah.referensi');
-      Route::get('/admin/sekolah/{id}/referensi/create', [adminreferensicontroller::class, 'create'])->name('sekolah.referensi.create');
-      Route::post('/admin/sekolah/{id}/referensi/create', [adminreferensicontroller::class, 'store'])->name('sekolah.referensi.store');
-      Route::get('/admin/sekolah/{id}/referensi/cari', [adminreferensicontroller::class, 'cari'])->name('sekolah.referensi.cari');
-      Route::get('/admin/sekolah/{id}/referensi/edit/{data}', [adminreferensicontroller::class, 'edit'])->name('sekolah.referensi.edit');
-      Route::put('/admin/sekolah/{id}/referensi/update/{data}', [adminreferensicontroller::class, 'update'])->name('sekolah.referensi.update');
-      Route::delete('/admin/sekolah/{id}/referensi/delete/{data}', [adminreferensicontroller::class, 'destroy'])->name('sekolah.referensi.destroy');
+      Route::get('/admin/referensi', [adminreferensicontroller::class, 'index'])->name('referensi');
+      Route::get('/admin/referensi/create', [adminreferensicontroller::class, 'create'])->name('referensi.create');
+      Route::post('/admin/referensi/create', [adminreferensicontroller::class, 'store'])->name('referensi.store');
+      Route::get('/admin/referensi/cari', [adminreferensicontroller::class, 'cari'])->name('referensi.cari');
+      Route::get('/admin/referensi/edit/{data}', [adminreferensicontroller::class, 'edit'])->name('referensi.edit');
+      Route::put('/admin/referensi/update/{data}', [adminreferensicontroller::class, 'update'])->name('referensi.update');
+      Route::delete('/admin/referensi/delete/{data}', [adminreferensicontroller::class, 'destroy'])->name('referensi.destroy');
+      Route::delete('/admin/referensi/delete', [adminreferensicontroller::class, 'destroy'])->name('referensi.multidel');
+
+
+      //informasipsikologi
+      Route::get('/admin/informasipsikologi', [admininformasipsikologicontroller::class, 'index'])->name('informasipsikologi');
+      Route::get('/admin/informasipsikologi/create', [admininformasipsikologicontroller::class, 'create'])->name('informasipsikologi.create');
+      Route::post('/admin/informasipsikologi/create', [admininformasipsikologicontroller::class, 'store'])->name('informasipsikologi.store');
+      Route::get('/admin/informasipsikologi/cari', [admininformasipsikologicontroller::class, 'cari'])->name('informasipsikologi.cari');
+      Route::get('/admin/informasipsikologi/edit/{data}', [admininformasipsikologicontroller::class, 'edit'])->name('informasipsikologi.edit');
+      Route::put('/admin/informasipsikologi/update/{data}', [admininformasipsikologicontroller::class, 'update'])->name('informasipsikologi.update');
+      Route::delete('/admin/informasipsikologi/delete/{data}', [admininformasipsikologicontroller::class, 'destroy'])->name('informasipsikologi.destroy');
+      Route::delete('/admin/informasipsikologi/delete', [admininformasipsikologicontroller::class, 'destroy'])->name('informasipsikologi.multidel');
 
       //deteksi
       Route::get('/admin/sekolah/{id}/deteksi', [admindeteksicontroller::class, 'index'])->name('sekolah.deteksi');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferensiTable extends Migration
+class CreateInformasipsikologiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateReferensiTable extends Migration
      */
     public function up()
     {
-        Schema::create('referensi', function (Blueprint $table) {
+        Schema::create('informasipsikologi', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('tipe');
             $table->string('link')->nullable();
             $table->string('file')->nullable();
-            // $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +31,6 @@ class CreateReferensiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referensi');
+        Schema::dropIfExists('informasipsikologi');
     }
 }
