@@ -10,7 +10,7 @@
                   <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Identitas Pribadi</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Identitas Pribadi2</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Orang Tua</a>
@@ -23,7 +23,7 @@
                       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                     <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama</label>
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama2</label>
                         <div class="col-sm-6 col-md-9">
 
                           <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required>
