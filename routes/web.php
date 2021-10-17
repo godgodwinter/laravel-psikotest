@@ -121,31 +121,31 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/referensi/update/{data}', [adminreferensicontroller::class, 'update'])->name('sekolah.referensi.update');
       Route::delete('/admin/sekolah/{id}/referensi/delete/{data}', [adminreferensicontroller::class, 'destroy'])->name('sekolah.referensi.destroy');
 
-    //   //deteksi
-    //   Route::get('/admin/sekolah/{id}/deteksi', [admindeteksicontroller::class, 'index'])->name('sekolah.deteksi');
-    //   Route::get('/admin/sekolah/{id}/deteksi/create', [admindeteksicontroller::class, 'create'])->name('sekolah.deteksi.create');
-    //   Route::post('/admin/sekolah/{id}/deteksi/create', [admindeteksicontroller::class, 'store'])->name('sekolah.deteksi.store');
-    //   Route::get('/admin/sekolah/{id}/deteksi/cari', [admindeteksicontroller::class, 'cari'])->name('sekolah.deteksi.cari');
-    //   Route::get('/admin/sekolah/{id}/deteksi/{data}', [admindeteksicontroller::class, 'edit'])->name('sekolah.deteksi.edit');
-    //   Route::put('/admin/sekolah/{id}/deteksi/{data}', [admindeteksicontroller::class, 'update'])->name('sekolah.deteksi.update');
-    //   Route::delete('/admin/sekolah/{id}/deteksi/{data}', [admindeteksicontroller::class, 'destroy'])->name('sekolah.deteksi.destroy');
+      //deteksi
+      Route::get('/admin/sekolah/{id}/deteksi', [admindeteksicontroller::class, 'index'])->name('sekolah.deteksi');
+      Route::get('/admin/sekolah/{id}/deteksi/create', [admindeteksicontroller::class, 'create'])->name('sekolah.deteksi.create');
+      Route::post('/admin/sekolah/{id}/deteksi/create', [admindeteksicontroller::class, 'store'])->name('sekolah.deteksi.store');
+      Route::get('/admin/sekolah/{id}/deteksi/cari', [admindeteksicontroller::class, 'cari'])->name('sekolah.deteksi.cari');
+      Route::get('/admin/sekolah/{id}/deteksi/{data}', [admindeteksicontroller::class, 'edit'])->name('sekolah.deteksi.edit');
+      Route::put('/admin/sekolah/{id}/deteksi/{data}', [admindeteksicontroller::class, 'update'])->name('sekolah.deteksi.update');
+      Route::delete('/admin/sekolah/{id}/deteksi/{data}', [admindeteksicontroller::class, 'destroy'])->name('sekolah.deteksi.destroy');
 
-    //   //masternilaipsikologi
-    //   Route::get('/admin/sekolah/{id}/masternilaipsikologi', [adminmasternilaipsikologicontroller::class, 'index'])->name('sekolah.masternilaipsikologi');
-    //   Route::get('/admin/sekolah/{id}/masternilaipsikologi/create', [adminmasternilaipsikologicontroller::class, 'create'])->name('sekolah.masternilaipsikologi.create');
-    //   Route::post('/admin/sekolah/{id}/masternilaipsikologi/create', [adminmasternilaipsikologicontroller::class, 'store'])->name('sekolah.masternilaipsikologi.store');
-    //   Route::get('/admin/sekolah/{id}/masternilaipsikologi/cari', [adminmasternilaipsikologicontroller::class, 'cari'])->name('sekolah.masternilaipsikologi.cari');
-    //   Route::get('/admin/sekolah/{id}/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'edit'])->name('sekolah.masternilaipsikologi.edit');
-    //   Route::put('/admin/sekolah/{id}/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'update'])->name('sekolah.masternilaipsikologi.update');
-    //   Route::delete('/admin/sekolah/{id}/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'destroy'])->name('sekolah.masternilaipsikologi.destroy');
+      //masternilaipsikologi
+      Route::get('/admin/sekolah/{id}/masternilaipsikologi', [adminmasternilaipsikologicontroller::class, 'index'])->name('sekolah.masternilaipsikologi');
+      Route::get('/admin/sekolah/{id}/masternilaipsikologi/create', [adminmasternilaipsikologicontroller::class, 'create'])->name('sekolah.masternilaipsikologi.create');
+      Route::post('/admin/sekolah/{id}/masternilaipsikologi/create', [adminmasternilaipsikologicontroller::class, 'store'])->name('sekolah.masternilaipsikologi.store');
+      Route::get('/admin/sekolah/{id}/masternilaipsikologi/cari', [adminmasternilaipsikologicontroller::class, 'cari'])->name('sekolah.masternilaipsikologi.cari');
+      Route::get('/admin/sekolah/{id}/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'edit'])->name('sekolah.masternilaipsikologi.edit');
+      Route::put('/admin/sekolah/{id}/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'update'])->name('sekolah.masternilaipsikologi.update');
+      Route::delete('/admin/sekolah/{id}/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'destroy'])->name('sekolah.masternilaipsikologi.destroy');
 
 
-    //   //masternilaibidangstudi
-    //   Route::get('/admin/sekolah/{id}/masternilaibidangstudi', [adminmasternilaibidangstudicontroller::class, 'index'])->name('sekolah.masternilaibidangstudi');
-    //   Route::get('/admin/sekolah/{id}/masternilaibidangstudi/create', [adminmasternilaibidangstudicontroller::class, 'create'])->name('sekolah.masternilaibidangstudi.create');
-    //   Route::post('/admin/sekolah/{id}/masternilaibidangstudi/create', [adminmasternilaibidangstudicontroller::class, 'store'])->name('sekolah.masternilaibidangstudi.store');
-    //   Route::get('/admin/sekolah/{id}/masternilaibidangstudi/cari', [adminmasternilaibidangstudicontroller::class, 'cari'])->name('sekolah.masternilaibidangstudi.cari');
-    //   Route::get('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'edit'])->name('sekolah.masternilaibidangstudi.edit');
-    //   Route::put('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'update'])->name('sekolah.masternilaibidangstudi.update');
-    //   Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
+      //masternilaibidangstudi
+      Route::get('/admin/sekolah/{id}/masternilaibidangstudi', [adminmasternilaibidangstudicontroller::class, 'index'])->name('sekolah.masternilaibidangstudi');
+      Route::get('/admin/sekolah/{id}/masternilaibidangstudi/create', [adminmasternilaibidangstudicontroller::class, 'create'])->name('sekolah.masternilaibidangstudi.create');
+      Route::post('/admin/sekolah/{id}/masternilaibidangstudi/create', [adminmasternilaibidangstudicontroller::class, 'store'])->name('sekolah.masternilaibidangstudi.store');
+      Route::get('/admin/sekolah/{id}/masternilaibidangstudi/cari', [adminmasternilaibidangstudicontroller::class, 'cari'])->name('sekolah.masternilaibidangstudi.cari');
+      Route::get('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'edit'])->name('sekolah.masternilaibidangstudi.edit');
+      Route::put('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'update'])->name('sekolah.masternilaibidangstudi.update');
+      Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
 });
