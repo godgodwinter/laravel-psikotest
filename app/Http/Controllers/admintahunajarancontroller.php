@@ -26,7 +26,7 @@ class admintahunajarancontroller extends Controller
 
         return view('pages.admin.sekolah.pages.tahun_create',compact('pages','id'));
     }
-    
+
     public function store(sekolah $id,Request $request)
     {
         // dd($request);
@@ -66,7 +66,7 @@ class admintahunajarancontroller extends Controller
     return redirect()->route('sekolah.tahun',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
-    
+
     public function edit(sekolah $id,tahun $data)
     {
         $pages='tahun';

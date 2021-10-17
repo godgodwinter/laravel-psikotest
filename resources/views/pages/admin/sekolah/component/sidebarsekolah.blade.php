@@ -6,16 +6,16 @@
                 <div class="card-body">
                     <h5>Mastering</h5>
                   <ul class="nav nav-pills flex-column">
-                      <li class="nav-item"><a href="{{route('sekolah.tahun',$id->id)}}" class="nav-link active">Tahun Ajaran</a></li>
-                      <li class="nav-item"><a href="{{route('sekolah.semester',$id->id)}}" class="nav-link">Semester</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.siswa',$id->id)}}" class="nav-link ">Siswa</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.walikelas',$id->id)}}" class="nav-link">Wali kelas</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.kelas',$id->id)}}" class="nav-link">Kelas</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.pengguna',$id->id)}}" class="nav-link">User / Pengguna</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.referensi',$id->id)}}" class="nav-link">Referensi Psikologis</a></li>
+                      <li class="nav-item"><a href="{{route('sekolah.tahun',$id->id)}}" class="nav-link {{$pages=='tahun' ? 'active' : ''}}">Tahun Ajaran</a></li>
+                      <li class="nav-item"><a href="{{route('sekolah.semester',$id->id)}}" class="nav-link  {{$pages=='semester' ? 'active' : ''}}">Semester</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.siswa',$id->id)}}" class="nav-link  {{$pages=='siswa' ? 'active' : ''}}">Siswa</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.walikelas',$id->id)}}" class="nav-link {{$pages=='walikelas' ? 'active' : ''}}">Wali kelas</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.kelas',$id->id)}}" class="nav-link {{$pages=='kelas' ? 'active' : ''}}">Kelas</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.pengguna',$id->id)}}" class="nav-link {{$pages=='pengguna' ? 'active' : ''}}">User / Pengguna</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.referensi',$id->id)}}" class="nav-link {{$pages=='referensi' ? 'active' : ''}}">Referensi Psikologis</a></li>
                     {{-- <li class="nav-item"><a href="{{route('sekolah.deteksi',$id->id)}}" class="nav-link">Deteksi Psikologis</a></li> --}}
-                    <li class="nav-item"><a href="{{route('sekolah.masternilaipsikologi',$id->id)}}" class="nav-link">Master Nilai Psikologi</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.masternilaibidangstudi',$id->id)}}" class="nav-link">Master Nilai Bidang Studi</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.masternilaipsikologi',$id->id)}}" class="nav-link {{$pages=='masternilaipsikologi' ? 'active' : ''}}">Master Nilai Psikologi</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.masternilaibidangstudi',$id->id)}}" class="nav-link {{$pages=='masternilaibidangstudi' ? 'active' : ''}}">Master Nilai Bidang Studi</a></li>
                   </ul>
                   <br>
                   <h5>Proses</h5>

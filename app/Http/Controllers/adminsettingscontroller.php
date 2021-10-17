@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB;
 class adminsettingscontroller extends Controller
 {
     public function index(){
+        $pages='settings';
         $datas=DB::table('settings')->where('id',1)->first();
-        return view('pages.admin.settings.index',compact('datas'));
+        return view('pages.admin.settings.index',compact('datas','pages'));
     }
     public function update(settings $id,Request $request){
         // dd($request,$id);
