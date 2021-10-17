@@ -3,6 +3,7 @@
 use App\Helpers\Fungsi;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
+use App\Http\Controllers\admingrafikcontroller;
 use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
@@ -14,6 +15,7 @@ use App\Http\Controllers\adminsemestercontroller;
 use App\Http\Controllers\adminsettingscontroller;
 use App\Http\Controllers\adminsiswacontroller;
 use App\Http\Controllers\admintahunajarancontroller;
+use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +54,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/datasekolah', [adminsekolahcontroller::class, 'store'])->name('sekolah.store');
     Route::delete('/admin/datasekolah/multidel', [adminsekolahcontroller::class, 'multidel'])->name('sekolah.multidel');
     Route::get('/admin/sekolah/{id}/detail', [admintahunajarancontroller::class, 'index'])->name('sekolah.show');
+
+
+    //User
+    Route::get('/admin/users', [adminuserscontroller::class, 'index'])->name('users');
+    Route::get('/admin/users/{id}', [adminuserscontroller::class, 'edit'])->name('users.edit');
+    Route::put('/admin/users/{id}', [adminuserscontroller::class, 'update'])->name('users.update');
+    Route::delete('/admin/users/{id}', [adminuserscontroller::class, 'destroy'])->name('users.destroy');
+    Route::get('/admin/datausers/cari', [adminuserscontroller::class, 'cari'])->name('users.cari');
+    Route::get('/admin/datausers/create', [adminuserscontroller::class, 'create'])->name('users.create');
+    Route::post('/admin/datausers', [adminuserscontroller::class, 'store'])->name('users.store');
+    Route::delete('/admin/datausers/multidel', [adminuserscontroller::class, 'multidel'])->name('users.multidel');
 
     //detailsekolah
     //tahunajaran
@@ -154,5 +167,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
         Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
+
+        //Example
+        Route::get('/admin/example/grafik', [admingrafikcontroller::class, 'ex'])->name('testing.grafik');
 
 });

@@ -13,8 +13,9 @@
             <li class="menu-header">Menu</li>
 
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i class="fas fa-school"></i> <span>Sekolah</span></a></li>
-            <li><a class="nav-link" href="#"><i class="fas fa-user-shield"></i> <span>Administrator</span></a></li>
-            <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li>
+            <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('users')}}"><i class="fas fa-user-shield"></i> <span>Administrator</span></a></li>
+            {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li> --}}
+            <li {{$pages=='example' ? 'class=active' : ''}}><a class="nav-link" href="{{route('testing.grafik')}}"><i class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li>
             {{-- <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-school"></i>
                     <span>Sekolah</span></a>
