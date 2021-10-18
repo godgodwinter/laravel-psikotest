@@ -139,10 +139,12 @@ class adminsekolahcontroller extends Controller
       
         $files = $request->file('sekolah_logo');
 
+        $imagesDir=public_path().'/storage';
         // dd($request);
         if($files!=null){
 
             if (file_exists( public_path().'/storage'.'/'.$id->sekolah_logo)AND($id->sekolah_logo!=null)){
+                chmod($imagesDir, 0777);   
                 $image_path = public_path().'/storage'.'/'.$id->sekolah_logo;
                 unlink($image_path);
             }
@@ -166,6 +168,7 @@ class adminsekolahcontroller extends Controller
         // dd($request);
         if($files!=null){
             if (file_exists( public_path().'/storage'.'/'.$id->kepsek_photo)AND($id->kepsek_photo!=null)){
+                chmod($imagesDir, 0777);       
                 $image_path = public_path().'/storage'.'/'.$id->kepsek_photo;
                 unlink($image_path);
             }
