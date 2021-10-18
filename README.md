@@ -74,7 +74,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot-dashboardluar]](https://github.com/godgodwinter/laravel-psikotest)
+[![Product Name Screen Shot][product-screenshot-ss1]](https://github.com/godgodwinter/laravel-psikotest)
 
 Sistem .
 
@@ -188,6 +188,4 @@ Project Link: [https://github.com/godgodwinter/laravel-psikotest](https://github
 [license-url]: https://github.com/godgodwinter/laravel-psikotest/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.instagram.com/kukuh.sn/
-[product-screenshot-dashboardluar]: images/dashboardluar.png
-[product-screenshot-dashboardlm]: images/dashboardlm.png
-[product-screenshot-tagihan]: images/tagihan.png
+[product-screenshot-ss1]: images/ss1.png
