@@ -175,7 +175,7 @@ class adminsekolahcontroller extends Controller
 
         }
 
-    return redirect()->route('sekolah')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(sekolah $id){
 
