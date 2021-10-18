@@ -29,7 +29,7 @@
                       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                     <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama2</label>
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Lengkap</label>
                         <div class="col-sm-6 col-md-9">
 
                           <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required>
@@ -54,10 +54,14 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
                         <div class="col-sm-6 col-md-9">
   
-                      <select name="jeniskelamin" class="form-control">
+                      <select name="jeniskelamin" class="form-control @error('jeniskelamin')
+                          is_invalid
+                      @enderror">
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
                       </select>
+                      @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
                   
                       </div>
                       </div>
@@ -65,7 +69,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tempat Lahir</label>
                       <div class="col-sm-6 col-md-9">
 
-                        <input type="text" class="form-control  @error('tempatlahir') is-invalid @enderror" name="tempatlahir" required>
+                        <input type="text" class="form-control  @error('tempatlahir') is-invalid @enderror" name="tempatlahir" >
 
                           @error('tempatlahir')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -76,7 +80,11 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Lahir</label>
                       <div class="col-sm-6 col-md-9">
                       <div class="form-group">
-                        <input type="date" class="form-control datepicker" name="tanggallahir">
+                        <input type="date" class="form-control datepicker @error('tanggallahir')
+                            is_invalid
+                        @enderror" name="tanggallahir">
+                        @error('tanggallahir')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
                       </div>
                       </div>
                       </div>
@@ -95,10 +103,14 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
                         <div class="col-sm-6 col-md-9">
   
-                      <select name="warnanegara" class="form-control">
+                      <select name="warnanegara" class="form-control @error('warnanegara')
+                          is_invalid
+                      @enderror">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
+                      @error('warnanegara')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
                   
                       </div>
                       </div>

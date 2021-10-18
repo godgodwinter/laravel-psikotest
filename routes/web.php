@@ -5,6 +5,7 @@ use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
 use App\Http\Controllers\admininformasipsikologicontroller;
+use App\Http\Controllers\admininputnilaipsikologicontroller;
 use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
@@ -116,6 +117,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'update'])->name('sekolah.kelas.update');
       Route::delete('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'destroy'])->name('sekolah.kelas.destroy');
 
+
+    //inputnilaipsikologi
+    Route::get('/admin/sekolah/{id}/inputnilaipsikologi', [admininputnilaipsikologicontroller::class, 'index'])->name('sekolah.inputnilaipsikologi');
+    Route::get('/admin/sekolah/{id}/inputnilaipsikologi/create', [admininputnilaipsikologicontroller::class, 'create'])->name('sekolah.inputnilaipsikologi.create');
+    Route::post('/admin/sekolah/{id}/inputnilaipsikologi/create', [admininputnilaipsikologicontroller::class, 'store'])->name('sekolah.inputnilaipsikologi.store');
+    Route::get('/admin/sekolah/{id}/inputnilaipsikologi/cari', [admininputnilaipsikologicontroller::class, 'cari'])->name('sekolah.inputnilaipsikologi.cari');
+    Route::get('/admin/sekolah/{id}/inputnilaipsikologi/{data}', [admininputnilaipsikologicontroller::class, 'edit'])->name('sekolah.inputnilaipsikologi.edit');
+    Route::put('/admin/sekolah/{id}/inputnilaipsikologi/{data}', [admininputnilaipsikologicontroller::class, 'update'])->name('sekolah.inputnilaipsikologi.update');
+    Route::delete('/admin/sekolah/{id}/inputnilaipsikologi/{data}', [admininputnilaipsikologicontroller::class, 'destroy'])->name('sekolah.inputnilaipsikologi.destroy');
 
 
       //pengguna
