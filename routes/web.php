@@ -146,7 +146,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::get('/admin/referensi/edit/{data}', [adminreferensicontroller::class, 'edit'])->name('referensi.edit');
       Route::put('/admin/referensi/update/{data}', [adminreferensicontroller::class, 'update'])->name('referensi.update');
       Route::delete('/admin/referensi/delete/{data}', [adminreferensicontroller::class, 'destroy'])->name('referensi.destroy');
-      Route::delete('/admin/referensi/delete', [adminreferensicontroller::class, 'destroy'])->name('referensi.multidel');
+      Route::delete('/admin/datareferensi/multidel', [adminreferensicontroller::class, 'multidel'])->name('referensi.multidel');
 
 
       //informasipsikologi
@@ -157,7 +157,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::get('/admin/informasipsikologi/edit/{data}', [admininformasipsikologicontroller::class, 'edit'])->name('informasipsikologi.edit');
       Route::put('/admin/informasipsikologi/update/{data}', [admininformasipsikologicontroller::class, 'update'])->name('informasipsikologi.update');
       Route::delete('/admin/informasipsikologi/delete/{data}', [admininformasipsikologicontroller::class, 'destroy'])->name('informasipsikologi.destroy');
-      Route::delete('/admin/informasipsikologi/delete', [admininformasipsikologicontroller::class, 'destroy'])->name('informasipsikologi.multidel');
+      Route::delete('/admin/datainformasipsikologi/multidel', [admininformasipsikologicontroller::class, 'multidel'])->name('informasipsikologi.multidel');
 
       //deteksi
       Route::get('/admin/sekolah/{id}/deteksi', [admindeteksicontroller::class, 'index'])->name('sekolah.deteksi');

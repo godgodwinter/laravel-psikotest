@@ -14,17 +14,10 @@ class adminreferensicontroller extends Controller
     public function index(Request $request)
     {
         $pages='referensi';
-        // $datas=DB::table('referensi')->whereNull('deleted_at')
-        // ->where('sekolah_id',$id->id)
-        // // ->with('walireferensi','nama')
-        // ->orderBy('nama','asc')
-        // ->paginate(Fungsi::paginationjml());
-
         $datas = DB::table('referensi')
         ->whereNull('deleted_at')
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
-        // dd($datas);
 
         return view('pages.admin.referensi.index',compact('pages','request','datas'));
     }
@@ -213,11 +206,11 @@ class adminreferensicontroller extends Controller
 
         // load ulang
         #WAJIB
+        $pages='referensi';
         $datas = DB::table('referensi')
         ->whereNull('deleted_at')
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
-        // dd($datas);
 
         return view('pages.admin.referensi.index',compact('pages','request','datas'));
     }

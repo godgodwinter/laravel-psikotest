@@ -1,6 +1,6 @@
 <div class="card" id="settings-card">
     <div class="card-header">
-        <h4>Master Nilai Bidang Studi </h4>
+        <h4>Master Nilai Psikologi </h4>
     </div>
     <div class="card-body babengcontainer">
         <div id="babeng-bar" class="text-right mt-2">

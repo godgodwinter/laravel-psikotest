@@ -1,7 +1,7 @@
 
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>kelas </h4>
+                    <h4>Kelas </h4>
                   </div>
                   <div class="card-body">
                     <div id="babeng-bar" class="text-right mt-2">

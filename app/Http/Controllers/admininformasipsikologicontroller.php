@@ -13,12 +13,6 @@ class admininformasipsikologicontroller extends Controller
     public function index(Request $request)
     {
         $pages='informasipsikologi';
-        // $datas=DB::table('informasipsikologi')->whereNull('deleted_at')
-        // ->where('informasipsikologi_id',$id->id)
-        // // ->with('waliinformasipsikologi','nama')
-        // ->orderBy('nama','asc')
-        // ->paginate(Fungsi::paginationjml());
-
         $datas = DB::table('informasipsikologi')
         ->whereNull('deleted_at')
         ->orderBy('nama','asc')
@@ -213,11 +207,12 @@ class admininformasipsikologicontroller extends Controller
         // load ulang
         #WAJIB
         $pages='informasipsikologi';
-        $datas=DB::table('informasipsikologi')->whereNull('deleted_at')
+        $datas = DB::table('informasipsikologi')
+        ->whereNull('deleted_at')
+        ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.informasipsikologi.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
+        return view('pages.admin.informasipsikologi.index',compact('pages','request','datas'));
     }
     public function cari(Request $request)
     {

@@ -16,7 +16,7 @@ class CreateKelasTable extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('tipe');
+            // $table->string('tipe');
             $table->string('sekolah_id');
             $table->string('walikelas_id');
             $table->softDeletes();

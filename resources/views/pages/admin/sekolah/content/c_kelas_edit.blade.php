@@ -22,7 +22,7 @@
 
                     </div>
                   </div>
-                  <div class="form-group row align-items-center">
+                  {{-- <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tipe Kelas</label>
                     <div class="col-sm-6 col-md-9">
 
@@ -47,7 +47,7 @@
                       @enderror
 
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
                     <div class="col-sm-6 col-md-9">

@@ -69,7 +69,7 @@ class adminkelascontroller extends Controller
         DB::table('kelas')->insert(
             array(
                    'nama'     =>   $request->nama,
-                   'tipe'     =>   $request->tipe,
+                //    'tipe'     =>   $request->tipe,
                    'walikelas_id'     =>   $request->walikelas_id,
                    'sekolah_id'     =>   $id->id,
                    'created_at'=>date("Y-m-d H:i:s"),
@@ -113,7 +113,7 @@ class adminkelascontroller extends Controller
         kelas::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
-            'tipe'     =>   $request->tipe,
+            // 'tipe'     =>   $request->tipe,
             'walikelas_id'     =>   $request->walikelas_id,
             'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
