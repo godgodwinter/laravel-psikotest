@@ -7,6 +7,7 @@ use App\Models\masternilaipsikologi;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class adminmasternilaipsikologicontroller extends Controller
 {
@@ -17,6 +18,24 @@ class adminmasternilaipsikologicontroller extends Controller
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
         // dd($datas);
+
+        return view('pages.admin.masternilaipsikologi.index',compact('pages','request','datas'));
+    }
+    
+    public function cari(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        $cari=$request->cari;
+        #WAJIB
+        $pages='sekolah';
+        $datas=DB::table('masternilaipsikologi')
+        ->whereNull('deleted_at')
+        ->where('nama','like',"%".$cari."%")
+        ->orWhere('singkatan','like',"%".$cari."%")->whereNull('deleted_at')
+        ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.masternilaipsikologi.index',compact('pages','request','datas'));
     }

@@ -90,7 +90,7 @@ class adminseedercontroller extends Controller
                 $nama=$faker->unique()->company;
                 DB::table('kelas')->insert([
                     'nama' => $nama,
-                    'tipe' => $faker->randomElement(['Umum', 'Khusus']),
+                    // 'tipe' => $faker->randomElement(['Umum', 'Khusus']),
                     'walikelas_id' => $ambilwali->id,
                     'sekolah_id' => $id,
                     'created_at' => Carbon::now(),
