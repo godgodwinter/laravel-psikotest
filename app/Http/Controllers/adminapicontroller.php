@@ -29,6 +29,8 @@ class adminapicontroller extends Controller
 
         $ambildatasiswa=DB::table('siswa')
         ->where('id',$siswa)
+        // ->where('sekolah_id',$id->id)
+        // ->orderBy('nama','asc')
         ->first();
         $siswa_nama=$ambildatasiswa->nama;
 

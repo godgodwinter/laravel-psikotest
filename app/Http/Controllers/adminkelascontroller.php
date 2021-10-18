@@ -22,6 +22,7 @@ class adminkelascontroller extends Controller
         // ->paginate(Fungsi::paginationjml());
 
         $datas = kelas::with('walikelas')
+        ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
         // dd($datas);

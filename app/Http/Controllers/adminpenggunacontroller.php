@@ -16,6 +16,7 @@ class adminpenggunacontroller extends Controller
     {
         $pages='pengguna';
         $datas = pengguna::with('users')
+        ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
 

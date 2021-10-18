@@ -14,9 +14,9 @@ class admininputnilaipsikologicontroller extends Controller
     {
         $pages='inputnilaipsikologi';
         $datas=DB::table('siswa')
-        // ->where('id','5')
+        ->where('sekolah_id',$id->id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
-        ->orderBy('id','asc')
+        ->orderBy('nama','asc')
         ->get();
         
         $dataakhir = collect();

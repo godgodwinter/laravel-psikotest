@@ -32,6 +32,7 @@ class adminsiswacontroller extends Controller
         dd($request);
         $cek=DB::table('siswa')->whereNull('deleted_at')->where('nomerinduk',$request->nomerinduk)
         ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
         ->count();
         // dd($cek);
             if($cek>0){
