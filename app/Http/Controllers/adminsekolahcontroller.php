@@ -141,9 +141,12 @@ class adminsekolahcontroller extends Controller
 
         // dd($request);
         if($files!=null){
-            
-        Storage::disk('public')->delete($id->sekolah_logo);
-      
+
+            if (file_exists( public_path().'/storage'.'/'.$id->sekolah_logo)AND($id->sekolah_logo!=null)){
+                $image_path = public_path().'/storage'.'/'.$id->sekolah_logo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->sekolah_logo);
             $namafilebaru=$id->id;
             $file = $request->file('sekolah_logo');
             $tujuan_upload = 'storage/logo';
@@ -162,8 +165,10 @@ class adminsekolahcontroller extends Controller
 
         // dd($request);
         if($files!=null){
-            
-        Storage::disk('public')->delete($id->kepsek_photo);
+            if (file_exists( public_path().'/storage'.'/'.$id->kepsek_photo)AND($id->kepsek_photo!=null)){
+                $image_path = public_path().'/storage'.'/'.$id->kepsek_photo;
+                unlink($image_path);
+            }
           
             $namafilebaru=$id->id;
             // menyimpan data file yang diupload ke variabel $file
