@@ -7,6 +7,7 @@ use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class adminsekolahcontroller extends Controller
@@ -141,6 +142,7 @@ class adminsekolahcontroller extends Controller
         // dd($request);
         if($files!=null){
             
+        Storage::disk('public')->delete($id->sekolah_logo);
       
             $namafilebaru=$id->id;
             $file = $request->file('sekolah_logo');
@@ -160,6 +162,8 @@ class adminsekolahcontroller extends Controller
 
         // dd($request);
         if($files!=null){
+            
+        Storage::disk('public')->delete($id->kepsek_photo);
           
             $namafilebaru=$id->id;
             // menyimpan data file yang diupload ke variabel $file
