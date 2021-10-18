@@ -64,7 +64,7 @@ Detail Sekolah
                                     $kepsek_photo=asset('/storage/').'/'.$id->kepsek_photo;
                                     @endphp
                                 <img alt="image" src="{{$id->kepsek_photo!=null  ? $kepsek_photo : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="Syahdan Ubaidillah" width="150px" height="150px" style="object-fit:cover;">
-                                    <div class="user-name">Nama Kepsek</div>
+                                    <div class="user-name mt-2"><h4>{{$id->kepsek_nama}}</h4></div>
                                     <div class="text-job text-muted">Kepala Sekolah</div>
                                     <div class="user-cta">
                                         <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a>
