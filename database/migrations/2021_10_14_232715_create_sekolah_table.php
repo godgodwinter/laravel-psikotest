@@ -16,8 +16,13 @@ class CreateSekolahTable extends Migration
         Schema::create('sekolah', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('alamat');
+            $table->string('alamat')->nullable();
             $table->string('status'); //jika nonaktif bk tidak bisa login
+            $table->string('kepsek_nama')->nullable();
+            $table->longText('kepsek_photo')->nullable();
+            $table->string('tahunajaran_nama')->nullable();
+            $table->string('semester_nama')->nullable();
+            $table->longText('sekolah_logo')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

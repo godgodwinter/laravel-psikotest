@@ -94,13 +94,14 @@ class adminsekolahcontroller extends Controller
 
     public function edit(sekolah $id)
     {
+        
         $pages='sekolah';
 
         return view('pages.admin.sekolah.edit',compact('pages','id'));
     }
     public function update(sekolah $id,Request $request)
     {
-
+        // dd($request);
         if($request->nama!==$id->nama){
 
             $request->validate([
@@ -114,18 +115,66 @@ class adminsekolahcontroller extends Controller
 
         $request->validate([
             'nama'=>'required',
+            // 'sekolah_logo' => 'require|image',
         ],
         [
             'nama.required'=>'nama sudah digunakan',
         ]);
 
+
+
         sekolah::where('id',$id->id)
         ->update([
             'nama'     =>   $request->nama,
             'alamat'     =>   $request->alamat,
-            'status'     =>   $request->status,
+            // 'status'     =>   $request->status,
+            'kepsek_nama'     =>   $request->kepsek_nama,
+            'tahunajaran_nama'     =>   $request->tahunajaran_nama,
+            'semester_nama'     =>   $request->semester_nama,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
+
+        
+      
+        $files = $request->file('sekolah_logo');
+
+        // dd($request);
+        if($files!=null){
+            
+      
+            $namafilebaru=$id->id;
+            $file = $request->file('sekolah_logo');
+            $tujuan_upload = 'storage/logo';
+                    // upload file
+            $file->move($tujuan_upload,"logo/".$namafilebaru.".jpg");
+            sekolah::where('id',$id->id)
+            ->update([
+                'sekolah_logo' => "logo/".$namafilebaru.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+        
+        $files = $request->file('kepsek_photo');
+
+        // dd($request);
+        if($files!=null){
+          
+            $namafilebaru=$id->id;
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('kepsek_photo');
+            $tujuan_upload = 'storage/kepsek';
+                    // upload file
+            $file->move($tujuan_upload,"kepsek/".$namafilebaru.".jpg");
+            sekolah::where('id',$id->id)
+            ->update([
+                'kepsek_photo' => "kepsek/".$namafilebaru.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
     return redirect()->route('sekolah')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(sekolah $id){

@@ -16,5 +16,10 @@ class sekolah extends Model
         'nama',
         'alamat',
         'status',
+        'kepsek_nama',
+        'kepsek_photo',
+        'tahunajaran_nama',
+        'semester_nama',
+        'sekolah_logo',
     ];
 }
