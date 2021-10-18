@@ -50,7 +50,7 @@
                     <td class="text-center">
                         {{$data->id}}
                     </td>
-                    <td>
+                    <td class="babeng-td">
                         {{$data->nama}}
                     </td>
                     @foreach ($data->master as $m)
@@ -84,6 +84,7 @@
                         var inputnilai{{$data->id}}{{ $m->id }}=$("#inputnilai{{$data->id}}_{{$m->id}}");
                         var siswa{{$data->id}}{{ $m->id }}=$("#siswa{{$data->id}}_{{$m->id}}");
                         var master{{$data->id}}{{ $m->id }}=$("#master{{$data->id}}_{{$m->id}}");
+                        var nilailawas=inputnilai{{$data->id}}{{ $m->id }}.val();
 
                             inputnilai{{$data->id}}{{ $m->id }}.click(function (e) {
                                                         e.preventDefault(e);
@@ -98,7 +99,7 @@
                                 let nilai=0;
                                 nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
 
-                                
+                                if(nilailawas!=inputnilai{{$data->id}}{{ $m->id }}.val()){
                                 console.log('kirim update'+nilai);
                                 inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
                                 
@@ -113,16 +114,19 @@
                                             showConfirmButton: true,
                                             timer: 1000
                                         })
+                                    }
                             });
 
 
                             inputnilai{{$data->id}}{{ $m->id }}.keypress(function (e) {
                                 if (e.which == 13) {
                                     
-                                nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
-                                        inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
-                                                
-                                        fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
+                                        if(nilailawas!=inputnilai{{$data->id}}{{ $m->id }}.val()){
+                                        nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
+                                                inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
+                                                        
+                                                fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
+                                }
                                 }
                                 console.log('kirim update');
                         

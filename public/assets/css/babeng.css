@@ -86,6 +86,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.babeng-td{
+
+    /* position: absolute; */
+}
 .babenginputnilai{
   width:35px;
   border-radius: 0px;
