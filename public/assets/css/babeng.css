@@ -62,9 +62,29 @@ input[readonly]{
   padding: 6px;
 }
 
+.th-table{
+    width: 500px;
+}
 .babengcontainer{
-    overflow: scroll;
-    overflow-wrap: break-word;
+    margin-right: 20px;
+    margin-left: 0px;
+    /* overflow: scroll; */
+        display: block;
+        max-width: 100%;
+    overflow-x: scroll;
+    /* overflow-wrap: break-word; */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 .babenginputnilai{
   width:35px;

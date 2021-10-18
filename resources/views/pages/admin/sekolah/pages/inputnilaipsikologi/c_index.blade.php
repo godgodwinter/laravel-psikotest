@@ -29,16 +29,16 @@
         </div>
 
 
-        <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
+        <table id="example" class="table table-striped table-bordered mt-1" >
             <thead>
                 <tr>
-                    <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
-                    <th>Nama </th>
+                    <th class="text-center "> <input type="checkbox" id="chkCheckAll"> All</th>
+                    <th class="th-table" >Nama </th>
                     @php
                     $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')->get();
                     @endphp
                     @foreach ($master as $m)
-                    <th class="text-center">
+                    <th class="text-center" style="width:5px">
                         {{$m->singkatan}}
                     </th>
                     @endforeach
@@ -55,12 +55,51 @@
                     </td>
                     @foreach ($data->master as $m)
                     <td class="text-center">
-                        {{-- <input type="text" class="form-control form-control-plaintext text-center" value="{{$m->nilai}}"
-                        readonly id="inputan_{{$data->id}}_{{$m->id}}"> --}}
-                        <input class="babenginputnilai text-center text-info " id="inputnilai" value="{{$m->nilai}}"
+                        <input class="babenginputnilai text-center text-info " id="inputnilai{{$data->id}}_{{$m->id}}" value="{{$m->nilai}}"
                             readonly type="number">
 
                     </td>
+                    <script>
+                        $(document).ready(function () {
+                                function changeHandler(val)
+                                {
+                                    if (Number(val) > 100)
+                                    {
+                                    val = 100
+                                    }
+                                    
+                                    if (Number(val) < 0){
+                                        val = 0
+                                    }
+                                    return val;
+                                }
+
+                        var nilai=0;
+                        var inputnilai{{$data->id}}{{ $m->id }}=$("#inputnilai{{$data->id}}_{{$m->id}}");
+                            inputnilai{{$data->id}}{{ $m->id }}.click(function (e) {
+                                                        e.preventDefault(e);
+                                                        inputnilai{{$data->id}}{{ $m->id }}.prop('readonly',false);
+                                                        // alert(inputnilai{{$data->id}}{{ $m->id }});
+                                                        console.log('klik inputan');
+
+                                                    });
+
+                                                    
+                            inputnilai{{$data->id}}{{ $m->id }}.focusout(function (e) {
+                                let nilai=0;
+                                nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
+                                console.log('kirim update'+nilai);
+                                inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
+                                inputnilai{{$data->id}}{{ $m->id }}.prop('readonly',true);
+                            });
+
+
+                            inputnilai{{$data->id}}{{ $m->id }}.keypress(function (e) {
+                                console.log('kirim update');
+                        
+                            });
+                        });
+                    </script>
                     @endforeach
                 </tr>
                 @empty
