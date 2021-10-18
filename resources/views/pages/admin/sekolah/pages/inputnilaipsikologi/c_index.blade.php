@@ -105,7 +105,6 @@
                                 
                         fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
 
-                                inputnilai{{$data->id}}{{ $m->id }}.prop('readonly',true);
                                 
                                         Swal.fire({
                                             icon: 'success',
@@ -115,6 +114,8 @@
                                             timer: 1000
                                         })
                                     }
+                                inputnilai{{$data->id}}{{ $m->id }}.prop('readonly',true);
+
                             });
 
 
