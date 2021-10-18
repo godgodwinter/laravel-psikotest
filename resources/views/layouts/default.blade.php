@@ -56,10 +56,12 @@
 
     {{-- sidebar --}}
     @include('includes.sidebar')
+    
 
       <!-- Main Content -->
       <div class="main-content">
         @yield('content')
+        @yield('containermodal')
       </div>
 
 

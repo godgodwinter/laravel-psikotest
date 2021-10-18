@@ -1,12 +1,12 @@
 
             <div class="card">
                 <div class="card-header">
-                  <h4>Menu</h4>
+                    <a href="{{route('sekolah.show',$id->id)}}"> <h4>Dashboard Sekolah</h4></a>
                 </div>
                 <div class="card-body">
                     <h5>Mastering</h5>
                   <ul class="nav nav-pills flex-column">
-                      <li class="nav-item"><a href="{{route('sekolah.tahun',$id->id)}}" class="nav-link {{$pages=='tahun' ? 'active' : ''}}">Tahun Ajaran</a></li>
+                      <li class="nav-item"><a href="{{route('sekolah.tahun',$id->id)}}" class="nav-link {{$pages=='tahun' ? 'active' : ''}} disabled">Tahun Ajaran</a></li>
                       <li class="nav-item"><a href="{{route('sekolah.semester',$id->id)}}" class="nav-link  {{$pages=='semester' ? 'active' : ''}}">Semester</a></li>
                     <li class="nav-item"><a href="{{route('sekolah.siswa',$id->id)}}" class="nav-link  {{$pages=='siswa' ? 'active' : ''}}">Siswa</a></li>
                     <li class="nav-item"><a href="{{route('sekolah.walikelas',$id->id)}}" class="nav-link {{$pages=='walikelas' ? 'active' : ''}}">Wali kelas</a></li>

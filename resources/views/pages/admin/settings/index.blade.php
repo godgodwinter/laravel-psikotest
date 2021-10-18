@@ -87,6 +87,11 @@ Pengaturan
                         <button class="btn btn-danger">Hard Reset</button>
                     </form>
 
+                    <form action="{{route('cleartemp')}}" method="post"  class="d-inline ">
+                        @csrf
+                        <button class="btn btn-danger">Clear Temporary</button>
+                    </form>
+
                 </div>
             </div>
             </div>

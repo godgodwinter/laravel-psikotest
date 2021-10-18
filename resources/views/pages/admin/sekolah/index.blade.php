@@ -52,13 +52,13 @@ Sekolah
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
-                            {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
                             </button>
-                            <a href="/admin/sekolah/export" type="submit" value="Import"
+                            <a href="{{route('sekolah.export')}}" type="submit" value="Export"
                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Export </span></a> --}}
+                                        class="fas fa-download"></i> Export </span></a>
                         </form>
 
                     </div>
@@ -140,4 +140,36 @@ $kelas_nama=$request->kelas_nama;
         </div>
     </div>
 </section>
+@endsection
+
+
+@section('containermodal')
+
+              <!-- Import Excel -->
+              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('sekolah.import') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+                        <label>Pilih file excel(.xlsx)</label>
+                        <div class="form-group">
+                          <input type="file" name="file" required="required">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
 @endsection

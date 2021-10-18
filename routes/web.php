@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datasekolah/create', [adminsekolahcontroller::class, 'create'])->name('sekolah.create');
     Route::post('/admin/datasekolah', [adminsekolahcontroller::class, 'store'])->name('sekolah.store');
     Route::delete('/admin/datasekolah/multidel', [adminsekolahcontroller::class, 'multidel'])->name('sekolah.multidel');
-    Route::get('/admin/sekolah/{id}/detail', [admintahunajarancontroller::class, 'index'])->name('sekolah.show');
+    Route::get('/admin/sekolah/{id}/detail', [adminsekolahcontroller::class, 'show'])->name('sekolah.show');
 
 
     //User
@@ -178,6 +178,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
       Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
 
+
+        // Proses
+      Route::get('admin/datasekolah/export', 'App\Http\Controllers\prosesController@exportsekolah')->name('sekolah.export');
+      Route::post('admin/datasekolah/import', 'App\Http\Controllers\prosesController@importsekolah')->name('sekolah.import');
+
+
+      
+        Route::post('admin/cleartemp', 'App\Http\Controllers\prosescontroller@cleartemp')->name('cleartemp');
 
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
