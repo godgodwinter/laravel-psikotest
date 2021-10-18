@@ -45,11 +45,40 @@ Detail Sekolah
                       </div>
                     </div>
                     <div class="profile-widget-description">
-                      <div class="profile-widget-name">Status : {{$id->status}} 
-                        {{-- <div class="text-muted d-inline font-weight-normal">
-                          <div class="slash"></div> Web Developer</div> --}}
+                        <div class="row">
+                            <div class="col-11 col-lg-3 offset-1 py-3">
+                                <img alt="image" src="https://ui-avatars.com/api/?name={{ $id->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture">
+                                <div class="clearfix"></div>
+                                <a href="#" class="btn btn-primary ml-5 mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Follow</a>
+                                
+                                <div class="clearfix"></div>
+                                <a href="#" class="btn btn-success ml-5 mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Status</a>
+                              
+                            </div>
+                            <div class="col-11 col-lg-8 py-3">
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Sekolah</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text" name="site_title" class="form-control " id="site-title" readonly>
+                                    </div>
+                                  </div>
+                                  
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat Sekolah</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text" name="site_title" class="form-control " id="site-title" readonly>
+                                    </div>
+                                  </div>
+                                  
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Kepala Sekolah</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text" name="site_title" class="form-control " id="site-title" readonly>
+                                    </div>
+                                  </div>
+                            </div>
                         </div>
-                      Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.
+                        
                     </div>
                 
                   </div>

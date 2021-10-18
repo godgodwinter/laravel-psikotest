@@ -17,6 +17,7 @@ class oneseeder extends Seeder
      */
     public function run()
     {
+        
         DB::table('users')->truncate();
         //ADMIN SEEDER
         DB::table('users')->insert([
