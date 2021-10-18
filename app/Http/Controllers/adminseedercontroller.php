@@ -15,6 +15,7 @@ use App\Models\walikelas;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -122,6 +123,70 @@ class adminseedercontroller extends Controller
 
 
 
+        return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
+
+    }
+    
+    public function masternilaipsikologi(Request $request){
+
+        masternilaipsikologi::truncate();
+        $dataku = collect([
+            [
+                'nama' => 'IQ',
+                'singkatan' => 'IQ',
+            ],
+            [
+                'nama' => 'EQ',
+                'singkatan' => 'EQ',
+            ],
+            [
+                'nama' => 'SQ',
+                'singkatan' => 'SQ',
+            ],
+            [
+                'nama' => 'KB',
+                'singkatan' => 'KB',
+            ],
+            [
+                'nama' => 'LM',
+                'singkatan' => 'LM',
+            ],
+            [
+                'nama' => 'KS',
+                'singkatan' => 'KS',
+            ],
+            [
+                'nama' => 'KM',
+                'singkatan' => 'KM',
+            ],
+            [
+                'nama' => 'KK',
+                'singkatan' => 'KK',
+            ],
+            [
+                'nama' => 'KI',
+                'singkatan' => 'KI',
+            ],
+            [
+                'nama' => 'KA',
+                'singkatan' => 'KA',
+            ],
+            [
+                'nama' => 'KM',
+                'singkatan' => 'KM',
+            ]
+        ]);
+        
+
+        foreach($dataku as $data){
+            // dd($data['nama']);
+            DB::table('masternilaipsikologi')->insert([
+                'nama' => $data['nama'],
+                'singkatan' => $data['singkatan'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
         return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
 
     }

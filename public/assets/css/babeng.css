@@ -62,6 +62,19 @@ input[readonly]{
   padding: 6px;
 }
 
+.babengcontainer{
+    overflow: scroll;
+    overflow-wrap: break-word;
+}
+.babenginputnilai{
+  width:35px;
+  border-radius: 0px;
+  background: #fff;
+  border: 0px solid #ccc;
+  outline:none;
+  padding: 0px;
+}
+
 .babeng:focus{
   border:1px solid #56b4ef;
   box-shadow: 0px 0px 3px 1px #c8def0;
