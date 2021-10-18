@@ -7,6 +7,7 @@ use App\Models\referensi;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class adminreferensicontroller extends Controller
 {
@@ -208,15 +209,31 @@ class adminreferensicontroller extends Controller
     {
 
         $ids=$request->ids;
-        sekolah::whereIn('id',$ids)->delete();
+        Referensi::whereIn('id',$ids)->delete();
 
         // load ulang
         #WAJIB
-        $pages='sekolah';
-        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        $datas = DB::table('referensi')
+        ->whereNull('deleted_at')
+        ->orderBy('nama','asc')
+        ->paginate(Fungsi::paginationjml());
+        // dd($datas);
+
+        return view('pages.admin.referensi.index',compact('pages','request','datas'));
+    }
+    public function cari(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        $cari=$request->cari;
+        #WAJIB
+        $pages='referensi';
+        $datas=DB::table('referensi')
+        ->where('nama','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.sekolah.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
+        return view('pages.admin.referensi.index',compact('datas','request','pages'));
     }
 }
