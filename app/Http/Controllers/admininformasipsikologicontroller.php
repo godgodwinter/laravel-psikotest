@@ -6,6 +6,7 @@ use App\Helpers\Fungsi;
 use App\Models\informasipsikologi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class admininformasipsikologicontroller extends Controller
 {
@@ -207,7 +208,7 @@ class admininformasipsikologicontroller extends Controller
     {
 
         $ids=$request->ids;
-        informasipsikologi::whereIn('id',$ids)->delete();
+        Informasipsikologi::whereIn('id',$ids)->delete();
 
         // load ulang
         #WAJIB
@@ -217,5 +218,20 @@ class admininformasipsikologicontroller extends Controller
 
         return view('pages.admin.informasipsikologi.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
+    }
+    public function cari(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        $cari=$request->cari;
+        #WAJIB
+        $pages='informasipsikologi';
+        $datas=DB::table('informasipsikologi')
+        ->where('nama','like',"%".$cari."%")
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.admin.informasipsikologi.index',compact('datas','request','pages'));
     }
 }
