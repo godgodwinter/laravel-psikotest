@@ -46,16 +46,30 @@ Detail Sekolah
                     </div>
                     <div class="profile-widget-description">
                         <div class="row">
-                            <div class="col-11 col-lg-3 offset-1 py-3">
-                                <img alt="image" src="https://ui-avatars.com/api/?name={{ $id->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture">
-                                <div class="clearfix"></div>
-                                <a href="#" class="btn btn-primary ml-5 mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Follow</a>
+                            <div class="col-11 col-lg-3  col-md-11 offset-1 py-3 ">
+                                <div class="row text-center">
+                                    
+                                <img alt="image" src="https://ui-avatars.com/api/?name={{ $id->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture" data-toggle="tooltip" title="Syahdan Ubaidillah">
                                 
-                                <div class="clearfix"></div>
-                                <a href="#" class="btn btn-success ml-5 mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Status</a>
+                                <div class="user-details py-1 px-4 ml-2">
+                                    <div class="user-name">Nama Kepsek</div>
+                                    <div class="text-job text-muted">Kepala Sekolah</div>
+                                    <div class="user-cta">
+                                        <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a> 
+                                    </div>
+                                  </div>  
+                                  
+                                </div>
+                                {{-- <div class="avatar-badge" title="Editor" data-toggle="tooltip"><i class="fas fa-wrench"></i></div> --}}
+                                {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $id->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture"> --}}
+                                {{-- <div class="clearfix"></div>
+                                <a href="#" class="btn btn-primary mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Edit</a> --}}
+                                
+                                {{-- <div class="clearfix"></div>
+                                <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a> --}}
                               
                             </div>
-                            <div class="col-11 col-lg-8 py-3">
+                            <div class="col-11 col-lg-8 py-0 col-md-12">
                                 <div class="form-group row align-items-center">
                                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Sekolah</label>
                                     <div class="col-sm-3 col-md-9">
@@ -76,6 +90,24 @@ Detail Sekolah
                                       <input type="text" name="site_title" class="form-control " id="site-title" readonly>
                                     </div>
                                   </div>
+                                  
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tahun Ajaran</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text" name="site_title" class="form-control " id="site-title" readonly>
+                                    </div>
+                                  </div>
+                                  
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Semester</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text" name="site_title" class="form-control " id="site-title" readonly>
+                                    </div>
+                                  </div>
+                                  
+                  <div class="card-footer text-md-right">
+                    <button class="btn btn-primary" id="save-btn">Simpan</button>
+                  </div>
                             </div>
                         </div>
                         
