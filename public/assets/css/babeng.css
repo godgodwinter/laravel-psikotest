@@ -66,8 +66,9 @@ input[readonly]{
     width: 500px;
 }
 .babengcontainer{
+    
     margin-right: 20px;
-    margin-left: 0px;
+    margin-left: 20px;
     /* overflow: scroll; */
         display: block;
         max-width: 100%;
@@ -119,10 +120,15 @@ input[type=number] {
 }
 
 #babeng-row {
+    /* position: relative; */
     height: 100%;
     width: 100%;
     text-align: center;
-display: inline;
+    display: inline;
+}
+
+#babeng-form{
+    /* position: fixed; */
 }
 
 #babeng-submit {

@@ -176,7 +176,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::get('/admin/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'edit'])->name('masternilaipsikologi.edit');
       Route::put('/admin/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'update'])->name('masternilaipsikologi.update');
       Route::delete('/admin/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'destroy'])->name('masternilaipsikologi.destroy');
-      Route::delete('/admin/masternilaipsikologi', [adminmasternilaipsikologicontroller::class, 'destroy'])->name('masternilaipsikologi.multidel');
+      Route::delete('/admin/masternilaipsikologi', [adminmasternilaipsikologicontroller::class, 'multidel'])->name('masternilaipsikologi.multidel');
 
 
       //masternilaibidangstudi

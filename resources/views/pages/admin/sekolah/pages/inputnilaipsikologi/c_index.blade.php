@@ -1,3 +1,29 @@
+
+    <div class="card-body">
+        <div id="babeng-row ">
+
+            <form action="{{route('sekolah.masternilaibidangstudi.cari',$id->id)}}" method="GET" class="babeng-form">
+                <input type="text" class="babeng babeng-select  ml-0" name="cari">
+
+                <span>
+                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
+                </span>
+
+                <a href="{{route('sekolah.masternilaibidangstudi.create',$id->id)}}" type="submit" value="Import"
+                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Tambah </span></a>
+                <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0" data-toggle="modal"
+                    data-target="#importExcel"><i class="fas fa-upload"></i>
+                    Import
+                </button>
+                <a href="/admin/sekolah/export" type="submit" value="Import"
+                    class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Export </span></a>
+            </form>
+        </div>
+
+    </div>
+    
 <div class="card" id="settings-card">
     <div class="card-header">
         <h4>Master Nilai Psikologi </h4>
@@ -5,27 +31,6 @@
     <div class="card-body babengcontainer">
         <div id="babeng-bar" class="text-right mt-2">
 
-            <div id="babeng-row ">
-
-                <form action="{{route('sekolah.masternilaibidangstudi.cari',$id->id)}}" method="GET">
-                    <input type="text" class="babeng babeng-select  ml-0" name="cari">
-
-                    <span>
-                        <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
-                    </span>
-
-                    <a href="{{route('sekolah.masternilaibidangstudi.create',$id->id)}}" type="submit" value="Import"
-                        class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                class="fas fa-download"></i> Tambah </span></a>
-                    <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0" data-toggle="modal"
-                        data-target="#importExcel"><i class="fas fa-upload"></i>
-                        Import
-                    </button>
-                    <a href="/admin/sekolah/export" type="submit" value="Import"
-                        class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                                class="fas fa-download"></i> Export </span></a>
-                </form>
-            </div>
         </div>
 
 

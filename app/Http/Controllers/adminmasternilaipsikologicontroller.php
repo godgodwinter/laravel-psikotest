@@ -13,12 +13,6 @@ class adminmasternilaipsikologicontroller extends Controller
     public function index(Request $request)
     {
         $pages='masternilaipsikologi';
-        // $datas=DB::table('masternilaipsikologi')->whereNull('deleted_at')
-        // 
-        // // ->with('walimasternilaipsikologi','nama')
-        // ->orderBy('nama','asc')
-        // ->paginate(Fungsi::paginationjml());
-
         $datas = DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
@@ -121,15 +115,15 @@ class adminmasternilaipsikologicontroller extends Controller
     {
 
         $ids=$request->ids;
-        sekolah::whereIn('id',$ids)->delete();
+        masternilaipsikologi::whereIn('id',$ids)->delete();
 
         // load ulang
         #WAJIB
-        $pages='sekolah';
-        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        $pages='masternilaipsikologi';
+        $datas = DB::table('masternilaipsikologi')->whereNull('deleted_at')
+        ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.sekolah.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
+        return view('pages.admin.masternilaipsikologi.index',compact('pages','request','datas'));
     }
 }
