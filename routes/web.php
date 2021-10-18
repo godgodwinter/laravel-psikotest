@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Fungsi;
+use App\Http\Controllers\adminapicontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
@@ -196,6 +197,9 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
       
         Route::post('admin/cleartemp', 'App\Http\Controllers\prosescontroller@cleartemp')->name('cleartemp');
+
+        // API
+        Route::get('/admin/api/inputnilaipsikologi', [adminapicontroller::class, 'inputnilaipsikologi'])->name('api.inputnilaipsikologi');
 
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');

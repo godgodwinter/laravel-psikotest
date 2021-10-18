@@ -56,7 +56,11 @@
                     @foreach ($data->master as $m)
                     <td class="text-center">
                         <input class="babenginputnilai text-center text-info " id="inputnilai{{$data->id}}_{{$m->id}}" value="{{$m->nilai}}"
-                            readonly type="number">
+                        readonly type="number">
+                        <input class="babenginputnilai text-center text-info " id="siswa{{$data->id}}_{{$m->id}}" value="{{$data->id}}"
+                        readonly type="hidden">
+                        <input class="babenginputnilai text-center text-info " id="master{{$data->id}}_{{$m->id}}" value="{{$m->id}}"
+                            readonly type="hidden">
 
                     </td>
                     <script>
@@ -75,7 +79,12 @@
                                 }
 
                         var nilai=0;
+                        var siswa=0;
+                        var master=0;
                         var inputnilai{{$data->id}}{{ $m->id }}=$("#inputnilai{{$data->id}}_{{$m->id}}");
+                        var siswa{{$data->id}}{{ $m->id }}=$("#siswa{{$data->id}}_{{$m->id}}");
+                        var master{{$data->id}}{{ $m->id }}=$("#master{{$data->id}}_{{$m->id}}");
+
                             inputnilai{{$data->id}}{{ $m->id }}.click(function (e) {
                                                         e.preventDefault(e);
                                                         inputnilai{{$data->id}}{{ $m->id }}.prop('readonly',false);
@@ -88,16 +97,65 @@
                             inputnilai{{$data->id}}{{ $m->id }}.focusout(function (e) {
                                 let nilai=0;
                                 nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
+
+                                
                                 console.log('kirim update'+nilai);
                                 inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
+                                
+                        fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
+
                                 inputnilai{{$data->id}}{{ $m->id }}.prop('readonly',true);
+                                
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Data berhasil diubah!',
+                                            // text: 'Something went wrong!',
+                                            showConfirmButton: true,
+                                            timer: 1000
+                                        })
                             });
 
 
                             inputnilai{{$data->id}}{{ $m->id }}.keypress(function (e) {
+                                if (e.which == 13) {
+                                    
+                                nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
+                                        inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
+                                                
+                                        fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
+                                }
                                 console.log('kirim update');
                         
                             });
+
+                                //reqex untuk number only
+                            // inputnilai{{$data->id}}{{ $m->id }}.inputFilter(function(value) {
+                            //                         return /^\d*$/.test(value);    // Allow digits only, using a RegExp
+                            //                     });
+
+                                                
+                            //fungsi kirim data
+                            function fetch_customer_data(query = '',siswa='',master='') {
+                            console.log(query);
+                                $.ajax({
+                                    url: "{{ route('api.inputnilaipsikologi') }}",
+                                    method: 'GET',
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                    nilai:query,
+                                    siswa:siswa,
+                                    master:master,
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        console.log(query);
+                                        // console.log(data.output);
+                                        // $("#datasiswa").html(data.output);
+                                        // console.log(data.output);
+                                        // console.log(data.datas);
+                                    }
+                                })
+                            }
                         });
                     </script>
                     @endforeach
