@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class adminmasternilaipsikologicontroller extends Controller
 {
-    public function index(sekolah $id,Request $request)
+    public function index(Request $request)
     {
         $pages='masternilaipsikologi';
         // $datas=DB::table('masternilaipsikologi')->whereNull('deleted_at')
-        // ->where('sekolah_id',$id->id)
+        // 
         // // ->with('walimasternilaipsikologi','nama')
         // ->orderBy('nama','asc')
         // ->paginate(Fungsi::paginationjml());
@@ -24,20 +24,20 @@ class adminmasternilaipsikologicontroller extends Controller
         ->paginate(Fungsi::paginationjml());
         // dd($datas);
 
-        return view('pages.admin.sekolah.pages.masternilaipsikologi_index',compact('pages','id','request','datas'));
+        return view('pages.admin.masternilaipsikologi.index',compact('pages','request','datas'));
     }
     public function create(sekolah $id)
     {
         $pages='masternilaipsikologi';
 
-        return view('pages.admin.sekolah.pages.masternilaipsikologi_create',compact('pages','id'));
+        return view('pages.admin.masternilaipsikologi.create',compact('pages'));
     }
 
-    public function store(sekolah $id,Request $request)
+    public function store(Request $request)
     {
         // dd($request);
         $cek=DB::table('masternilaipsikologi')->whereNull('deleted_at')->where('nama',$request->nama)
-        ->where('sekolah_id',$id->id)
+        
         ->count();
         // dd($cek);
             if($cek>0){
@@ -65,22 +65,22 @@ class adminmasternilaipsikologicontroller extends Controller
             array(
                    'nama'     =>   $request->nama,
                    'singkatan'     =>   $request->singkatan,
-                   'sekolah_id'     =>   $id->id,
+                   
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
 
-    return redirect()->route('sekolah.masternilaipsikologi',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('masternilaipsikologi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
 
-    public function edit(sekolah $id,masternilaipsikologi $data)
+    public function edit(masternilaipsikologi $data)
     {
         $pages='masternilaipsikologi';
 
-        return view('pages.admin.sekolah.pages.masternilaipsikologi_edit',compact('pages','id','data'));
+        return view('pages.admin.masternilaipsikologi.edit',compact('pages','data'));
     }
-    public function update(sekolah $id,masternilaipsikologi $data,Request $request)
+    public function update(masternilaipsikologi $data,Request $request)
     {
         // dd($request);
         if($request->nama!==$data->nama){
@@ -105,15 +105,15 @@ class adminmasternilaipsikologicontroller extends Controller
         ->update([
             'nama'     =>   $request->nama,
             'singkatan'     =>   $request->singkatan,
-            'sekolah_id'     =>   $id->id,
+            
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
-    return redirect()->route('sekolah.masternilaipsikologi',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('masternilaipsikologi')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(sekolah $id,masternilaipsikologi $data){
+    public function destroy(masternilaipsikologi $data){
 
         masternilaipsikologi::destroy($data->id);
-        return redirect()->route('sekolah.masternilaipsikologi',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+        return redirect()->route('masternilaipsikologi')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
 

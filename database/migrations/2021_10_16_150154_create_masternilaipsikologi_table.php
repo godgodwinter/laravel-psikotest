@@ -17,7 +17,7 @@ class CreateMasternilaipsikologiTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('singkatan');
-            $table->string('sekolah_id');
+            // $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();
         });
