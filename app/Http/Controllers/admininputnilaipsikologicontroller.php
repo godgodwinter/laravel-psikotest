@@ -18,16 +18,16 @@ class admininputnilaipsikologicontroller extends Controller
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
-        
+
         $dataakhir = collect();
-        
+
         $dataakhir_array = $dataakhir->toArray();
 
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-        
-        
+
+
 
             // $collection = new Collection();
             //     $collection->push((object)['prod_id' => '99',
@@ -38,27 +38,27 @@ class admininputnilaipsikologicontroller extends Controller
             //     ]);
             // dd($collection);
             $collectionpenilaian = new Collection();
-        
+
         foreach($datas as $d){
 
             $collectionmaster = new Collection();
-          
+
             foreach($master as $m){
 
-                
+
                 $periksadata=DB::table('inputnilaipsikologi')
                 ->where('siswa_id',$d->id)
                 // ->where('id','2')
                 ->where('masternilaipsikologi_id',$m->id)
                 ->get();
-                
+
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
                     $nilai=$periksadata->first()->nilai;
                 }else{
                     $nilai=null;
                 }
-                
+
             $collectionmaster->push((object)[
                 'id'=>$m->id,
                 'singkatan'=>$m->singkatan,
@@ -66,7 +66,7 @@ class admininputnilaipsikologicontroller extends Controller
             ]);
 
             }
-            
+
             $collectionpenilaian->push((object)[
                 'id'=>$d->id,
                 'nomerinduk'=>$d->nomerinduk,
