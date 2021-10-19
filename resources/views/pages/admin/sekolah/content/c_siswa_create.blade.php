@@ -53,7 +53,7 @@
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
                         <div class="col-sm-6 col-md-9">
-  
+
                       <select name="jeniskelamin" class="form-control @error('jeniskelamin')
                           is_invalid
                       @enderror">
@@ -62,7 +62,7 @@
                       </select>
                       @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-                  
+
                       </div>
                       </div>
                       <div class="form-group row align-items-center">
@@ -102,8 +102,8 @@
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
                         <div class="col-sm-6 col-md-9">
-  
-                      <select name="warnanegara" class="form-control @error('warnanegara')
+
+                      <select name="warganegara" class="form-control @error('warnanegara')
                           is_invalid
                       @enderror">
                         <option>WNI</option>
@@ -111,7 +111,7 @@
                       </select>
                       @error('warnanegara')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-                  
+
                       </div>
                       </div>
                       <div class="form-group row align-items-center">
@@ -244,9 +244,9 @@
                         </div>
                       </div>
                       </div>
-                      
+
                       <!-- --------- -->
-                      
+
                       <div class="tab-pane fade" id="kesehatan" role="tabpanel" aria-labelledby="kesehatan-tab">
                       <div class="form-group row align-items-center">
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Golongan Darah</label>
@@ -412,7 +412,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="warnanegaraayah" class="form-control">
+                        <select name="warganegaraayah" class="form-control">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
@@ -485,7 +485,7 @@
 
                         </div>
                       </div>
-                      
+
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Ibu Kandung</label>
                         <div class="col-sm-6 col-md-9">
@@ -531,7 +531,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="warnanegaraibu" class="form-control">
+                        <select name="warganegaraibu" class="form-control">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
@@ -650,7 +650,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="warnanegarawali" class="form-control">
+                        <select name="warganegarawali" class="form-control">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
@@ -723,7 +723,7 @@
 
                         </div>
                         </div>
-                      
+
 
                       </div>
 
@@ -762,10 +762,10 @@
 
                         </div>
                         </div>
-                        
+
                       </div>
                     </div>
-                    
+
                     <!-- ----------- -->
                   <div class="card-footer bg-whitesmoke text-md-right">
                     <button class="btn btn-primary" id="save-btn">Simpan</button>
