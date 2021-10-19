@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\exportsekolah;
+use App\Imports\importdetailsekolah;
 use App\Imports\importsekolah;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -30,6 +31,24 @@ class prosescontroller extends Controller
 
 		Excel::import(new importsekolah, public_path('/file_temp/'.$nama_file));
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+	}
+
+	public function importdetailsekolah(Request $request)
+	{
+		// dd($request);
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		$file = $request->file('file');
+
+		$nama_file = rand().$file->getClientOriginalName();
+
+		$file->move('file_temp',$nama_file);
+
+		Excel::import(new importdetailsekolah, public_path('/file_temp/'.$nama_file));
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+	
 	}
 
     
