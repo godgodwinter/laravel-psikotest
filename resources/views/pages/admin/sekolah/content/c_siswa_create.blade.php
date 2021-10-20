@@ -103,7 +103,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
                         <div class="col-sm-6 col-md-9">
 
-  
+
                       <select name="warganegara" class="form-control @error('warganegara')
                           is_invalid
                       @enderror">
