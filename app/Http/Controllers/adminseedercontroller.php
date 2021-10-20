@@ -648,6 +648,22 @@ class adminseedercontroller extends Controller
                 'nama' => 'M3%',
                 'singkatan' => 'M3%',
             ],
+            [
+                'nama' => 'IPA',
+                'singkatan' => 'IPA',
+            ],
+            [
+                'nama' => 'IPS',
+                'singkatan' => 'IPS',
+            ],
+            [
+                'nama' => 'BHS',
+                'singkatan' => 'BHS',
+            ],
+            [
+                'nama' => 'AGM',
+                'singkatan' => 'IPA',
+            ],
         ]);
 
 

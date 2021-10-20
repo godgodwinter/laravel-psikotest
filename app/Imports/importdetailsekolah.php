@@ -30,6 +30,7 @@ class importdetailsekolah implements ToCollection
 
     public function collection(Collection $rows)
     {
+        ini_set('max_execution_time', 3000); 
         $sekolah_id=$this->id;
         // DB::table('sekolah')->insert(
         //     array(
@@ -242,6 +243,12 @@ class importdetailsekolah implements ToCollection
     Fungsi::inputnilaipsikologis($sekolah_id,'M2%',$row[2],$row[130]);
     Fungsi::inputnilaipsikologis($sekolah_id,'M3',$row[2],$row[131]);
     Fungsi::inputnilaipsikologis($sekolah_id,'M3%',$row[2],$row[132]);
+
+
+    Fungsi::inputnilaipsikologis($sekolah_id,'IPA',$row[2],$row[166]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'IPS',$row[2],$row[167]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'BHS',$row[2],$row[168]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'AGM',$row[2],$row[169]);
 
     
     Fungsi::inputminatbakat($sekolah_id,'CITA.1/Minat.1',$row[2],$row[133]);
