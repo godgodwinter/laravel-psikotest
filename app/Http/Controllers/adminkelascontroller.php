@@ -9,6 +9,7 @@ use App\Models\sekolah;
 use App\Models\walikelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class adminkelascontroller extends Controller
 {
@@ -127,20 +128,38 @@ class adminkelascontroller extends Controller
         return redirect()->route('sekolah.kelas',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
+    public function cari(sekolah $id,Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
 
-    public function multidel(Request $request)
+        $cari=$request->cari;
+        #WAJIB
+        $pages='kelas';
+        $datas = kelas::with('walikelas')
+        ->where('sekolah_id',$id->id)
+        ->where('nama','like',"%".$cari."%")
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.admin.sekolah.pages.kelas_index',compact('pages','id','request','datas'));
+    }
+
+    public function multidel(sekolah $id,Request $request)
     {
 
         $ids=$request->ids;
-        sekolah::whereIn('id',$ids)->delete();
+        kelas::whereIn('id',$ids)->delete();
 
         // load ulang
         #WAJIB
-        $pages='sekolah';
-        $datas=DB::table('sekolah')->whereNull('deleted_at')
+        $pages="kelas";
+        $datas = kelas::with('walikelas')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
+        // dd($datas);
 
-        return view('pages.admin.sekolah.index',compact('datas','request','pages'))->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
+        return view('pages.admin.sekolah.pages.kelas_index',compact('pages','id','request','datas'));
     }
 }

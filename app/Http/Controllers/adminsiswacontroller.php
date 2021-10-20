@@ -261,6 +261,8 @@ class adminsiswacontroller extends Controller
         #WAJIB
         $pages='siswa';
         $datas = siswa::with('kelas')
+        ->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
         ->where('nama','like',"%".$cari."%")
         ->orWhere('nomerinduk','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());

@@ -111,6 +111,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/walikelas/{data}', [adminwalikelascontroller::class, 'edit'])->name('sekolah.walikelas.edit');
     Route::put('/admin/sekolah/{id}/walikelas/{data}', [adminwalikelascontroller::class, 'update'])->name('sekolah.walikelas.update');
     Route::delete('/admin/sekolah/{id}/walikelas/{data}', [adminwalikelascontroller::class, 'destroy'])->name('sekolah.walikelas.destroy');
+    Route::delete('/admin/sekolah/walikelas/multidel/{id}', [adminwalikelascontroller::class, 'multidel'])->name('sekolah.walikelas.multidel');
 
       //kelas
       Route::get('/admin/sekolah/{id}/kelas', [adminkelascontroller::class, 'index'])->name('sekolah.kelas');
@@ -120,6 +121,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::get('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'edit'])->name('sekolah.kelas.edit');
       Route::put('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'update'])->name('sekolah.kelas.update');
       Route::delete('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'destroy'])->name('sekolah.kelas.destroy');
+      Route::delete('/admin/sekolah/kelas/multidel/{id}', [adminkelascontroller::class, 'multidel'])->name('sekolah.kelas.multidel');
 
 
     //inputnilaipsikologi
@@ -149,6 +151,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::get('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'edit'])->name('sekolah.pengguna.edit');
       Route::put('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'update'])->name('sekolah.pengguna.update');
       Route::delete('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'destroy'])->name('sekolah.pengguna.destroy');
+      Route::delete('/admin/sekolah/pengguna/multidel/{id}', [adminpenggunacontroller::class, 'multidel'])->name('sekolah.pengguna.multidel');
 
       //referensi
       Route::get('/admin/referensi', [adminreferensicontroller::class, 'index'])->name('referensi');
