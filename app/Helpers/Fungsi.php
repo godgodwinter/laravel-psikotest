@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 
+use App\Models\inputnilaipsikologi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,48 @@ class Fungsi {
     //     return (isset($user->username) ? $user->username : '');
     // }
 
+    public static function inputnilaipsikologis($sekolah_id,$masternilaipsikologi_singkatan,$siswa_nomerinduk,$nilai=0){
+
+        $periksamaster=DB::table('masternilaipsikologi')->where('singkatan',$masternilaipsikologi_singkatan)->count();
+        if($periksamaster>0){
+
+        $ambil_idmaster=DB::table('masternilaipsikologi')->where('singkatan',$masternilaipsikologi_singkatan)->first();
+        $ambil_idsiswa=DB::table('siswa')->where('nomerinduk',$siswa_nomerinduk)->where('sekolah_id',$sekolah_id)->first();
+
+        $cekdatanilai=DB::table('inputnilaipsikologi')
+        ->where('masternilaipsikologi_id',$ambil_idmaster->id)
+        ->where('siswa_id',$ambil_idsiswa->id)
+        ->where('sekolah_id',$sekolah_id)->count();
+
+        if($cekdatanilai>0){
+            // updaTe
+                inputnilaipsikologi::where('masternilaipsikologi_id',$ambil_idmaster->id)
+                ->where('siswa_id',$ambil_idsiswa->id)
+                ->where('sekolah_id',$sekolah_id)
+                ->update([
+                    'nilai'     =>   $nilai,
+                    'deleted_at'=>null,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+        }else{
+
+            DB::table('inputnilaipsikologi')->insert(
+                array(
+                    'siswa_id'     =>  $ambil_idsiswa->id,
+                    'masternilaipsikologi_id'     =>  $ambil_idmaster->id,
+                    'nilai'     =>   $nilai,
+                    'deleted_at' => null,
+                    'sekolah_id'     =>   $sekolah_id,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+        }
+
+        }
+    }
 
     public static function tanggalgaringcreated($data){
         $data2=explode(" ",$data);

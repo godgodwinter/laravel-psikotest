@@ -61,7 +61,7 @@
                     @foreach ($data->master as $m)
                     <td class="text-center">
                         <input class="babenginputnilai text-center text-info " id="inputnilai{{$data->id}}_{{$m->id}}" value="{{$m->nilai}}"
-                        readonly type="number">
+                        readonly type="text">
                         <input class="babenginputnilai text-center text-info " id="siswa{{$data->id}}_{{$m->id}}" value="{{$data->id}}"
                         readonly type="hidden">
                         <input class="babenginputnilai text-center text-info " id="master{{$data->id}}_{{$m->id}}" value="{{$m->id}}"
