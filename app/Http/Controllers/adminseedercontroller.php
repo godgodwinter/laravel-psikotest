@@ -532,12 +532,16 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'Q2%',
             ],
             [
-                'nama' => 'Q2KET%',
-                'singkatan' => 'Q2KET%',
-            ],
-            [
                 'nama' => 'Q2KET',
                 'singkatan' => 'Q2KET',
+            ],
+            [
+                'nama' => 'Q2MINUS%',
+                'singkatan' => 'Q2MINUS%',
+            ],
+            [
+                'nama' => 'Q2MINUSKET',
+                'singkatan' => 'Q2MINUSKET',
             ],
             [
                 'nama' => 'Q3',
@@ -548,12 +552,16 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'Q3%',
             ],
             [
-                'nama' => 'Q3KET%',
-                'singkatan' => 'Q3KET%',
-            ],
-            [
                 'nama' => 'Q3KET',
                 'singkatan' => 'Q3KET',
+            ],
+            [
+                'nama' => 'Q3MINUS%',
+                'singkatan' => 'Q3MINUS%',
+            ],
+            [
+                'nama' => 'Q3MINUSKET',
+                'singkatan' => 'Q3MINUSKET',
             ],
             [
                 'nama' => 'Q4',
@@ -564,12 +572,16 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'Q4%',
             ],
             [
-                'nama' => 'Q4KET%',
-                'singkatan' => 'Q4KET%',
-            ],
-            [
                 'nama' => 'Q4KET',
                 'singkatan' => 'Q4KET',
+            ],
+            [
+                'nama' => 'Q4MINUS%',
+                'singkatan' => 'Q4MINUS%',
+            ],
+            [
+                'nama' => 'Q4MINUSKET',
+                'singkatan' => 'Q4MINUSKET',
             ],
         ]);
 
