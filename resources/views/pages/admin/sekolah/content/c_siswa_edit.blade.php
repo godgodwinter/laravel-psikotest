@@ -103,7 +103,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
                         <div class="col-sm-6 col-md-9">
   
-                      <select name="warnanegara" class="form-control @error('warnanegara')
+                      <select name="warganegara" class="form-control @error('warganegara')
                           is_invalid
                       @enderror">
                         <option>WNI</option>
@@ -412,7 +412,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="warnanegaraayah" class="form-control">
+                        <select name="warganegaraayah" class="form-control @error('warganegaraayah')
+                          is_invalid
+                      @enderror">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
@@ -478,7 +480,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Status Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="statusayah" class="form-control">
+                        <select name="statusayah" class="form-control @error('statusayah')
+                          is_invalid
+                      @enderror">
                         <option>Masih Hidup</option>
                         <option>Meninggal Dunia</option>
                         </select>
@@ -531,7 +535,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="warnanegaraibu" class="form-control">
+                        <select name="warganegaraibu" class="form-control @error('warganegaraibu')
+                          is_invalid
+                      @enderror">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
@@ -597,7 +603,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Status Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="statusibu" class="form-control">
+                        <select name="statusibu" class="form-control @error('statusibu')
+                          is_invalid
+                      @enderror">
                         <option>Masih Hidup</option>
                         <option>Meninggal Dunia</option>
                         </select>
@@ -650,7 +658,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="warnanegarawali" class="form-control">
+                        <select name="warganegarawali" class="form-control @error('warganegarawali')
+                          is_invalid
+                      @enderror">
                         <option>WNI</option>
                         <option>WNA</option>
                       </select>
@@ -716,7 +726,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Status Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                        <select name="statuswali" class="form-control">
+                        <select name="statuswali" class="form-control @error('statuswali')
+                          is_invalid
+                      @enderror">
                         <option>Masih Hidup</option>
                         <option>Meninggal Dunia</option>
                         </select>
