@@ -191,11 +191,13 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
 
         // Proses
-      Route::get('admin/datasekolah/export', 'App\Http\Controllers\prosesController@exportsekolah')->name('sekolah.export');
-      Route::post('admin/datasekolah/import', 'App\Http\Controllers\prosesController@importsekolah')->name('sekolah.import');
+      Route::get('admin/datasekolah/export', 'App\Http\Controllers\prosescontroller@exportsekolah')->name('sekolah.export');
+      Route::post('admin/datasekolah/import', 'App\Http\Controllers\prosescontroller@importsekolah')->name('sekolah.import');
+
+      Route::post('admin/datasekolah/importdetailsekolah/{id}', 'App\Http\Controllers\prosescontroller@importdetailsekolah')->name('detailsekolah.import');
 
 
-      
+
         Route::post('admin/cleartemp', 'App\Http\Controllers\prosescontroller@cleartemp')->name('cleartemp');
 
         // API

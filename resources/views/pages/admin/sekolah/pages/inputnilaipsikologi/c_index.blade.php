@@ -23,7 +23,7 @@
         </div>
 
     </div>
-    
+
 <div class="card" id="settings-card">
     <div class="card-header">
         <h4>Master Nilai Psikologi </h4>
@@ -51,9 +51,9 @@
             </thead>
             <tbody>
                 @forelse ($collectionpenilaian as $data)
-                <tr id="sid{{ $data->id }}">
+                <tr id="sid{{ $loop->index+1 }}">
                     <td class="text-center">
-                        {{$data->id}}
+                        {{$loop->index+1}}
                     </td>
                     <td class="babeng-td">
                         {{$data->nama}}
@@ -61,7 +61,7 @@
                     @foreach ($data->master as $m)
                     <td class="text-center">
                         <input class="babenginputnilai text-center text-info " id="inputnilai{{$data->id}}_{{$m->id}}" value="{{$m->nilai}}"
-                        readonly type="number">
+                        readonly type="text">
                         <input class="babenginputnilai text-center text-info " id="siswa{{$data->id}}_{{$m->id}}" value="{{$data->id}}"
                         readonly type="hidden">
                         <input class="babenginputnilai text-center text-info " id="master{{$data->id}}_{{$m->id}}" value="{{$m->id}}"
@@ -76,7 +76,7 @@
                                     {
                                     val = 100
                                     }
-                                    
+
                                     if (Number(val) < 0){
                                         val = 0
                                     }
@@ -99,7 +99,7 @@
 
                                                     });
 
-                                                    
+
                             inputnilai{{$data->id}}{{ $m->id }}.focusout(function (e) {
                                 let nilai=0;
                                 nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
@@ -107,10 +107,10 @@
                                 if(nilailawas!=inputnilai{{$data->id}}{{ $m->id }}.val()){
                                 console.log('kirim update'+nilai);
                                 inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
-                                
+
                         fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
 
-                                
+
                                         Swal.fire({
                                             icon: 'success',
                                             title: 'Data berhasil diubah!',
@@ -126,16 +126,16 @@
 
                             inputnilai{{$data->id}}{{ $m->id }}.keypress(function (e) {
                                 if (e.which == 13) {
-                                    
+
                                         if(nilailawas!=inputnilai{{$data->id}}{{ $m->id }}.val()){
                                         nilai=changeHandler(inputnilai{{$data->id}}{{ $m->id }}.val());
                                                 inputnilai{{$data->id}}{{ $m->id }}.val(nilai);
-                                                        
+
                                                 fetch_customer_data(inputnilai{{$data->id}}{{ $m->id }}.val(),siswa{{$data->id}}{{ $m->id }}.val(),master{{$data->id}}{{ $m->id }}.val());
                                 }
                                 }
                                 console.log('kirim update');
-                        
+
                             });
 
                                 //reqex untuk number only
@@ -143,7 +143,7 @@
                             //                         return /^\d*$/.test(value);    // Allow digits only, using a RegExp
                             //                     });
 
-                                                
+
                             //fungsi kirim data
                             function fetch_customer_data(query = '',siswa='',master='') {
                             console.log(query);

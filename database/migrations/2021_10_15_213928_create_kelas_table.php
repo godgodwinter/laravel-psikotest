@@ -18,7 +18,7 @@ class CreateKelasTable extends Migration
             $table->string('nama');
             // $table->string('tipe');
             $table->string('sekolah_id');
-            $table->string('walikelas_id');
+            $table->string('walikelas_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

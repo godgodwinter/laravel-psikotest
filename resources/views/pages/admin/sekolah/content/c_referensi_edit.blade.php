@@ -16,6 +16,7 @@
                     <div class="col-sm-6 col-md-9">
 
                       <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required  value="{{old('nama') ? old('nama') : $data->nama}}">
+                     
 
                       @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror

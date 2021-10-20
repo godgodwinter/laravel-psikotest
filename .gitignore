@@ -3,6 +3,7 @@
 /public/bukudigital
 /public/file_temp
 /public/storage
+/storage/framework/laravel-excel
 /storage/*.key
 /vendor
 .env
