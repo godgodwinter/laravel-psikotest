@@ -55,6 +55,18 @@
                         </div>
                     </div>
                     <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelas</label>
+                        <div class="col-sm-6 col-md-9">
+
+                            <input type="text" class="form-control  @error('kelas') is-invalid @enderror"
+                                value="{{old('kelas')}}" required  name="kelas">
+
+                            @error('kelas')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+
+                        </div>
+                    </div>
+                    <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
                         <div class="col-sm-6 col-md-9">
 
@@ -85,9 +97,9 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Lahir</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker @error('tanggallahir')
+                                <input type="date" class="form-control datepicker @error('tanggallahir' )
                             is_invalid
-                        @enderror" value="{{old('tanggallahir')}}">
+                        @enderror" value="{{old('tanggallahir')}}" name="tanggallahir">
                                 @error('tanggallahir')<div class="invalid-feedback"> {{$message}}</div>
                                 @enderror
                             </div>
@@ -127,7 +139,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('agama') is-invalid @enderror"
-                                value="{{old('agama')}}">
+                                value="{{old('agama')}}" name="agama">
 
                             @error('agama')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -139,7 +151,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('anak') is-invalid @enderror"
-                                value="{{old('anak')}}">
+                                value="{{old('anak')}}" name="anak">
 
                             @error('anak')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -152,7 +164,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('kandung') is-invalid @enderror"
-                                value="{{old('kandung')}}">
+                                value="{{old('kandung')}}" name="kandung">
 
                             @error('kandung')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -165,7 +177,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('angkat') is-invalid @enderror"
-                                value="{{old('angkat')}}">
+                                value="{{old('angkat')}}" name="angkat">
 
                             @error('angkat')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -178,7 +190,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tiri') is-invalid @enderror"
-                                value="{{old('tiri')}}">
+                                value="{{old('tiri')}}" name="tiri">
 
                             @error('tiri')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -215,7 +227,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('bahasa') is-invalid @enderror"
-                                value="{{old('bahasa')}}">
+                                value="{{old('bahasa')}}" name="bahasa">
 
                             @error('bahasa')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -227,7 +239,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('nohp') is-invalid @enderror"
-                                value="{{old('nohp')}}">
+                                value="{{old('nohp')}}" name="nohp">
 
                             @error('nohp')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -259,7 +271,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('jarak') is-invalid @enderror"
-                                value="{{old('jarak')}}">
+                                value="{{old('jarak')}}" name="jarak">
 
                             @error('jarak')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -300,7 +312,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('kelainan') is-invalid @enderror"
-                                value="{{old('kelainan')}}">
+                                value="{{old('kelainan')}}" name="kelainan">
 
                             @error('kelainan')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -312,7 +324,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tinggibadan') is-invalid @enderror"
-                                value="{{old('tinggibadan')}}">
+                                value="{{old('tinggibadan')}}" name="tinggibadan">
 
                             @error('tinggibadan')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -324,7 +336,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('beratbadan') is-invalid @enderror"
-                                value="{{old('beratbadan')}}">
+                                value="{{old('beratbadan')}}" name="beratbadan">
 
                             @error('beratbadan')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -340,7 +352,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tamatan') is-invalid @enderror"
-                                value="{{old('tamatan')}}">
+                                value="{{old('tamatan')}}" name="tamatan">
 
                             @error('tamatan')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -352,7 +364,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('ijazah') is-invalid @enderror"
-                                value="{{old('ijazah')}}">
+                                value="{{old('ijazah')}}" name="ijazah">
 
                             @error('ijazah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -364,7 +376,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('lamabelajar') is-invalid @enderror"
-                                value="{{old('lamabelajar')}}">
+                                value="{{old('lamabelajar')}}" name="lamabelajar">
 
                             @error('lamabelajar')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -377,7 +389,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pindahan') is-invalid @enderror"
-                                value="{{old('pindahan')}}">
+                                value="{{old('pindahan')}}" name="pindahan">
 
                             @error('pindahan')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -389,7 +401,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('alasan') is-invalid @enderror"
-                                value="{{old('alasan')}}">
+                                value="{{old('alasan')}}" name="alasan">
 
                             @error('alasan')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -406,7 +418,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('namaayah') is-invalid @enderror"
-                                value="{{old('namaayah')}}">
+                                value="{{old('namaayah')}}" name="namaayah">
 
                             @error('namaayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -419,7 +431,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tempatayah') is-invalid @enderror"
-                                value="{{old('tempatayah')}}">
+                                value="{{old('tempatayah')}}" name="tempatayah">
 
                             @error('tempatayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -431,7 +443,8 @@
                             Ayah</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirayah')}}">
+                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirayah')}}" 
+                                name="tanggallahirayah">
                             </div>
                         </div>
                     </div>
@@ -440,7 +453,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('agamaayah') is-invalid @enderror"
-                                value="{{old('agamaayah')}}">
+                                value="{{old('agamaayah')}}" name="agamaayah">
 
                             @error('agamaayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -467,7 +480,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pendidikanayah') is-invalid @enderror"
-                                value="{{old('pendidikanayah')}}">
+                                value="{{old('pendidikanayah')}}" name="pendidikanayah">
 
                             @error('pendidikanayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -479,7 +492,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pekerjaanayah') is-invalid @enderror"
-                                value="{{old('pekerjaanayah')}}">
+                                value="{{old('pekerjaanayah')}}" name="pekerjaanayah">
 
                             @error('pekerjaanayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -492,7 +505,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('penghasilanayah') is-invalid @enderror"
-                                value="{{old('penghasilanayah')}}">
+                                value="{{old('penghasilanayah')}}" name="penghasilanayah">
 
                             @error('penghasilanayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -504,7 +517,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('alamatayah') is-invalid @enderror"
-                                value="{{old('alamatayah')}}">
+                                value="{{old('alamatayah')}}" name="alamatayah">
 
                             @error('alamatayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -516,7 +529,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('nomorayah') is-invalid @enderror"
-                                value="{{old('nomorayah')}}">
+                                value="{{old('nomorayah')}}" name="nomorayah">
 
                             @error('nomorayah')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -541,7 +554,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('namaibu') is-invalid @enderror"
-                                value="{{old('namaibu')}}">
+                                value="{{old('namaibu')}}" name="namaibu">
 
                             @error('namaibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -554,7 +567,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tempatibu') is-invalid @enderror"
-                                value="{{old('tempatibu')}}">
+                                value="{{old('tempatibu')}}" name="tempatibu">
 
                             @error('tempatibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -566,7 +579,8 @@
                             Ibu</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker" value="{{old('tanggallahiribu')}}">
+                                <input type="date" class="form-control datepicker" value="{{old('tanggallahiribu')}}" 
+                                name="tanggallahiribu">
                             </div>
                         </div>
                     </div>
@@ -575,7 +589,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('agamaibu') is-invalid @enderror"
-                                value="{{old('agamaibu')}}">
+                                value="{{old('agamaibu')}}" name="agamaibu">
 
                             @error('agamaibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -601,7 +615,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pendidikanibu') is-invalid @enderror"
-                                value="{{old('pendidikanibu')}}">
+                                value="{{old('pendidikanibu')}}" name="pendidikanibu">
 
                             @error('pendidikanibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -613,7 +627,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pekerjaanibu') is-invalid @enderror"
-                                value="{{old('pekerjaanibu')}}">
+                                value="{{old('pekerjaanibu')}}" name="pekerjaanibu">
 
                             @error('pekerjaanibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -626,7 +640,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('penghasilanibu') is-invalid @enderror"
-                                value="{{old('penghasilanibu')}}">
+                                value="{{old('penghasilanibu')}}" name="penghasilanibu">
 
                             @error('penghasilanibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -638,7 +652,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('alamatibu') is-invalid @enderror"
-                                value="{{old('alamatibu')}}">
+                                value="{{old('alamatibu')}}" name="alamatibu">
 
                             @error('alamatibu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -650,7 +664,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('nomoribu') is-invalid @enderror"
-                                value="{{old('nomoribu')}}">
+                                value="{{old('nomoribu')}}" name="nomoribu">
 
                             @error('nomoribu')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -674,7 +688,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('namawali') is-invalid @enderror"
-                                value="{{old('namawali')}}">
+                                value="{{old('namawali')}}" name="namawali">
 
                             @error('namawali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -687,7 +701,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tempatwali') is-invalid @enderror"
-                                value="{{old('tempatwali')}}">
+                                value="{{old('tempatwali')}}" name="tempatwali">
 
                             @error('tempatwali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -699,7 +713,8 @@
                             Wali</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirwali')}}">
+                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirwali')}}" 
+                                name="tanggallahirwali">
                             </div>
                         </div>
                     </div>
@@ -708,7 +723,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('agamawali') is-invalid @enderror"
-                                value="{{old('agamawali')}}">
+                                value="{{old('agamawali')}}" name="agamawali">
 
                             @error('agamawali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -735,7 +750,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pendidikanwali') is-invalid @enderror"
-                                value="{{old('pendidikanwali')}}">
+                                value="{{old('pendidikanwali')}}" name="pendidikanwali">
 
                             @error('pendidikanwali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -747,7 +762,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('pekerjaanwali') is-invalid @enderror"
-                                value="{{old('pekerjaanwali')}}">
+                                value="{{old('pekerjaanwali')}}" name="pekerjaanwali">
 
                             @error('pekerjaanwali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -760,7 +775,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('penghasilanwali') is-invalid @enderror"
-                                value="{{old('penghasilanwali')}}">
+                                value="{{old('penghasilanwali')}}" name="penghasilanwali">
 
                             @error('penghasilanwali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -772,7 +787,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('alamatwali') is-invalid @enderror"
-                                value="{{old('alamatwali')}}">
+                                value="{{old('alamatwali')}}" name="alamatwali">
 
                             @error('alamatwali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -784,7 +799,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('nomorwali') is-invalid @enderror"
-                                value="{{old('nomorwali')}}">
+                                value="{{old('nomorwali')}}" name="nomorwali">
 
                             @error('nomorwali')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -813,7 +828,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('hobi') is-invalid @enderror"
-                                value="{{old('hobi')}}">
+                                value="{{old('hobi')}}" name="hobi">
 
                             @error('hobi')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -826,7 +841,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('organisasi') is-invalid @enderror"
-                                value="{{old('organisasi')}}">
+                                value="{{old('organisasi')}}" name="organisasi">
 
                             @error('organisasi')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -839,7 +854,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('setelahlulus') is-invalid @enderror"
-                                value="{{old('setelahlulus')}}">
+                                value="{{old('setelahlulus')}}" name="setelahlulus">
 
                             @error('setelahlulus')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
