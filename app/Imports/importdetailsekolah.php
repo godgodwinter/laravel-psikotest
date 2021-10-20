@@ -76,15 +76,25 @@ class importdetailsekolah implements ToCollection
 
     $ceksiswa=DB::table('siswa')->where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)->count();
     if($ceksiswa>0){
+        $ambilsiswa=DB::table('siswa')->where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)->first();
         // updaTe
-            siswa::where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)
-            ->update([
-                'nama'     =>   $row[3],
+        siswa::where('id',$ambilsiswa->id)
+        ->update(
+            [
+                'nama'=>$row[3],
                 'sekolah_id'     =>   $sekolah_id,
-            //     'deleted_at'=>null,
-            //     'created_at'=>date("Y-m-d H:i:s"),
-            // 'updated_at'=>date("Y-m-d H:i:s")
+                    'deleted_at'=>null,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
             ]);
+            // siswa::where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)
+            // ->update([
+            //     'nama'     =>   $row[3],
+            //     'sekolah_id'     =>   $sekolah_id,
+            // //     'deleted_at'=>null,
+            // //     'created_at'=>date("Y-m-d H:i:s"),
+            // // 'updated_at'=>date("Y-m-d H:i:s")
+            // ]);
 
     }else{
 
@@ -214,6 +224,24 @@ class importdetailsekolah implements ToCollection
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4KET',$row[2],$row[114]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4MINUS%',$row[2],$row[115]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4MINUSKET',$row[2],$row[116]);
+
+    
+    Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.1',$row[2],$row[117]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.2',$row[2],$row[118]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.3',$row[2],$row[119]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.4',$row[2],$row[120]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.5',$row[2],$row[121]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Negatif.rank.1',$row[2],$row[122]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Negatif.rank.2',$row[2],$row[123]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Negatif.rank.3',$row[2],$row[124]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Negatif.rank.4',$row[2],$row[125]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'Negatif.rank.5',$row[2],$row[126]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'M1',$row[2],$row[127]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'M1%',$row[2],$row[128]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'M2',$row[2],$row[129]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'M2%',$row[2],$row[130]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'M3',$row[2],$row[131]);
+    Fungsi::inputnilaipsikologis($sekolah_id,'M3%',$row[2],$row[132]);
 
     
     Fungsi::inputminatbakat($sekolah_id,'CITA.1/Minat.1',$row[2],$row[133]);

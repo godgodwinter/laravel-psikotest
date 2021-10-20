@@ -22,7 +22,7 @@
                   <h5>Proses</h5>
                   <ul class="nav nav-pills flex-column">
                     <li class="nav-item"><a href="{{route('sekolah.inputnilaipsikologi',$id->id)}}" class="nav-link  {{$pages=='inputnilaipsikologi' ? 'active' : ''}}">Input Nilai Siswa</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.inputminatbakat',$id->id)}}" class="nav-link">Analisa Minat Dan Bakat</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.inputminatbakat',$id->id)}}" class="nav-link {{$pages=='inputminatbakat' ? 'active' : ''}}">Analisa Minat Dan Bakat</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Grafik</a></li>
                   </ul>
                 </div>

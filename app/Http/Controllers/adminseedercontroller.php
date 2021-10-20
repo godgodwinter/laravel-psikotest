@@ -584,6 +584,70 @@ class adminseedercontroller extends Controller
                 'nama' => 'Q4MINUSKET',
                 'singkatan' => 'Q4MINUSKET',
             ],
+            [
+                'nama' => 'Positif.rank.1',
+                'singkatan' => 'Positif.rank.1',
+            ],
+            [
+                'nama' => 'Positif.rank.2',
+                'singkatan' => 'Positif.rank.2',
+            ],
+            [
+                'nama' => 'Positif.rank.3',
+                'singkatan' => 'Positif.rank.3',
+            ],
+            [
+                'nama' => 'Positif.rank.4',
+                'singkatan' => 'Positif.rank.4',
+            ],
+            [
+                'nama' => 'Positif.rank.5',
+                'singkatan' => 'Positif.rank.5',
+            ],
+            [
+                'nama' => 'Negatif.rank.1',
+                'singkatan' => 'Negatif.rank.1',
+            ], 
+            [
+                'nama' => 'Negatif.rank.2',
+                'singkatan' => 'Negatif.rank.2',
+            ],
+            [
+                'nama' => 'Negatif.rank.3',
+                'singkatan' => 'Negatif.rank.3',
+            ],
+            [
+                'nama' => 'Negatif.rank.4',
+                'singkatan' => 'Negatif.rank.4',
+            ],
+            [
+                'nama' => 'Negatif.rank.5',
+                'singkatan' => 'Negatif.rank.5',
+            ],
+            [
+                'nama' => 'M1',
+                'singkatan' => 'M1',
+            ],
+            [
+                'nama' => 'M1%',
+                'singkatan' => 'M1%',
+            ],
+            [
+                'nama' => 'M2',
+                'singkatan' => 'M2',
+            ],
+            [
+                'nama' => 'M2%',
+                'singkatan' => 'M2%',
+            ],
+            [
+                'nama' => 'M3',
+                'singkatan' => 'M3',
+            ],
+            [
+                'nama' => 'M3%',
+                'singkatan' => 'M3%',
+            ],
         ]);
 
 

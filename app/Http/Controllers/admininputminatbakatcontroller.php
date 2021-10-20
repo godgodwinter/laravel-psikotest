@@ -11,7 +11,7 @@ class admininputminatbakatcontroller extends Controller
 {
     public function index(Request $request,sekolah $id)
     {
-        $pages='inputnilaipsikologi';
+        $pages='inputminatbakat';
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
