@@ -29,7 +29,7 @@
                             </form>
                         </div>
                     </div>
-                    <x-jsmultidel link="{{route('sekolah.siswa.multidel')}}" />
+                    <x-jsmultidel link="{{route('sekolah.siswa.multidel',$id)}}" />
                     @if($datas->count()>0)
                         <x-jsdatatable/>
                     @endif
