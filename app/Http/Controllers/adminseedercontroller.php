@@ -362,7 +362,215 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'CMINUSKET',
                 'singkatan' => 'CMINUSKET',
-            ]
+            ],
+            [
+                'nama' => 'D',
+                'singkatan' => 'D',
+            ],
+            [
+                'nama' => 'DPLUS%',
+                'singkatan' => 'DPLUS%',
+            ],
+            [
+                'nama' => 'DPLUSKET',
+                'singkatan' => 'DPLUSKET',
+            ],
+            [
+                'nama' => 'DMINUS%',
+                'singkatan' => 'DMINUS%',
+            ],
+            [
+                'nama' => 'DMINUSKET',
+                'singkatan' => 'DMINUSKET',
+            ],
+            [
+                'nama' => 'E',
+                'singkatan' => 'E',
+            ],
+            [
+                'nama' => 'EPLUS%',
+                'singkatan' => 'EPLUS%',
+            ],
+            [
+                'nama' => 'EPLUSKET',
+                'singkatan' => 'EPLUSKET',
+            ],
+            [
+                'nama' => 'EMINUS%',
+                'singkatan' => 'EMINUS%',
+            ],
+            [
+                'nama' => 'EMINUSKET',
+                'singkatan' => 'EMINUSKET',
+            ],
+            [
+                'nama' => 'F',
+                'singkatan' => 'F',
+            ],
+            [
+                'nama' => 'FPLUS%',
+                'singkatan' => 'FPLUS%',
+            ],
+            [
+                'nama' => 'FPLUSKET',
+                'singkatan' => 'FPLUSKET',
+            ],
+            [
+                'nama' => 'FMINUS%',
+                'singkatan' => 'FMINUS%',
+            ],
+            [
+                'nama' => 'FMINUSKET',
+                'singkatan' => 'FMINUSKET',
+            ],
+            [
+                'nama' => 'G',
+                'singkatan' => 'G',
+            ],
+            [
+                'nama' => 'GPLUS%',
+                'singkatan' => 'GPLUS%',
+            ],
+            [
+                'nama' => 'GPLUSKET',
+                'singkatan' => 'GPLUSKET',
+            ],
+            [
+                'nama' => 'GMINUS%',
+                'singkatan' => 'GMINUS%',
+            ],
+            [
+                'nama' => 'GMINUSKET',
+                'singkatan' => 'GMINUSKET',
+            ],
+            [
+                'nama' => 'H',
+                'singkatan' => 'H',
+            ],
+            [
+                'nama' => 'HPLUS%',
+                'singkatan' => 'HPLUS%',
+            ],
+            [
+                'nama' => 'HPLUSKET',
+                'singkatan' => 'HPLUSKET',
+            ],
+            [
+                'nama' => 'HMINUS%',
+                'singkatan' => 'HMINUS%',
+            ],
+            [
+                'nama' => 'HMINUSKET',
+                'singkatan' => 'HMINUSKET',
+            ],
+            [
+                'nama' => 'I',
+                'singkatan' => 'I',
+            ],
+            [
+                'nama' => 'IPLUS%',
+                'singkatan' => 'IPLUS%',
+            ],
+            [
+                'nama' => 'IPLUSKET',
+                'singkatan' => 'IPLUSKET',
+            ],
+            [
+                'nama' => 'IMINUS%',
+                'singkatan' => 'IMINUS%',
+            ],
+            [
+                'nama' => 'IMINUSKET',
+                'singkatan' => 'IMINUSKET',
+            ],
+            [
+                'nama' => 'J',
+                'singkatan' => 'J',
+            ],
+            [
+                'nama' => 'JPLUS%',
+                'singkatan' => 'JPLUS%',
+            ],
+            [
+                'nama' => 'JPLUSKET',
+                'singkatan' => 'JPLUSKET',
+            ],
+            [
+                'nama' => 'JMINUS%',
+                'singkatan' => 'JMINUS%',
+            ],
+            [
+                'nama' => 'JMINUSKET',
+                'singkatan' => 'JMINUSKET',
+            ],
+            [
+                'nama' => 'O',
+                'singkatan' => 'O',
+            ],
+            [
+                'nama' => 'OPLUS%',
+                'singkatan' => 'OPLUS%',
+            ],
+            [
+                'nama' => 'OPLUSKET',
+                'singkatan' => 'OPLUSKET',
+            ],
+            [
+                'nama' => 'OMINUS%',
+                'singkatan' => 'OMINUS%',
+            ],
+            [
+                'nama' => 'OMINUSKET',
+                'singkatan' => 'OMINUSKET',
+            ],
+            [
+                'nama' => 'Q2',
+                'singkatan' => 'Q2',
+            ],
+            [
+                'nama' => 'Q2%',
+                'singkatan' => 'Q2%',
+            ],
+            [
+                'nama' => 'Q2KET%',
+                'singkatan' => 'Q2KET%',
+            ],
+            [
+                'nama' => 'Q2KET',
+                'singkatan' => 'Q2KET',
+            ],
+            [
+                'nama' => 'Q3',
+                'singkatan' => 'Q3',
+            ],
+            [
+                'nama' => 'Q3%',
+                'singkatan' => 'Q3%',
+            ],
+            [
+                'nama' => 'Q3KET%',
+                'singkatan' => 'Q3KET%',
+            ],
+            [
+                'nama' => 'Q3KET',
+                'singkatan' => 'Q3KET',
+            ],
+            [
+                'nama' => 'Q4',
+                'singkatan' => 'Q4',
+            ],
+            [
+                'nama' => 'Q4%',
+                'singkatan' => 'Q4%',
+            ],
+            [
+                'nama' => 'Q4KET%',
+                'singkatan' => 'Q4KET%',
+            ],
+            [
+                'nama' => 'Q4KET',
+                'singkatan' => 'Q4KET',
+            ],
         ]);
 
 
