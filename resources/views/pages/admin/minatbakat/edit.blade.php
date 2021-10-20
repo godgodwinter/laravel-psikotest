@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Informasi Psikologis
+Master Minat, Bakat, Cita-cita dan Penjurusan
 @endsection
 
 @push('before-script')
@@ -37,7 +37,7 @@ Informasi Psikologis
 
 
 
-           <form id="setting-form" method="POST" action="{{route('masternilaipsikologi.update',$data->id)}}">
+           <form id="setting-form" method="POST" action="{{route('minatbakat.update',$data->id)}}">
             @method('put')
             @csrf
             <div class="card" id="settings-card">
@@ -55,17 +55,27 @@ Informasi Psikologis
 
                     </div>
                   </div>
-                <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Singkatan</label>
-                    <div class="col-sm-6 col-md-9">
-
-                      <input type="text" class="form-control  @error('singkatan') is-invalid @enderror" name="singkatan" required  value="{{old('singkatan') ? old('singkatan') : $data->singkatan}}">
-
-                      @error('singkatan')<div class="invalid-feedback"> {{$message}}</div>
+                  <div class="form-group row align-items-center">
+                      <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kategori</label>
+                      <div class="col-sm-6 col-md-9">
+  
+                        <select class="form-control  @error('kategori') is-invalid @enderror" name="kategori" required>
+                            @if (old('kategori'))
+                            <option>{{old('kategori')}}</option>
+                            @else
+                            <option>{{$data->kategori}}</option>
+                            @endif
+                                
+                          <option>Minat</option>
+                          <option>Bakat</option>
+                          <option>Cita-cita</option>
+                          <option>Penjuruan</option>
+                      </select>
+                      @error('kategori')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-
+  
+                      </div>
                     </div>
-                  </div>
 
                   </div>
 

@@ -34,7 +34,7 @@ class adminminatbakatcontroller extends Controller
         $datas=DB::table('minatbakat')
         ->whereNull('deleted_at')
         ->where('nama','like',"%".$cari."%")
-        ->orWhere('singkatan','like',"%".$cari."%")->whereNull('deleted_at')
+        ->orWhere('kategori','like',"%".$cari."%")->whereNull('deleted_at')
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.minatbakat.index',compact('pages','request','datas'));
@@ -50,7 +50,6 @@ class adminminatbakatcontroller extends Controller
     {
         // dd($request);
         $cek=DB::table('minatbakat')->whereNull('deleted_at')->where('nama',$request->nama)
-
         ->count();
         // dd($cek);
             if($cek>0){

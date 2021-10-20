@@ -31,7 +31,7 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('masternilaipsikologi.cari') }}" method="GET">
+                        <form action="{{ route('minatbakat.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -49,14 +49,14 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
                                     value="Cari">
                             </span>
 
-                            <a href="{{route('masternilaipsikologi.create')}}" type="submit" value="Import"
+                            <a href="{{route('minatbakat.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
                             </button>
-                            <a href="/admin/masternilaipsikologi/export" type="submit" value="Import"
+                            <a href="/admin/minatbakat/export" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Export </span></a> --}}
                         </form>
@@ -64,7 +64,7 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('masternilaipsikologi.multidel')}}" />
+                <x-jsmultidel link="{{route('minatbakat.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
@@ -74,7 +74,7 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
                         <tr>
                             <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
-                            <th class="text-center">Singkatan</th>
+                            <th class="text-center">Kategori</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -87,13 +87,13 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
                                 <td> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td class="text-center">
-                                    {{Str::limit($data->singkatan,25,' ...')}}
+                                    {{Str::limit($data->kategori,25,' ...')}}
                                 </td>
 
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                    <x-button-edit link="{{ route('masternilaipsikologi.edit',$data->id)}}" />
-                                    <x-button-delete link="{{ route('masternilaipsikologi.destroy',$data->id)}}" />
+                                    <x-button-edit link="{{ route('minatbakat.edit',$data->id)}}" />
+                                    <x-button-delete link="{{ route('minatbakat.destroy',$data->id)}}" />
                                 </td>
                             </tr>
                 @empty
