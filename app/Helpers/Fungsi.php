@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Models\inputnilaipsikologi;
+use App\Models\minatbakatdetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,51 @@ class Fungsi {
                 array(
                     'siswa_id'     =>  $ambil_idsiswa->id,
                     'masternilaipsikologi_id'     =>  $ambil_idmaster->id,
+                    'nilai'     =>   $nilai,
+                    'deleted_at' => null,
+                    'sekolah_id'     =>   $sekolah_id,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                    'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+        }
+
+        }
+    }
+
+
+    
+    public static function inputminatbakat($sekolah_id,$minatbakat_nama,$siswa_nomerinduk,$nilai=0){
+
+        $periksamaster=DB::table('minatbakat')->where('nama',$minatbakat_nama)->count();
+        if($periksamaster>0){
+
+        $ambil_idmaster=DB::table('minatbakat')->where('nama',$minatbakat_nama)->first();
+        $ambil_idsiswa=DB::table('siswa')->where('nomerinduk',$siswa_nomerinduk)->where('sekolah_id',$sekolah_id)->first();
+
+        $cekdatanilai=DB::table('minatbakatdetail')
+        ->where('minatbakat_id',$ambil_idmaster->id)
+        ->where('siswa_id',$ambil_idsiswa->id)
+        ->where('sekolah_id',$sekolah_id)->count();
+
+        if($cekdatanilai>0){
+            // updaTe
+                minatbakatdetail::where('minatbakat_id',$ambil_idmaster->id)
+                ->where('siswa_id',$ambil_idsiswa->id)
+                ->where('sekolah_id',$sekolah_id)
+                ->update([
+                    'nilai'     =>   $nilai,
+                    'deleted_at'=>null,
+                    'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+        }else{
+
+            DB::table('minatbakatdetail')->insert(
+                array(
+                    'siswa_id'     =>  $ambil_idsiswa->id,
+                    'minatbakat_id'     =>  $ambil_idmaster->id,
                     'nilai'     =>   $nilai,
                     'deleted_at' => null,
                     'sekolah_id'     =>   $sekolah_id,

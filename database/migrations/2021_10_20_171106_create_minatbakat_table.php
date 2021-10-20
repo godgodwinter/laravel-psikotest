@@ -16,7 +16,7 @@ class CreateMinatbakatTable extends Migration
         Schema::create('minatbakat', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('kategori');
+            $table->string('kategori')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

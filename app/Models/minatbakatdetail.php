@@ -19,6 +19,7 @@ class minatbakatdetail extends Model
             'minatbakat_id',
             'siswa_id',
             'nilai',
+            'sekolah_id',
         ];
 
 }
