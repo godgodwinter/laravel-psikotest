@@ -32,7 +32,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Lengkap</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required>
+                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" value="{{old('nama')}}" required>
 
                           @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -43,7 +43,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">NISN</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="nomerinduk" required>
+                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" value="{{old('nomerinduk')}}" required>
 
                           @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -69,7 +69,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tempat Lahir</label>
                       <div class="col-sm-6 col-md-9">
 
-                        <input type="text" class="form-control  @error('tempatlahir') is-invalid @enderror" name="tempatlahir" >
+                        <input type="text" class="form-control  @error('tempatlahir') is-invalid @enderror" value="{{old('tempatlahir')}}" >
 
                           @error('tempatlahir')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -82,7 +82,7 @@
                       <div class="form-group">
                         <input type="date" class="form-control datepicker @error('tanggallahir')
                             is_invalid
-                        @enderror" name="tanggallahir">
+                        @enderror" value="{{old('tanggallahir')}}">
                         @error('tanggallahir')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                       </div>
@@ -92,7 +92,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Usia</label>
                       <div class="col-sm-6 col-md-9">
 
-                        <input type="text" class="form-control  @error('usia') is-invalid @enderror" name="usia" required>
+                        <input type="text" class="form-control  @error('usia') is-invalid @enderror" value="{{old('usia')}}" >
 
                           @error('usia')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -118,7 +118,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Agama</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('agama') is-invalid @enderror" name="agama" required>
+                          <input type="text" class="form-control  @error('agama') is-invalid @enderror" value="{{old('agama')}}" >
 
                           @error('agama')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -129,7 +129,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Anak Ke</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('anak') is-invalid @enderror" name="anak" required>
+                          <input type="text" class="form-control  @error('anak') is-invalid @enderror" value="{{old('anak')}}" >
 
                           @error('anak')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -140,7 +140,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah Saudara Kandung</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('kandung') is-invalid @enderror" name="kandung" required>
+                          <input type="text" class="form-control  @error('kandung') is-invalid @enderror" value="{{old('kandung')}}" >
 
                           @error('kandung')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -151,7 +151,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah Saudara Angkat</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('angkat') is-invalid @enderror" name="angkat" required>
+                          <input type="text" class="form-control  @error('angkat') is-invalid @enderror" value="{{old('angkat')}}" >
 
                           @error('angkat')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -162,7 +162,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah Saudara Tiri</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('tiri') is-invalid @enderror" name="tiri" required>
+                          <input type="text" class="form-control  @error('tiri') is-invalid @enderror" value="{{old('tiri')}}" >
 
                           @error('tiri')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -196,7 +196,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Bahasa Sehari-Hari Dirumah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('bahasa') is-invalid @enderror" name="bahasa" required>
+                          <input type="text" class="form-control  @error('bahasa') is-invalid @enderror" value="{{old('bahasa')}}" >
 
                           @error('bahasa')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -207,7 +207,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">No. Handphone</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nohp') is-invalid @enderror" name="nohp" required>
+                          <input type="text" class="form-control  @error('nohp') is-invalid @enderror" value="{{old('nohp')}}" >
 
                           @error('nohp')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -236,7 +236,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jarak Ke Sekolah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('jarak') is-invalid @enderror" name="jarak" required>
+                          <input type="text" class="form-control  @error('jarak') is-invalid @enderror" value="{{old('jarak')}}" >
 
                           @error('jarak')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -275,7 +275,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelainan Jasmani</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('kelainan') is-invalid @enderror" name="kelainan" required>
+                          <input type="text" class="form-control  @error('kelainan') is-invalid @enderror" value="{{old('kelainan')}}" >
 
                           @error('kelainan')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -286,7 +286,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tinggi Badan</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('tinggibadan') is-invalid @enderror" name="tinggibadan" required>
+                          <input type="text" class="form-control  @error('tinggibadan') is-invalid @enderror" value="{{old('tinggibadan')}}" >
 
                           @error('tinggibadan')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -297,7 +297,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Berat Badan</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('beratbadan') is-invalid @enderror" name="beratbadan" required>
+                          <input type="text" class="form-control  @error('beratbadan') is-invalid @enderror" value="{{old('beratbadan')}}" >
 
                           @error('beratbadan')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -312,7 +312,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tamatan Dari</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('tamatan') is-invalid @enderror" name="tamatan" required>
+                          <input type="text" class="form-control  @error('tamatan') is-invalid @enderror" value="{{old('tamatan')}}" >
 
                           @error('tamatan')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -323,7 +323,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nomor Ijazah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('ijazah') is-invalid @enderror" name="ijazah" required>
+                          <input type="text" class="form-control  @error('ijazah') is-invalid @enderror" value="{{old('ijazah')}}" >
 
                           @error('ijazah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -334,7 +334,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Lama Belajar</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('lamabelajar') is-invalid @enderror" name="lamabelajar" required>
+                          <input type="text" class="form-control  @error('lamabelajar') is-invalid @enderror" value="{{old('lamabelajar')}}" >
 
                           @error('lamabelajar')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -345,7 +345,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pindahan dari Sekolah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pindahan') is-invalid @enderror" name="pindahan" required>
+                          <input type="text" class="form-control  @error('pindahan') is-invalid @enderror" value="{{old('pindahan')}}" >
 
                           @error('pindahan')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -356,7 +356,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alasan</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('alasan') is-invalid @enderror" name="alasan" required>
+                          <input type="text" class="form-control  @error('alasan') is-invalid @enderror" value="{{old('alasan')}}" >
 
                           @error('alasan')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -371,7 +371,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Ayah Kandung</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('namaayah') is-invalid @enderror" name="namaayah" required>
+                          <input type="text" class="form-control  @error('namaayah') is-invalid @enderror" value="{{old('namaayah')}}" >
 
                           @error('namaayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -382,7 +382,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tempat Lahir Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('tempatayah') is-invalid @enderror" name="tempatayah" required>
+                          <input type="text" class="form-control  @error('tempatayah') is-invalid @enderror" value="{{old('tempatayah')}}" >
 
                           @error('tempatayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -393,7 +393,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Lahir Ayah</label>
                       <div class="col-sm-6 col-md-9">
                       <div class="form-group">
-                        <input type="date" class="form-control datepicker" name="tanggallahirayah">
+                        <input type="date" class="form-control datepicker" value="{{old('tanggallahirayah')}}">
                       </div>
                       </div>
                       </div>
@@ -401,7 +401,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Agama Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('agamaayah') is-invalid @enderror" name="agamaayah" required>
+                          <input type="text" class="form-control  @error('agamaayah') is-invalid @enderror" value="{{old('agamaayah')}}" >
 
                           @error('agamaayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -423,7 +423,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pendidikan Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pendidikanayah') is-invalid @enderror" name="pendidikanayah" required>
+                          <input type="text" class="form-control  @error('pendidikanayah') is-invalid @enderror" value="{{old('pendidikanayah')}}" >
 
                           @error('pendidikanayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -434,7 +434,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pekerjaan Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pekerjaanayah') is-invalid @enderror" name="pekerjaanayah" required>
+                          <input type="text" class="form-control  @error('pekerjaanayah') is-invalid @enderror" value="{{old('pekerjaanayah')}}" >
 
                           @error('pekerjaanayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -445,7 +445,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Penghasilan Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('penghasilanayah') is-invalid @enderror" name="penghasilanayah" required>
+                          <input type="text" class="form-control  @error('penghasilanayah') is-invalid @enderror" value="{{old('penghasilanayah')}}" >
 
                           @error('penghasilanayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -456,7 +456,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('alamatayah') is-invalid @enderror" name="alamatayah" required>
+                          <input type="text" class="form-control  @error('alamatayah') is-invalid @enderror" value="{{old('alamatayah')}}" >
 
                           @error('alamatayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -467,7 +467,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">No. HP Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomorayah') is-invalid @enderror" name="nomorayah" required>
+                          <input type="text" class="form-control  @error('nomorayah') is-invalid @enderror" value="{{old('nomorayah')}}" >
 
                           @error('nomorayah')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -490,7 +490,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Ibu Kandung</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('namaibu') is-invalid @enderror" name="namaibu" required>
+                          <input type="text" class="form-control  @error('namaibu') is-invalid @enderror" value="{{old('namaibu')}}" >
 
                           @error('namaibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -501,7 +501,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tempat Lahir Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('tempatibu') is-invalid @enderror" name="tempatibu" required>
+                          <input type="text" class="form-control  @error('tempatibu') is-invalid @enderror" value="{{old('tempatibu')}}" >
 
                           @error('tempatibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -512,7 +512,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Lahir Ibu</label>
                       <div class="col-sm-6 col-md-9">
                       <div class="form-group">
-                        <input type="date" class="form-control datepicker" name="tanggallahiribu">
+                        <input type="date" class="form-control datepicker" value="{{old('tanggallahiribu')}}">
                       </div>
                       </div>
                       </div>
@@ -520,7 +520,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Agama Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('agamaibu') is-invalid @enderror" name="agamaibu" required>
+                          <input type="text" class="form-control  @error('agamaibu') is-invalid @enderror" value="{{old('agamaibu')}}" >
 
                           @error('agamaibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -542,7 +542,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pendidikan Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pendidikanibu') is-invalid @enderror" name="pendidikanibu" required>
+                          <input type="text" class="form-control  @error('pendidikanibu') is-invalid @enderror" value="{{old('pendidikanibu')}}" >
 
                           @error('pendidikanibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -553,7 +553,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pekerjaan Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pekerjaanibu') is-invalid @enderror" name="pekerjaanibu" required>
+                          <input type="text" class="form-control  @error('pekerjaanibu') is-invalid @enderror" value="{{old('pekerjaanibu')}}" >
 
                           @error('pekerjaanibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -564,7 +564,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Penghasilan Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('penghasilanibu') is-invalid @enderror" name="penghasilanibu" required>
+                          <input type="text" class="form-control  @error('penghasilanibu') is-invalid @enderror" value="{{old('penghasilanibu')}}" >
 
                           @error('penghasilanibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -575,7 +575,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('alamatibu') is-invalid @enderror" name="alamatibu" required>
+                          <input type="text" class="form-control  @error('alamatibu') is-invalid @enderror" value="{{old('alamatibu')}}" >
 
                           @error('alamatibu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -586,7 +586,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">No. HP Ibu</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomoribu') is-invalid @enderror" name="nomoribu" required>
+                          <input type="text" class="form-control  @error('nomoribu') is-invalid @enderror" value="{{old('nomoribu')}}" >
 
                           @error('nomoribu')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -609,7 +609,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('namawali') is-invalid @enderror" name="namawali" required>
+                          <input type="text" class="form-control  @error('namawali') is-invalid @enderror" value="{{old('namawali')}}" >
 
                           @error('namawali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -620,7 +620,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tempat Lahir Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('tempatwali') is-invalid @enderror" name="tempatwali" required>
+                          <input type="text" class="form-control  @error('tempatwali') is-invalid @enderror" value="{{old('tempatwali')}}" >
 
                           @error('tempatwali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -631,7 +631,7 @@
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Lahir Wali</label>
                       <div class="col-sm-6 col-md-9">
                       <div class="form-group">
-                        <input type="date" class="form-control datepicker" name="tanggallahirwali">
+                        <input type="date" class="form-control datepicker" value="{{old('tanggallahirwali')}}">
                       </div>
                       </div>
                       </div>
@@ -639,7 +639,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Agama Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('agamawali') is-invalid @enderror" name="agamawali" required>
+                          <input type="text" class="form-control  @error('agamawali') is-invalid @enderror" value="{{old('agamawali')}}" >
 
                           @error('agamawali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -661,7 +661,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pendidikan Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pendidikanwali') is-invalid @enderror" name="pendidikanwali" required>
+                          <input type="text" class="form-control  @error('pendidikanwali') is-invalid @enderror" value="{{old('pendidikanwali')}}" >
 
                           @error('pendidikanwali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -672,7 +672,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pekerjaan Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('pekerjaanwali') is-invalid @enderror" name="pekerjaanwali" required>
+                          <input type="text" class="form-control  @error('pekerjaanwali') is-invalid @enderror" value="{{old('pekerjaanwali')}}" >
 
                           @error('pekerjaanwali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -683,7 +683,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Penghasilan Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('penghasilanwali') is-invalid @enderror" name="penghasilanwali" required>
+                          <input type="text" class="form-control  @error('penghasilanwali') is-invalid @enderror" value="{{old('penghasilanwali')}}" >
 
                           @error('penghasilanwali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -694,7 +694,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('alamatwali') is-invalid @enderror" name="alamatwali" required>
+                          <input type="text" class="form-control  @error('alamatwali') is-invalid @enderror" value="{{old('alamatwali')}}" >
 
                           @error('alamatwali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -705,7 +705,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">No. HP Wali</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('nomorwali') is-invalid @enderror" name="nomorwali" required>
+                          <input type="text" class="form-control  @error('nomorwali') is-invalid @enderror" value="{{old('nomorwali')}}" >
 
                           @error('nomorwali')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -733,7 +733,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Hobi</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('hobi') is-invalid @enderror" name="hobi" required>
+                          <input type="text" class="form-control  @error('hobi') is-invalid @enderror" value="{{old('hobi')}}" >
 
                           @error('hobi')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -744,7 +744,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kemasyarakatan / Organisasi</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('organisasi') is-invalid @enderror" name="organisasi" required>
+                          <input type="text" class="form-control  @error('organisasi') is-invalid @enderror" value="{{old('organisasi')}}" >
 
                           @error('organisasi')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
@@ -755,7 +755,7 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Setelah Lulus Akan Ke</label>
                         <div class="col-sm-6 col-md-9">
 
-                          <input type="text" class="form-control  @error('setelahlulus') is-invalid @enderror" name="setelahlulus" required>
+                          <input type="text" class="form-control  @error('setelahlulus') is-invalid @enderror" value="{{old('setelahlulus')}}" >
 
                           @error('setelahlulus')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror
