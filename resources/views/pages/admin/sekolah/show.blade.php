@@ -228,7 +228,7 @@ Detail Sekolah
               <!-- Import Excel -->
               <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <form method="post" action="{{ route('detailsekolah.import') }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('detailsekolah.import',$id->id) }}" enctype="multipart/form-data">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Import Detail Data Sekolag</h5>
