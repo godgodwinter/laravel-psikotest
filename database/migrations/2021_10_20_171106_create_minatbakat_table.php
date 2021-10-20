@@ -17,6 +17,7 @@ class CreateMinatbakatTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('kategori');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

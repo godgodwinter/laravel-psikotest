@@ -10,6 +10,7 @@ use App\Http\Controllers\admininputnilaipsikologicontroller;
 use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
+use App\Http\Controllers\adminminatbakatcontroller;
 use App\Http\Controllers\adminpenggunacontroller;
 use App\Http\Controllers\adminreferensicontroller;
 use App\Http\Controllers\adminseedercontroller;
@@ -177,6 +178,19 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'update'])->name('masternilaipsikologi.update');
       Route::delete('/admin/masternilaipsikologi/{data}', [adminmasternilaipsikologicontroller::class, 'destroy'])->name('masternilaipsikologi.destroy');
       Route::delete('/admin/masternilaipsikologi', [adminmasternilaipsikologicontroller::class, 'multidel'])->name('masternilaipsikologi.multidel');
+
+
+      //minatbakat
+      Route::get('/admin/minatbakat', [adminminatbakatcontroller::class, 'index'])->name('minatbakat');
+      Route::get('/admin/minatbakat/create', [adminminatbakatcontroller::class, 'create'])->name('minatbakat.create');
+      Route::post('/admin/minatbakat/create', [adminminatbakatcontroller::class, 'store'])->name('minatbakat.store');
+      Route::get('/admin/minatbakat/cari', [adminminatbakatcontroller::class, 'cari'])->name('minatbakat.cari');
+      Route::get('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'edit'])->name('minatbakat.edit');
+      Route::put('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'update'])->name('minatbakat.update');
+      Route::delete('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'destroy'])->name('minatbakat.destroy');
+      Route::delete('/admin/minatbakat', [adminminatbakatcontroller::class, 'multidel'])->name('minatbakat.multidel');
+
+
 
 
       //masternilaibidangstudi
