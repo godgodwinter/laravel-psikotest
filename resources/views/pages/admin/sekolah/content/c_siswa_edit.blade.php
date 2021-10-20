@@ -64,7 +64,9 @@
                                 is-invalid
                             @enderror" name="kelas_id"  style="width: 75%" required>
 
-                                <option disabled selected value=""> Pilih kelas</option>
+
+                                <option value="{{old('kelas_id') ? old('kelas_id') : $data->kelas_id}}"> {{$data->kelas!=null ?$data->kelas->nama : $data->kelas_id}}</option>
+
                                 @foreach ($kelas as $t)
                                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
                                 @endforeach
@@ -82,10 +84,8 @@
                             @if(old('jeniskelamin'))
                             <option>{{old('jeniskelamin')}}</option>
                             @else
-
                             <option>{{$data->jeniskelamin}}</option>
                             @endif
-                            <option>_________</option>
                             <option>Laki-laki</option>
                             <option>Perempuan</option>
                         </select>

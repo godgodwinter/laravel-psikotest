@@ -139,7 +139,12 @@ class adminsiswacontroller extends Controller
     public function edit(sekolah $id,siswa $data)
     {
         $pages='siswa';
-        $kelas=DB::table('kelas')->whereNull('deleted_at')
+
+        $data = siswa::with('kelas')->where('id',$data->id)->first();
+        // dd($data->kelas->nama);
+
+        $kelas=DB::table('kelas')
+        ->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->get();
 
