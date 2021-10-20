@@ -53,16 +53,23 @@
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
                         <div class="col-sm-6 col-md-9">
-  
+
                       <select name="jeniskelamin" class="form-control @error('jeniskelamin')
                           is_invalid
                       @enderror">
+                        @if(old('jeniskelamin'))
+                            <option>{{old('jeniskelamin')}}</option>
+                        @else
+
+                            <option>{{$data->jeniskelamin}}</option>
+                        @endif
+                        <option>_________</option>
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
                       </select>
                       @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-                  
+
                       </div>
                       </div>
                       <div class="form-group row align-items-center">
@@ -102,7 +109,7 @@
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
                         <div class="col-sm-6 col-md-9">
-  
+
                       <select name="warganegara" class="form-control @error('warganegara')
                           is_invalid
                       @enderror">
@@ -111,7 +118,7 @@
                       </select>
                       @error('warnanegara')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-                  
+
                       </div>
                       </div>
                       <div class="form-group row align-items-center">
@@ -174,19 +181,20 @@
                       <div class="col-sm-6 col-md-9">
                       <div class="selectgroup w-100">
                         <label class="selectgroup-item">
-                          <input type="radio" name="statusanak" value="Yatim" class="selectgroup-input" checked="">
+
+                          <input type="radio" name="statusanak" value="Yatim" class="selectgroup-input" {{ $data->statusanak == 'Yatim' ? 'checked':''}}>
                           <span class="selectgroup-button">Yatim</span>
                         </label>
                         <label class="selectgroup-item">
-                          <input type="radio" name="statusanak" value="Piatu" class="selectgroup-input">
+                          <input type="radio" name="statusanak" value="Piatu" class="selectgroup-input" {{ $data->statusanak == 'Piatu' ? 'checked':''}}>
                           <span class="selectgroup-button">Piatu</span>
                         </label>
                         <label class="selectgroup-item">
-                          <input type="radio" name="statusanak" value="Yatim Piatu" class="selectgroup-input">
+                          <input type="radio" name="statusanak" value="Yatim Piatu" class="selectgroup-input" {{ $data->statusanak == 'Yatim Piatu' ? 'checked':''}}>
                           <span class="selectgroup-button">Yatim Piatu</span>
                         </label>
                         <label class="selectgroup-item">
-                          <input type="radio" name="statusanak" value="Lengkap" class="selectgroup-input">
+                          <input type="radio" name="statusanak" value="Lengkap" class="selectgroup-input" {{ $data->statusanak == 'Lengkap' ? 'checked':''}}>
                           <span class="selectgroup-button">Lengkap</span>
                         </label>
                       </div>
@@ -244,9 +252,9 @@
                         </div>
                       </div>
                       </div>
-                      
+
                       <!-- --------- -->
-                      
+
                       <div class="tab-pane fade" id="kesehatan" role="tabpanel" aria-labelledby="kesehatan-tab">
                       <div class="form-group row align-items-center">
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Golongan Darah</label>
@@ -489,7 +497,7 @@
 
                         </div>
                       </div>
-                      
+
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Ibu Kandung</label>
                         <div class="col-sm-6 col-md-9">
@@ -735,7 +743,7 @@
 
                         </div>
                         </div>
-                      
+
 
                       </div>
 
@@ -774,10 +782,10 @@
 
                         </div>
                         </div>
-                        
+
                       </div>
                     </div>
-                    
+
                     <!-- ----------- -->
 
                   <div class="card-footer bg-whitesmoke text-md-right">
