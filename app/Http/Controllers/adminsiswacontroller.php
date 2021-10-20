@@ -29,7 +29,7 @@ class adminsiswacontroller extends Controller
 
     public function store(sekolah $id,Request $request)
     {
-        dd($request);
+        dd($id,$request);
         $cek=DB::table('siswa')->whereNull('deleted_at')->where('nomerinduk',$request->nomerinduk)
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
@@ -38,11 +38,11 @@ class adminsiswacontroller extends Controller
             if($cek>0){
                     $request->validate([
                     // 'nama'=>'required|unique:siswa,nama',
-                    'nomerinduk'=>'required|unique:siswa,nomerinduk',
+                    // 'nomerinduk'=>'required|unique:siswa,nomerinduk',
 
                     ],
                     [
-                        'nomerinduk.unique'=>'Nomer Induk sudah digunakan',
+                        // 'nomerinduk.unique'=>'Nomer Induk sudah digunakan',
                     ]);
 
             }

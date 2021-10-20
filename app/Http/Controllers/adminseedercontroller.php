@@ -126,46 +126,86 @@ class adminseedercontroller extends Controller
         return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
 
     }
-    
+
     public function masternilaipsikologi(Request $request){
 
         masternilaipsikologi::truncate();
         $dataku = collect([
             [
-                'nama' => 'IQ',
-                'singkatan' => 'IQ',
-            ],
-            [
-                'nama' => 'EQ',
-                'singkatan' => 'EQ',
-            ],
-            [
-                'nama' => 'SQ',
-                'singkatan' => 'SQ',
-            ],
-            [
                 'nama' => 'KB',
                 'singkatan' => 'KB',
+            ],
+            [
+                'nama' => 'KB%',
+                'singkatan' => 'KB%',
+            ],
+            [
+                'nama' => 'KBH',
+                'singkatan' => 'KBH',
             ],
             [
                 'nama' => 'LM',
                 'singkatan' => 'LM',
             ],
             [
+                'nama' => 'LM%',
+                'singkatan' => 'LM%',
+            ],
+            [
+                'nama' => 'LMH',
+                'singkatan' => 'LMH',
+            ],
+            [
                 'nama' => 'KS',
                 'singkatan' => 'KS',
+            ],
+            [
+                'nama' => 'KS%',
+                'singkatan' => 'KS%',
+            ],
+            [
+                'nama' => 'KSH',
+                'singkatan' => 'KSH',
             ],
             [
                 'nama' => 'KM',
                 'singkatan' => 'KM',
             ],
             [
+                'nama' => 'KM%',
+                'singkatan' => 'KM%',
+            ],
+            [
+                'nama' => 'KM',
+                'singkatan' => 'KM',
+            ],
+            [
+                'nama' => 'KMH',
+                'singkatan' => 'KMH',
+            ],
+            [
                 'nama' => 'KK',
                 'singkatan' => 'KK',
             ],
             [
+                'nama' => 'KK%',
+                'singkatan' => 'KK%',
+            ],
+            [
+                'nama' => 'KKH',
+                'singkatan' => 'KKH',
+            ],
+            [
                 'nama' => 'KI',
                 'singkatan' => 'KI',
+            ],
+            [
+                'nama' => 'KI%',
+                'singkatan' => 'KI%',
+            ],
+            [
+                'nama' => 'KIH',
+                'singkatan' => 'KIH',
             ],
             [
                 'nama' => 'KA',
@@ -174,9 +214,157 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'KM',
                 'singkatan' => 'KM',
+            ],
+            [
+                'nama' => 'KA%',
+                'singkatan' => 'KA%',
+            ],
+            [
+                'nama' => 'KAH',
+                'singkatan' => 'KAH',
+            ],
+            [
+                'nama' => 'KN',
+                'singkatan' => 'KN',
+            ],
+            [
+                'nama' => 'KN%',
+                'singkatan' => 'KN%',
+            ],
+            [
+                'nama' => 'KNH',
+                'singkatan' => 'KNH',
+            ],
+            [
+                'nama' => 'TTL',
+                'singkatan' => 'TTL',
+            ],
+            [
+                'nama' => 'IQ',
+                'singkatan' => 'IQ',
+            ],
+            [
+                'nama' => 'IQ%',
+                'singkatan' => 'IQ%',
+            ],
+            [
+                'nama' => 'IQH',
+                'singkatan' => 'IQH',
+            ],
+            [
+                'nama' => 'EQ%',
+                'singkatan' => 'EQ%',
+            ],
+            [
+                'nama' => 'EQKET',
+                'singkatan' => 'EQKET',
+            ],
+            [
+                'nama' => 'SQ%',
+                'singkatan' => 'SQ%',
+            ],
+            [
+                'nama' => 'SQKET',
+                'singkatan' => 'SQKET',
+            ],
+            [
+                'nama' => 'SCQ%',
+                'singkatan' => 'SCQ%',
+            ],
+            [
+                'nama' => 'SCQKET',
+                'singkatan' => 'SCQKET',
+            ],
+            [
+                'nama' => 'KBH',
+                'singkatan' => 'KBH',
+            ],
+            [
+                'nama' => 'LMH',
+                'singkatan' => 'LMH',
+            ],
+            [
+                'nama' => 'KSH',
+                'singkatan' => 'KSH',
+            ],
+            [
+                'nama' => 'KMH',
+                'singkatan' => 'KMH',
+            ],
+            [
+                'nama' => 'KKH',
+                'singkatan' => 'KKH',
+            ],
+            [
+                'nama' => 'KIH',
+                'singkatan' => 'KIH',
+            ],
+            [
+                'nama' => 'KAH',
+                'singkatan' => 'KAH',
+            ],
+            [
+                'nama' => 'KNH',
+                'singkatan' => 'KNH',
+            ],
+            [
+                'nama' => 'IQH',
+                'singkatan' => 'IQH',
+            ],
+            [
+                'nama' => 'P1',
+                'singkatan' => 'P1',
+            ],
+            [
+                'nama' => 'P9',
+                'singkatan' => 'P9',
+            ],
+            [
+                'nama' => 'KR',
+                'singkatan' => 'KR',
+            ],
+            [
+                'nama' => 'A',
+                'singkatan' => 'A',
+            ],
+            [
+                'nama' => 'APLUS%',
+                'singkatan' => 'APLUS%',
+            ],
+            [
+                'nama' => 'APLUSKET',
+                'singkatan' => 'APLUSKET',
+            ],
+            [
+                'nama' => 'AMINUS%',
+                'singkatan' => 'AMINUS%',
+            ],
+            [
+                'nama' => 'AMINUSKET',
+                'singkatan' => 'AMINUSKET',
+            ],
+            [
+                'nama' => 'C',
+                'singkatan' => 'C',
+            ],
+            [
+                'nama' => 'CPLUS%',
+                'singkatan' => 'CPLUS%',
+            ],
+            [
+                'nama' => 'CPLUSKET',
+                'singkatan' => 'CPLUSKET',
+            ],
+            [
+                'nama' => 'CMINUS%',
+                'singkatan' => 'CMINUS%',
+            ],
+            [
+                'nama' => 'CMINUSKET',
+                'singkatan' => 'CMINUSKET',
             ]
         ]);
-        
+
 
         foreach($dataku as $data){
             // dd($data['nama']);
