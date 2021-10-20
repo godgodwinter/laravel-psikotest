@@ -81,9 +81,9 @@ class importdetailsekolah implements ToCollection
             ->update([
                 'nama'     =>   $row[3],
                 'sekolah_id'     =>   $sekolah_id,
-                'deleted_at'=>null,
-                'created_at'=>date("Y-m-d H:i:s"),
-            'updated_at'=>date("Y-m-d H:i:s")
+            //     'deleted_at'=>null,
+            //     'created_at'=>date("Y-m-d H:i:s"),
+            // 'updated_at'=>date("Y-m-d H:i:s")
             ]);
 
     }else{
@@ -214,6 +214,36 @@ class importdetailsekolah implements ToCollection
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4KET',$row[2],$row[114]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4MINUS%',$row[2],$row[115]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4MINUSKET',$row[2],$row[116]);
+
+    
+    Fungsi::inputminatbakat($sekolah_id,'CITA.1/Minat.1',$row[2],$row[133]);
+    Fungsi::inputminatbakat($sekolah_id,'Tipe Bakat.1',$row[2],$row[134]);
+    Fungsi::inputminatbakat($sekolah_id,'CITA.2/Minat.2',$row[2],$row[135]);
+    Fungsi::inputminatbakat($sekolah_id,'Tipe Bakat.2',$row[2],$row[136]);
+    Fungsi::inputminatbakat($sekolah_id,'CITA.3/Minat.3',$row[2],$row[137]);
+    Fungsi::inputminatbakat($sekolah_id,'Tipe Bakat.3',$row[2],$row[138]);
+    Fungsi::inputminatbakat($sekolah_id,'Tambahan CITA_CITA_1',$row[2],$row[139]);
+    Fungsi::inputminatbakat($sekolah_id,'Tambahan CITA_CITA_2',$row[2],$row[140]);
+    Fungsi::inputminatbakat($sekolah_id,'Tambahan CITA_CITA_3',$row[2],$row[141]);
+    Fungsi::inputminatbakat($sekolah_id,'STUDI_LANJUT_SMP',$row[2],$row[142]);
+    Fungsi::inputminatbakat($sekolah_id,'STUDI_LANJUT_SMA_SMK_1_FAKULTAS',$row[2],$row[143]);
+    Fungsi::inputminatbakat($sekolah_id,'STUDI_LANJUT_SMA_SMK_1_PRODI',$row[2],$row[144]);
+    Fungsi::inputminatbakat($sekolah_id,'STUDI_LANJUT_SMA_SMK_2_FAKULTAS',$row[2],$row[145]);
+    Fungsi::inputminatbakat($sekolah_id,'STUDI_LANJUT_SMA_SMK_2_PRODI',$row[2],$row[146]);
+    Fungsi::inputminatbakat($sekolah_id,'STUDI_LANJUT_SMA_SMK_KEDINASAN',$row[2],$row[147]);
+    Fungsi::inputminatbakat($sekolah_id,'JURUSAN_LANJUT_SMA/MA',$row[2],$row[148]);
+    Fungsi::inputminatbakat($sekolah_id,'JURUSAN_LANJUT_SMK1',$row[2],$row[149]);
+    Fungsi::inputminatbakat($sekolah_id,'JURUSAN_LANJUT_SMK2',$row[2],$row[150]);
+    Fungsi::inputminatbakat($sekolah_id,'JURUSAN_LANJUT_SMK3',$row[2],$row[151]);
+    Fungsi::inputminatbakat($sekolah_id,'Disarankan studi SMA/MA/SMK',$row[2],$row[152]);
+    Fungsi::inputminatbakat($sekolah_id,'Jurusan SMA/MA',$row[2],$row[153]);
+    Fungsi::inputminatbakat($sekolah_id,'Jur SMK(BK/Bidg keahlian)',$row[2],$row[154]);
+    Fungsi::inputminatbakat($sekolah_id,'SMK (PK/Program keahlian)',$row[2],$row[155]);
+    Fungsi::inputminatbakat($sekolah_id,'Jur.Disarankan SMA/MA',$row[2],$row[156]);
+    Fungsi::inputminatbakat($sekolah_id,'Jur.Dipertimbangkan SMA/MA',$row[2],$row[157]);
+    Fungsi::inputminatbakat($sekolah_id,'Jur.Tdk.Disarankan SMA/MA',$row[2],$row[158]);
+    Fungsi::inputminatbakat($sekolah_id,'D / S.1 Disarankan Fakultas',$row[2],$row[159]);
+    Fungsi::inputminatbakat($sekolah_id,'D / S.1 Disarankan Prodi',$row[2],$row[160]);
 
     // // 1.ambil id master where KB
     // $ambil_idmaster=DB::table('masternilaipsikologi')->where('singkatan','KB')->first();

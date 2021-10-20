@@ -6,6 +6,7 @@ use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
 use App\Http\Controllers\admininformasipsikologicontroller;
+use App\Http\Controllers\admininputminatbakatcontroller;
 use App\Http\Controllers\admininputnilaipsikologicontroller;
 use App\Http\Controllers\adminkelascontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
@@ -129,6 +130,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/inputnilaipsikologi/{data}', [admininputnilaipsikologicontroller::class, 'edit'])->name('sekolah.inputnilaipsikologi.edit');
     Route::put('/admin/sekolah/{id}/inputnilaipsikologi/{data}', [admininputnilaipsikologicontroller::class, 'update'])->name('sekolah.inputnilaipsikologi.update');
     Route::delete('/admin/sekolah/{id}/inputnilaipsikologi/{data}', [admininputnilaipsikologicontroller::class, 'destroy'])->name('sekolah.inputnilaipsikologi.destroy');
+
+    //inputminatbakat
+    Route::get('/admin/sekolah/{id}/inputminatbakat', [admininputminatbakatcontroller::class, 'index'])->name('sekolah.inputminatbakat');
+    Route::get('/admin/sekolah/{id}/inputminatbakat/create', [admininputminatbakatcontroller::class, 'create'])->name('sekolah.inputminatbakat.create');
+    Route::post('/admin/sekolah/{id}/inputminatbakat/create', [admininputminatbakatcontroller::class, 'store'])->name('sekolah.inputminatbakat.store');
+    Route::get('/admin/sekolah/{id}/inputminatbakat/cari', [admininputminatbakatcontroller::class, 'cari'])->name('sekolah.inputminatbakat.cari');
+    Route::get('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'edit'])->name('sekolah.inputminatbakat.edit');
+    Route::put('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'update'])->name('sekolah.inputminatbakat.update');
+    Route::delete('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'destroy'])->name('sekolah.inputminatbakat.destroy');
 
 
       //pengguna

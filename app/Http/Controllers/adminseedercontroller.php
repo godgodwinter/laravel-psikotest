@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kelas;
 use App\Models\masternilaibidangstudi;
 use App\Models\masternilaipsikologi;
+use App\Models\minatbakat;
 use App\Models\pengguna;
 use App\Models\referensi;
 use App\Models\sekolah;
@@ -591,6 +592,135 @@ class adminseedercontroller extends Controller
             DB::table('masternilaipsikologi')->insert([
                 'nama' => $data['nama'],
                 'singkatan' => $data['singkatan'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
+
+
+        
+        minatbakat::truncate();
+        $dataku = collect([
+            [
+                'nama' => 'CITA.1/Minat.1',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'Tipe Bakat.1',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'CITA.2/Minat.2',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'Tipe Bakat.2',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'CITA.3/Minat.3',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'Tipe Bakat.3',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'Tambahan CITA_CITA_1',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'Tambahan CITA_CITA_2',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'Tambahan CITA_CITA_3',
+                'kategori' => 'Minat',
+            ],
+            [
+                'nama' => 'STUDI_LANJUT_SMP',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'STUDI_LANJUT_SMA_SMK_1_FAKULTAS',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'STUDI_LANJUT_SMA_SMK_1_PRODI',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'STUDI_LANJUT_SMA_SMK_2_FAKULTAS',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'STUDI_LANJUT_SMA_SMK_2_PRODI',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'STUDI_LANJUT_SMA_SMK_KEDINASAN',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'JURUSAN_LANJUT_SMA/MA',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'JURUSAN_LANJUT_SMK1',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'JURUSAN_LANJUT_SMK2',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'JURUSAN_LANJUT_SMK3',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'Disarankan studi SMA/MA/SMK',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'Jurusan SMA/MA',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'Jur SMK(BK/Bidg keahlian)',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'SMK (PK/Program keahlian)',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'Jur.Disarankan SMA/MA',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'Jur.Dipertimbangkan SMA/MA',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'Jur.Tdk.Disarankan SMA/MA',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'D / S.1 Disarankan Fakultas',
+                'kategori' => 'Penjurusan',
+            ],
+            [
+                'nama' => 'D / S.1 Disarankan Prodi',
+                'kategori' => 'Penjurusan',
+            ],
+        ]);
+
+
+        foreach($dataku as $data){
+            // dd($data['nama']);
+            DB::table('minatbakat')->insert([
+                'nama' => $data['nama'],
+                'kategori' => $data['kategori'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);

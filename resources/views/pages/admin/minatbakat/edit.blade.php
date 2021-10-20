@@ -67,8 +67,6 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
                             @endif
                                 
                           <option>Minat</option>
-                          <option>Bakat</option>
-                          <option>Cita-cita</option>
                           <option>Penjuruan</option>
                       </select>
                       @error('kategori')<div class="invalid-feedback"> {{$message}}</div>

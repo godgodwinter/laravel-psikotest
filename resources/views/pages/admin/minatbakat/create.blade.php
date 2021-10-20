@@ -61,8 +61,6 @@ Master Minat, Bakat, Cita-cita dan Penjurusan
 
                       <select class="form-control  @error('kategori') is-invalid @enderror" name="kategori" required>
                         <option>Minat</option>
-                        <option>Bakat</option>
-                        <option>Cita-cita</option>
                         <option>Penjuruan</option>
                     </select>
                     @error('kategori')<div class="invalid-feedback"> {{$message}}</div>
