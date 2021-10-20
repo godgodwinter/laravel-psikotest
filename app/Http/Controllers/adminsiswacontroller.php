@@ -29,7 +29,7 @@ class adminsiswacontroller extends Controller
 
     public function store(sekolah $id,Request $request)
     {
-        dd($id,$request);
+        // dd($id,$request);
         $cek=DB::table('siswa')->whereNull('deleted_at')->where('nomerinduk',$request->nomerinduk)
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
