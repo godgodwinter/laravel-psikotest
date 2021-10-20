@@ -53,7 +53,7 @@
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin</label>
                         <div class="col-sm-6 col-md-9">
-  
+
                       <select name="jeniskelamin" class="form-control @error('jeniskelamin')
                           is_invalid
                       @enderror">
@@ -62,7 +62,7 @@
                       </select>
                       @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-                  
+
                       </div>
                       </div>
                       <div class="form-group row align-items-center">
@@ -102,6 +102,7 @@
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kewarganegaraan</label>
                         <div class="col-sm-6 col-md-9">
+
   
                       <select name="warganegara" class="form-control @error('warganegara')
                           is_invalid
@@ -111,7 +112,7 @@
                       </select>
                       @error('warnanegara')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-                  
+
                       </div>
                       </div>
                       <div class="form-group row align-items-center">
@@ -244,9 +245,9 @@
                         </div>
                       </div>
                       </div>
-                      
+
                       <!-- --------- -->
-                      
+
                       <div class="tab-pane fade" id="kesehatan" role="tabpanel" aria-labelledby="kesehatan-tab">
                       <div class="form-group row align-items-center">
                       <label for="site-title" class="form-control-label col-sm-3 text-md-right">Golongan Darah</label>
@@ -487,7 +488,7 @@
 
                         </div>
                       </div>
-                      
+
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Ibu Kandung</label>
                         <div class="col-sm-6 col-md-9">
@@ -729,7 +730,7 @@
 
                         </div>
                         </div>
-                      
+
 
                       </div>
 
@@ -768,10 +769,10 @@
 
                         </div>
                         </div>
-                        
+
                       </div>
                     </div>
-                    
+
                     <!-- ----------- -->
                   <div class="card-footer bg-whitesmoke text-md-right">
                     <button class="btn btn-primary" id="save-btn">Simpan</button>
