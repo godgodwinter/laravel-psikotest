@@ -128,7 +128,8 @@ class adminsiswacontroller extends Controller
                    'statuswali'     =>   $request->statuswali,
                    'hobi'           =>   $request->hobi,
                    'organisasi'     =>   $request->organisasi,
-                   'setelahlulus'   =>   $request->setelahlulus
+                   'setelahlulus'   =>   $request->setelahlulus,
+                   'kelas_id'   =>   $request->kelas_id
             ));
 
     return redirect()->route('sekolah.siswa',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
@@ -232,7 +233,8 @@ class adminsiswacontroller extends Controller
                    'statuswali'     =>   $request->statuswali,
                    'hobi'           =>   $request->hobi,
                    'organisasi'     =>   $request->organisasi,
-                   'setelahlulus'   =>   $request->setelahlulus
+                   'setelahlulus'   =>   $request->setelahlulus,
+                   'kelas_id'       =>   $request->kelas_id
 
         ]);
     return redirect()->route('sekolah.siswa',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');

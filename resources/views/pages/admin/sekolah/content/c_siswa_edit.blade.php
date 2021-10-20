@@ -63,6 +63,7 @@
                             <select class="form-control @error('kelas_id')
                                 is-invalid
                             @enderror" name="kelas_id"  style="width: 75%" required>
+
                                 <option disabled selected value=""> Pilih kelas</option>
                                 @foreach ($kelas as $t)
                                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
@@ -111,7 +112,7 @@
                         <div class="form-group">
                             <input type="date" class="form-control datepicker @error('tanggallahir')
                             is_invalid
-                        @enderror" value="{{old('tanggallahir')}}" name="tanggallahir">
+                        @enderror" value="{{old('tanggallahir') ? old('tanggallahir') : $data->tanggallahir}}" name="tanggallahir">
                             @error('tanggallahir')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
                         </div>
@@ -264,15 +265,18 @@
                     <div class="col-sm-6 col-md-9">
                         <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                                <input type="radio" name="tinggal" value="ortu" class="selectgroup-input" checked="">
+                                <input type="radio" name="tinggal" value="ortu" class="selectgroup-input"
+                                {{ $data->tinggal == 'ortu' ? 'checked':''}}>
                                 <span class="selectgroup-button">Orang Tua</span>
                             </label>
                             <label class="selectgroup-item">
-                                <input type="radio" name="tinggal" value="Saudara" class="selectgroup-input">
+                                <input type="radio" name="tinggal" value="Saudara" class="selectgroup-input"
+                                {{ $data->tinggal == 'Saudara' ? 'checked':''}}>
                                 <span class="selectgroup-button">Saudara</span>
                             </label>
                             <label class="selectgroup-item">
-                                <input type="radio" name="tinggal" value="asrama" class="selectgroup-input">
+                                <input type="radio" name="tinggal" value="asrama" class="selectgroup-input"
+                                {{ $data->tinggal == 'asrama' ? 'checked':''}}>
                                 <span class="selectgroup-button">Asrama/Kost</span>
                             </label>
                         </div>
@@ -300,19 +304,22 @@
                     <div class="col-sm-6 col-md-9">
                         <div class="selectgroup w-100">
                             <label class="selectgroup-item">
-                                <input type="radio" name="goldar" value="A" class="selectgroup-input" checked="">
+                                <input type="radio" name="goldar" value="A" class="selectgroup-input" {{ $data->statusanak == 'A' ? 'checked':''}}>
                                 <span class="selectgroup-button">A</span>
                             </label>
                             <label class="selectgroup-item">
-                                <input type="radio" name="goldar" value="B" class="selectgroup-input">
+                                <input type="radio" name="goldar" value="B" class="selectgroup-input"
+                                {{ $data->goldar == 'B' ? 'checked':''}}>
                                 <span class="selectgroup-button">B</span>
                             </label>
                             <label class="selectgroup-item">
-                                <input type="radio" name="goldar" value="AB" class="selectgroup-input">
+                                <input type="radio" name="goldar" value="AB" class="selectgroup-input"
+                                {{ $data->goldar == 'AB' ? 'checked':''}}>
                                 <span class="selectgroup-button">AB</span>
                             </label>
                             <label class="selectgroup-item">
-                                <input type="radio" name="goldar" value="O" class="selectgroup-input">
+                                <input type="radio" name="goldar" value="O" class="selectgroup-input"
+                                {{ $data->goldar == 'O' ? 'checked':''}}>
                                 <span class="selectgroup-button">O</span>
                             </label>
                         </div>

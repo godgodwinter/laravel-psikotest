@@ -117,7 +117,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('usia') is-invalid @enderror"
-                                value="{{old('usia')}}">
+                                value="{{old('usia')}}" name="usia">
 
                             @error('usia')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -472,7 +472,7 @@
                             Ayah</label>
                         <div class="col-sm-6 col-md-9">
 
-                            <select name="wargaanegaraayah" class="form-control @error('warganegaraayah')
+                            <select name="warganegaraayah" class="form-control @error('warganegaraayah')
                           is_invalid
                       @enderror">
                                 <option>WNI</option>
