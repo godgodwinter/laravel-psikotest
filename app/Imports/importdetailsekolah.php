@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Helpers\Fungsi;
+use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
 use App\Models\sekolah;
 use App\Models\siswa;
@@ -98,6 +99,80 @@ class importdetailsekolah implements ToCollection
             ));
 
     }
+
+    // INPUTNILAIPSIKOLOGI
+    // 1.ambil id master where KB
+    $ambil_idmaster=DB::table('masternilaipsikologi')->where('singkatan','KB')->first();
+    $ambil_idsiswa=DB::table('siswa')->where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)->first();
+
+    $cekdatanilai=DB::table('inputnilaipsikologi')
+    ->where('masternilaipsikologi_id',$ambil_idmaster->id)
+    ->where('siswa_id',$ambil_idsiswa->id)
+    ->where('sekolah_id',$sekolah_id)->count();
+
+    if($cekdatanilai>0){
+        // updaTe
+            inputnilaipsikologi::where('masternilaipsikologi_id',$ambil_idmaster->id)
+            ->where('siswa_id',$ambil_idsiswa->id)
+            ->where('sekolah_id',$sekolah_id)
+            ->update([
+                'nilai'     =>   $row[6],
+                'deleted_at'=>null,
+                'created_at'=>date("Y-m-d H:i:s"),
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+    }else{
+
+        DB::table('inputnilaipsikologi')->insert(
+            array(
+                'siswa_id'     =>  $ambil_idsiswa->id,
+                'masternilaipsikologi_id'     =>  $ambil_idmaster->id,
+                'nilai'     =>   $row[6],
+                'deleted_at' => null,
+                'sekolah_id'     =>   $sekolah_id,
+                'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+            ));
+
+    }
+
+    // 1.ambil id master where KB%
+    $ambil_idmaster=DB::table('masternilaipsikologi')->where('singkatan','KB%')->first();
+    $ambil_idsiswa=DB::table('siswa')->where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)->first();
+
+    $cekdatanilai=DB::table('inputnilaipsikologi')
+    ->where('masternilaipsikologi_id',$ambil_idmaster->id)
+    ->where('siswa_id',$ambil_idsiswa->id)
+    ->where('sekolah_id',$sekolah_id)->count();
+
+    if($cekdatanilai>0){
+        // updaTe
+            inputnilaipsikologi::where('masternilaipsikologi_id',$ambil_idmaster->id)
+            ->where('siswa_id',$ambil_idsiswa->id)
+            ->where('sekolah_id',$sekolah_id)
+            ->update([
+                'nilai'     =>   $row[7],
+                'deleted_at'=>null,
+                'created_at'=>date("Y-m-d H:i:s"),
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+    }else{
+
+        DB::table('inputnilaipsikologi')->insert(
+            array(
+                'siswa_id'     =>  $ambil_idsiswa->id,
+                'masternilaipsikologi_id'     =>  $ambil_idmaster->id,
+                'nilai'     =>   $row[7],
+                'deleted_at' => null,
+                'sekolah_id'     =>   $sekolah_id,
+                'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+            ));
+
+    }
+
 
 }
 $no++;
