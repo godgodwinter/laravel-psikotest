@@ -58,11 +58,18 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelas</label>
                         <div class="col-sm-6 col-md-9">
 
-                            <input type="text" class="form-control  @error('kelas') is-invalid @enderror"
-                                value="{{old('kelas')}}" required  name="kelas">
 
-                            @error('kelas')<div class="invalid-feedback"> {{$message}}</div>
-                            @enderror
+                            <select class="form-control @error('kelas_id')
+                                is-invalid
+                            @enderror" name="kelas_id"  style="width: 75%" required>
+                                <option disabled selected value=""> Pilih kelas</option>
+                                @foreach ($kelas as $t)
+                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                                @endforeach
+                              </select>
+
+                          @error('kelas_id')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
 
                         </div>
                     </div>
@@ -443,7 +450,7 @@
                             Ayah</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirayah')}}" 
+                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirayah')}}"
                                 name="tanggallahirayah">
                             </div>
                         </div>
@@ -579,7 +586,7 @@
                             Ibu</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker" value="{{old('tanggallahiribu')}}" 
+                                <input type="date" class="form-control datepicker" value="{{old('tanggallahiribu')}}"
                                 name="tanggallahiribu">
                             </div>
                         </div>
@@ -713,7 +720,7 @@
                             Wali</label>
                         <div class="col-sm-6 col-md-9">
                             <div class="form-group">
-                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirwali')}}" 
+                                <input type="date" class="form-control datepicker" value="{{old('tanggallahirwali')}}"
                                 name="tanggallahirwali">
                             </div>
                         </div>

@@ -36,6 +36,7 @@
                     <tr>
                         <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
                         <th>Nama siswa</th>
+                        <th>Kelas</th>
                         <th width="150px" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -47,7 +48,9 @@
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                 </td>
-
+                                <td>
+{{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
+                                </td>
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="{{ route('sekolah.siswa.edit',[$id->id,$data->id])}}" />

@@ -60,12 +60,14 @@
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelas</label>
                         <div class="col-sm-6 col-md-9">
 
-                            <input type="text" class="form-control  @error('kelas') is-invalid @enderror"
-                                name="kelas" required
-                                value="{{old('kelas') ? old('kelas') : $data->kelas}}">
-
-                            @error('kelas')<div class="invalid-feedback"> {{$message}}</div>
-                            @enderror
+                            <select class="form-control @error('kelas_id')
+                                is-invalid
+                            @enderror" name="kelas_id"  style="width: 75%" required>
+                                <option disabled selected value=""> Pilih kelas</option>
+                                @foreach ($kelas as $t)
+                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                                @endforeach
+                              </select>
 
                         </div>
                     </div>
@@ -450,7 +452,7 @@
                     <div class="col-sm-6 col-md-9">
                         <div class="form-group">
                             <input type="date" class="form-control datepicker"
-                                value="{{old('tanggallahirayah') ? old('tanggallahirayah') : $data->tanggallahirayah}}" 
+                                value="{{old('tanggallahirayah') ? old('tanggallahirayah') : $data->tanggallahirayah}}"
                                 name="tanggallahirayah">
                         </div>
                     </div>

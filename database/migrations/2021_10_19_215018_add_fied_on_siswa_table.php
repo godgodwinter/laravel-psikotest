@@ -74,6 +74,7 @@ class AddFiedOnSiswaTable extends Migration
             $table->string('hobi')->nullable();
             $table->string('organisasi')->nullable();
             $table->string('setelahlulus')->nullable();
+            $table->string('kelas_id')->nullable();
 
         });
 

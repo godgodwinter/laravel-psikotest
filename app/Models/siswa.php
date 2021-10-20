@@ -17,4 +17,9 @@ class siswa extends Model
             'nama',
             'nomerinduk',
         ];
+
+        public function kelas()
+        {
+            return $this->belongsTo('App\Models\kelas');
+        }
 }

@@ -13,10 +13,12 @@ class adminsiswacontroller extends Controller
     public function index(sekolah $id,Request $request)
     {
         $pages='siswa';
-        $datas=DB::table('siswa')->whereNull('deleted_at')
+        $datas = siswa::with('kelas')
+        ->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
+
 
         return view('pages.admin.sekolah.pages.siswa_index',compact('pages','id','request','datas'));
     }
@@ -24,7 +26,10 @@ class adminsiswacontroller extends Controller
     {
         $pages='siswa';
 
-        return view('pages.admin.sekolah.pages.siswa_create',compact('pages','id'));
+        $kelas=DB::table('kelas')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->get();
+        return view('pages.admin.sekolah.pages.siswa_create',compact('pages','id','kelas'));
     }
 
     public function store(sekolah $id,Request $request)
@@ -133,8 +138,11 @@ class adminsiswacontroller extends Controller
     public function edit(sekolah $id,siswa $data)
     {
         $pages='siswa';
+        $kelas=DB::table('kelas')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->get();
 
-        return view('pages.admin.sekolah.pages.siswa_edit',compact('pages','id','data'));
+        return view('pages.admin.sekolah.pages.siswa_edit',compact('pages','id','data','kelas'));
     }
     public function update(sekolah $id,siswa $data,Request $request)
     {
