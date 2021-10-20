@@ -35,7 +35,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('nama') is-invalid @enderror"
-                                value="{{old('nama')}}" required>
+                                value="{{old('nama')}}" name="nama" required>
 
                             @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -47,7 +47,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror"
-                                value="{{old('nomerinduk')}}" required>
+                                value="{{old('nomerinduk')}}" required  name="nomerinduk">
 
                             @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
@@ -74,7 +74,7 @@
                         <div class="col-sm-6 col-md-9">
 
                             <input type="text" class="form-control  @error('tempatlahir') is-invalid @enderror"
-                                value="{{old('tempatlahir')}}">
+                                value="{{old('tempatlahir')}}"  name="tempatlahir">
 
                             @error('tempatlahir')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
