@@ -19,6 +19,8 @@ class adminsekolahcontroller extends Controller
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
+        return $next($request);
+
         });
     }
     public function index(Request $request)
