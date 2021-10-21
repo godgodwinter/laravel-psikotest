@@ -140,7 +140,7 @@ Data Nilai Psikologi Siswa
                               <span class="selectgroup-button">KS</span>
                             </label>
                             <label class="selectgroup-item">
-                              <input type="checkbox" name="KS%" value="KS%" class="selectgroup-input masterdata"  >
+                              <input type="checkbox" name="masterdata" value="KS%" class="selectgroup-input masterdata"  >
                               <span class="selectgroup-button">KS%</span>
                             </label>
                           </div>
