@@ -48,8 +48,6 @@ class bkgrafikcontroller extends Controller
                     ->orderBy('id','asc')
                     ->get();
                     foreach($master as $m){
-
-
                         $periksadata=DB::table('inputnilaipsikologi')
                         ->where('siswa_id',$d->id)
                         // ->where('id','2')
