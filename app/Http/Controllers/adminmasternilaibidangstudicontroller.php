@@ -7,9 +7,21 @@ use App\Models\masternilaibidangstudi;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class adminmasternilaibidangstudicontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='admin'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
+
+        return $next($request);
+
+        });
+    }
     public function index(sekolah $id,Request $request)
     {
         $pages='masternilaibidangstudi';

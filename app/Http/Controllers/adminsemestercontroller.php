@@ -7,9 +7,21 @@ use App\Models\sekolah;
 use App\Models\semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class adminsemestercontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='admin'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
+
+        return $next($request);
+
+        });
+    }
     public function index(sekolah $id,Request $request)
     {
         $pages='semester';
@@ -26,7 +38,7 @@ class adminsemestercontroller extends Controller
 
         return view('pages.admin.sekolah.pages.semester_create',compact('pages','id'));
     }
-    
+
     public function store(sekolah $id,Request $request)
     {
         // dd($request);
@@ -66,7 +78,7 @@ class adminsemestercontroller extends Controller
     return redirect()->route('sekolah.semester',$id->id)->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
     }
-    
+
     public function edit(sekolah $id,semester $data)
     {
         $pages='semester';

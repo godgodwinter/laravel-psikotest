@@ -7,9 +7,21 @@ use Illuminate\Http\Request;
 use App\Helpers\Fungsi;
 use App\Models\tahun;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class admintahunajarancontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='admin'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
+
+        return $next($request);
+
+        });
+    }
     public function index(sekolah $id,Request $request)
     {
         $pages='tahun';

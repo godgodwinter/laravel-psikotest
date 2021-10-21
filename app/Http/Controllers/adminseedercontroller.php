@@ -19,9 +19,21 @@ use Faker\Factory as Faker;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class adminseedercontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='admin'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
+
+        return $next($request);
+
+        });
+    }
     public function sekolah(Request $request){
         // dd('seeder');
         $jmlseeder=10;
@@ -607,7 +619,7 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'Negatif.rank.1',
                 'singkatan' => 'Negatif.rank.1',
-            ], 
+            ],
             [
                 'nama' => 'Negatif.rank.2',
                 'singkatan' => 'Negatif.rank.2',
@@ -678,7 +690,7 @@ class adminseedercontroller extends Controller
         }
 
 
-        
+
         minatbakat::truncate();
         $dataku = collect([
             [
