@@ -123,8 +123,10 @@ class adminapicontroller extends Controller
             $collectionmaster = new Collection();
 
             foreach($alldatas as $masterwhere){
+                if(($masterwhere!='')AND($masterwhere!=null)){
                     $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
                     ->where('singkatan',$masterwhere)
+                    ->skip(0)->take(1)
                     ->orderBy('id','asc')
                     ->get();
                     foreach($master as $m){
@@ -150,6 +152,9 @@ class adminapicontroller extends Controller
                     ]);
 
                     }
+
+                }
+
 
             }
 
