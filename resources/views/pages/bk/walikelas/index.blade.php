@@ -31,7 +31,7 @@ Walikelas
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('referensi.cari') }}" method="GET">
+                        <form action="{{ route('bk.walikelas.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 

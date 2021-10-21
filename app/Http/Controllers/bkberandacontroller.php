@@ -33,6 +33,23 @@ class bkberandacontroller extends Controller
 
         return view('pages.bk.referensi.index',compact('pages','request','datas'));
     }
+    public function cari_ref(Request $request)
+        {
+            $cari=$request->cari;
+            #WAJIB
+            $pages='bk_referensi';
+            $users_id=Auth::user()->id;
+            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+            $sekolah_id=$pengguna->sekolah_id;
+            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+            $datas = DB::table('referensi')
+
+            ->where('nama','like',"%".$cari."%")
+            ->paginate(Fungsi::paginationjml());
+
+            return view('pages.bk.referensi.index',compact('pages','request','datas'));
+        }
     public function informasipsikologi(Request $request)
     {
         $pages='bk-informasipsikologi';
@@ -43,4 +60,22 @@ class bkberandacontroller extends Controller
 
         return view('pages.bk.informasipsikologi.index',compact('pages','request','datas'));
     }
+    public function cari_infp(Request $request)
+        {
+            $cari=$request->cari;
+            #WAJIB
+            $pages='bk_informasipsikologi';
+            $users_id=Auth::user()->id;
+            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+            $sekolah_id=$pengguna->sekolah_id;
+            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+            $datas = DB::table('referensi')
+
+            ->where('nama','like',"%".$cari."%")
+            ->paginate(Fungsi::paginationjml());
+
+            return view('pages.bk.informasipsikologi.index',compact('pages','request','datas'));
+        }
+
 }

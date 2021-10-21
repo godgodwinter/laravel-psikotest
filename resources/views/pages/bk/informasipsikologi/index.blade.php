@@ -31,7 +31,7 @@ Informasi Psikologis
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('informasipsikologi.cari') }}" method="GET">
+                        <form action="{{ route('bk.informasipsikologi.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
