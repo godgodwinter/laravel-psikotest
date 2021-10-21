@@ -10,14 +10,14 @@ class adminapicontroller extends Controller
 {
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin'){
-                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
-            }
+        // $this->middleware(function ($request, $next) {
+        //     if(Auth::user()->tipeuser!='admin'){
+        //         return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+        //     }
 
-        return $next($request);
+        // return $next($request);
 
-        });
+        // });
     }
     public function inputnilaipsikologi (Request $request){
         $output='';
@@ -72,6 +72,28 @@ class adminapicontroller extends Controller
                 ]);
 
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => 'berhasildi upadate',
+            // 'status' => $data->status,
+            'warna' => $warna,
+            'datas' => $cek,
+            'first' => $first
+        ], 200);
+
+
+    }
+
+
+    public function inputnilaipsikologibk (Request $request){
+        $output='';
+        $datas='';
+        $warna='';
+        $first='';
+        $cek='';
+        $alldatas=$request->ids;
 
         return response()->json([
             'success' => true,

@@ -23,6 +23,7 @@ use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
 use App\Http\Controllers\bkberandacontroller;
+use App\Http\Controllers\bkinputnilaipsikologicontroller;
 use App\Http\Controllers\bkkelascontroller;
 use App\Http\Controllers\bkpenggunacontroller;
 use App\Http\Controllers\bksiswacontroller;
@@ -235,6 +236,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         // API
         Route::get('/admin/api/inputnilaipsikologi', [adminapicontroller::class, 'inputnilaipsikologi'])->name('api.inputnilaipsikologi');
+        Route::get('/admin/api/inputnilaipsikologibk', [adminapicontroller::class, 'inputnilaipsikologibk'])->name('api.inputnilaipsikologibk');
 
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
@@ -257,5 +259,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/walikelas', [bkwalikelascontroller::class, 'index'])->name('bk.walikelas');
         Route::get('/bk/kelas', [bkkelascontroller::class, 'index'])->name('bk.kelas');
         Route::get('/bk/pengguna', [bkpenggunacontroller::class, 'index'])->name('bk.pengguna');
+        Route::get('/bk/inputnilaipsikologi', [bkinputnilaipsikologicontroller::class, 'index'])->name('bk.inputnilaipsikologi');
+        Route::get('/bk/penjurusan', [bkpenggunacontroller::class, 'index'])->name('bk.penjurusan');
+        Route::get('/bk/inputminatbakat', [bkpenggunacontroller::class, 'index'])->name('bk.inputminatbakat');
 
 });

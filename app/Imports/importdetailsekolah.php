@@ -29,7 +29,7 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
            $this->id = $id;
     }
 
-    public function collection(Collection $rows, $calculateFormulas = true)
+    public function collection(Collection $rows, $calculateFormulas = false)
     {
         // $rows->calculate(false);
         ini_set('max_execution_time', 3000);
