@@ -23,6 +23,8 @@ use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
 use App\Http\Controllers\bkberandacontroller;
+use App\Http\Controllers\bkcetakcontroller;
+use App\Http\Controllers\bkgrafikcontroller;
 use App\Http\Controllers\bkinputnilaipsikologicontroller;
 use App\Http\Controllers\bkkelascontroller;
 use App\Http\Controllers\bkpenggunacontroller;
@@ -274,5 +276,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/penjurusan', [bkpenggunacontroller::class, 'index'])->name('bk.penjurusan');
         //
         Route::get('/bk/inputminatbakat', [bkpenggunacontroller::class, 'index'])->name('bk.inputminatbakat');
+
+        //bkcetak
+        Route::get('/bk/cetak/nilaipsikologi', [bkcetakcontroller::class, 'nilaipsikologi'])->name('bk.cetak.nilaipsikologi');
+        //bkcetak
+        Route::get('/bk/grafik/nilaipsikologi', [bkgrafikcontroller::class, 'nilaipsikologi'])->name('bk.grafik.nilaipsikologi');
+
 
 });

@@ -186,7 +186,8 @@ Data Nilai Psikologi Siswa
                 success:function(response){
                     tampildatabody=response.datas;
                     $('#masterbody').html(tampildatabody);
-                    $('#cetakdatamaster').val(response.first);
+                    $('.cetakdatamaster').val(response.first);
+                    $('.cetakdatamaster').val(response.first);
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Data berhasil dimuat!',
@@ -225,11 +226,15 @@ Data Nilai Psikologi Siswa
     });
 </script>
                       @endpush
-                      <form action="{{route('bk.beranda')}}" method="get" class="d-inline">
                       <div class="modal-footer">
-                            <input type="hidden" name="cetakdatamaster" id="cetakdatamaster">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                      <form action="{{route('bk.cetak.nilaipsikologi')}}" method="get" class="d-inline">
+                        <input type="hidden" name="cetakdatamaster" id="cetakdatamaster"  class="cetakdatamaster">
                             <button type="submit" class="btn btn-success cetakgraph" disabled> <i class="fas fa-print"></i> Cetak</button>
+                      </form>
+                        <form action="{{route('bk.grafik.nilaipsikologi')}}" method="get" class="d-inline">
+                            <input type="hidden" name="cetakdatamaster" id="cetakdatamaster2" class="cetakdatamaster">
                             <button type="submit" class="btn btn-success cetakgraph"  disabled> <i class="fas fa-chart-line"></i> Grafik</button>
                         </form>
                       </div>
