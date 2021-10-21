@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Informasi Psikologis
+Walikelas
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Informasi Psikologis
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('informasipsikologi.cari') }}" method="GET">
+                        <form action="{{ route('referensi.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -54,7 +54,7 @@ Informasi Psikologis
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('informasipsikologi.multidel')}}" />
+                <x-jsmultidel link="{{route('referensi.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
@@ -62,47 +62,37 @@ Informasi Psikologis
                 <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama</th>
-                            <th class="text-center">File</th>
+                            <th width="8%" class="text-center">No</th>
+                            <th>Nama</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($datas as $data)
-                        <tr id="sid{{ $data->id }}">
-                            <td class="text-center">
-                                {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->nama,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    @php
-                                        if($data->link!=null){
-                                            $alamat=$data->link;
-                                        }else{
-                                            $alamat=url('/'.$data->file);
-                                        }
-                                    @endphp
-<a href="{{ $alamat }}" class="btn btn-icon btn-dark btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="File!" target="_blank" ><i class="fas fa-atlas"></i></a>
+                    @forelse ($datas as $data)
+                            <tr id="sid{{ $data->id }}">
+                                    <td class="text-center">
+                                        {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+                                    <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
+                                    </td>
 
-                                </td>
 
-                            </tr>
-                @empty
-                            <tr>
-                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
-                            </tr>
-                @endforelse
+                                </tr>
+                    @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                                </tr>
+                    @endforelse
+
                     </tbody>
                 </table>
+                @php
+                $cari=$request->cari;
+                $tapel_nama=$request->tapel_nama;
+                $kelas_nama=$request->kelas_nama;
+                @endphp
+                {{ $datas->onEachSide(1)
+                  ->links() }}
 
-@php
-$cari=$request->cari;
-$tapel_nama=$request->tapel_nama;
-$kelas_nama=$request->kelas_nama;
-@endphp
-{{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
-{{ $datas->onEachSide(1)
-  ->links() }}
+
             </div>
         </div>
     </div>

@@ -62,7 +62,7 @@ Referensi Psikologi
                 <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th width="8%" class="text-center"> No</th>
                             <th >Nama</th>
                             <th class="text-center">File</th>
                         </tr>
@@ -70,8 +70,8 @@ Referensi Psikologi
                     <tbody>
                         @forelse ($datas as $data)
                         <tr id="sid{{ $data->id }}">
-                                <td class="text-center">
-                                    {{ ($loop->index)+1 }}</td>
+                            <td class="text-center">
+                                {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td class="text-center">

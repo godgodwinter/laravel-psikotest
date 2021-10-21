@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class importdetailsekolah implements ToCollection
+class importdetailsekolah implements ToCollection,WithCalculatedFormulas
 {
     /**
     * @param array $row
@@ -28,9 +29,10 @@ class importdetailsekolah implements ToCollection
            $this->id = $id;
     }
 
-    public function collection(Collection $rows)
+    public function collection(Collection $rows, $calculateFormulas = true)
     {
-        ini_set('max_execution_time', 3000); 
+        // $rows->calculate(false);
+        ini_set('max_execution_time', 3000);
         $sekolah_id=$this->id;
         // DB::table('sekolah')->insert(
         //     array(
@@ -226,7 +228,7 @@ class importdetailsekolah implements ToCollection
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4MINUS%',$row[2],$row[115]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Q4MINUSKET',$row[2],$row[116]);
 
-    
+
     Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.1',$row[2],$row[117]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.2',$row[2],$row[118]);
     Fungsi::inputnilaipsikologis($sekolah_id,'Positif.rank.3',$row[2],$row[119]);
@@ -250,7 +252,7 @@ class importdetailsekolah implements ToCollection
     Fungsi::inputnilaipsikologis($sekolah_id,'BHS',$row[2],$row[168]);
     Fungsi::inputnilaipsikologis($sekolah_id,'AGM',$row[2],$row[169]);
 
-    
+
     Fungsi::inputminatbakat($sekolah_id,'CITA.1/Minat.1',$row[2],$row[133]);
     Fungsi::inputminatbakat($sekolah_id,'Tipe Bakat.1',$row[2],$row[134]);
     Fungsi::inputminatbakat($sekolah_id,'CITA.2/Minat.2',$row[2],$row[135]);

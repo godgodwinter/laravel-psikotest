@@ -21,7 +21,7 @@ return [
         | Pre-calculate formulas during export
         |--------------------------------------------------------------------------
         */
-        'pre_calculate_formulas' => false,
+        'pre_calculate_formulas' => true,
 
         /*
         |--------------------------------------------------------------------------

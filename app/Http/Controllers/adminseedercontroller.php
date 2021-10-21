@@ -607,7 +607,7 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'Negatif.rank.1',
                 'singkatan' => 'Negatif.rank.1',
-            ], 
+            ],
             [
                 'nama' => 'Negatif.rank.2',
                 'singkatan' => 'Negatif.rank.2',
@@ -662,7 +662,7 @@ class adminseedercontroller extends Controller
             ],
             [
                 'nama' => 'AGM',
-                'singkatan' => 'IPA',
+                'singkatan' => 'AGM',
             ],
         ]);
 
@@ -678,7 +678,7 @@ class adminseedercontroller extends Controller
         }
 
 
-        
+
         minatbakat::truncate();
         $dataku = collect([
             [

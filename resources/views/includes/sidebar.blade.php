@@ -72,9 +72,9 @@
     <li class="menu-header">Menu Utama</li>
     <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.referensi')}}"><i class="fas fa-school"></i> <span>Referensi Psikologis</span></a></li>
     <li {{$pages=='bk-informasipsikologi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.informasipsikologi')}}"><i class="fas fa-school"></i> <span>Informasi Psikologis</span></a></li>
-    <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i class="fas fa-school"></i> <span>Nilai Psikologi</span></a></li>
-    <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i class="fas fa-school"></i> <span>Minat dan Bakat
-    <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i class="fas fa-school"></i> <span>Penjurusan</span></a></li></span></a></li>
+    <li {{$pages=='bk-inputnilaipsikologi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.inputnilaipsikologi')}}"><i class="fas fa-school"></i> <span>Nilai Psikologi</span></a></li>
+    <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.inputminatbakat')}}"><i class="fas fa-school"></i> <span>Minat dan Bakat
+    <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.penjurusan')}}"><i class="fas fa-school"></i> <span>Penjurusan</span></a></li></span></a></li>
 
 @else
 
