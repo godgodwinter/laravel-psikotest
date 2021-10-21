@@ -86,14 +86,11 @@ class bkcetakcontroller extends Controller
                 'master'=>$collectionmaster
             ]);
         }
-        dd($request->cetakdatamaster,$collectionpenilaian);
+        // dd($request->cetakdatamaster,$collectionpenilaian);
+        $datas=$collectionpenilaian;
 
         $tgl=date("YmdHis");
-        $datas=DB::table('peminjaman')->where('kodetrans')->first();
-            $datapinjamdetail=DB::table('peminjamandetail')->where('kodetrans')->orderBy('created_at', 'desc')->get();
-
-            $detaildatas = $datapinjamdetail->unique('buku_kode');
-        $pdf = PDF::loadview('admin.cetak.peminjamanshow',compact('datas','detaildatas'))->setPaper('a4', 'potrait');
-        return $pdf->download('laporansekolah_'.$tgl.'-pdf');
+        $pdf = PDF::loadview('pages.bk.cetak.cetaknilaipsikologi',compact('datas'))->setPaper('a4', 'potrait');
+        return $pdf->download('nilaipsikologi'.$tgl.'-pdf');
     }
 }
