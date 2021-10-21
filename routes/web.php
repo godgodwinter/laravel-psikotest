@@ -252,15 +252,27 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //bk dashboard
         Route::get('/bk/beranda', [bkberandacontroller::class, 'index'])->name('bk.beranda');
         Route::get('/bk/referensi', [bkberandacontroller::class, 'referensi'])->name('bk.referensi');
-
+        Route::get('/bk/referensi/cari', [bkberandacontroller::class, 'cari_ref'])->name('bk.referensi.cari');
+        //informasipsikologi
         Route::get('/bk/informasipsikologi', [bkberandacontroller::class, 'informasipsikologi'])->name('bk.informasipsikologi');
-
+        Route::get('/bk/informasipsikologi/cari', [bkberandacontroller::class, 'cari_infp'])->name('bk.informasipsikologi.cari');
+        //siswa
         Route::get('/bk/siswa', [bksiswacontroller::class, 'index'])->name('bk.siswa');
+        Route::get('/bk/siswa/cari', [bksiswacontroller::class, 'cari'])->name('bk.siswa.cari');
+        //walikelas
         Route::get('/bk/walikelas', [bkwalikelascontroller::class, 'index'])->name('bk.walikelas');
+        Route::get('/bk/walikelas/cari', [bkwalikelascontroller::class, 'cari'])->name('bk.walikelas.cari');
+        //kelas
         Route::get('/bk/kelas', [bkkelascontroller::class, 'index'])->name('bk.kelas');
+        Route::get('/bk/kelas/cari', [bkkelascontroller::class, 'cari'])->name('bk.kelas.cari');
+        //menu pengguna
         Route::get('/bk/pengguna', [bkpenggunacontroller::class, 'index'])->name('bk.pengguna');
+        Route::get('/bk/pengguna/cari', [bkpenggunacontroller::class, 'cari'])->name('bk.pengguna.cari');
+        //
         Route::get('/bk/inputnilaipsikologi', [bkinputnilaipsikologicontroller::class, 'index'])->name('bk.inputnilaipsikologi');
+        //
         Route::get('/bk/penjurusan', [bkpenggunacontroller::class, 'index'])->name('bk.penjurusan');
+        //
         Route::get('/bk/inputminatbakat', [bkpenggunacontroller::class, 'index'])->name('bk.inputminatbakat');
 
 });

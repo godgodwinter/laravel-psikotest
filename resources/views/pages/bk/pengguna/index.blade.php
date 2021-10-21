@@ -31,7 +31,7 @@ Pengguna
 
                     <div id="babeng-row ">
 
-                        <form action="{{ route('referensi.cari') }}" method="GET">
+                        <form action="{{ route('bk.pengguna.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -54,10 +54,10 @@ Pengguna
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('referensi.multidel')}}" />
+                {{-- <x-jsmultidel link="{{route('referensi.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
-                @endif
+                @endif --}}
 
                 <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>

@@ -277,6 +277,7 @@ class adminsiswacontroller extends Controller
         ->where('sekolah_id',$id->id)
         ->where('nama','like',"%".$cari."%")
         ->orWhere('nomerinduk','like',"%".$cari."%")
+        ->where('sekolah_id',$id->id)
         ->paginate(Fungsi::paginationjml());
 
 

@@ -36,4 +36,21 @@ class bkpenggunacontroller extends Controller
 
                 return view('pages.bk.pengguna.index',compact('pages','id','request','datas'));
         }
+        public function cari(Request $request)
+        {
+            $cari=$request->cari;
+            #WAJIB
+            $pages='bk_pengguna';
+            $users_id=Auth::user()->id;
+            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+            $sekolah_id=$pengguna->sekolah_id;
+            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+            $datas = pengguna::with('users')
+            ->where('sekolah_id',$id->id)
+            ->where('nama','like',"%".$cari."%")
+            ->paginate(Fungsi::paginationjml());
+
+            return view('pages.bk.pengguna.index',compact('pages','id','request','datas'));
+        }
 }

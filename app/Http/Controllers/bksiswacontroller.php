@@ -37,4 +37,23 @@ public function __construct()
 
             return view('pages.bk.siswa.index',compact('pages','id','request','datas'));
     }
+    public function cari(Request $request)
+    {
+        $cari=$request->cari;
+        #WAJIB
+        $pages='bk_siswa';
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+        $datas = siswa::with('kelas')
+        ->where('sekolah_id',$id->id)
+        ->where('nama','like',"%".$cari."%")
+        ->orWhere('nomerinduk','like',"%".$cari."%")
+        ->where('sekolah_id',$id->id)
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.bk.siswa.index',compact('pages','id','request','datas'));
+    }
 }
