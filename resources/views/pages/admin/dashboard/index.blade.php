@@ -4,6 +4,13 @@
 Beranda
 @endsection
 
+@push('before-script')
+
+@if (session('status'))
+<x-sweetalertsession tipe="{{session('tipe')}}" status="{{session('status')}}"/>
+@endif
+@endpush
+
 @section('content')
         <section class="section">
             <div class="section-header">

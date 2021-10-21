@@ -14,13 +14,18 @@ class adminsekolahcontroller extends Controller
 {
     public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='admin'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
 
+        });
     }
     public function index(Request $request)
     {
-        if($this->checkauth('admin')==='404'){
-            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
-        }
+        // if($this->checkauth('admin')==='404'){
+        //     return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // }
 
         #WAJIB
         $pages='sekolah';
@@ -31,9 +36,9 @@ class adminsekolahcontroller extends Controller
     }
     public function cari(Request $request)
     {
-        if($this->checkauth('admin')==='404'){
-            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
-        }
+        // if($this->checkauth('admin')==='404'){
+        //     return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // }
 
         $cari=$request->cari;
         #WAJIB
@@ -95,7 +100,7 @@ class adminsekolahcontroller extends Controller
 
     public function edit(sekolah $id)
     {
-        
+
         $pages='sekolah';
 
         return view('pages.admin.sekolah.edit',compact('pages','id'));
@@ -135,8 +140,8 @@ class adminsekolahcontroller extends Controller
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 
-        
-      
+
+
         $files = $request->file('sekolah_logo');
 
         $imagesDir=public_path().'/storage';
@@ -144,7 +149,7 @@ class adminsekolahcontroller extends Controller
         if($files!=null){
 
             if (file_exists( public_path().'/storage'.'/'.$id->sekolah_logo)AND($id->sekolah_logo!=null)){
-                chmod($imagesDir, 0777);   
+                chmod($imagesDir, 0777);
                 $image_path = public_path().'/storage'.'/'.$id->sekolah_logo;
                 unlink($image_path);
             }
@@ -162,17 +167,17 @@ class adminsekolahcontroller extends Controller
 
         }
 
-        
+
         $files = $request->file('kepsek_photo');
 
         // dd($request);
         if($files!=null){
             if (file_exists( public_path().'/storage'.'/'.$id->kepsek_photo)AND($id->kepsek_photo!=null)){
-                chmod($imagesDir, 0777);       
+                chmod($imagesDir, 0777);
                 $image_path = public_path().'/storage'.'/'.$id->kepsek_photo;
                 unlink($image_path);
             }
-          
+
             $namafilebaru=$id->id;
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('kepsek_photo');

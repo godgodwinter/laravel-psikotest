@@ -22,6 +22,11 @@ use App\Http\Controllers\adminsiswacontroller;
 use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
+use App\Http\Controllers\bkberandacontroller;
+use App\Http\Controllers\bkkelascontroller;
+use App\Http\Controllers\bkpenggunacontroller;
+use App\Http\Controllers\bksiswacontroller;
+use App\Http\Controllers\bkwalikelascontroller;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -238,5 +243,19 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         //Example
         Route::get('/admin/example/grafik', [admingrafikcontroller::class, 'ex'])->name('testing.grafik');
+
+
+
+        // bk
+        //bk dashboard
+        Route::get('/bk/beranda', [bkberandacontroller::class, 'index'])->name('bk.beranda');
+        Route::get('/bk/referensi', [bkberandacontroller::class, 'referensi'])->name('bk.referensi');
+
+        Route::get('/bk/informasipsikologi', [bkberandacontroller::class, 'informasipsikologi'])->name('bk.informasipsikologi');
+
+        Route::get('/bk/siswa', [bksiswacontroller::class, 'index'])->name('bk.siswa');
+        Route::get('/bk/walikelas', [bkwalikelascontroller::class, 'index'])->name('bk.walikelas');
+        Route::get('/bk/kelas', [bkkelascontroller::class, 'index'])->name('bk.kelas');
+        Route::get('/bk/pengguna', [bkpenggunacontroller::class, 'index'])->name('bk.pengguna');
 
 });
