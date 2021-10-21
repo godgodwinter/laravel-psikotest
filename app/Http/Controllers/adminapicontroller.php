@@ -171,11 +171,11 @@ $nomer=0;
         foreach($collectionpenilaian as $data){
         $nomer++;
             $output.='<tr>
-            <td>'.$nomer.'</td>
+            <td class="text-center">'.$nomer.'</td>
             <td>'.$data->nama.'</td>';
             foreach($data->master as $m){
                 $output.='
-                <td>'.$m->nilai.'</td>';
+                <td class="text-center">'.$m->nilai.'</td>';
             }
             $output.='
             </tr>';
@@ -187,7 +187,7 @@ $nomer=0;
             // 'status' => $data->status,
             'warna' => $alldatas,
             'datas' => $output,
-            'first' => $first
+            'first' => $alldatas
         ], 200);
 
 
