@@ -136,7 +136,7 @@ class adminsekolahcontroller extends Controller
         ->update([
             'nama'     =>   $request->nama,
             'alamat'     =>   $request->alamat,
-            // 'status'     =>   $request->status,
+             'status'     =>   $request->status,
             'kepsek_nama'     =>   $request->kepsek_nama,
             'tahunajaran_nama'     =>   $request->tahunajaran_nama,
             'semester_nama'     =>   $request->semester_nama,
