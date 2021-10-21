@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\inputnilaipsikologi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class adminapicontroller extends Controller
@@ -95,13 +96,92 @@ class adminapicontroller extends Controller
         $cek='';
         $alldatas=$request->ids;
 
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+        $datas=DB::table('siswa')
+        // ->skip(0)->take(2)
+        ->where('sekolah_id',$id->id)
+        ->whereNull('deleted_at')->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+        $dataakhir = collect();
+
+        $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
+        ->where('singkatan',$alldatas)
+        ->orderBy('id','asc')
+        ->get();
+
+        $collectionpenilaian = new Collection();
+
+        foreach($datas as $d){
+
+            $collectionmaster = new Collection();
+
+            foreach($alldatas as $masterwhere){
+                    $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
+                    ->where('singkatan',$masterwhere)
+                    ->orderBy('id','asc')
+                    ->get();
+                    foreach($master as $m){
+
+
+                        $periksadata=DB::table('inputnilaipsikologi')
+                        ->where('siswa_id',$d->id)
+                        // ->where('id','2')
+                        ->where('masternilaipsikologi_id',$m->id)
+                        ->get();
+
+                        if($periksadata->count()>0){
+                            $ambildata=$periksadata->first();
+                            $nilai=$periksadata->first()->nilai;
+                        }else{
+                            $nilai=null;
+                        }
+
+                    $collectionmaster->push((object)[
+                        'id'=>$m->id,
+                        'singkatan'=>$m->singkatan,
+                        'nilai'=>$nilai
+                    ]);
+
+                    }
+
+            }
+
+
+
+            $collectionpenilaian->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'master'=>$collectionmaster
+            ]);
+        }
+$nomer=0;
+        foreach($collectionpenilaian as $data){
+        $nomer++;
+            $output.='<tr>
+            <td>'.$nomer.'</td>
+            <td>'.$data->nama.'</td>';
+            foreach($data->master as $m){
+                $output.='
+                <td>'.$m->nilai.'</td>';
+            }
+            $output.='
+            </tr>';
+        }
         return response()->json([
             'success' => true,
             'message' => 'success',
             'output' => 'berhasildi upadate',
             // 'status' => $data->status,
-            'warna' => $warna,
-            'datas' => $cek,
+            'warna' => $alldatas,
+            'datas' => $output,
             'first' => $first
         ], 200);
 

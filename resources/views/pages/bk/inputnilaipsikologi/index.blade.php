@@ -56,11 +56,9 @@ Data Nilai Psikologi Siswa
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('informasipsikologi.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
-                <input type="text" name="inputdata">
                 <div class="card-body babengcontainer">
                     <table id="example" class="table table-striped table-bordered mt-1" >
                         <thead>
@@ -70,7 +68,7 @@ Data Nilai Psikologi Siswa
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="masterbody">
                             @forelse ($collectionpenilaian as $data)
                             <tr id="sid{{ $loop->index+1 }}">
                                 <td class="text-center">
@@ -118,7 +116,7 @@ Data Nilai Psikologi Siswa
                               <span class="selectgroup-button">KB</span>
                             </label>
                             <label class="selectgroup-item">
-                              <input type="checkbox" name=masterdata" value="KB%" class="selectgroup-input masterdata">
+                              <input type="checkbox" name="masterdata" value="KB%" class="selectgroup-input masterdata">
                               <span class="selectgroup-button">KB%</span>
                             </label>
                             <label class="selectgroup-item">
@@ -151,10 +149,10 @@ Data Nilai Psikologi Siswa
 <script>
     $( document ).ready(function() {
 
-        let inputdata = $("input[name=inputdata]").val();
         let masterdata=$('.masterdata');
         let tampildatath='';
         let datamaster='';
+        let tampildatabody='';
 
         function datamasterth(){
 
@@ -164,20 +162,43 @@ Data Nilai Psikologi Siswa
 
             masterdata.each(function () {
                     datamaster='';
+                    tampildatabody='';
                     var namamaster = (this.checked ? $(this).val() : "");
                 // console.log(namamaster);
                 if($(this).prop('checked')==true){
                     tampildatath+=`<th class="text-center">`+namamaster+`</th>`;
-                    datamaster+=namamaster;
                 }
-                $("input[name=inputdata]").val(namamaster);
-
-
                 });
 
 
-            $('#mastertr').html(tampildatath);
-        }
+                var allids=[];
+                    $("input:checkbox[name=masterdata]:checked").each(function(){
+                        allids.push($(this).val());
+                    });
+
+            $.ajax({
+                url:"{{ route('api.inputnilaipsikologibk') }}",
+                type:"GET",
+                data:{
+                    _token:$("input[name=_token]").val(),
+                    ids:allids
+                },
+                success:function(response){
+                    tampildatabody=response.datas;
+                    $('#masterbody').html(tampildatabody);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Data berhasil dimuat!',
+                                // text: 'Something went wrong!',
+                                showConfirmButton: true,
+                                timer: 1000
+                            })
+                }
+            });
+
+                // console.log(allids);
+                $('#mastertr').html(tampildatath);
+            }
 
         masterdata.click(function () {
             if($(this).prop('checked')==true){
