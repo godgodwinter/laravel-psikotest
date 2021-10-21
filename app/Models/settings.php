@@ -15,5 +15,10 @@ class settings extends Model
         'app_nama',
         'app_namapendek',
         'paginationjml',
+        'lembaga_nama',
+        'lembaga_jalan',
+        'lembaga_telp',
+        'lembaga_kota',
+        'lembaga_logo',
     ];
 }

@@ -1,164 +1,267 @@
 @section('title')Cetak Data
-{{-- Laporan Pemasukan dan Pengeluaran di {{ $settings->sekolahnama }} --}}
 @endsection
-
-@section('kepsek')
-asda
-@endsection
-
-@section('alamat')
-asd23
-@endsection
-
-@section('telp')
-qwe
-@endsection
-
-@section('namasekolah')
-zxc
-@endsection
-
-@section('logo','logoyayasan.png')
-
-{{-- DATATABLE --}}
-
-
-
 <html>
-    <head>
-        <title>@yield('title')</title>
-    </head>
-    <body>
-        <style type="text/css">
+
+<head>
+    <title>@yield('title')</title>
+</head>
+
+<body>
+    <style type="text/css">
         table {
             border-spacing: 0;
             margin: 2px;
-          }
+        }
+
         th {
-                padding: 5px;
-                display: flex;
-                padding: 2em;
-            }
+            padding: 5px;
+        }
+
         td {
-                padding: 5px;
-            }
-            table tr td,
-            table tr th{
-                font-size: 12px;
-                font-family: Georgia, 'Times New Roman', Times, serif;
-            }
-            td{
-                height:10px;
-            }
-            body {
-                font-size: 12px;
-                font-family:Georgia, 'Times New Roman', Times, serif;
-                }
-            h1 h2 h3 h4 h5{
-                line-height: 1.2;
-            }
-            .spa{
-              letter-spacing:3px;
-            }
-          hr.style2 {
-            border-top: 3px double #8c8b8b;
-          }
-          .miring{
-            text-orientation: upright;
-                writing-mode: vertical-rl;
-            /* writing-mode: vertical-rl; */
-          }
-        </style>
-        @php
-            $logo='assets/upload/logotutwuri.png';
-        @endphp
-        <table width="100%" border="0">
-            <tr>
-            <td width="13%" align="right"><img src="{{$logo}}" width="70" height="70"></td>
-            <td width="80%" align="center"><p><b><font size="18px">LEMBAGA PSIKOLOGI PELITA WACANA </font></b><br>
-              <font size="16px"> Jl.Simpang Wilis 2 Kav. B Telp. 0341-581777 Malang</font>
+            padding: 5px;
+            height: 10px;
+            /* border: 1px black solid; */
+            padding: 5px;
+        }
+
+        table tr td,
+        table tr th {
+            font-size: 12px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
 
 
+        body {
+            font-size: 12px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
 
-                                        </td>
-            </tr>
-            <tr>
-                <td colspan="3"><hr  class="style2">
-                </td>
-            </tr>
-            </table>
-            <center>
-                <h2>Judul</h2>
-                <label for="">Tapel 2019-2020</label>
-            </center>
-            {{-- <center><h2>@yield('title')</h2></center> --}}
+        h1 h2 h3 h4 h5 {
+            margin: auto;
+            display: inline-block;
+            /* line-height: 1.2; */
+        }
 
-                <table width="100%" border="0">
-                    <tr>
-                        <td align="left" width="60%"><b>Kelas :Nama Kelas
+        label {
+            padding: 0;
+        }
 
-                         </b></td>
+        .spa {
+            letter-spacing: 3px;
+        }
 
-                    </tr>
-                </table>
-                <br>
-                <table width="100%" border="1">
-                    <tr>
-                        <td align="center"><b>No</b></td>
-                        <td align="left"><b>No Induk</b></td>
-                        <td align="center"><b>Nama</b></td>
-                        <td align="center"><h3 class="miring">KK</h3></td>
-                        <td align="center"><b>KB</b></td>
-                        <td align="center"><b>LB</b></td>
-
-                    </tr>
-
-                </table>
+        hr.style2 {}
 
 
-                <br>
+        .rotate {
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            width: 1.5em;
+        }
 
-                <table width="100%" border="0">
-                    <tr>
-                        <td align="left" width="70%">
+        .rotate div {
+            -moz-transform: rotate(90.0deg);
+            /* FF3.5+ */
+            -o-transform: rotate(90.0deg);
+            /* Opera 10.5 */
+            -webkit-transform: rotate(90.0deg);
+            /* Saf3.1+, Chrome */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE6,IE7 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* IE8 */
+            margin-left: -10em;
+            margin-right: -10em;
+            /* text-orientation: upright; */
+        }
 
-                        </td>
-                        <td align="left" width="30%"><b>Denda per hari : <br>
-                         </b></td>
+        table#tableKop,
+        table#tableKop>tr>th,
+        table#tableKop>tr>td {
+            /* background-color: red; */
+            border: 0px black solid;
+            border-collapse: collapse;
+            /* padding: 0; */
+            margin-bottom: 0;
+            padding-bottom: 0;
+            /* margin: 0; */
+        }
 
-                    </tr>
-                </table>
+        table#tableKop {
+            border-bottom: 3px double #8c8b8b;
+        }
 
-                <br>
-                <br>
-                <br>
+        table#tableBiasa,
+        tr,
+        th {
+            border: 1px black solid;
+            border-collapse: collapse;
+            margin-top: 0px;
+            height: 30px;
+        }
+        table#tableBiasa tr td{
+            border: 1px black solid;
+            border-collapse: collapse;
+            margin-top: 0px;
+        }
 
-    <table width="100%" border="0">
+        div#judul,
+        h2,
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        div#judul2,
+        h4 {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+
+    </style>
+    <table width="100%" id="tableKop">
         <tr>
-            <th width="3%"></th>
-            <th width="30%" align="center">
-                <br>
-               <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <br><br><br><br><br><br><br><br>
-                {{-- <hr style="width:70%; border-top:2px dotted; border-style: none none dotted;  "> --}}
-
-            </th>
-
-            <th width="34%"></th>
-
-            <th width="30%" align="center">
-
-                <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('asdads', 'QRCODE')}}" alt="barcode" width="150px" height="150px"/>
+            <td width="13%" align="right" style="padding-bottom:15px"><img src="{{Fungsi::lembaga_logo()}}" width="70" height="70"></td>
+            <td width="80%" align="center">
+                <p><b>
+                        <font size="18px">{{Fungsi::lembaga_nama()}} </font>
+                    </b><br>
+                    <font size="16px"> {{Fungsi::lembaga_jalan()}} Telp. {{Fungsi::lembaga_telp()}} {{Fungsi::lembaga_kota()}}</font>
 
 
-            </th>
-            <th width="3%"></th>
 
+            </td>
         </tr>
 
     </table>
 
-    </body>
-    </html>
+    <div style="margin-bottom: 0;text-align:center" id="judul">
+        <h2>Judul</h2>
+        <p for="">Tapel 2019-2020</p>
+    </div>
+
+    <div id="judul2">
+        <h4>Kelas : VII</h4>
+    </div>
+
+    {{-- <center><h2>@yield('title')</h2></center> --}}
+
+
+    <br>
+    <table width="100%" id="tableBiasa">
+        <tr>
+            <th align="center" class='rotate'>No</th>
+            <th align="center">No Induk</th>
+            <th align="center">Nama</th>
+
+
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+                <div>{{Str::limit($m->nama,3,' ')}}</div>
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+
+        </tr>
+        @forelse ($datas as $data)
+        <tr>
+            <td align="center">
+                {{$loop->index+1}}
+            </td>
+            <td align="center">{{$data->nomerinduk}}</td>
+            <td>{{$data->nama}}</td>
+            @forelse ($data->master as $m)
+            <td align="center">
+                {{$m->nilai}}
+            </td>
+
+            @empty
+            <td> - </td>
+
+            @endforelse
+        </tr>
+
+        @empty
+        <tr>
+            <td> - </td>
+        </tr>
+
+        @endforelse
+        <tr>
+            <td colspan="3">Rata - rata</td>
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+                {{$m->avg!=0 ? number_format($m->avg,2) : '-' }}
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+        </tr>
+        <tr>
+            <td colspan="3">Standart Deviasi</td>
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+               -
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+        </tr>
+        <tr>
+            <td colspan="3">Nilai Terendah</td>
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+                {{$m->min}}
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+        </tr>
+        <tr>
+            <td colspan="3">Nilai Tertinggi</td>
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+                {{$m->max}}
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+        </tr>
+        <tr>
+            <td colspan="3">Varian</td>
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+                -
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+        </tr>
+        <tr>
+            <td colspan="3">Frekuensi</td>
+            @forelse ($masters as $m)
+            <th align="center" class='rotate'>
+                {{$m->frekuensi}}
+            </th>
+
+            @empty
+            <th> - </th>
+            @endforelse
+        </tr>
+
+    </table>
+
+
+
+</body>
+
+</html>

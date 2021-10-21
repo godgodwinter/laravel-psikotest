@@ -18,6 +18,11 @@ class CreateSettingsTable extends Migration
             $table->string('app_nama')->nullable();
             $table->string('app_namapendek')->nullable();
             $table->string('paginationjml')->nullable();
+            $table->string('lembaga_nama')->nullable();
+            $table->string('lembaga_jalan')->nullable();
+            $table->string('lembaga_telp')->nullable();
+            $table->string('lembaga_kota')->nullable();
+            $table->string('lembaga_logo')->nullable();
             $table->timestamps();
         });
     }
