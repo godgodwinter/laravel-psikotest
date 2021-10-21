@@ -75,23 +75,23 @@
                 </form>
 
 
-                
+
 
 
               </div>
             </div>
 
-            
+
             <div class="card card-primary">
                 <div class="card-body">
-                    
+
                 <div class="form-group">
                     <div class="d-block">
                         <h5>Demo</h5>
                     	<label for="username" class="control-label">Username : admin</label><br>
                     	<label for="password" class="control-label">Password : admin</label>
                     </div>
-                    
+
                   </div>
                 </div>
             </div>
@@ -113,11 +113,12 @@
   <script src="{{ asset('/') }}assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
-
+  
   <!-- Template JS File -->
   <script src="{{ asset('/') }}assets/js/scripts.js"></script>
   <script src="{{ asset('/') }}assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
+
 </body>
 </html>

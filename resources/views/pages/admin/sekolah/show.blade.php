@@ -72,7 +72,44 @@ Detail Sekolah
                                     <div class="user-name mt-2"><h4>{{$id->kepsek_nama}}</h4></div>
                                     <div class="text-job text-muted">Kepala Sekolah</div>
                                     <div class="user-cta">
-                                        <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a>
+                                        {{-- <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('Aktif');" data-unfollow-action="alert('Tidak Aktif');">{{$id->status}}</a> --}}
+
+                                        <input name="status" type="button" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" onclick="myFunction()"  id="tomb" value="{{$id->status}}">
+                                        <input name="status" type="hidden" onclick="myFunction()" id="status" value="{{$id->status}}">
+                                        <script type="text/javascript">
+                                            function myFunction() {
+
+                                            var btn = document.getElementById("status");
+                                            var tomb = document.getElementById("tomb");
+
+                                            if (tomb.value == "Aktif") {
+                                                btn.value = "Tidak Aktif";
+                                                btn.innerHTML = "Tidak Aktif";
+                                                tomb.value = "Tidak Aktif";
+
+                                                tomb.innerHTML = "Tidak Aktif";
+                                             }
+                                            else {
+                                                btn.value = "Aktif";
+                                                btn.innerHTML = "Aktif";
+
+                                                tomb.value = "Aktif";
+                                                tomb.innerHTML = "Aktif";
+                                            }
+
+
+
+                                        }
+                                        </script>
+                                    {{-- <select name="status" class="form-control">
+                                        @if(old('status'))
+                                           <option>{{old('status')}}</option>
+                                        @else
+                                            <option>{{$id->status}}</option>
+                                        @endif
+                                        <option>Aktif</option>
+                                        <option>Tidak Aktif</option>
+                                    </select> --}}
                                     </div>
 
                                   </div>

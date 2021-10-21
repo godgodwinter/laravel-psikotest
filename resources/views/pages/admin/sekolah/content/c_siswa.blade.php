@@ -16,7 +16,7 @@
                                         value="Cari">
                                 </span>
 
-                                <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
+                                {{-- <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
                                             <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
@@ -25,7 +25,7 @@
                                             </button>
                                             <a href="/admin/sekolah/export" type="submit" value="Import"
                                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                                                        class="fas fa-download"></i> Export </span></a>
+                                                        class="fas fa-download"></i> Export </span></a> --}}
                             </form>
                         </div>
                     </div>
