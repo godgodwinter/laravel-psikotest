@@ -145,120 +145,76 @@ class adminseedercontroller extends Controller
         masternilaipsikologi::truncate();
         $dataku = collect([
             [
-                'nama' => 'KB',
-                'singkatan' => 'KB',
-            ],
-            [
-                'nama' => 'KB%',
-                'singkatan' => 'KB%',
+                'nama' => 'KBH%',
+                'singkatan' => 'KBH%',
             ],
             [
                 'nama' => 'KBH',
                 'singkatan' => 'KBH',
             ],
             [
-                'nama' => 'LM',
-                'singkatan' => 'LM',
-            ],
-            [
-                'nama' => 'LM%',
-                'singkatan' => 'LM%',
+                'nama' => 'LMH%',
+                'singkatan' => 'LMH%',
             ],
             [
                 'nama' => 'LMH',
                 'singkatan' => 'LMH',
             ],
             [
-                'nama' => 'KS',
-                'singkatan' => 'KS',
-            ],
-            [
-                'nama' => 'KS%',
-                'singkatan' => 'KS%',
+                'nama' => 'KSH%',
+                'singkatan' => 'KSH%',
             ],
             [
                 'nama' => 'KSH',
                 'singkatan' => 'KSH',
             ],
             [
-                'nama' => 'KM',
-                'singkatan' => 'KM',
-            ],
-            [
-                'nama' => 'KM%',
-                'singkatan' => 'KM%',
-            ],
-            [
-                'nama' => 'KM',
-                'singkatan' => 'KM',
+                'nama' => 'KMH%',
+                'singkatan' => 'KMH%',
             ],
             [
                 'nama' => 'KMH',
                 'singkatan' => 'KMH',
             ],
             [
-                'nama' => 'KK',
-                'singkatan' => 'KK',
-            ],
-            [
-                'nama' => 'KK%',
-                'singkatan' => 'KK%',
+                'nama' => 'KKH%',
+                'singkatan' => 'KKH%',
             ],
             [
                 'nama' => 'KKH',
                 'singkatan' => 'KKH',
             ],
             [
-                'nama' => 'KI',
-                'singkatan' => 'KI',
-            ],
-            [
-                'nama' => 'KI%',
-                'singkatan' => 'KI%',
+                'nama' => 'KIH%',
+                'singkatan' => 'KIH%',
             ],
             [
                 'nama' => 'KIH',
                 'singkatan' => 'KIH',
             ],
             [
-                'nama' => 'KA',
-                'singkatan' => 'KA',
-            ],
-            [
-                'nama' => 'KM',
-                'singkatan' => 'KM',
-            ],
-            [
-                'nama' => 'KA%',
-                'singkatan' => 'KA%',
+                'nama' => 'KAH%',
+                'singkatan' => 'KAH%',
             ],
             [
                 'nama' => 'KAH',
                 'singkatan' => 'KAH',
             ],
             [
-                'nama' => 'KN',
-                'singkatan' => 'KN',
-            ],
-            [
-                'nama' => 'KN%',
-                'singkatan' => 'KN%',
+                'nama' => 'KNH%',
+                'singkatan' => 'KNH%',
             ],
             [
                 'nama' => 'KNH',
                 'singkatan' => 'KNH',
             ],
             [
-                'nama' => 'TTL',
-                'singkatan' => 'TTL',
-            ],
-            [
                 'nama' => 'IQ',
                 'singkatan' => 'IQ',
             ],
             [
-                'nama' => 'IQ%',
-                'singkatan' => 'IQ%',
+                'nama' => 'IQ.%',
+                'singkatan' => 'IQ.%',
             ],
             [
                 'nama' => 'IQH',
@@ -269,60 +225,24 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'EQ%',
             ],
             [
-                'nama' => 'EQKET',
-                'singkatan' => 'EQKET',
+                'nama' => 'EQ.KET',
+                'singkatan' => 'EQ.KET',
             ],
             [
                 'nama' => 'SQ%',
                 'singkatan' => 'SQ%',
             ],
             [
-                'nama' => 'SQKET',
-                'singkatan' => 'SQKET',
+                'nama' => 'SQ.KET',
+                'singkatan' => 'SQ.KET',
             ],
             [
-                'nama' => 'SCQ%',
-                'singkatan' => 'SCQ%',
+                'nama' => 'SC.Q%',
+                'singkatan' => 'SC.Q%',
             ],
             [
-                'nama' => 'SCQKET',
-                'singkatan' => 'SCQKET',
-            ],
-            [
-                'nama' => 'KBH',
-                'singkatan' => 'KBH',
-            ],
-            [
-                'nama' => 'LMH',
-                'singkatan' => 'LMH',
-            ],
-            [
-                'nama' => 'KSH',
-                'singkatan' => 'KSH',
-            ],
-            [
-                'nama' => 'KMH',
-                'singkatan' => 'KMH',
-            ],
-            [
-                'nama' => 'KKH',
-                'singkatan' => 'KKH',
-            ],
-            [
-                'nama' => 'KIH',
-                'singkatan' => 'KIH',
-            ],
-            [
-                'nama' => 'KAH',
-                'singkatan' => 'KAH',
-            ],
-            [
-                'nama' => 'KNH',
-                'singkatan' => 'KNH',
-            ],
-            [
-                'nama' => 'IQH',
-                'singkatan' => 'IQH',
+                'nama' => 'SC.Q.KET',
+                'singkatan' => 'SC.Q.KET',
             ],
             [
                 'nama' => 'P1',
@@ -335,10 +255,6 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'KR',
                 'singkatan' => 'KR',
-            ],
-            [
-                'nama' => 'A',
-                'singkatan' => 'A',
             ],
             [
                 'nama' => 'APLUS%',
@@ -357,10 +273,6 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'AMINUSKET',
             ],
             [
-                'nama' => 'C',
-                'singkatan' => 'C',
-            ],
-            [
                 'nama' => 'CPLUS%',
                 'singkatan' => 'CPLUS%',
             ],
@@ -375,10 +287,6 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'CMINUSKET',
                 'singkatan' => 'CMINUSKET',
-            ],
-            [
-                'nama' => 'D',
-                'singkatan' => 'D',
             ],
             [
                 'nama' => 'DPLUS%',
@@ -397,10 +305,6 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'DMINUSKET',
             ],
             [
-                'nama' => 'E',
-                'singkatan' => 'E',
-            ],
-            [
                 'nama' => 'EPLUS%',
                 'singkatan' => 'EPLUS%',
             ],
@@ -415,10 +319,6 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'EMINUSKET',
                 'singkatan' => 'EMINUSKET',
-            ],
-            [
-                'nama' => 'F',
-                'singkatan' => 'F',
             ],
             [
                 'nama' => 'FPLUS%',
@@ -437,10 +337,6 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'FMINUSKET',
             ],
             [
-                'nama' => 'G',
-                'singkatan' => 'G',
-            ],
-            [
                 'nama' => 'GPLUS%',
                 'singkatan' => 'GPLUS%',
             ],
@@ -455,10 +351,6 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'GMINUSKET',
                 'singkatan' => 'GMINUSKET',
-            ],
-            [
-                'nama' => 'H',
-                'singkatan' => 'H',
             ],
             [
                 'nama' => 'HPLUS%',
@@ -477,10 +369,6 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'HMINUSKET',
             ],
             [
-                'nama' => 'I',
-                'singkatan' => 'I',
-            ],
-            [
                 'nama' => 'IPLUS%',
                 'singkatan' => 'IPLUS%',
             ],
@@ -495,10 +383,6 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'IMINUSKET',
                 'singkatan' => 'IMINUSKET',
-            ],
-            [
-                'nama' => 'J',
-                'singkatan' => 'J',
             ],
             [
                 'nama' => 'JPLUS%',
@@ -517,10 +401,6 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'JMINUSKET',
             ],
             [
-                'nama' => 'O',
-                'singkatan' => 'O',
-            ],
-            [
                 'nama' => 'OPLUS%',
                 'singkatan' => 'OPLUS%',
             ],
@@ -537,16 +417,12 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'OMINUSKET',
             ],
             [
-                'nama' => 'Q2',
-                'singkatan' => 'Q2',
+                'nama' => 'Q2PLUS%',
+                'singkatan' => 'Q2PLUS%',
             ],
             [
-                'nama' => 'Q2%',
-                'singkatan' => 'Q2%',
-            ],
-            [
-                'nama' => 'Q2KET',
-                'singkatan' => 'Q2KET',
+                'nama' => 'Q2PLUSKET',
+                'singkatan' => 'Q2PLUSKET',
             ],
             [
                 'nama' => 'Q2MINUS%',
@@ -557,16 +433,12 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'Q2MINUSKET',
             ],
             [
-                'nama' => 'Q3',
-                'singkatan' => 'Q3',
+                'nama' => 'Q3PLUS%',
+                'singkatan' => 'Q3PLUS%',
             ],
             [
-                'nama' => 'Q3%',
-                'singkatan' => 'Q3%',
-            ],
-            [
-                'nama' => 'Q3KET',
-                'singkatan' => 'Q3KET',
+                'nama' => 'Q3PLUSKET',
+                'singkatan' => 'Q3PLUSKET',
             ],
             [
                 'nama' => 'Q3MINUS%',
@@ -577,16 +449,12 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'Q3MINUSKET',
             ],
             [
-                'nama' => 'Q4',
-                'singkatan' => 'Q4',
+                'nama' => 'Q4PLUS%',
+                'singkatan' => 'Q4PLUS%',
             ],
             [
-                'nama' => 'Q4%',
-                'singkatan' => 'Q4%',
-            ],
-            [
-                'nama' => 'Q4KET',
-                'singkatan' => 'Q4KET',
+                'nama' => 'Q4PLUSKET',
+                'singkatan' => 'Q4PLUSKET',
             ],
             [
                 'nama' => 'Q4MINUS%',
@@ -595,6 +463,26 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'Q4MINUSKET',
                 'singkatan' => 'Q4MINUSKET',
+            ],
+            [
+                'nama' => 'A.Kepri.Terkuat.1',
+                'singkatan' => 'A.Kepri.Terkuat.1',
+            ],
+            [
+                'nama' => 'A.Kepri.Terkuat.2',
+                'singkatan' => 'A.Kepri.Terkuat.2',
+            ],
+            [
+                'nama' => 'A.Kepri.Terkuat.3',
+                'singkatan' => 'A.Kepri.Terkuat.3',
+            ],
+            [
+                'nama' => 'A.Kepri.Terkuat.4',
+                'singkatan' => 'A.Kepri.Terkuat.4',
+            ],
+            [
+                'nama' => 'A.Kepri.Terkuat.5',
+                'singkatan' => 'A.Kepri.Terkuat.5',
             ],
             [
                 'nama' => 'Positif.rank.1',
@@ -637,44 +525,16 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'Negatif.rank.5',
             ],
             [
-                'nama' => 'M1',
-                'singkatan' => 'M1',
-            ],
-            [
                 'nama' => 'M1%',
                 'singkatan' => 'M1%',
-            ],
-            [
-                'nama' => 'M2',
-                'singkatan' => 'M2',
             ],
             [
                 'nama' => 'M2%',
                 'singkatan' => 'M2%',
             ],
             [
-                'nama' => 'M3',
-                'singkatan' => 'M3',
-            ],
-            [
                 'nama' => 'M3%',
                 'singkatan' => 'M3%',
-            ],
-            [
-                'nama' => 'IPA',
-                'singkatan' => 'IPA',
-            ],
-            [
-                'nama' => 'IPS',
-                'singkatan' => 'IPS',
-            ],
-            [
-                'nama' => 'BHS',
-                'singkatan' => 'BHS',
-            ],
-            [
-                'nama' => 'AGM',
-                'singkatan' => 'AGM',
             ],
         ]);
 
@@ -695,115 +555,115 @@ class adminseedercontroller extends Controller
         $dataku = collect([
             [
                 'nama' => 'CITA.1/Minat.1',
-                'kategori' => 'Minat',
-            ],
-            [
-                'nama' => 'Tipe Bakat.1',
-                'kategori' => 'Minat',
+                'kategori' => 'Minat dan Bakat',
             ],
             [
                 'nama' => 'CITA.2/Minat.2',
-                'kategori' => 'Minat',
-            ],
-            [
-                'nama' => 'Tipe Bakat.2',
-                'kategori' => 'Minat',
+                'kategori' => 'Minat dan Bakat',
             ],
             [
                 'nama' => 'CITA.3/Minat.3',
-                'kategori' => 'Minat',
-            ],
-            [
-                'nama' => 'Tipe Bakat.3',
-                'kategori' => 'Minat',
+                'kategori' => 'Minat dan Bakat',
             ],
             [
                 'nama' => 'Tambahan CITA_CITA_1',
-                'kategori' => 'Minat',
+                'kategori' => 'Minat dan Bakat',
             ],
             [
                 'nama' => 'Tambahan CITA_CITA_2',
-                'kategori' => 'Minat',
+                'kategori' => 'Minat dan Bakat',
             ],
             [
                 'nama' => 'Tambahan CITA_CITA_3',
-                'kategori' => 'Minat',
+                'kategori' => 'Minat dan Bakat',
+            ],
+            [
+                'nama' => 'Tipe Bakat.1',
+                'kategori' => 'Bakat dan Penjurusan',
+            ],
+            [
+                'nama' => 'Tipe Bakat.2',
+                'kategori' => 'Bakat dan Penjurusan',
+            ],
+            [
+                'nama' => 'Tipe Bakat.3',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'STUDI_LANJUT_SMP',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'STUDI_LANJUT_SMA_SMK_1_FAKULTAS',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'STUDI_LANJUT_SMA_SMK_1_PRODI',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'STUDI_LANJUT_SMA_SMK_2_FAKULTAS',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'STUDI_LANJUT_SMA_SMK_2_PRODI',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'STUDI_LANJUT_SMA_SMK_KEDINASAN',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'JURUSAN_LANJUT_SMA/MA',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'JURUSAN_LANJUT_SMK1',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'JURUSAN_LANJUT_SMK2',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'JURUSAN_LANJUT_SMK3',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'Disarankan studi SMA/MA/SMK',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'Jurusan SMA/MA',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'Jur SMK(BK/Bidg keahlian)',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'SMK (PK/Program keahlian)',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'Jur.Disarankan SMA/MA',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'Jur.Dipertimbangkan SMA/MA',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'Jur.Tdk.Disarankan SMA/MA',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'D / S.1 Disarankan Fakultas',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
             [
                 'nama' => 'D / S.1 Disarankan Prodi',
-                'kategori' => 'Penjurusan',
+                'kategori' => 'Bakat dan Penjurusan',
             ],
         ]);
 
