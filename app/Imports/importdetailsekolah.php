@@ -116,7 +116,6 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
     // INPUTNILAIPSIKOLOGI
     // dd($sekolah_id,'KB',$row[2],$row[6]);
 
-    Fungsi::inputnilaipsikologis($sekolah_id,'KB',$row[2],$row[6]);
     Fungsi::inputnilaipsikologis($sekolah_id,'KB%',$row[2],$row[7]);
     Fungsi::inputnilaipsikologis($sekolah_id,'KBH',$row[2],$row[8]);
     Fungsi::inputnilaipsikologis($sekolah_id,'LM',$row[2],$row[9]);
