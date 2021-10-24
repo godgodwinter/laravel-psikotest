@@ -245,18 +245,6 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'SC.Q.KET',
             ],
             [
-                'nama' => 'P1',
-                'singkatan' => 'P1',
-            ],
-            [
-                'nama' => 'P9',
-                'singkatan' => 'P9',
-            ],
-            [
-                'nama' => 'KR',
-                'singkatan' => 'KR',
-            ],
-            [
                 'nama' => 'APLUS%',
                 'singkatan' => 'APLUS%',
             ],
