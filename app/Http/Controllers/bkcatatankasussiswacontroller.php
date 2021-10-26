@@ -134,7 +134,7 @@ class bkcatatankasussiswacontroller extends Controller
 
     }
 
-    public function edit(catatankasussiswa $datas)
+    public function edit(catatankasussiswa $datasa)
     {
         $pages='bk-catatankasussiswa';
 
@@ -144,6 +144,7 @@ class bkcatatankasussiswacontroller extends Controller
                 $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
                 $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+                ->where('id',$datasa->id)
                 ->where('sekolah_id',$id->id)
                 ->orderBy('siswa_id','asc')
                 ->first();
@@ -153,13 +154,13 @@ class bkcatatankasussiswacontroller extends Controller
               ->where('sekolah_id',$id->id)
               ->orderBy('nama','asc')->get();
 
-        return view('pages.bk.catatankasussiswa.edit',compact('pages','datas','siswa','kelas'));
+        return view('pages.bk.catatankasussiswa.edit',compact('pages','datas','siswa','kelas','datasa'));
     }
-    public function update(catatankasussiswa $data,Request $request)
+    public function update(catatankasussiswa $datasa,Request $request)
     {
 
 
-        if($request->id!==$data->id){
+        if($request->id!==$datasa->id){
 
             $request->validate([
 
@@ -179,7 +180,7 @@ class bkcatatankasussiswacontroller extends Controller
             //'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 
-        catatankasussiswa::where('id',$data->id)
+        catatankasussiswa::where('id',$datasa->id)
         ->update([
             'siswa_id'  =>$request->siswa_id,
             'kelas_id'  =>$request->kelas_id,
@@ -196,7 +197,7 @@ class bkcatatankasussiswacontroller extends Controller
 
             'updated_at'=>date("Y-m-d H:i:s"),
         ]);
-        return redirect()->route('bk.catatankasussiswa',$data->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect()->route('bk.catatankasussiswa',$datasa->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(catatankasussiswa $id){
 

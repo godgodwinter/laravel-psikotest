@@ -125,7 +125,7 @@ class bkcatatanprestasisiswacontroller extends Controller
 
     }
 
-    public function edit(sekolah $id,catatanprestasisiswa $datas)
+    public function edit(sekolah $id,catatanprestasisiswa $data)
     {
         $pages='bk-catatanprestasisiswa';
 
@@ -135,6 +135,7 @@ class bkcatatanprestasisiswacontroller extends Controller
                 $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
                 $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+                ->where('id',$data->id)
                 ->where('sekolah_id',$id->id)
                 ->orderBy('siswa_id','asc')
                 ->first();
@@ -144,7 +145,7 @@ class bkcatatanprestasisiswacontroller extends Controller
               ->where('sekolah_id',$id->id)
               ->orderBy('nama','asc')->get();
 
-        return view('pages.bk.catatanprestasisiswa.edit',compact('pages','id','datas','siswa','kelas'));
+        return view('pages.bk.catatanprestasisiswa.edit',compact('pages','id','datas','data','siswa','kelas'));
     }
     public function update(catatanprestasisiswa $data,Request $request)
     {

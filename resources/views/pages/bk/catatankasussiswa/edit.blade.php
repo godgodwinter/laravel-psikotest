@@ -30,7 +30,7 @@ Catatan Kasus Siswa
             </div>
             <div class="card-body">
 
-           <form id="setting-form" method="POST" action="{{route('bk.catatankasussiswa.update',[$datas->id])}}">
+           <form id="setting-form" method="POST" action="{{route('bk.catatankasussiswa.update',[$datasa->id])}}">
             @method('put')
             @csrf
             <div class="card" id="settings-card">
@@ -81,14 +81,15 @@ Catatan Kasus Siswa
                     </div>
                   </div>
 
-
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Kasus
-                        </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Kasus</label>
                     <div class="col-sm-6 col-md-9">
                         <div class="form-group">
-                            <input type="date" class="form-control datepicker" value="{{old('tanggal') ? old('tanggal') : $datas->tanggal}}"
-                            name="tanggal">
+                            <input type="date" class="form-control datepicker @error('tanggal')
+                            is_invalid
+                        @enderror" value="{{old('tanggal') ? old('tanggal') : $datas->tanggal}}" name="tanggal">
+                            @error('tanggal')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
