@@ -76,6 +76,10 @@
     <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.inputminatbakat')}}"><i class="fas fa-school"></i> <span>Minat dan Bakat
     <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.penjurusan')}}"><i class="fas fa-school"></i> <span>Penjurusan</span></a></li></span></a></li>
 
+    <li class="menu-header">Catatan Siswa</li>
+    <li {{$pages=='bk-catatankasussiswa' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.catatankasussiswa')}}"><i class="fas fa-school"></i> <span>Catatan Kasus Siswa</span></a></li>
+    <li {{$pages=='bk-catatanpengembangandirisiswa' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.catatanpengembangandirisiswa')}}"><i class="fas fa-school"></i> <span>Catatan Pengembangan Diri Siswa</span></a></li>
+    <li {{$pages=='bk-catatanprestasisiswa' ? 'class=active' : ''}}><a class="nav-link" href="{{route('bk.catatanprestasisiswa')}}"><i class="fas fa-school"></i> <span>Catatan Prestasi Siswa</span></a></li>
 @else
 
 @endif

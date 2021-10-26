@@ -9,10 +9,10 @@
                     <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
                 </span>
 
-                {{-- <a href="{{route('sekolah.masternilaibidangstudi.create',$id->id)}}" type="submit" value="Import"
+                 <a href="{{route('sekolah.masternilaibidangstudi.create',$id->id)}}" type="submit" value="Import"
                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                             class="fas fa-download"></i> Tambah </span></a>
-                <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0" data-toggle="modal"
+                {{--<button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0" data-toggle="modal"
                     data-target="#importExcel"><i class="fas fa-upload"></i>
                     Import
                 </button>

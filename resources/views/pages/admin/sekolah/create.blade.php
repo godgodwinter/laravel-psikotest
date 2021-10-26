@@ -30,7 +30,7 @@ Sekolah
             </div>
             <div class="card-body">
 
-                <form action="{{route('sekolah.store')}}" method="post">
+                <form action="{{route('sekolah.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -60,7 +60,82 @@ Sekolah
                         @enderror
                     </div>
 
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <label for="kepsek_nama">Alamat  Kepala  Sekolah <code></code></label>
+                        <input type="text" name="kepsek_nama" id="kepsek_nama" class="form-control @error('kepsek_nama') is-invalid @enderror" value="{{old('kepsek_nama')}}" >
+                        @error('kepsek_nama')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
                     </div>
+
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <label for="tahunajaran_nama">Tahun  Ajaran <code></code></label>
+                        <input type="text" name="tahunajaran_nama" id="tahunajaran_nama" class="form-control @error('tahunajaran_nama') is-invalid @enderror" value="{{old('tahunajaran_nama')}}" >
+                        @error('tahunajaran_nama')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <label for="semester_nama">Semester <code></code></label>
+                        <input type="text" name="semester_nama" id="kepsek_nama" class="form-control @error('semester_nama') is-invalid @enderror" value="{{old('semester_nama')}}" >
+                        @error('semester_nama')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                    </div>
+                    </div>
+
+                    @push('after-script')
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                      $.uploadPreview({
+                                        input_field: "#image-upload",   // Default: .image-upload
+                                        preview_box: "#image-preview",  // Default: .image-preview
+                                        label_field: "#image-label",    // Default: .image-label
+                                        label_default: "Logo Sekolah",   // Default: Choose File
+                                        label_selected: "Ganti Logo Sekolah",  // Default: Change File
+                                        no_label: false                 // Default: false
+                                      });
+
+
+                                      $.uploadPreview({
+                                        input_field: "#image-upload2",   // Default: .image-upload
+                                        preview_box: "#image-preview2",  // Default: .image-preview
+                                        label_field: "#image-label2",    // Default: .image-label
+                                        label_default: "Photo Kepala Sekolah",   // Default: Choose File
+                                        label_selected: "Ganti Photo Kepala Sekolah",  // Default: Change File
+                                        no_label: false                 // Default: false
+                                      });
+                                    });
+                                    </script>
+                                @endpush
+
+                    <div class="form-group row mb-4 mt-3">
+                        <div class="col-sm-4 col-md-4">
+                          <div id="image-preview" class="image-preview">
+                            <label for="image-upload" id="image-label2">Logo Sekolah</label>
+                            <input type="file" name="sekolah_logo" id="image-upload" class="@error('sekolah_logo')
+                            is_invalid
+                        @enderror"  accept="image/png, image/gif, image/jpeg" />
+
+                        @error('sekolah_logo')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                          </div>
+                        </div>
+                      </div>
+
+
+                    <div class="form-group row mb-4 mt-3">
+                        <div class="col-sm-4 col-md-4">
+                          <div id="image-preview2" class="image-preview">
+                            <label for="image-upload2" id="image-label">Foto Kepala Sekolah</label>
+                            <input type="file" name="kepsek_photo" id="image-upload2" class="@error('kepsek_photo')
+                                is_invalid
+                            @enderror" accept="image/png, image/gif, image/jpeg" />
+
+                        @error('kepsek_photo')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                          </div>
+                        </div>
+                      </div>
+
 
                     <div class="card-footer text-right mr-5">
                         <button class="btn btn-primary">Simpan</button>
