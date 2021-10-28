@@ -54,6 +54,10 @@ class bkcatatankasussiswacontroller extends Controller
             global $request;
                 $query->where('siswa.nama','like',"%".$request->cari."%");
             })
+            ->orWhereHas('kelas',function($query){
+            global $request;
+                $query->where('kelas.nama','like',"%".$request->cari."%");
+            })
             ->paginate(Fungsi::paginationjml());
             // dd($datas,$cari);
             return view('pages.bk.catatankasussiswa.index',compact('pages','id','request','datas'));
