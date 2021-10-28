@@ -41,7 +41,7 @@ class bkcatatankasussiswacontroller extends Controller
         }
         public function cari(Request $request)
         {
-            $cari=$request->cari;
+             $cari=$request->cari;
             #WAJIB
             $pages='bk_catatankasussiswa';
             $users_id=Auth::user()->id;
@@ -49,16 +49,13 @@ class bkcatatankasussiswacontroller extends Controller
             $sekolah_id=$pengguna->sekolah_id;
             $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-            // $datas = DB::table('siswa')->with('catatankasussiswa')
-            // ->where('sekolah_id',$id->id)
-            // //->where('siswa.nama','like',"%".$cari."%")
-            // ->whereRaw('siswa.nama','like',"%".$cari."%")
-            // ->paginate(Fungsi::paginationjml());
-            $datas=catatankasussiswa::join('siswa','catatankasussiswa.siswa_id','=','siswa.id')
-            ->where('siswa.nama','like',"%".$cari."%")
-            ->where('catatankasussiswa.sekolah_id',$sekolah_id)
+            $datas=catatankasussiswa::with('siswa')->with('kelas')
+            ->whereHas('siswa',function($query){
+            global $request;
+                $query->where('siswa.nama','like',"%".$request->cari."%");
+            })
             ->paginate(Fungsi::paginationjml());
-
+            // dd($datas,$cari);
             return view('pages.bk.catatankasussiswa.index',compact('pages','id','request','datas'));
         }
 
@@ -159,7 +156,7 @@ class bkcatatankasussiswacontroller extends Controller
     public function update(catatankasussiswa $datasa,Request $request)
     {
 
-
+        // dd($request);
         if($request->id!==$datasa->id){
 
             $request->validate([
@@ -172,11 +169,11 @@ class bkcatatankasussiswacontroller extends Controller
 
 
         $request->validate([
-            'nama'=>'required',
+            // 'nama'=>'required',
             //'nomerinduk'=>'required',
         ],
         [
-            'nama.required'=>'nama harus diisi',
+            // 'nama.required'=>'nama harus diisi',
             //'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 
@@ -189,12 +186,10 @@ class bkcatatankasussiswacontroller extends Controller
             'pengambilandata'   =>$request->pengambilandata,
             'sumberkasus'   =>$request->sumberkasus,
             'golkasus'  =>$request->golkasus,
-            'penyebabtimbulkasus'   =>$request->peyebabtimbulkasus,
+            'penyebabtimbulkasus'   =>$request->penyebabtimbulkasus,
             'teknikkonseling'   =>$request->teknikkonseling,
             'keberhasilanpenanganankasus'   =>$request->keberhasilanpenanganankasus,
             'keterangan'    =>$request->keterangan,
-
-
             'updated_at'=>date("Y-m-d H:i:s"),
         ]);
         return redirect()->route('bk.catatankasussiswa',$datasa->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');

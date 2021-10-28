@@ -96,10 +96,10 @@ Catatan Kasus Siswa
                                 <td> {{$data->tanggal}}
                                 </td>
                                 <td class="text-center">
-                                    {{Str::limit($data->siswa->nama,25,' ...')}}
+                                    {{$data->siswa!=null?Str::limit($data->siswa->nama,25,' ...'):''}}
                                 </td>
                                 <td class="text-center">
-                                    {{$data->kelas->nama}}
+                                    {{$data->kelas!=null?$data->kelas->nama:''}}
                                  </td>
                                  <td class="text-center">
                                     {{$data->kasus}}
