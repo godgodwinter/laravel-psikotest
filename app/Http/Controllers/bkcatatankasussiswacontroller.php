@@ -50,6 +50,7 @@ class bkcatatankasussiswacontroller extends Controller
             $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
             $datas=catatankasussiswa::with('siswa')->with('kelas')
+            ->where('sekolah_id',$sekolah_id)
             ->whereHas('siswa',function($query){
             global $request;
                 $query->where('siswa.nama','like',"%".$request->cari."%");

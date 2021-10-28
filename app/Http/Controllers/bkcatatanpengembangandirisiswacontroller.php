@@ -48,9 +48,16 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
             $sekolah_id=$pengguna->sekolah_id;
             $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-            $datas=catatanpengembangandirisiswa::join('siswa','catatanpengembangandirisiswa.siswa_id','=','siswa.id')
-            ->where('siswa.nama','like',"%".$cari."%")
-            ->where('catatanpengembangandirisiswa.sekolah_id',$sekolah_id)
+            $datas=catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+            ->where('sekolah_id',$sekolah_id)
+            ->whereHas('siswa',function($query){
+            global $request;
+                $query->where('siswa.nama','like',"%".$request->cari."%");
+            })
+            ->orWhereHas('kelas',function($query){
+            global $request;
+                $query->where('kelas.nama','like',"%".$request->cari."%");
+            })
             ->paginate(Fungsi::paginationjml());
 
             return view('pages.bk.catatanpengembangandirisiswa.index',compact('pages','id','request','datas'));
@@ -100,7 +107,8 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
 
             ],
             [
-                'nama.nama'=>'Nama harus diisi',
+                'siswa_id.siswa_id'=>'Siswa harus diisi',
+                'kelas_id.kelas_id'=>'Kelas harus diisi'
             ]);
 
 
@@ -113,7 +121,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
                 'idedanimajinasi'    =>$request->idedanimajinasi,
                 'ketrampilan'    =>$request->ketrampilan,
                 'kreatif'    =>$request->kreatif,
-                'oraganisasi'    =>$request->organisasi,
+                'organisasi'    =>$request->organisasi,
                 'kelanjutanstudi'    =>$request->kelanjutanstudi,
                 'hobi'    =>$request->hobi,
                 'citacita'    =>$request->citacita,
@@ -169,11 +177,11 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
 
 
         $request->validate([
-            'nama'=>'required',
+
             //'nomerinduk'=>'required',
         ],
         [
-            'nama.required'=>'nama harus diisi',
+
             //'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 
@@ -181,16 +189,17 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
         ->update([
             'siswa_id'  =>$request->siswa_id,
             'kelas_id'  =>$request->kelas_id,
-            'kasus' =>$request->kasus,
-            'tanggal' => $request->tanggal,
-            'pengambilandata'   =>$request->pengambilandata,
-            'sumberkasus'   =>$request->sumberkasus,
-            'golkasus'  =>$request->golkasus,
-            'penyebabtimbulkasus'   =>$request->peyebabtimbulkasus,
-            'teknikkonseling'   =>$request->teknikkonseling,
-            'keberhasilanpenanganankasus'   =>$request->keberhasilanpenanganankasus,
-            'keterangan'    =>$request->keterangan,
-
+            'tanggal'    =>$request->tanggal,
+                'idedanimajinasi'    =>$request->idedanimajinasi,
+                'ketrampilan'    =>$request->ketrampilan,
+                'kreatif'    =>$request->kreatif,
+                'organisasi'    =>$request->organisasi,
+                'kelanjutanstudi'    =>$request->kelanjutanstudi,
+                'hobi'    =>$request->hobi,
+                'citacita'    =>$request->citacita,
+                'kemampuankhusus'    =>$request->kemampuankhusus,
+                'keterangan'    =>$request->keterangan,
+                'sekolah_id'    =>$sekolah_id,
 
             'updated_at'=>date("Y-m-d H:i:s"),
         ]);

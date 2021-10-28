@@ -21,7 +21,7 @@ class CreateCatatanpengembangandirisiswa extends Migration
             $table->string('idedanimajinasi');
             $table->string('ketrampilan');
             $table->string('kreatif');
-            $table->string('oraganisasi');
+            $table->string('organisasi');
             $table->string('kelanjutanstudi');
             $table->string('hobi');
             $table->string('citacita');

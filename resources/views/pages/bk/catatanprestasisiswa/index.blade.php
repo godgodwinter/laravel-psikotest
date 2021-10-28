@@ -68,7 +68,7 @@ Catatan Prestasi Siswa
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
-                <div style="overflow:scroll">
+
                 <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>
                         <tr>
@@ -76,11 +76,7 @@ Catatan Prestasi Siswa
                             <th >Tanggal</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Kelas</th>
-                            <th class="text-center">Prestasi</th>
-                            <th class="text-center">Teknik Belajar</th>
-                            <th class="text-center">Sarana Belajar</th>
-                            <th class="text-center">Penunjang Belajar</th>
-                            <th class="text-center">Kesimpulan dan Saran</th>
+
 
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
@@ -99,21 +95,7 @@ Catatan Prestasi Siswa
                                 <td class="text-center">
                                     {{$data->kelas->nama}}
                                  </td>
-                                 <td class="text-center">
-                                    {{$data->prestasi}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->teknikbelajar}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->saranabelajar}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->penunjangbelajar}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->kesimpulandansaran}}
-                                 </td>
+
 
 
                                 <td class="text-center">
@@ -124,12 +106,12 @@ Catatan Prestasi Siswa
                             </tr>
                 @empty
                             <tr>
-                                <td colspan="10" class="text-center">Data tidak ditemukan</td>
+                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
                             </tr>
                 @endforelse
                     </tbody>
                 </table>
-                </div>
+
 
 @php
 $cari=$request->cari;

@@ -79,11 +79,11 @@ Catatan Prestasi Siswa
 
 
                           <div class="form-group row align-items-center">
-                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Kasus
+                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal
                                 </label>
                             <div class="col-sm-6 col-md-9">
                                 <div class="form-group">
-                                    <input type="date" class="form-control datepicker" value="{{old('tanggal')}}"
+                                    <input type="date" class="form-control datepicker" value="{{old('tanggal') ? old('tanggal') : date('Y-m-d')}}"
                                     name="tanggal">
                                 </div>
                             </div>

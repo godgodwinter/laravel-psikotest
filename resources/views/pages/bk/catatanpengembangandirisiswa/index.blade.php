@@ -68,7 +68,7 @@ Catatan Pengembangan Diri Siswa
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
-                <div style="overflow:scroll">
+
                 <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>
                         <tr>
@@ -76,15 +76,7 @@ Catatan Pengembangan Diri Siswa
                             <th >Tanggal</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Kelas</th>
-                            <th class="text-center">Ide Dan Imajinasi</th>
-                            <th class="text-center">Ketrampilan</th>
-                            <th class="text-center">Kreatif</th>
-                            <th class="text-center">Organisasi</th>
-                            <th class="text-center">Kelanjutan Studi</th>
-                            <th class="text-center">hobi</th>
-                            <th class="text-center">Cita cita</th>
-                            <th class="text-center">Kemampuan Khusus</th>
-                            <th class="text-center">Keterangan</th>
+
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -101,33 +93,7 @@ Catatan Pengembangan Diri Siswa
                                 <td class="text-center">
                                     {{$data->kelas->nama}}
                                  </td>
-                                 <td class="text-center">
-                                    {{$data->idedanimajinasi}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->ketrampilan}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->kreatif}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->oraganisasi}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->kelanjutanstudi}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->hobi}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->citacita}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->kemampuankhusus}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->keterangan}}
-                                 </td>
+
 
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
@@ -137,12 +103,12 @@ Catatan Pengembangan Diri Siswa
                             </tr>
                 @empty
                             <tr>
-                                <td colspan="14" class="text-center">Data tidak ditemukan</td>
+                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
                             </tr>
                 @endforelse
                     </tbody>
                 </table>
-                </div>
+
 
 @php
 $cari=$request->cari;

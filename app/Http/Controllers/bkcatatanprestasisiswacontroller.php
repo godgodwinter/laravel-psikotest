@@ -48,9 +48,16 @@ class bkcatatanprestasisiswacontroller extends Controller
             $sekolah_id=$pengguna->sekolah_id;
             $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-            $datas=catatanprestasisiswa::join('siswa','catatanprestasisiswa.siswa_id','=','siswa.id')
-            ->where('siswa.nama','like',"%".$cari."%")
-            ->where('catatanprestasisiswa.sekolah_id',$sekolah_id)
+            $datas=catatanprestasisiswa::with('siswa')->with('kelas')
+            ->where('sekolah_id',$sekolah_id)
+            ->whereHas('siswa',function($query){
+            global $request;
+                $query->where('siswa.nama','like',"%".$request->cari."%");
+            })
+            ->orWhereHas('kelas',function($query){
+            global $request;
+                $query->where('kelas.nama','like',"%".$request->cari."%");
+            })
             ->paginate(Fungsi::paginationjml());
 
             return view('pages.bk.catatanprestasisiswa.index',compact('pages','id','request','datas'));
@@ -100,7 +107,7 @@ class bkcatatanprestasisiswacontroller extends Controller
 
             ],
             [
-                'nama.nama'=>'Nama harus diisi',
+              //  'nama.nama'=>'Nama harus diisi',
             ]);
 
 
@@ -165,11 +172,11 @@ class bkcatatanprestasisiswacontroller extends Controller
 
 
         $request->validate([
-            'nama'=>'required',
+
             //'nomerinduk'=>'required',
         ],
         [
-            'nama.required'=>'nama harus diisi',
+
             //'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 

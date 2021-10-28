@@ -68,7 +68,7 @@ Catatan Kasus Siswa
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
-                <div style="overflow:scroll">
+
                 <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
                     <thead>
                         <tr>
@@ -76,14 +76,7 @@ Catatan Kasus Siswa
                             <th >Tanggal</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Kelas</th>
-                            <th class="text-center">Kasus</th>
-                            <th class="text-center">Pengambilan Data</th>
-                            <th class="text-center">Sumber Kasus</th>
-                            <th class="text-center">Golongan Kasus</th>
-                            <th class="text-center">Penyebab Timbul Kasus</th>
-                            <th class="text-center">Teknik Konseling</th>
-                            <th class="text-center">Keberhasilan Penanganan Kasus</th>
-                            <th class="text-center">Keterangan</th>
+
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -101,30 +94,7 @@ Catatan Kasus Siswa
                                 <td class="text-center">
                                     {{$data->kelas!=null?$data->kelas->nama:''}}
                                  </td>
-                                 <td class="text-center">
-                                    {{$data->kasus}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->pengambilandata}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->sumberkasus}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->golkasus}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->penyebabtimbulkasus}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->teknikkonseling}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->keberhasilanpenanganankasus}}
-                                 </td>
-                                 <td class="text-center">
-                                    {{$data->keterangan}}
-                                 </td>
+
 
                                 <td class="text-center">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
@@ -134,12 +104,12 @@ Catatan Kasus Siswa
                             </tr>
                 @empty
                             <tr>
-                                <td colspan="13" class="text-center">Data tidak ditemukan</td>
+                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
                             </tr>
                 @endforelse
                     </tbody>
                 </table>
-                </div>
+
 
 @php
 $cari=$request->cari;

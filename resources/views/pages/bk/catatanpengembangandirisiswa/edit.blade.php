@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Catatan Kasus Siswa
+Catatan Pengembangan Diri Siswa
 @endsection
 
 @push('before-script')
@@ -30,12 +30,12 @@ Catatan Kasus Siswa
             </div>
             <div class="card-body">
 
-           <form id="setting-form" method="POST" action="{{route('bk.catatankasussiswa.update',[$datas->id])}}">
+           <form id="setting-form" method="POST" action="{{route('bk.catatanpengembangandirisiswa.update',[$datas->id])}}">
             @method('put')
             @csrf
             <div class="card" id="settings-card">
               <div class="card-header">
-                <h4>Form Edit Catatan Kasus Siswa </h4>
+                <h4>Form Edit Catatan Pengembangan Diri Siswa </h4>
               </div>
               <div class="card-body">
 
@@ -55,7 +55,7 @@ Catatan Kasus Siswa
                             @endforeach
                           </select>
 
-                      @error('siswa_id')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('siswa_id')<div class="invalid-feedbac "> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -82,8 +82,8 @@ Catatan Kasus Siswa
                   </div>
 
 
-                  <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Kasus
+                <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal
                         </label>
                     <div class="col-sm-6 col-md-9">
                         <div class="form-group">
@@ -95,12 +95,12 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kasus </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Ide dan Imajinasi </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('kasus') is-invalid @enderror" name="kasus" required  value="{{old('kasus') ? old('kasus') : $datas->kasus}}">
+                      <input type="text" class="form-control  @error('idedanimajinasi') is-invalid @enderror" name="idedanimajinasi" required  value="{{old('idedanimajinasi') ? old('idedanimajinasi') : $datas->idedanimajinasi}}">
 
-                      @error('kasus')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('idedanimajinasi')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -108,12 +108,12 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pengambilan Data </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Ketrampilan </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('pengambilandata') is-invalid @enderror" name="pengambilandata" required  value="{{old('pengambilandata') ? old('pengambilandata') : $datas->pengambilandata}}">
+                      <input type="text" class="form-control  @error('ketrampilan') is-invalid @enderror" name="ketrampilan" required  value="{{old('ketrampilan')? old('ketrampilan') : $datas->ketrampilan}}">
 
-                      @error('pengambilandata')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('ketrampilan')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -121,12 +121,12 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right"> Sumber Kasus </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right"> Kreatif </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('sumberkasus') is-invalid @enderror" name="sumberkasus" required  value="{{old('sumberkasus') ? old('sumberkasus') : $datas->sumberkasus}}">
+                      <input type="text" class="form-control  @error('kreatif') is-invalid @enderror" name="kreatif" required  value="{{old('kreatif')? old('kreatif') : $datas->kreatif}}">
 
-                      @error('sumberkasus')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('kreatif')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -134,12 +134,12 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Golongan Kasus </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Organisasi </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('golkasus') is-invalid @enderror" name="golkasus" required  value="{{old('golkasus') ? old('golkasus') : $datas->golkasus}}">
+                      <input type="text" class="form-control  @error('organisasi') is-invalid @enderror" name="organisasi" required  value="{{old('organisasi') ? old('organisasi') : $datas->organisasi}}">
 
-                      @error('golkasus')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('organisasi')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -147,12 +147,12 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Penyebab Timbul Kasus </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelanjutan Studi </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('penyebabtimbulkasus') is-invalid @enderror" name="penyebabtimbulkasus" required  value="{{old('penyebabtimbulkasus') ? old('penyebabtimbulkasus') : $datas->penyebabtimbulkasus}}">
+                      <input type="text" class="form-control  @error('kelanjutanstudi') is-invalid @enderror" name="kelanjutanstudi" required  value="{{old('kelanjutanstudi') ? old('kelanjutanstudi') : $datas->kelanjutanstudi}}">
 
-                      @error('penyebabtimbulkasus')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('kelanjutanstudi')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -160,12 +160,12 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Teknik Konseling </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Hobi </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('teknikkonseling') is-invalid @enderror" name="teknikkonseling" required  value="{{old('teknikkonseling') ? old('teknikkonseling') : $datas->teknikkonseling}}">
+                      <input type="text" class="form-control  @error('hobi') is-invalid @enderror" name="hobi" required  value="{{old('hobi') ? old('hobi') : $datas->hobi}}">
 
-                      @error('teknikkonseling')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('hobi')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
@@ -173,18 +173,28 @@ Catatan Kasus Siswa
 
 
                   <div class="form-group row align-items-center">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keberhasilan Penangan Kasus </label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Cita - cita </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('keberhasilanpenanganankasus') is-invalid @enderror" name="keberhasilanpenanganankasus" required  value="{{old('keberhasilanpenanganankasus') ? old('keberhasilanpenanganankasus') : $datas->keberhasilanpenanganankasus}}">
+                      <input type="text" class="form-control  @error('citacita') is-invalid @enderror" name="citacita" required  value="{{old('citacita') ? old('citacita') : $datas->citacita}}">
 
-                      @error('keberhasilanpenanganankasus')<div class="invalid-feedback"> {{$message}}</div>
+                      @error('citacita')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
                   </div>
 
+                  <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kemampuan Khusus </label>
+                    <div class="col-sm-6 col-md-9">
 
+                      <input type="text" class="form-control  @error('kemampuankhusus') is-invalid @enderror" name="kemampuankhusus" required  value="{{old('kemampuankhusus') ? old('kemampuankhusus') : $datas->kemampuankhusus}}">
+
+                      @error('kemampuankhusus')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+
+                    </div>
+                  </div>
 
                   <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan </label>
@@ -197,7 +207,6 @@ Catatan Kasus Siswa
 
                     </div>
                   </div>
-
 
               <div class="card-footer bg-whitesmoke text-md-right">
                 <button class="btn btn-primary" id="save-btn">Simpan</button>

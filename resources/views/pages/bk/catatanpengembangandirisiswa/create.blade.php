@@ -83,7 +83,7 @@ Catatan Pengembangan Diri Siswa
                                 </label>
                             <div class="col-sm-6 col-md-9">
                                 <div class="form-group">
-                                    <input type="date" class="form-control datepicker" value="{{old('tanggal')}}"
+                                    <input type="date" class="form-control datepicker" value="{{old('tanggal') ? old('tanggal') : date('Y-m-d')}}"
                                     name="tanggal">
                                 </div>
                             </div>
