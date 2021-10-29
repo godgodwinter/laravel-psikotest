@@ -86,35 +86,57 @@ class adminsekolahcontroller extends Controller
                 'nama.nama'=>'Nama harus diisi',
             ]);
 
+            $file = $request->file('sekolah_logo');
+            $files = $request->file('kepsek_photo');
+
+            if($files!=null or $file!=null){
+                $namafilebaru='logo_'.$request->nama;
+
+                $tujuan_upload = 'storage/logo';
+                        // upload file
+                $file->move($tujuan_upload,"logo/".$namafilebaru.".jpg");
+
+
+                $namafilebarus='foto_kepala_sekolah_'.$request->nama;
+                // menyimpan data file yang diupload ke variabel $file
+
+                $tujuan_uploads = 'storage/kepsek';
+                        // upload file
+                $files->move($tujuan_uploads,"kepsek/".$namafilebarus.".jpg");
+
+                DB::table('sekolah')->insert(
+                    array(
+                           'nama'     =>   $request->nama,
+                           'alamat'     =>   $request->alamat,
+                           'status'     =>   $request->status,
+                           'kepsek_nama'     =>   $request->kepsek_nama,
+                           'tahunajaran_nama'     =>   $request->tahunajaran_nama,
+                           'semester_nama'     =>   $request->semester_nama,
+                           'sekolah_logo'  => "logo/".$namafilebaru.".jpg",
+                           'kepsek_photo'   => "kepsek/".$namafilebarus.".jpg",
+                           'created_at'=>date("Y-m-d H:i:s"),
+                           'updated_at'=>date("Y-m-d H:i:s")
+                    ));
+            }else{
+
+
+
+                DB::table('sekolah')->insert(
+                    array(
+                           'nama'     =>   $request->nama,
+                           'alamat'     =>   $request->alamat,
+                           'status'     =>   $request->status,
+                           'kepsek_nama'     =>   $request->kepsek_nama,
+                           'tahunajaran_nama'     =>   $request->tahunajaran_nama,
+                           'semester_nama'     =>   $request->semester_nama,
+
+                           'created_at'=>date("Y-m-d H:i:s"),
+                           'updated_at'=>date("Y-m-d H:i:s")
+                    ));
+            }
 
         //inser siswa
-        $namafilebaru='logo_'.$request->nama;
-            $file = $request->file('sekolah_logo');
-            $tujuan_upload = 'storage/logo';
-                    // upload file
-            $file->move($tujuan_upload,"logo/".$namafilebaru.".jpg");
 
-
-            $namafilebarus='foto_kepala_sekolah_'.$request->nama;
-            // menyimpan data file yang diupload ke variabel $file
-            $files = $request->file('kepsek_photo');
-            $tujuan_uploads = 'storage/kepsek';
-                    // upload file
-            $files->move($tujuan_uploads,"kepsek/".$namafilebarus.".jpg");
-
-        DB::table('sekolah')->insert(
-            array(
-                   'nama'     =>   $request->nama,
-                   'alamat'     =>   $request->alamat,
-                   'status'     =>   $request->status,
-                   'kepsek_nama'     =>   $request->kepsek_nama,
-                   'tahunajaran_nama'     =>   $request->tahunajaran_nama,
-                   'semester_nama'     =>   $request->semester_nama,
-                   'sekolah_logo' => "logo/".$namafilebaru.".jpg",
-                   'kepsek_photo' => "kepsek/".$namafilebarus.".jpg",
-                   'created_at'=>date("Y-m-d H:i:s"),
-                   'updated_at'=>date("Y-m-d H:i:s")
-            ));
 
 
             // dd('storage'.'/'.$id->sekolah_logo);
