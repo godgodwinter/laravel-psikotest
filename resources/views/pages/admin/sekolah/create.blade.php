@@ -61,7 +61,7 @@ Sekolah
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="kepsek_nama">Alamat  Kepala  Sekolah <code></code></label>
+                        <label for="kepsek_nama">Nama  Kepala  Sekolah <code></code></label>
                         <input type="text" name="kepsek_nama" id="kepsek_nama" class="form-control @error('kepsek_nama') is-invalid @enderror" value="{{old('kepsek_nama')}}" >
                         @error('kepsek_nama')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
