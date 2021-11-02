@@ -42,7 +42,7 @@ class adminhasilpsikologicontroller extends Controller
     }
     public function create(sekolah $id)
     {
-        $pages='kelas';
+        $pages='hasilpsikologi';
         $siswa=siswa::where('sekolah_id',$id->id)->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')->get();
         // dd($siswa);
@@ -84,16 +84,15 @@ class adminhasilpsikologicontroller extends Controller
 
     }
 
-    public function edit(sekolah $id,kelas $data)
+    public function edit(sekolah $id,hasilpsikologi $data)
     {
-        // $pages='kelas';
-        // $walikelas=DB::table('walikelas')->whereNull('deleted_at')
-        // ->where('sekolah_id',$id->id)
-        // ->orderBy('nama','asc')->get();
+        $pages='hasilpsikologi';
+        $siswa=siswa::where('sekolah_id',$id->id)->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')->get();
 
-        // return view('pages.admin.sekolah.pages.kelas_edit',compact('pages','id','data','walikelas'));
+        return view('pages.admin.sekolah.pages.hasilpsikologi.edit',compact('pages','id','data','siswa'));
     }
-    public function update(sekolah $id,kelas $data,Request $request)
+    public function update(sekolah $id,hasilpsikologi $data,Request $request)
     {
         // dd($request);
     //     if($request->nama!==$data->nama){
@@ -114,15 +113,13 @@ class adminhasilpsikologicontroller extends Controller
     //         'nama.required'=>'nama sudah digunakan',
     //     ]);
 
-    //     kelas::where('id',$data->id)
-    //     ->update([
-    //         'nama'     =>   $request->nama,
-    //         // 'tipe'     =>   $request->tipe,
-    //         'walikelas_id'     =>   $request->walikelas_id,
-    //         'sekolah_id'     =>   $id->id,
-    //        'updated_at'=>date("Y-m-d H:i:s")
-    //     ]);
-    // return redirect()->route('sekolah.kelas',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+        hasilpsikologi::where('id',$data->id)
+        ->update([
+            'nilai'     =>   $request->nilai,
+            'sekolah_id'     =>   $id->id,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+    return redirect()->route('sekolah.hasilpsikologi',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(sekolah $id,hasilpsikologi $data){
 

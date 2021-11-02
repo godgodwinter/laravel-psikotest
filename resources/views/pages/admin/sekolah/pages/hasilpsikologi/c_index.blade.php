@@ -65,7 +65,7 @@
 
                     </td>
                     <td class="text-center babeng-min-row">
-                        <x-button-edit link="#" />
+                        <x-button-edit link="{{ route('sekolah.hasilpsikologi.edit',[$id,$data->id]) }}" />
                         <x-button-delete link="{{ route('sekolah.hasilpsikologi.destroy',[$id,$data->id]) }}" />
 
 

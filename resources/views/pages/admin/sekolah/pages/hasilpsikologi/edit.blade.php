@@ -32,7 +32,7 @@ Detail Sekolah
               @include('pages.admin.sekolah.component.sidebarsekolah')
           </div>
           <div class="col-md-9">
-                @include('pages.admin.sekolah.content.c_kelas_edit')
+                @include('pages.admin.sekolah.pages.hasilpsikologi.c_edit')
           </div>
         </div>
     </div>
