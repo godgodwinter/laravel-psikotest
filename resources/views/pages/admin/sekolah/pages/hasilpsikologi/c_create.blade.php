@@ -1,12 +1,10 @@
 
 
-
-
            <form id="setting-form" method="POST" action="{{route('sekolah.hasilpsikologi.store',$id->id)}}">
                 @csrf
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>Kelas </h4>
+                    <h4>Tambah data </h4>
                   </div>
                   <div class="card-body">
 
@@ -21,27 +19,6 @@
 
                         </div>
                       </div>
-                      {{-- <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tipe Kelas</label>
-                        <div class="col-sm-6 col-md-9">
-
-
-
-
-                            <select class="form-control @error('tipe')
-                                is-invalid
-                            @enderror" name="tipe"  required>
-                                <option disabled selected value=""> Pilih Tipe</option>
-                                <option>Umum</option>
-                                <option>Khusus</option>
-
-                              </select>
-
-                          @error('tipe')<div class="invalid-feedback"> {{$message}}</div>
-                          @enderror
-
-                        </div>
-                      </div> --}}
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
                         <div class="col-sm-6 col-md-9">
