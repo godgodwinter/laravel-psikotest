@@ -66,7 +66,7 @@
                     </td>
                     <td class="text-center babeng-min-row">
                         <x-button-edit link="#" />
-                        <x-button-delete link="#" />
+                        <x-button-delete link="{{ route('sekolah.hasilpsikologi.destroy',[$id,$data->id]) }}" />
 
 
 

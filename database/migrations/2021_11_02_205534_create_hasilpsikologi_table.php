@@ -17,8 +17,8 @@ class CreateHasilpsikologiTable extends Migration
             $table->bigIncrements('id');
             $table->string('siswa_id');
             $table->string('nilai');
-            $table->string('sertifikat');
-            $table->string('ket');
+            $table->string('sertifikat')->nullable();
+            $table->string('ket')->nullable();
             $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();

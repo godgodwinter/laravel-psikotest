@@ -8,17 +8,6 @@
                   </div>
                   <div class="card-body">
 
-                    <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Kelas</label>
-                        <div class="col-sm-6 col-md-9">
-
-                          <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required  value="{{old('nama')}}">
-
-                          @error('nama')<div class="invalid-feedback"> {{$message}}</div>
-                          @enderror
-
-                        </div>
-                      </div>
                       <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
                         <div class="col-sm-6 col-md-9">
@@ -37,6 +26,20 @@
 
                         </div>
                       </div>
+
+                    <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Hasil Deteksi</label>
+                        <div class="col-sm-6 col-md-9">
+
+                          <input type="number" class="form-control  @error('nilai') is-invalid @enderror" name="nilai" required  value="{{old('nilai')}}" min="0">
+
+                          @error('nilai')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                      </div>
+
+
                       </div>
 
 
