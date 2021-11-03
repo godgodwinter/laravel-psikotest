@@ -32,7 +32,7 @@ Detail Minat Bakat
               @include('pages.admin.sekolah.component.sidebarsekolah')
           </div>
           <div class="col-md-9">
-                @include('pages.admin.sekolah.pages.penjurusan.c_edit')
+                @include('pages.admin.sekolah.pages.inputminatbakat.c_edit')
           </div>
         </div>
     </div>
