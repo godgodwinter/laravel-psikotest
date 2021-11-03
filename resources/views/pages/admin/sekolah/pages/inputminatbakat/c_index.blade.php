@@ -1,13 +1,32 @@
 
     <div class="card-body">
-        <div id="babeng-row ">
+        <div class="d-flex bd-highlight mb-0 align-items-center">
 
-            <form action="{{route('sekolah.masternilaibidangstudi.cari',$id->id)}}" method="GET" class="babeng-form">
-                <input type="text" class="babeng babeng-select  ml-0" name="cari">
+            <div class="p-0 bd-highlight">
 
+            <form action="{{route('sekolah.inputminatbakat.cari',$id->id)}}" method="GET" class="babeng-form">
+                {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
+            </div>
+            <div class="p-0 bd-highlight">
+                <select class="js-example-basic-single mx-5 form-control-sm @error('kelas_id')
+                is-invalid
+            @enderror" name="kelas_id"  style="width: 75%" required>
+                <option disabled selected value=""> Pilih kelas</option>
+                @foreach ($kelas as $t)
+                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                @endforeach
+              </select>
+
+            </div>
+            <div class="p-2 bd-highlight">
                 <span>
-                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
+                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
                 </span>
+            </div>
+            <div class="ml-auto p-2 bd-highlight">
+
+
+
 
                  {{-- <a href="{{route('sekolah.masternilaibidangstudi.create',$id->id)}}" type="submit" value="Import"
                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
@@ -26,7 +45,7 @@
 
 <div class="card" id="settings-card">
     <div class="card-header">
-        <h4>Bakat dan Cita-cita </h4>
+        <h4>Bakat dan Cita-cita kelas : {{ $kelaspertama->nama }} </h4>
     </div>
     <div class="card-body babengcontainer">
 
@@ -34,7 +53,10 @@
         <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
             <thead>
                 <tr>
-                    <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
+                    <th class="text-center babeng-min-row">
+                        No</th>
+                    <th class="text-center">
+                        Aksi</th>
                     <th class="th-table" >Nama </th>
 
                     @foreach ($master as $m)
@@ -49,6 +71,9 @@
                 <tr id="sid{{ $loop->index+1 }}">
                     <td class="text-center">
                         {{$loop->index+1}}
+                    </td>
+                    <td class="text-center babeng-min-row">
+                        <x-button-edit link="#" />
                     </td>
                     <td class="babeng-td">
                         {{$data->nama}}

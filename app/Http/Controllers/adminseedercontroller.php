@@ -565,6 +565,27 @@ class adminseedercontroller extends Controller
                 'nama' => 'Tambahan CITA_CITA_3',
                 'kategori' => 'Minat dan Bakat',
             ],
+            //diisi bk
+            [
+                'nama' => 'Hobi',
+                'kategori' => 'Minat dan Bakat',
+            ],
+            [
+                'nama' => 'Pekerjaan Bapak',
+                'kategori' => 'Minat dan Bakat',
+            ],
+            [
+                'nama' => 'Pekerjaan Ibu',
+                'kategori' => 'Minat dan Bakat',
+            ],
+            [
+                'nama' => 'Pekerjaan Kakek',
+                'kategori' => 'Minat dan Bakat',
+            ],
+            [
+                'nama' => 'Analisa Pekerjaan',
+                'kategori' => 'Minat dan Bakat',
+            ],
             [
                 'nama' => 'Tipe Bakat.1',
                 'kategori' => 'Bakat dan Penjurusan',
@@ -651,6 +672,10 @@ class adminseedercontroller extends Controller
             ],
             [
                 'nama' => 'D / S.1 Disarankan Prodi',
+                'kategori' => 'Bakat dan Penjurusan',
+            ],
+            [
+                'nama' => 'Keterangan',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
         ]);
