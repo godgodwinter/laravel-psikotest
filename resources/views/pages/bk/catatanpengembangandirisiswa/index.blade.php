@@ -52,6 +52,9 @@ Catatan Pengembangan Diri Siswa
                             <a href="{{route('bk.catatanpengembangandirisiswa.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
+                                        <a href="{{route('bk.cetak.catatanpengembangandirisiswa')}}" type="submit" value="cetak"
+                                        class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                                class="fas fa-download"></i> cetak </span></a>
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import

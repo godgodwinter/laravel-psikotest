@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\catatankasussiswa;
+use App\Models\catatanpengembangandirisiswa;
+use App\Models\catatanprestasisiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -160,5 +163,51 @@ class bkcetakcontroller extends Controller
         $tgl=date("YmdHis");
         $pdf = PDF::loadview('pages.bk.cetak.cetaknilaipsikologi',compact('datas','masters'))->setPaper('a4', 'potrait');
         return $pdf->download('nilaipsikologi'.$tgl.'-pdf');
+    }
+    public function cetakcatatankasussiswa(){
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+
+
+        $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('siswa_id','asc')
+        ->get();
+
+
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.bk.cetak.cetakcatatankasussiswa',compact('datas'))->setPaper('a4', 'landscape');
+        return $pdf->download('catatan'.$tgl.'-pdf');
+    }
+    public function cetakcatatanpengembangandirisiswa(){
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('siswa_id','asc')
+        ->get();
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.bk.cetak.cetakcatatanpengembangandirisiswa',compact('datas'))->setPaper('a4', 'landscape');
+        return $pdf->download('catatanpengembangandiri'.$tgl.'-pdf');
+    }
+    public function cetakcatatanprestasisiswa(){
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+        $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('siswa_id','asc')
+        ->get();
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.bk.cetakprestasi.cetakcatatanprestasisiswa',compact('datas'))->setPaper('a4', 'landscape');
+        return $pdf->download('catatan'.$tgl.'-pdf');
     }
 }

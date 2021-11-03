@@ -326,6 +326,9 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         //bkcetak
         Route::get('/bk/cetak/nilaipsikologi', [bkcetakcontroller::class, 'nilaipsikologi'])->name('bk.cetak.nilaipsikologi');
+        Route::get('/bk/cetak/catatankasussiswa', [bkcetakcontroller::class, 'cetakcatatankasussiswa'])->name('bk.cetak.catatankasussiswa');
+        Route::get('/bk/cetak/catatanpengembangandirisiswa', [bkcetakcontroller::class, 'cetakcatatanpengembangandirisiswa'])->name('bk.cetak.catatanpengembangandirisiswa');
+        Route::get('/bk/cetak/catatanprestasisiswa', [bkcetakcontroller::class, 'cetakcatatanprestasisiswa'])->name('bk.cetak.catatanprestasisiswa');
         //bkcetak
         Route::get('/bk/grafik/nilaipsikologi', [bkgrafikcontroller::class, 'nilaipsikologi'])->name('bk.grafik.nilaipsikologi');
 
