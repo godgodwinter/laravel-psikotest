@@ -5,6 +5,7 @@ use App\Http\Controllers\adminapicontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
+use App\Http\Controllers\adminhasilpsikologicontroller;
 use App\Http\Controllers\admininformasipsikologicontroller;
 use App\Http\Controllers\admininputminatbakatcontroller;
 use App\Http\Controllers\admininputnilaipsikologicontroller;
@@ -13,6 +14,7 @@ use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminminatbakatcontroller;
 use App\Http\Controllers\adminpenggunacontroller;
+use App\Http\Controllers\adminpenjurusancontroller;
 use App\Http\Controllers\adminreferensicontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminsekolahcontroller;
@@ -153,6 +155,18 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'update'])->name('sekolah.inputminatbakat.update');
     Route::delete('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'destroy'])->name('sekolah.inputminatbakat.destroy');
 
+
+    //penjurusan
+    Route::get('/admin/sekolah/{id}/penjurusan', [adminpenjurusancontroller::class, 'index'])->name('sekolah.penjurusan');
+
+    //hasilpsikologi
+    Route::get('/admin/sekolah/{id}/hasilpsikologi', [adminhasilpsikologicontroller::class, 'index'])->name('sekolah.hasilpsikologi');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/create', [adminhasilpsikologicontroller::class, 'create'])->name('sekolah.hasilpsikologi.create');
+    Route::post('/admin/sekolah/{id}/hasilpsikologi/create', [adminhasilpsikologicontroller::class, 'store'])->name('sekolah.hasilpsikologi.store');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/cari', [adminhasilpsikologicontroller::class, 'cari'])->name('sekolah.hasilpsikologi.cari');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'edit'])->name('sekolah.hasilpsikologi.edit');
+    Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
+    Route::delete('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
 
       //pengguna
       Route::get('/admin/sekolah/{id}/pengguna', [adminpenggunacontroller::class, 'index'])->name('sekolah.pengguna');

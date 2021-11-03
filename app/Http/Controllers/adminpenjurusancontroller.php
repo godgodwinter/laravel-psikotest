@@ -6,9 +6,10 @@ use App\Models\minatbakat;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-class admininputminatbakatcontroller extends Controller
+use Illuminate\Support\Facades\DB;
+
+class adminpenjurusancontroller extends Controller
 {
     public function __construct()
     {
@@ -23,7 +24,7 @@ class admininputminatbakatcontroller extends Controller
     }
     public function index(Request $request,sekolah $id)
     {
-        $pages='inputminatbakat';
+        $pages='penjurusan';
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
@@ -34,7 +35,7 @@ class admininputminatbakatcontroller extends Controller
 
         $dataakhir_array = $dataakhir->toArray();
 
-        $master=minatbakat::where('kategori','Minat dan Bakat')
+        $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
 
@@ -76,6 +77,6 @@ class admininputminatbakatcontroller extends Controller
             ]);
         }
         // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master'));
+        return view('pages.admin.sekolah.pages.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master'));
     }
 }

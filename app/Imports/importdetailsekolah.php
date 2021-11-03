@@ -45,6 +45,7 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
     $no=0;
     foreach($rows as $row){
     if($no>0){
+        if(($row[2]!=null) AND ($row[2]!='')){
 
     $ceknamakelas=DB::table('kelas')->where('nama',$row[1])->where('sekolah_id',$sekolah_id)->count();
     if($ceknamakelas>0){
@@ -317,6 +318,7 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
     // }
 
 
+}
 }
 $no++;
 
