@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\minatbakat;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -33,7 +34,7 @@ class admininputminatbakatcontroller extends Controller
 
         $dataakhir_array = $dataakhir->toArray();
 
-        $master=DB::table('minatbakat')->whereNull('deleted_at')
+        $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
@@ -75,6 +76,6 @@ class admininputminatbakatcontroller extends Controller
             ]);
         }
         // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian'));
+        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master'));
     }
 }
