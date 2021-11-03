@@ -48,7 +48,7 @@
 
                             <select class="js-example-basic-single form-control-sm @error('walikelas_id')
                                 is-invalid
-                            @enderror" name="walikelas_id"  style="width: 75%" required>
+                            @enderror" name="walikelas_id"  style="width: 75%" >
                                 <option disabled selected value=""> Pilih Walikelas</option>
                                 @foreach ($walikelas as $t)
                                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
