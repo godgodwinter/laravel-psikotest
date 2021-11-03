@@ -26,7 +26,11 @@ class admininputminatbakatcontroller extends Controller
     {
         $pages='inputminatbakat';
         $kelaspertama=kelas::where('sekolah_id',$id->id)->first();
-        $kelas_id=$kelaspertama->id;
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)

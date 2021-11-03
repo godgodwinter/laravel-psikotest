@@ -45,7 +45,7 @@
 
 <div class="card" id="settings-card">
     <div class="card-header">
-        <h4>Bakat dan Cita-cita kelas : {{ $kelaspertama->nama }} </h4>
+        <h4>Bakat dan Cita-cita kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }} </h4>
     </div>
     <div class="card-body babengcontainer">
 
