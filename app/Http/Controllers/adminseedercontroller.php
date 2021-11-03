@@ -569,22 +569,27 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'Hobi',
                 'kategori' => 'Minat dan Bakat',
+                'menukhusus' => 'bk',
             ],
             [
                 'nama' => 'Pekerjaan Bapak',
                 'kategori' => 'Minat dan Bakat',
+                'menukhusus' => 'bk',
             ],
             [
                 'nama' => 'Pekerjaan Ibu',
                 'kategori' => 'Minat dan Bakat',
+                'menukhusus' => 'bk',
             ],
             [
                 'nama' => 'Pekerjaan Kakek',
                 'kategori' => 'Minat dan Bakat',
+                'menukhusus' => 'bk',
             ],
             [
                 'nama' => 'Analisa Pekerjaan',
                 'kategori' => 'Minat dan Bakat',
+                'menukhusus' => 'bk',
             ],
             [
                 'nama' => 'Tipe Bakat.1',
@@ -677,15 +682,22 @@ class adminseedercontroller extends Controller
             [
                 'nama' => 'Keterangan',
                 'kategori' => 'Bakat dan Penjurusan',
+                'menukhusus' => 'bk',
             ],
         ]);
 
 
         foreach($dataku as $data){
             // dd($data['nama']);
+            if(isset($data['menukhusus'])){
+                $menukhusus=$data['menukhusus'];
+            }else{
+                $menukhusus=null;
+            }
             DB::table('minatbakat')->insert([
                 'nama' => $data['nama'],
                 'kategori' => $data['kategori'],
+                'menukhusus' => $menukhusus,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);

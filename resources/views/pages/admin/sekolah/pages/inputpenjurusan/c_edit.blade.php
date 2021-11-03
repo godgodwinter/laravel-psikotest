@@ -1,7 +1,7 @@
 
 
 
-           <form id="setting-form" method="POST" action="{{route('sekolah.penjurusan.update',[$id->id,$data->id])}}">
+           <form id="setting-form" method="POST" action="{{route('sekolah.inputminatbakat.update',[$id->id,$data->id])}}">
             @method('put')
                 @csrf
                 <div class="card" id="settings-card">

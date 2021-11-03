@@ -18,6 +18,7 @@ class minatbakat extends Model
         protected $fillable = [
             'nama',
             'kategori',
+            'menukhusus',
         ];
 
 }
