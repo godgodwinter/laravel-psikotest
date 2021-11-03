@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\kelas;
 use App\Models\minatbakat;
+use App\Models\minatbakatdetail;
 use App\Models\sekolah;
+use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -150,5 +152,61 @@ class admininputminatbakatcontroller extends Controller
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
         return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
+    }
+    public function edit(Request $request,sekolah $id,$siswa){
+        // dd('edit');
+        $data=siswa::where('sekolah_id',$id->id)->where('nomerinduk',$siswa)->first();
+
+        $master=minatbakat::where('kategori','Minat dan Bakat')
+        ->orderBy('id','asc')
+        ->get();
+        // dd($data,$siswa);
+        $pages='inputminatbakat';
+        return view('pages.admin.sekolah.pages.inputminatbakat.edit',compact('pages','request','siswa','id','data','master'));
+
+    }
+    public function update(Request $request,sekolah $id,siswa $siswa){
+
+        $master=minatbakat::where('kategori','Minat dan Bakat')
+        ->orderBy('id','asc')
+        ->get();
+
+        // dd($request['1']);
+        foreach($master as $m){
+            if($request[$m->id]!=null){
+                $periksadetail=minatbakatdetail::where('minatbakat_id',$m->id)
+                ->where('sekolah_id',$id->id)
+                ->where('siswa_id',$siswa->id)
+                ->count();
+
+                if($periksadetail>0){
+
+                    minatbakatdetail::where('minatbakat_id',$m->id)
+                    ->where('sekolah_id',$id->id)
+                    ->where('siswa_id',$siswa->id)
+                    ->update([
+                        'nilai'     =>   $request[$m->id],
+                       'updated_at'=>date("Y-m-d H:i:s")
+                    ]);
+
+                }else{
+                    DB::table('minatbakatdetail')->insert(
+                        array(
+                               'siswa_id'     =>   $siswa->id,
+                               'minatbakat_id'     =>   $m->id,
+                               'nilai'     =>   $request[$m->id],
+                               'sekolah_id'     =>   $id->id,
+                               'created_at'=>date("Y-m-d H:i:s"),
+                               'updated_at'=>date("Y-m-d H:i:s")
+                        ));
+
+                }
+
+            }
+            // dd($request[$m->id]);
+        }
+        // dd($request);
+        return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+
     }
 }

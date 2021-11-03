@@ -151,8 +151,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/inputminatbakat/create', [admininputminatbakatcontroller::class, 'create'])->name('sekolah.inputminatbakat.create');
     Route::post('/admin/sekolah/{id}/inputminatbakat/create', [admininputminatbakatcontroller::class, 'store'])->name('sekolah.inputminatbakat.store');
     Route::get('/admin/sekolah/{id}/inputminatbakat/cari', [admininputminatbakatcontroller::class, 'cari'])->name('sekolah.inputminatbakat.cari');
-    Route::get('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'edit'])->name('sekolah.inputminatbakat.edit');
-    Route::put('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'update'])->name('sekolah.inputminatbakat.update');
+    Route::get('/admin/sekolah/{id}/inputminatbakat/{siswa}', [admininputminatbakatcontroller::class, 'edit'])->name('sekolah.inputminatbakat.edit');
+    Route::put('/admin/sekolah/{id}/inputminatbakat/{siswa}', [admininputminatbakatcontroller::class, 'update'])->name('sekolah.inputminatbakat.update');
     Route::delete('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'destroy'])->name('sekolah.inputminatbakat.destroy');
 
 
