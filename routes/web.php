@@ -154,6 +154,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/inputminatbakat/{siswa}', [admininputminatbakatcontroller::class, 'edit'])->name('sekolah.inputminatbakat.edit');
     Route::put('/admin/sekolah/{id}/inputminatbakat/{siswa}', [admininputminatbakatcontroller::class, 'update'])->name('sekolah.inputminatbakat.update');
     Route::delete('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'destroy'])->name('sekolah.inputminatbakat.destroy');
+    //export
+    Route::get('/admin/datainputminatbakat/{id}/export', [admininputminatbakatcontroller::class, 'export'])->name('sekolah.inputminatbakat.export');
+    //import
+    Route::post('/admin/datainputminatbakat/{id}/import',[admininputminatbakatcontroller::class, 'import'])->name('sekolah.inputminatbakat.import');
+
 
 
     //penjurusan

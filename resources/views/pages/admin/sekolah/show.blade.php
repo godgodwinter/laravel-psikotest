@@ -36,6 +36,11 @@ Detail Sekolah
             data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
             Import Detail Data Sekolah
         </button>
+
+        <a href="{{ route('sekolah.inputminatbakat.export',$id->id) }}" type="submit" value="Import"
+            class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                    class="fas fa-download"></i> Export </span></a>
+
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-12">
                   <div class="card profile-widget">
