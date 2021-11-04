@@ -36,6 +36,7 @@ use App\Http\Controllers\bkcatatankasussiswacontroller;
 use App\Http\Controllers\bkcatatanpengembangandirisiswacontroller;
 use App\Http\Controllers\bkcatatanprestasisiswacontroller;
 use App\Http\Controllers\pagesController;
+use App\Http\Controllers\prosescontroller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -254,7 +255,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         // Proses
       Route::get('admin/datasekolah/export', 'App\Http\Controllers\prosescontroller@exportsekolah')->name('sekolah.export');
       Route::post('admin/datasekolah/import', 'App\Http\Controllers\prosescontroller@importsekolah')->name('sekolah.import');
+  //export
+  Route::get('/admin/datasekolah/exportdetailsekolah/{id}', [prosescontroller::class, 'exportdetailsekolah'])->name('detailsekolah.export');
 
+  //import
       Route::post('admin/datasekolah/importdetailsekolah/{id}', 'App\Http\Controllers\prosescontroller@importdetailsekolah')->name('detailsekolah.import');
 
 

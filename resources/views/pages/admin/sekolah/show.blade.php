@@ -37,7 +37,7 @@ Detail Sekolah
             Import Detail Data Sekolah
         </button>
 
-        <a href="{{ route('sekolah.inputminatbakat.export',$id->id) }}" type="submit" value="Import"
+        <a href="{{ route('detailsekolah.export',$id->id) }}" type="submit" value="Import"
             class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
                     class="fas fa-download"></i> Export </span></a>
 
