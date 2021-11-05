@@ -10,6 +10,7 @@ use App\Http\Controllers\admininformasipsikologicontroller;
 use App\Http\Controllers\admininputminatbakatcontroller;
 use App\Http\Controllers\admininputnilaipsikologicontroller;
 use App\Http\Controllers\adminkelascontroller;
+use App\Http\Controllers\adminklasifikasijabatancontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminminatbakatcontroller;
@@ -191,6 +192,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'update'])->name('sekolah.pengguna.update');
       Route::delete('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'destroy'])->name('sekolah.pengguna.destroy');
       Route::delete('/admin/sekolah/pengguna/multidel/{id}', [adminpenggunacontroller::class, 'multidel'])->name('sekolah.pengguna.multidel');
+
+      //klasifikasijabatan
+      Route::get('/admin/klasifikasijabatan', [adminklasifikasijabatancontroller::class, 'index'])->name('klasifikasijabatan');
+      Route::get('/admin/klasifikasijabatan/create', [adminklasifikasijabatancontroller::class, 'create'])->name('klasifikasijabatan.create');
+      Route::post('/admin/klasifikasijabatan/create', [adminklasifikasijabatancontroller::class, 'store'])->name('klasifikasijabatan.store');
+      Route::get('/admin/klasifikasijabatan/cari', [adminklasifikasijabatancontroller::class, 'cari'])->name('klasifikasijabatan.cari');
+      Route::get('/admin/klasifikasijabatan/edit/{data}', [adminklasifikasijabatancontroller::class, 'edit'])->name('klasifikasijabatan.edit');
+      Route::put('/admin/klasifikasijabatan/update/{data}', [adminklasifikasijabatancontroller::class, 'update'])->name('klasifikasijabatan.update');
+      Route::delete('/admin/klasifikasijabatan/delete/{data}', [adminklasifikasijabatancontroller::class, 'destroy'])->name('klasifikasijabatan.destroy');
+      Route::delete('/admin/dataklasifikasijabatan/multidel', [adminklasifikasijabatancontroller::class, 'multidel'])->name('klasifikasijabatan.multidel');
+
 
       //referensi
       Route::get('/admin/referensi', [adminreferensicontroller::class, 'index'])->name('referensi');
