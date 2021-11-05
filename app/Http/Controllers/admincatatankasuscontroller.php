@@ -49,9 +49,12 @@ class admincatatankasuscontroller extends Controller
                 global $request;
                 $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
             })
+            ->where('sekolah_id', $id->id)
+            ->orWhere('kasus', 'like', "%" . $request->cari . "%")
+            ->where('sekolah_id', $id->id)
             ->paginate(Fungsi::paginationjml());
         // dd($datas,$cari);
-        return view('pages.bk.catatankasussiswa.index', compact('pages', 'id', 'request', 'datas'));
+        return view('pages.admin.sekolah.pages.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
     }
 
     public function create(sekolah $id)
