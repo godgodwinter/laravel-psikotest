@@ -27,9 +27,9 @@ Referensi Psikologi
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <div class="d-flex bd-highlight mb-0 align-items-center">
 
-                    <div id="babeng-row ">
+                    <div class="p-2 bd-highlight">
 
                         <form action="{{ route('referensi.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
@@ -44,11 +44,15 @@ Referensi Psikologi
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
+                        </div>
+                        <div class="p-2 bd-highlight">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
 
+                        </div>
+                        <div class="ml-auto p-2 bd-highlight">
                             <a href="{{route('referensi.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
@@ -69,13 +73,13 @@ Referensi Psikologi
                     <x-jsdatatable/>
                 @endif
 
-                <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
+                <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
                             <th class="text-center">File</th>
-                            <th width="10%" class="text-center">Aksi</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,7 +102,7 @@ Referensi Psikologi
 
                                 </td>
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="{{ route('referensi.edit',$data->id)}}" />
                                     <x-button-delete link="{{ route('referensi.destroy',$data->id)}}" />
@@ -112,6 +116,8 @@ Referensi Psikologi
                     </tbody>
                 </table>
 
+                <div class="d-flex justify-content-between flex-row-reverse mt-3">
+                    <div >
 @php
 $cari=$request->cari;
 $tapel_nama=$request->tapel_nama;
@@ -123,6 +129,8 @@ $kelas_nama=$request->kelas_nama;
 //   ->appends(['tapel_nama'=>$tapel_nama])
 //   ->appends(['kelas_nama'=>$kelas_nama])
   ->links() }}
+                    </div>
+                    <div>
 {{-- <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Data ditemukan</li>
@@ -132,7 +140,7 @@ $kelas_nama=$request->kelas_nama;
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
+        </a></div></div>
             </div>
         </div>
     </div>
