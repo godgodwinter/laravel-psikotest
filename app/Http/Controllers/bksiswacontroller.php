@@ -19,8 +19,18 @@ public function __construct()
         if(Auth::user()->tipeuser!='bk'){
             return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
         }
+        //1.pengguna
+        // 2. datasekolah => status
+        // jika tidak aktfi redirect beranda !='Aktif'
+        if(Auth::user()->tipeuser!='bk'){
+            return redirect()->route('bk.beranda')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+        }
+
+
     return $next($request);
     });
+
+
 }
     public function index(Request $request){
             $pages='bk-siswa';

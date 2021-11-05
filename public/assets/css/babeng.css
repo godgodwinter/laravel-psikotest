@@ -76,7 +76,7 @@ input[readonly]{
     /* overflow: scroll; */
         display: block;
         max-width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
     /* overflow-wrap: break-word; */
 }
 

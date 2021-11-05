@@ -36,6 +36,11 @@ Detail Sekolah
             data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
             Import Detail Data Sekolah
         </button>
+
+        <a href="{{ route('detailsekolah.export',$id->id) }}" type="submit" value="Import"
+            class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                    class="fas fa-download"></i> Export </span></a>
+
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-12">
                   <div class="card profile-widget">
@@ -72,44 +77,45 @@ Detail Sekolah
                                     <div class="user-name mt-2"><h4>{{$id->kepsek_nama}}</h4></div>
                                     <div class="text-job text-muted">Kepala Sekolah</div>
                                     <div class="user-cta">
-                                        {{-- <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('Aktif');" data-unfollow-action="alert('Tidak Aktif');">{{$id->status}}</a> --}}
 
-                                        <input name="status" type="button" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" onclick="myFunction()"  id="tomb" value="{{$id->status}}">
-                                        <input name="status" type="hidden" onclick="myFunction()" id="status" value="{{$id->status}}">
+                                        <input name="status" type="button" class="btn btn-{{$id->status!='Aktif' ? 'danger' : 'success' }}" id="btnstatus" value="{{$id->status}}">
+
+
                                         <script type="text/javascript">
-                                            function myFunction() {
+        $(function () {
 
-                                            var btn = document.getElementById("status");
-                                            var tomb = document.getElementById("tomb");
+            let btnstatus=$('#btnstatus');
+            // alert(btnstatus.val();)
+            btnstatus.click(function () {
+                // alert('test')
+                fetch_customer_data();
+            });
 
-                                            if (tomb.value == "Aktif") {
-                                                btn.value = "Tidak Aktif";
-                                                btn.innerHTML = "Tidak Aktif";
-                                                tomb.value = "Tidak Aktif";
+                 //fungsi kirim data
+                 function fetch_customer_data(query = '') {
+                            console.log(query);
+                                $.ajax({
+                                    url: "{{ route('api.sekolah.updatestatus',$id->id) }}",
+                                    method: 'GET',
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                    query:query,
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        // console.log(query);
+                                        btnstatus.val(data.output);
+                                        btnstatus.prop('class',data.warna);
+                                        // console.log(data.output);
+                                        // $("#datasiswa").html(data.output);
+                                        // console.log(data.output);
+                                        // console.log(data.datas);
+                                    }
+                                })
+                            }
 
-                                                tomb.innerHTML = "Tidak Aktif";
-                                             }
-                                            else {
-                                                btn.value = "Aktif";
-                                                btn.innerHTML = "Aktif";
-
-                                                tomb.value = "Aktif";
-                                                tomb.innerHTML = "Aktif";
-                                            }
-
-
-
-                                        }
+        });
                                         </script>
-                                    {{-- <select name="status" class="form-control">
-                                        @if(old('status'))
-                                           <option>{{old('status')}}</option>
-                                        @else
-                                            <option>{{$id->status}}</option>
-                                        @endif
-                                        <option>Aktif</option>
-                                        <option>Tidak Aktif</option>
-                                    </select> --}}
                                     </div>
 
                                   </div>
@@ -144,34 +150,6 @@ Detail Sekolah
                                     </script>
                                 @endpush
 
-                                <div class="form-group row mb-4 mt-3">
-                                    <div class="col-sm-4 col-md-4">
-                                      <div id="image-preview" class="image-preview">
-                                        <label for="image-upload" id="image-label2">Logo Sekolah</label>
-                                        <input type="file" name="sekolah_logo" id="image-upload" class="@error('sekolah_logo')
-                                        is_invalid
-                                    @enderror"  accept="image/png, image/gif, image/jpeg" />
-
-                                    @error('sekolah_logo')<div class="invalid-feedback"> {{$message}}</div>
-                                    @enderror
-                                      </div>
-                                    </div>
-                                  </div>
-
-
-                                <div class="form-group row mb-4 mt-3">
-                                    <div class="col-sm-4 col-md-4">
-                                      <div id="image-preview2" class="image-preview">
-                                        <label for="image-upload2" id="image-label">Foto Kepala Sekolah</label>
-                                        <input type="file" name="kepsek_photo" id="image-upload2" class="@error('kepsek_photo')
-                                            is_invalid
-                                        @enderror" accept="image/png, image/gif, image/jpeg" />
-
-                                    @error('kepsek_photo')<div class="invalid-feedback"> {{$message}}</div>
-                                    @enderror
-                                      </div>
-                                    </div>
-                                  </div>
 
 
 
@@ -240,6 +218,38 @@ Detail Sekolah
                                     </div>
                                   </div>
 
+                                  <div class="row">
+
+                                <div class="form-group row mb-4 mt-3">
+                                    <div class="col-sm-4 col-md-4">
+                                      <div id="image-preview" class="image-preview">
+                                        <label for="image-upload" id="image-label2">Logo Sekolah</label>
+                                        <input type="file" name="sekolah_logo" id="image-upload" class="@error('sekolah_logo')
+                                        is_invalid
+                                    @enderror"  accept="image/png, image/gif, image/jpeg" />
+
+                                    @error('sekolah_logo')<div class="invalid-feedback"> {{$message}}</div>
+                                    @enderror
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                <div class="form-group row mb-4 mt-3 ml-3">
+                                    <div class="col-sm-4 col-md-4">
+                                      <div id="image-preview2" class="image-preview">
+                                        <label for="image-upload2" id="image-label">Foto Kepala Sekolah</label>
+                                        <input type="file" name="kepsek_photo" id="image-upload2" class="@error('kepsek_photo')
+                                            is_invalid
+                                        @enderror" accept="image/png, image/gif, image/jpeg" />
+
+                                    @error('kepsek_photo')<div class="invalid-feedback"> {{$message}}</div>
+                                    @enderror
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
                   <div class="card-footer text-md-right">
                     <button class="btn btn-primary" id="save-btn">Simpan</button>
                   </div>

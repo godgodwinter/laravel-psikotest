@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\inputnilaipsikologi;
+use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -188,6 +189,47 @@ $nomer=0;
             'warna' => $alldatas,
             'datas' => $output,
             'first' => $alldatas
+        ], 200);
+
+
+    }
+
+
+    public function updatestatusskolah(Request $request,sekolah $id){
+        $output='';
+        $datas='';
+        $warna='';
+        $first='';
+        $cek='';
+
+        $ambildata=sekolah::where('id',$id->id)->first();
+        $status=$ambildata->status;
+
+        if($status=='Aktif'){
+            $statusbaru='Nonaktif';
+            $warna='btn btn-danger';
+        }else{
+            $statusbaru='Aktif';
+            $warna='btn btn-success';
+        }
+
+        sekolah::where('id',$id->id)
+        ->update([
+             'status'     =>   $statusbaru,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'success',
+            'output' => $statusbaru,
+            // 'status' => $data->status,
+            'warna' => $warna,
+            'datas' => $id,
+            'first' => $output
         ], 200);
 
 

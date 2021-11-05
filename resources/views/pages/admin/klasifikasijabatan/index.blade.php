@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Master Nilai Psikologis
+Klasifikasi Jabatan
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Master Nilai Psikologis
 
                     <div class="p-2 bd-highlight">
 
-                        <form action="{{ route('masternilaipsikologi.cari') }}" method="GET">
+                        <form action="{{ route('klasifikasijabatan.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -44,22 +44,22 @@ Master Nilai Psikologis
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
                         </div>
-                            <div class="p-2 bd-highlight">
+                    <div class="p-2 bd-highlight">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
                         </div>
-                            <div class="ml-auto p-2 bd-highlight">
+                    <div class="ml-auto p-2 bd-highlight">
 
-                            <a href="{{route('masternilaipsikologi.create')}}" type="submit" value="Import"
+                            <a href="{{route('klasifikasijabatan.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
                             </button>
-                            <a href="/admin/masternilaipsikologi/export" type="submit" value="Import"
+                            <a href="/admin/klasifikasijabatan/export" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Export </span></a> --}}
                         </form>
@@ -67,7 +67,7 @@ Master Nilai Psikologis
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('masternilaipsikologi.multidel')}}" />
+                <x-jsmultidel link="{{route('klasifikasijabatan.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
@@ -76,8 +76,12 @@ Master Nilai Psikologis
                     <thead>
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama</th>
-                            <th class="text-center">Singkatan</th>
+                            <th >Bidang</th>
+                            <th >Pekerjaan</th>
+                            <th >Nilai Standart</th>
+                            <th >IQ Standart</th>
+                            <th >Jurusan</th>
+                            <th >Bidang Studi yang ditekuni</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -87,21 +91,33 @@ Master Nilai Psikologis
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->nama,25,' ...')}}
+                                <td> {{Str::limit($data->bidang,25,' ...')}}
                                 </td>
                                 <td class="text-center">
-                                    {{Str::limit($data->singkatan,25,' ...')}}
+                                    {{Str::limit($data->pekerjaan,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->nilaistandart,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->iqstandart,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->jurusan,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->bidangstudi,25,' ...')}}
                                 </td>
 
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                    <x-button-edit link="{{ route('masternilaipsikologi.edit',$data->id)}}" />
-                                    <x-button-delete link="{{ route('masternilaipsikologi.destroy',$data->id)}}" />
+                                    <x-button-edit link="{{ route('klasifikasijabatan.edit',$data->id)}}" />
+                                    <x-button-delete link="{{ route('klasifikasijabatan.destroy',$data->id)}}" />
                                 </td>
                             </tr>
                 @empty
                             <tr>
-                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                                <td colspan="8" class="text-center">Data tidak ditemukan</td>
                             </tr>
                 @endforelse
                     </tbody>
@@ -121,19 +137,19 @@ $kelas_nama=$request->kelas_nama;
 //   ->appends(['kelas_nama'=>$kelas_nama])
   ->links() }}
                     </div>
-                    <div>
 {{-- <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Data ditemukan</li>
 
 </ol>
 </nav> --}}
+<div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
         </a>
-    </div>
-</div>
+            </div>
+            </div>
             </div>
         </div>
     </div>

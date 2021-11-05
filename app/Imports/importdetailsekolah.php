@@ -73,6 +73,11 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
 
     }
 
+    $ambilkelas=kelas::where('nama',$row[1])->where('sekolah_id',$sekolah_id)->first();
+    $ambilkelas_id=$ambilkelas->id;
+
+    // dd($ambilkelas_id);
+
 
                 // dd('testing',$row[1],$sekolah_id,$ceknamakelas);
                 // $cek
@@ -81,12 +86,14 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
     $ceksiswa=DB::table('siswa')->where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)->count();
     if($ceksiswa>0){
         $ambilsiswa=DB::table('siswa')->where('nomerinduk',$row[2])->where('sekolah_id',$sekolah_id)->first();
+
         // updaTe
         siswa::where('id',$ambilsiswa->id)
         ->update(
             [
                 'nama'=>$row[3],
                 'sekolah_id'     =>   $sekolah_id,
+                'kelas_id'     =>   $ambilkelas_id,
                     'deleted_at'=>null,
                     'created_at'=>date("Y-m-d H:i:s"),
                 'updated_at'=>date("Y-m-d H:i:s")
@@ -107,6 +114,7 @@ class importdetailsekolah implements ToCollection,WithCalculatedFormulas
                 'nama'     =>  $row[3],
                 'sekolah_id'     =>   $sekolah_id,
                 'nomerinduk'     =>   $row[2],
+                'kelas_id'     =>   $ambilkelas_id,
                 'deleted_at' => null,
                 'created_at'=>date("Y-m-d H:i:s"),
                 'updated_at'=>date("Y-m-d H:i:s")

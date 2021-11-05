@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportminatbakat;
 use App\Models\kelas;
 use App\Models\minatbakat;
 use App\Models\minatbakatdetail;
@@ -11,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+
 class admininputminatbakatcontroller extends Controller
 {
     public function __construct()
@@ -208,5 +211,10 @@ class admininputminatbakatcontroller extends Controller
         // dd($request);
         return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
 
+    }
+    public function export(sekolah $id,Request $request){
+        // dd($request);
+        $tgl=date("YmdHis");
+		return Excel::download(new exportminatbakat($id), 'psikotest-minatbakat-'.$id->id.'-'.$tgl.'.xlsx');
     }
 }

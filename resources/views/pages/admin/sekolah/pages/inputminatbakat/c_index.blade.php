@@ -24,13 +24,13 @@
                 </span>
             </div>
             <div class="ml-auto p-2 bd-highlight">
-                <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                 Import
             </button>
-            <a href="#" type="submit" value="Import"
+            <a href="{{ route('sekolah.inputminatbakat.export',$id->id) }}" type="submit" value="Import"
                 class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
-                        class="fas fa-download"></i> Export </span></a>
+                        class="fas fa-download"></i> Export </span></a> --}}
             </form>
         </div>
 
@@ -202,7 +202,7 @@
 <!-- Import Excel -->
 <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form method="post" action="#" enctype="multipart/form-data">
+      <form method="post" action="{{ route('sekolah.inputminatbakat.import',$id->id) }}" enctype="multipart/form-data">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Import Nilai Siswa </h5>

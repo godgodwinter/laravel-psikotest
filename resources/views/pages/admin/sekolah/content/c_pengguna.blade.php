@@ -1,21 +1,24 @@
 
                 <div class="card" id="settings-card">
-                  <div class="card-header">
+                  {{-- <div class="card-header">
                     <h4>User Sekolah </h4>
-                  </div>
+                  </div> --}}
                   <div class="card-body">
-                    <div id="babeng-bar" class="text-right mt-2">
-
-                        <div id="babeng-row ">
+                    <div class="d-flex bd-highlight mb-0 align-items-center">
+                        <div class="p-2 bd-highlight">
 
                             <form action="{{route('sekolah.pengguna.cari',$id->id)}}" method="GET">
                                 <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                            </div>
+                            <div class="p-2 bd-highlight">
 
                                 <span>
                                     <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                         value="Cari">
                                 </span>
 
+                            </div>
+                            <div class="ml-auto p-2 bd-highlight">
                                 <a href="{{route('sekolah.pengguna.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
@@ -34,13 +37,13 @@
                         <x-jsdatatable/>
                     @endif
 
-            <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
+            <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                 <thead>
                     <tr>
-                        <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
+                        <th  class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                         <th>Nama </th>
                         <th>Username</th>
-                        <th width="150px" class="text-center">Aksi</th>
+                        <th  class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +58,7 @@
                                     {{$data->users!=null ? $data->users->username : 'Data tidak ditemukan'}}
                                 </td>
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="{{ route('sekolah.pengguna.edit',[$id->id,$data->id])}}" />
                                     <x-button-delete link="{{ route('sekolah.pengguna.edit',[$id->id,$data->id])}}" />
@@ -69,6 +72,8 @@
 
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between flex-row-reverse mt-3">
+                <div >
             @php
 $cari=$request->cari;
 $tapel_nama=$request->tapel_nama;
@@ -86,10 +91,14 @@ $kelas_nama=$request->kelas_nama;
 
 </ol>
 </nav> --}}
+                </div>
+                <div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
         </a>
+    </div>
+</div>
 
                         </div>
                     </div>

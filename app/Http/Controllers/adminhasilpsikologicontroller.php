@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exporthasilpsikologi;
 use App\Helpers\Fungsi;
+use App\Imports\importhasilpsikologi;
 use App\Models\hasilpsikologi;
 use App\Models\sekolah;
 use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class adminhasilpsikologicontroller extends Controller
 {
@@ -127,5 +130,29 @@ class adminhasilpsikologicontroller extends Controller
         return redirect()->route('sekolah.hasilpsikologi',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
+    public function export(sekolah $id,Request $request){
+        // dd($request);
+        $tgl=date("YmdHis");
+		return Excel::download(new exporthasilpsikologi($id), 'psikotest-hasilpsikologi-'.$id->id.'-'.$tgl.'.xlsx');
+    }
+
+	public function import(sekolah $id,Request $request)
+	{
+		// dd($request,$id->id);
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		$file = $request->file('file');
+
+		$nama_file = rand().$file->getClientOriginalName();
+
+		$file->move('file_temp',$nama_file);
+
+		Excel::import(new importhasilpsikologi($id), public_path('/file_temp/'.$nama_file));
+
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+
+	}
 
 }

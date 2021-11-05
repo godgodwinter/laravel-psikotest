@@ -2,6 +2,9 @@
 
 use App\Helpers\Fungsi;
 use App\Http\Controllers\adminapicontroller;
+use App\Http\Controllers\admincatatankasuscontroller;
+use App\Http\Controllers\admincatatanpengembangandiricontroller;
+use App\Http\Controllers\admincatatanprestasicontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
@@ -10,6 +13,7 @@ use App\Http\Controllers\admininformasipsikologicontroller;
 use App\Http\Controllers\admininputminatbakatcontroller;
 use App\Http\Controllers\admininputnilaipsikologicontroller;
 use App\Http\Controllers\adminkelascontroller;
+use App\Http\Controllers\adminklasifikasijabatancontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminminatbakatcontroller;
@@ -39,6 +43,7 @@ use App\Http\Controllers\bkinputminatbakatcontroller;
 use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
+use App\Http\Controllers\prosescontroller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -63,7 +68,9 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
     Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
+    Route::get('/admin/profile', [adminsettingscontroller::class, 'profile'])->name('profile');
     Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
+    Route::put('/admin/profile/{id}', [adminsettingscontroller::class, 'updateprofile'])->name('profile.update');
 
     //sekolah
     Route::get('/admin/sekolah', [adminsekolahcontroller::class, 'index'])->name('sekolah');
@@ -157,6 +164,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/inputminatbakat/{siswa}', [admininputminatbakatcontroller::class, 'edit'])->name('sekolah.inputminatbakat.edit');
     Route::put('/admin/sekolah/{id}/inputminatbakat/{siswa}', [admininputminatbakatcontroller::class, 'update'])->name('sekolah.inputminatbakat.update');
     Route::delete('/admin/sekolah/{id}/inputminatbakat/{data}', [admininputminatbakatcontroller::class, 'destroy'])->name('sekolah.inputminatbakat.destroy');
+    //export
+    Route::get('/admin/datainputminatbakat/{id}/export', [admininputminatbakatcontroller::class, 'export'])->name('sekolah.inputminatbakat.export');
+    //import
+    Route::post('/admin/datainputminatbakat/{id}/import',[admininputminatbakatcontroller::class, 'import'])->name('sekolah.inputminatbakat.import');
+
 
 
     //penjurusan
@@ -173,6 +185,43 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'edit'])->name('sekolah.hasilpsikologi.edit');
     Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
     Route::delete('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
+    //export
+    Route::get('/admin/datahasilpsikologi/{id}/export', [adminhasilpsikologicontroller::class, 'export'])->name('sekolah.hasilpsikologi.export');
+    //import
+    Route::post('/admin/datahasilpsikologi/{id}/import',[adminhasilpsikologicontroller::class, 'import'])->name('sekolah.hasilpsikologi.import');
+
+
+    //catatankasus
+    Route::get('/admin/sekolah/{id}/catatankasus', [admincatatankasuscontroller::class, 'index'])->name('sekolah.catatankasus');
+    Route::get('/admin/sekolah/{id}/catatankasus/create', [admincatatankasuscontroller::class, 'create'])->name('sekolah.catatankasus.create');
+    Route::post('/admin/sekolah/{id}/catatankasus/create', [admincatatankasuscontroller::class, 'store'])->name('sekolah.catatankasus.store');
+    Route::get('/admin/sekolah/{id}/catatankasus/cari', [admincatatankasuscontroller::class, 'cari'])->name('sekolah.catatankasus.cari');
+    Route::get('/admin/sekolah/{id}/catatankasus/{data}', [admincatatankasuscontroller::class, 'edit'])->name('sekolah.catatankasus.edit');
+    Route::put('/admin/sekolah/{id}/catatankasus/{data}', [admincatatankasuscontroller::class, 'update'])->name('sekolah.catatankasus.update');
+    Route::delete('/admin/sekolah/{id}/catatankasus/{data}', [admincatatankasuscontroller::class, 'destroy'])->name('sekolah.catatankasus.destroy');
+    Route::delete('/admin/sekolah/catatankasus/multidel/{id}', [admincatatankasuscontroller::class, 'multidel'])->name('sekolah.catatankasus.multidel');
+
+    //catatanpengembangandiri
+    Route::get('/admin/sekolah/{id}/catatanpengembangandiri', [admincatatanpengembangandiricontroller::class, 'index'])->name('sekolah.catatanpengembangandiri');
+    Route::get('/admin/sekolah/{id}/catatanpengembangandiri/create', [admincatatanpengembangandiricontroller::class, 'create'])->name('sekolah.catatanpengembangandiri.create');
+    Route::post('/admin/sekolah/{id}/catatanpengembangandiri/create', [admincatatanpengembangandiricontroller::class, 'store'])->name('sekolah.catatanpengembangandiri.store');
+    Route::get('/admin/sekolah/{id}/catatanpengembangandiri/cari', [admincatatanpengembangandiricontroller::class, 'cari'])->name('sekolah.catatanpengembangandiri.cari');
+    Route::get('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'edit'])->name('sekolah.catatanpengembangandiri.edit');
+    Route::put('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'update'])->name('sekolah.catatanpengembangandiri.update');
+    Route::delete('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'destroy'])->name('sekolah.catatanpengembangandiri.destroy');
+    Route::delete('/admin/sekolah/catatanpengembangandiri/multidel/{id}', [admincatatanpengembangandiricontroller::class, 'multidel'])->name('sekolah.catatanpengembangandiri.multidel');
+
+
+    //catatanprestasi
+    Route::get('/admin/sekolah/{id}/catatanprestasi', [admincatatanprestasicontroller::class, 'index'])->name('sekolah.catatanprestasi');
+    Route::get('/admin/sekolah/{id}/catatanprestasi/create', [admincatatanprestasicontroller::class, 'create'])->name('sekolah.catatanprestasi.create');
+    Route::post('/admin/sekolah/{id}/catatanprestasi/create', [admincatatanprestasicontroller::class, 'store'])->name('sekolah.catatanprestasi.store');
+    Route::get('/admin/sekolah/{id}/catatanprestasi/cari', [admincatatanprestasicontroller::class, 'cari'])->name('sekolah.catatanprestasi.cari');
+    Route::get('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'edit'])->name('sekolah.catatanprestasi.edit');
+    Route::put('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'update'])->name('sekolah.catatanprestasi.update');
+    Route::delete('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'destroy'])->name('sekolah.catatanprestasi.destroy');
+    Route::delete('/admin/sekolah/catatanprestasi/multidel/{id}', [admincatatanprestasicontroller::class, 'multidel'])->name('sekolah.catatanprestasi.multidel');
+
 
       //pengguna
       Route::get('/admin/sekolah/{id}/pengguna', [adminpenggunacontroller::class, 'index'])->name('sekolah.pengguna');
@@ -183,6 +232,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'update'])->name('sekolah.pengguna.update');
       Route::delete('/admin/sekolah/{id}/pengguna/{data}', [adminpenggunacontroller::class, 'destroy'])->name('sekolah.pengguna.destroy');
       Route::delete('/admin/sekolah/pengguna/multidel/{id}', [adminpenggunacontroller::class, 'multidel'])->name('sekolah.pengguna.multidel');
+
+      //klasifikasijabatan
+      Route::get('/admin/klasifikasijabatan', [adminklasifikasijabatancontroller::class, 'index'])->name('klasifikasijabatan');
+      Route::get('/admin/klasifikasijabatan/create', [adminklasifikasijabatancontroller::class, 'create'])->name('klasifikasijabatan.create');
+      Route::post('/admin/klasifikasijabatan/create', [adminklasifikasijabatancontroller::class, 'store'])->name('klasifikasijabatan.store');
+      Route::get('/admin/klasifikasijabatan/cari', [adminklasifikasijabatancontroller::class, 'cari'])->name('klasifikasijabatan.cari');
+      Route::get('/admin/klasifikasijabatan/edit/{data}', [adminklasifikasijabatancontroller::class, 'edit'])->name('klasifikasijabatan.edit');
+      Route::put('/admin/klasifikasijabatan/update/{data}', [adminklasifikasijabatancontroller::class, 'update'])->name('klasifikasijabatan.update');
+      Route::delete('/admin/klasifikasijabatan/delete/{data}', [adminklasifikasijabatancontroller::class, 'destroy'])->name('klasifikasijabatan.destroy');
+      Route::delete('/admin/dataklasifikasijabatan/multidel', [adminklasifikasijabatancontroller::class, 'multidel'])->name('klasifikasijabatan.multidel');
+
 
       //referensi
       Route::get('/admin/referensi', [adminreferensicontroller::class, 'index'])->name('referensi');
@@ -252,7 +312,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         // Proses
       Route::get('admin/datasekolah/export', 'App\Http\Controllers\prosescontroller@exportsekolah')->name('sekolah.export');
       Route::post('admin/datasekolah/import', 'App\Http\Controllers\prosescontroller@importsekolah')->name('sekolah.import');
+  //export
+  Route::get('/admin/datasekolah/exportdetailsekolah/{id}', [prosescontroller::class, 'exportdetailsekolah'])->name('detailsekolah.export');
 
+  //import
       Route::post('admin/datasekolah/importdetailsekolah/{id}', 'App\Http\Controllers\prosescontroller@importdetailsekolah')->name('detailsekolah.import');
 
 
@@ -262,6 +325,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         // API
         Route::get('/admin/api/inputnilaipsikologi', [adminapicontroller::class, 'inputnilaipsikologi'])->name('api.inputnilaipsikologi');
         Route::get('/admin/api/inputnilaipsikologibk', [adminapicontroller::class, 'inputnilaipsikologibk'])->name('api.inputnilaipsikologibk');
+        Route::get('/admin/api/sekolah/updatestatus/{id}', [adminapicontroller::class, 'updatestatusskolah'])->name('api.sekolah.updatestatus');
 
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');

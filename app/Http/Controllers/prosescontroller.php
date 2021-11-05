@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportdetailsekolah;
 use App\Exports\exportsekolah;
 use App\Imports\importdetailsekolah;
 use App\Imports\importsekolah;
@@ -63,5 +64,11 @@ class prosescontroller extends Controller
         // unlink(public_path('file_temp'));
         return redirect()->back()->with('status','Data berhasil di Hapus!')->with('tipe','success')->with('icon','fas fa-trash');
 
+    }
+
+    public function exportdetailsekolah(sekolah $id,Request $request){
+        // dd($request);
+        $tgl=date("YmdHis");
+		return Excel::download(new exportdetailsekolah($id), 'psikotest-detailsekolah-'.$id->id.'-'.$tgl.'.xlsx');
     }
 }
