@@ -30,7 +30,7 @@
             <img alt="image" src="{{ asset('/') }}assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="#" class="dropdown-item has-icon">
+              <a href="{{ route('profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
 
@@ -56,7 +56,7 @@
 
     {{-- sidebar --}}
     @include('includes.sidebar')
-    
+
 
       <!-- Main Content -->
       <div class="main-content">
@@ -69,7 +69,7 @@
         <div class="footer-left">
           Copyright &copy; 2021 <div class="bullet"></div> Design By <a href="https://baemon.web.id/">BaemonTeam</a>
         </div>
-        
+
         @php
         // exec('git rev-parse --verify HEAD 2> /dev/null', $output);
         // $hash = $output[0];
