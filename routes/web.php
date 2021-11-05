@@ -206,6 +206,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'edit'])->name('sekolah.catatanpengembangandiri.edit');
     Route::put('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'update'])->name('sekolah.catatanpengembangandiri.update');
     Route::delete('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'destroy'])->name('sekolah.catatanpengembangandiri.destroy');
+    Route::delete('/admin/sekolah/catatanpengembangandiri/multidel/{id}', [admincatatanpengembangandiricontroller::class, 'multidel'])->name('sekolah.catatanpengembangandiri.multidel');
 
 
     //catatanprestasi
@@ -216,6 +217,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'edit'])->name('sekolah.catatanprestasi.edit');
     Route::put('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'update'])->name('sekolah.catatanprestasi.update');
     Route::delete('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'destroy'])->name('sekolah.catatanprestasi.destroy');
+    Route::delete('/admin/sekolah/catatanprestasi/multidel/{id}', [admincatatanprestasicontroller::class, 'multidel'])->name('sekolah.catatanprestasi.multidel');
 
 
       //pengguna

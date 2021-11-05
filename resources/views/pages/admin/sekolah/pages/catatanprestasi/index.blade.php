@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Catatan Kasus
+Catatan Prestasi
 @endsection
 
 @push('before-script')
@@ -32,7 +32,7 @@ Catatan Kasus
               @include('pages.admin.sekolah.component.sidebarsekolah')
           </div>
           <div class="col-md-9">
-                @include('pages.admin.sekolah.pages.catatankasus.c_index')
+                @include('pages.admin.sekolah.pages.catatanprestasi.c_index')
           </div>
         </div>
     </div>

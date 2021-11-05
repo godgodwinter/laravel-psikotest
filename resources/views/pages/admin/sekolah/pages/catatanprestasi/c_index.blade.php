@@ -3,7 +3,7 @@
 
                     <div class="p-2 bd-highlight">
 
-            <form action="{{route('sekolah.catatankasus.cari',$id->id)}}" method="GET" class="babeng-form">
+            <form action="{{route('sekolah.catatanprestasi.cari',$id->id)}}" method="GET" class="babeng-form">
                 <input type="text" class="babeng babeng-select  ml-0" name="cari">
             </div>
 
@@ -12,14 +12,14 @@
             </div>
 
             <div class="ml-auto p-2 bd-highlight">
-                <a href="{{route('sekolah.catatankasus.create',$id->id)}}" type="submit" value="Import"
+                <a href="{{route('sekolah.catatanprestasi.create',$id->id)}}" type="submit" value="Import"
                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                             class="fas fa-download"></i> Tambah </span></a>
                 {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                 Import
             </button> --}}
-            {{-- <a href="{{ route('sekolah.catatankasus.export',$id->id) }}" type="submit" value="Import"
+            {{-- <a href="{{ route('sekolah.catatanprestasi.export',$id->id) }}" type="submit" value="Import"
                 class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
                         class="fas fa-download"></i> Export </span></a> --}}
             </form>
@@ -41,7 +41,7 @@
                     <th >Tanggal</th>
                     <th class="text-center">Nama</th>
                     <th class="text-center">Kelas</th>
-                    <th class="text-center">Kasus</th>
+                    <th class="text-center">Prestasi</th>
                     <th class="text-center" > Aksi </th>
 
                 </tr>
@@ -62,13 +62,13 @@
                          </td>
 
                          <td class="text-center">
-                            {{$data->kasus}}
+                            {{$data->prestasi}}
                          </td>
 
                         <td class="text-center babeng-min-row">
                             {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                            <x-button-edit link="{{ route('sekolah.catatankasus.edit',[$id->id,$data->id])}}" />
-                            <x-button-delete link="{{ route('sekolah.catatankasus.destroy',[$id->id,$data->id])}}" />
+                            <x-button-edit link="{{ route('sekolah.catatanprestasi.edit',[$id->id,$data->id])}}" />
+                            <x-button-delete link="{{ route('sekolah.catatanprestasi.destroy',[$id->id,$data->id])}}" />
                         </td>
                     </tr>
         @empty
@@ -83,7 +83,7 @@
         <div class="d-flex justify-content-between flex-row-reverse mt-3">
             <div >
 
-                <x-jsmultidel link="{{route('sekolah.catatankasus.multidel',$id)}}" />
+                <x-jsmultidel link="{{route('sekolah.catatanprestasi.multidel',$id)}}" />
         @php
 $cari=$request->cari;
 $tapel_nama=$request->tapel_nama;
@@ -119,7 +119,7 @@ $kelas_nama=$request->kelas_nama;
 <!-- Import Excel -->
 <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      {{-- <form method="post" action="{{ route('sekolah.catatankasus.import',$id->id) }}" enctype="multipart/form-data"> --}}
+      {{-- <form method="post" action="{{ route('sekolah.catatanprestasi.import',$id->id) }}" enctype="multipart/form-data"> --}}
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Import Nilai Siswa </h5>

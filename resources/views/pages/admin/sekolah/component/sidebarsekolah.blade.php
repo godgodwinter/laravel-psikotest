@@ -26,8 +26,8 @@
                     <li class="nav-item"><a href="{{route('sekolah.penjurusan',$id->id)}}" class="nav-link {{$pages=='penjurusan' ? 'active' : ''}}">Analisa Penjurusan</a></li>
                     <li class="nav-item"><a href="{{route('sekolah.hasilpsikologi',$id->id)}}" class="nav-link {{$pages=='hasilpsikologi' ? 'active' : ''}}">Hasil Psikologi</a></li>
                     <li class="nav-item"><a href="{{route('sekolah.catatankasus',$id->id)}}" class="nav-link {{$pages=='catatankasus' ? 'active' : ''}}">Catatan Kasus Siswa</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.catatanpengembangandiri',$id->id)}}" class="nav-link {{$pages=='hasilpsikologi' ? 'active' : ''}}">Catatan Pengembangan diri Siswa</a></li>
-                    <li class="nav-item"><a href="{{route('sekolah.catatanprestasi',$id->id)}}" class="nav-link {{$pages=='hasilpsikologi' ? 'active' : ''}}">Catatan Prestasi Siswa</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.catatanpengembangandiri',$id->id)}}" class="nav-link {{$pages=='catatanpengembangandiri' ? 'active' : ''}}">Catatan Pengembangan diri Siswa</a></li>
+                    <li class="nav-item"><a href="{{route('sekolah.catatanprestasi',$id->id)}}" class="nav-link {{$pages=='catatanprestasi' ? 'active' : ''}}">Catatan Prestasi Siswa</a></li>
                     {{-- <li class="nav-item"><a href="#" class="nav-link">Grafik</a></li> --}}
                   </ul>
                 </div>
