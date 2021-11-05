@@ -287,6 +287,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         // API
         Route::get('/admin/api/inputnilaipsikologi', [adminapicontroller::class, 'inputnilaipsikologi'])->name('api.inputnilaipsikologi');
         Route::get('/admin/api/inputnilaipsikologibk', [adminapicontroller::class, 'inputnilaipsikologibk'])->name('api.inputnilaipsikologibk');
+        Route::get('/admin/api/sekolah/updatestatus/{id}', [adminapicontroller::class, 'updatestatusskolah'])->name('api.sekolah.updatestatus');
 
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
