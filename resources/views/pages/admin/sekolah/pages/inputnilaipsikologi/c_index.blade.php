@@ -55,10 +55,10 @@
         </div>
 
 
-        <table id="example" class="table table-striped table-bordered mt-1" >
+        <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
             <thead>
                 <tr>
-                    <th class="text-center "> No</th>
+                    <th class="text-center babeng-min-row"> No</th>
                     <th class="th-table" >Nama </th>
                     @php
                     $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')->get();
