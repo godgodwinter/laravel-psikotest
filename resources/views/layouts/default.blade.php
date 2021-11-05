@@ -34,7 +34,7 @@
                 <i class="far fa-user"></i> Profile
               </a>
 
-              <a href="{{route('settings')}}" class="dropdown-item has-icon">
+              <a href="{{route('bk.settingpengguna.edit')}}" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
@@ -56,7 +56,7 @@
 
     {{-- sidebar --}}
     @include('includes.sidebar')
-    
+
 
       <!-- Main Content -->
       <div class="main-content">
@@ -69,7 +69,7 @@
         <div class="footer-left">
           Copyright &copy; 2021 <div class="bullet"></div> Design By <a href="https://baemon.web.id/">BaemonTeam</a>
         </div>
-        
+
         @php
         // exec('git rev-parse --verify HEAD 2> /dev/null', $output);
         // $hash = $output[0];

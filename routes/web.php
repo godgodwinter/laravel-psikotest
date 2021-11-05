@@ -35,6 +35,9 @@ use App\Http\Controllers\bkwalikelascontroller;
 use App\Http\Controllers\bkcatatankasussiswacontroller;
 use App\Http\Controllers\bkcatatanpengembangandirisiswacontroller;
 use App\Http\Controllers\bkcatatanprestasisiswacontroller;
+use App\Http\Controllers\bkinputminatbakatcontroller;
+use App\Http\Controllers\bkpenjurusancontroller;
+use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -325,6 +328,27 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/datacatatanprestasisiswa/create', [bkcatatanprestasisiswacontroller::class, 'create'])->name('bk.catatanprestasisiswa.create');
         Route::post('/bk/datacatatanprestasisiswa', [bkcatatanprestasisiswacontroller::class, 'store'])->name('bk.catatanprestasisiswa.store');
         Route::delete('/bk/datacatatanprestasisiswa/multidel', [bkcatatanprestasisiswacontroller::class, 'multidel'])->name('bk.catatanprestasisiswa.multidel');
+
+        //bkminatbakat
+        Route::get('/bk/inputminatbakat/', [bkinputminatbakatcontroller::class, 'index'])->name('bk.inputminatbakat');
+        Route::get('/bk/inputminatbakat/cari', [bkinputminatbakatcontroller::class, 'cari'])->name('bk.inputminatbakat.cari');
+        Route::get('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'edit'])->name('bk.inputminatbakat.edit');
+        Route::put('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'update'])->name('bk.inputminatbakat.update');
+        Route::delete('/bk/inputminatbakat/{id}', [bkinputminatbakatcontroller::class, 'destroy'])->name('bk.inputminatbakat.destroy');
+        Route::get('/bk/datainputminatbakat/create', [bkinputminatbakatcontroller::class, 'create'])->name('bk.inputminatbakat.create');
+        Route::post('/bk/datainputminatbakat', [bkinputminatbakatcontroller::class, 'store'])->name('bk.inputminatbakat.store');
+        Route::delete('/bk/datainputminatbakat/multidel', [bkinputminatbakatcontroller::class, 'multidel'])->name('bk.inputminatbakat.multidel');
+
+        //penjurusan
+        Route::get('/bk/penjurusan', [bkpenjurusancontroller::class, 'index'])->name('bk.penjurusan');
+        Route::get('/bk/penjurusan/cari', [bkpenjurusancontroller::class, 'cari'])->name('bk.penjurusan.cari');
+        Route::get('/bk/penjurusan/{siswa}', [bkpenjurusancontroller::class, 'edit'])->name('bk.penjurusan.edit');
+        Route::put('/bk/penjurusan/{siswa}', [bkpenjurusancontroller::class, 'update'])->name('bk.penjurusan.update');
+
+        //setting pengguna bk
+        //Route::get('/bk/settingpengguna', [bksettingpenggunacontroller::class, 'index'])->name('bk.settingpengguna');
+        Route::get('/bk/settingpengguna', [bksettingpenggunacontroller::class, 'index'])->name('bk.settingpengguna.edit');
+        Route::put('/bk/settingpengguna/{id}', [bksettingpenggunacontroller::class, 'update'])->name('bk.settingpengguna.update');
 
 
         //bkcetak
