@@ -17,9 +17,9 @@ Detail Sekolah
     <div class="section-header">
         <h1>@yield('title')</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Sekolah</a></div>
-
+            <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="{{route('sekolah')}}">Sekolah</a></div>
+            <div class="breadcrumb-item">{{ $id->nama }}</div>
         </div>
     </div>
 
@@ -34,21 +34,20 @@ Detail Sekolah
                   <div class="card profile-widget">
                     <div class="profile-widget-header">
                         @php
-
-                        $randomimg='https://ui-avatars.com/api/?name=nonaktif&color=7F9CF5&background=EBF4FF';
+                        $sekolah_logo=asset('/storage/').'/'.$id->sekolah_logo;
+                        $randomimg='https://ui-avatars.com/api/?name='.$id->nama.'&color=7F9CF5&background=EBF4FF';
                         // dd($sekolah_logo)
                         @endphp
-                      <img alt="image" src="{{$randomimg}}" class="rounded-circle profile-widget-picture" style="object-fit:cover;" >
+                      <img alt="image" src="{{$id->sekolah_logo!=null ? $sekolah_logo : $randomimg}}" class="rounded-circle profile-widget-picture" style="object-fit:cover;" >
                       <div class="profile-widget-items">
 
                         <div class="profile-widget-item">
                           {{-- <div class="profile-widget-item-label">Following</div> --}}
-                          <div class="profile-widget-item-value py-2"></div>
-                        </div>
+                          <div class="profile-widget-item-value py-2">{{$id->nama}}</div>                        </div>
                       </div>
                     </div>
 
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{route('sekolah.update',$id->id)}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <div class="profile-widget-description">
@@ -58,21 +57,153 @@ Detail Sekolah
 
 
                                 <div class="user-details py-1 px-4 ml-0 text-center">
-
-                                <img alt="image" src="{{$randomimg}}" class="img-thumbnail" data-toggle="tooltip"  width="150px" height="150px" style="object-fit:cover;">
-                                    <div class="user-name mt-2"><h4></h4></div>
+                                    @php
+                                    $kepsek_photo=asset('/storage/').'/'.$id->kepsek_photo;
+                                    @endphp
+                                <img alt="image" src="{{$id->kepsek_photo!=null  ? $kepsek_photo : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="{{$id->nama}}" width="150px" height="150px" style="object-fit:cover;">
+                                    <div class="user-name mt-2"><h4>{{$id->kepsek_nama}}</h4></div>
                                     <div class="text-job text-muted">Kepala Sekolah</div>
                                     <div class="user-cta">
-                                        <button class="btn btn-danger  mt-3 follow-btn"  disabled>Tidak Aktif</button>
+                                        <button href="#" class="btn btn-danger  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');" disabled>{{$id->status}}</button>
                                     </div>
 
                                   </div>
+
+
+
+
                                 </div>
+
+                                @push('after-script')
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                      $.uploadPreview({
+                                        input_field: "#image-upload",   // Default: .image-upload
+                                        preview_box: "#image-preview",  // Default: .image-preview
+                                        label_field: "#image-label",    // Default: .image-label
+                                        label_default: "Logo Sekolah",   // Default: Choose File
+                                        label_selected: "Ganti Logo Sekolah",  // Default: Change File
+                                        no_label: false                 // Default: false
+                                      });
+
+
+                                      $.uploadPreview({
+                                        input_field: "#image-upload2",   // Default: .image-upload
+                                        preview_box: "#image-preview2",  // Default: .image-preview
+                                        label_field: "#image-label2",    // Default: .image-label
+                                        label_default: "Photo Kepala Sekolah",   // Default: Choose File
+                                        label_selected: "Ganti Photo Kepala Sekolah",  // Default: Change File
+                                        no_label: false                 // Default: false
+                                      });
+                                    });
+                                    </script>
+                                @endpush
+
+
+
+
+
+                                {{-- <div class="avatar-badge" title="Editor" data-toggle="tooltip"><i class="fas fa-wrench"></i></div> --}}
+                                {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $id->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture"> --}}
+                                {{-- <div class="clearfix"></div>
+                                <a href="#" class="btn btn-primary mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Edit</a> --}}
+
+                                {{-- <div class="clearfix"></div>
+                                <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a> --}}
+
                             </div>
                             <div class="col-11 col-lg-8 py-0 col-md-12">
                                 <div class="form-group row align-items-center">
-                                    <p><h1>Sekolah anda dalam kondisi non-aktif. Untuk lebih lanjut hubungi admin </h1></p>
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Sekolah</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text"  class="form-control @error('nama')
+                                          is_invalid
+                                      @enderror" id="site-title"  name="nama" value="{{old('nama') ? old('nama') : $id->nama}}" readonly>
+                                      @error('nama')<div class="invalid-feedback"> {{$message}}</div>
+                                      @enderror
+                                    </div>
                                   </div>
+
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Alamat Sekolah</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text"  class="form-control @error('alamat')
+                                          is_invalid
+                                      @enderror" id="site-title"   name="alamat" value="{{old('alamat') ? old('alamat') : $id->alamat}}" {{$id->status='Tidak Aktif' ? 'readonly' : ''}}>
+                                      @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
+                                      @enderror
+                                    </div>
+                                  </div>
+
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Kepala Sekolah</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text"  class="form-control @error('kepsek_nama')
+                                          is_invalid
+                                      @enderror" id="site-title"   name="kepsek_nama" value="{{old('kepsek_nama') ? old('kepsek_nama') : $id->kepsek_nama}}" {{$id->status='Tidak Aktif' ? 'readonly' : ''}}>
+                                    </div>
+                                    @error('kepsek_nama')<div class="invalid-feedback"> {{$message}}</div>
+                                    @enderror
+                                  </div>
+
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tahun Ajaran</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text"  class="form-control @error('tahunajaran_nama')
+                                          is_invalid
+                                      @enderror" id="site-title"   name="tahunajaran_nama" value="{{old('tahunajaran_nama') ? old('tahunajaran_nama') : $id->tahunajaran_nama}}" {{$id->status='Tidak Aktif' ? 'readonly' : ''}}>
+                                      @error('tahun_ajaran_nama')<div class="invalid-feedback"> {{$message}}</div>
+                                      @enderror
+                                    </div>
+                                  </div>
+
+                                <div class="form-group row align-items-center">
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Semester</label>
+                                    <div class="col-sm-3 col-md-9">
+                                      <input type="text"  class="form-control @error('semester_nama')
+                                          is_invalid
+                                      @enderror" id="site-title"   name="semester_nama" value="{{old('semester_nama') ? old('semester_nama') : $id->semester_nama}}" {{$id->status='Tidak Aktif' ? 'readonly' : ''}}>
+                                      @error('semester_nama')<div class="invalid-feedback"> {{$message}}</div>
+                                      @enderror
+                                    </div>
+                                  </div>
+
+
+                                <div class="form-group row align-items-center">
+
+                                    <div class="form-group row mb-4 mt-3 ml-5">
+                                        <div class="col-sm-4 col-md-4">
+                                          <div id="image-preview" class="image-preview">
+                                            <label for="image-upload" id="image-label2">Logo Sekolah</label>
+                                            <input type="file" name="sekolah_logo" id="image-upload" class="@error('sekolah_logo')
+                                            is_invalid
+                                        @enderror"  accept="image/png, image/gif, image/jpeg" {{$id->status='Tidak Aktif' ? 'disabled' : ''}}/>
+
+                                        @error('sekolah_logo')<div class="invalid-feedback"> {{$message}}</div>
+                                        @enderror
+                                          </div>
+                                        </div>
+                                      </div>
+
+
+                                    <div class="form-group row mb-4 mt-3 ml-3">
+                                        <div class="col-sm-4 col-md-4">
+                                          <div id="image-preview2" class="image-preview">
+                                            <label for="image-upload2" id="image-label">Foto Kepala Sekolah</label>
+                                            <input type="file" name="kepsek_photo" id="image-upload2" class="@error('kepsek_photo')
+                                                is_invalid
+                                            @enderror" accept="image/png, image/gif, image/jpeg" {{$id->status='Tidak Aktif' ? 'disabled' : ''}}/>
+
+                                        @error('kepsek_photo')<div class="invalid-feedback"> {{$message}}</div>
+                                        @enderror
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+
+                  <div class="card-footer text-md-right">
+                    <button class="btn btn-primary" id="save-btn" {{$id->status='Tidak Aktif' ? 'disabled' : ''}}>Simpan</button>
+                  </div>
                             </div>
                         </div>
 
@@ -90,3 +221,33 @@ Detail Sekolah
 @endsection
 
 
+@section('containermodal')
+
+              <!-- Import Excel -->
+              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('detailsekolah.import',$id->id) }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Detail Data Sekolag</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+                        <label>Pilih file excel(.xlsx)</label>
+                        <div class="form-group">
+                          <input type="file" name="file" required="required">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+@endsection

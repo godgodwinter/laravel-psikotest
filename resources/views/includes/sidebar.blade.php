@@ -68,7 +68,7 @@
             $sekolah_id=$pengguna->sekolah_id;
             $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 @endphp
-<li {{$pages=='bk-settingpengguna' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ? route('bk.settingpengguna.edit') : '#' }}"><i class="fas fa-school"></i> <span>Setting user</span></a></li>
+{{-- <li {{$pages=='bk-settingpengguna' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ? route('bk.settingpengguna.edit') : '#' }}"><i class="fas fa-school"></i> <span>Setting user</span></a></li> --}}
     <li class="menu-header">Menu</li>
     <li {{$pages=='bk-beranda' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ?  route('bk.beranda') : '#'}}"><i class="fas fa-school"></i> <span>Dashboard Sekolah</span></a></li>
     <li {{$pages=='bk-siswa' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ?  route('bk.siswa') : '#'}}"><i class="fas fa-school"></i> <span>Siswa</span></a></li>
@@ -88,9 +88,7 @@
     <li {{$pages=='bk-catatanpengembangandirisiswa' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ?  route('bk.catatanpengembangandirisiswa') : '#'}}"><i class="fas fa-school"></i> <span>Catatan Pengembangan Diri Siswa</span></a></li>
     <li {{$pages=='bk-catatanprestasisiswa' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ? route('bk.catatanprestasisiswa') : '#'}}"><i class="fas fa-school"></i> <span>Catatan Prestasi Siswa</span></a></li>
 
-    <li class="menu-header">Hasil </li>
-    <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ?  route('bk.inputminatbakat') : '#'}}"><i class="fas fa-school"></i> <span>Analisa Minatbakat</span></a></li>
-    <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link" href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-school"></i> <span>Analisa Penjurusan</span></a></li>
+
 
 @else
 

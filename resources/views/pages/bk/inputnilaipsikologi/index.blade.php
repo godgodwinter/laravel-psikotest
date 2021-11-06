@@ -29,7 +29,9 @@ Data Nilai Psikologi Siswa
 
                 <div id="babeng-bar" class="text-center mt-2">
 
-                    <div id="babeng-row ">
+                    <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
+                        <div id="p-2 bd-highlight ">
+
 
                         <form action="{{ route('informasipsikologi.cari') }}" method="GET" class="d-inline">
                             {{-- <label for="">Urutkan </label>
@@ -43,16 +45,20 @@ Data Nilai Psikologi Siswa
                             </select> --}}
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                        </div>
+                            <div id="p-2 bd-highlight ">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-
+                        </div>
                         </form>
+                    <div class="ml-auto p-2 bd-highlight ">
+
                         <button class="btn btn-info"
                         data-toggle="modal" data-target="#modalsettings">Setting</button>
-
+                    </div>
                     </div>
                 </div>
 

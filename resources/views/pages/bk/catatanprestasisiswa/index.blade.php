@@ -27,52 +27,54 @@ Catatan Prestasi Siswa
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
+                <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
+                        <div id="p-2 bd-highlight ">
 
-                    <div id="babeng-row ">
+                            <form action="{{ route('bk.catatanprestasisiswa.cari') }}" method="GET">
+                                {{-- <label for="">Urutkan </label>
+                                <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
-                        <form action="{{ route('bk.catatanprestasisiswa.cari') }}" method="GET">
-                            {{-- <label for="">Urutkan </label>
-                            <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
+                                    <option>Terbaru</option>
+                                    <option>Terlama</option>
 
-                                <option>Terbaru</option>
-                                <option>Terlama</option>
+                                    <option>A - Z</option>
+                                    <option>Z - A</option>
+                                </select> --}}
 
-                                <option>A - Z</option>
-                                <option>Z - A</option>
-                            </select> --}}
-
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
-
-                            <span>
-                                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
-                                    value="Cari">
-                            </span>
-
-                            <a href="{{route('bk.catatanprestasisiswa.create')}}" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Tambah </span></a>
-                            <a href="{{route('bk.cetak.catatanprestasisiswa')}}" type="submit" value="cetak"
-                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> cetak </span></a>
-                            {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
-                                data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                                Import
-                            </button>
-                            <a href="/admin/bk.catatanprestasisiswa/export" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Export </span></a> --}}
-                        </form>
-
+                                <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                        </div>
+                            <div class="p-2 bd-highlight">
+                                <span>
+                                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
+                                        value="Cari">
+                                </span>
+                            </div>
+                            <div class="ml-auto p-2 bd-highlight">
+                                <a href="{{route('bk.catatanprestasisiswa.create')}}" type="submit" value="Import"
+                                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                            class="fas fa-download"></i> Tambah </span></a>
+                                <a href="{{route('bk.cetak.catatanprestasisiswa')}}" type="submit" value="cetak"
+                                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                            class="fas fa-download"></i> cetak </span></a>
+                                {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                                    data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                                    Import
+                                </button>
+                                <a href="/admin/bk.catatanprestasisiswa/export" type="submit" value="Import"
+                                    class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
+                                            class="fas fa-download"></i> Export </span></a> --}}
+                            </div>
+                            </form>
+                            </div>
                     </div>
-                </div>
+
 
                 <x-jsmultidel link="{{route('bk.catatanprestasisiswa.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
 
-                <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
+                <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>
                         <tr>
                             <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
@@ -116,6 +118,8 @@ Catatan Prestasi Siswa
                 </table>
 
 
+                <div class="d-flex justify-content-between flex-row-reverse mt-3">
+                    <div >
 @php
 $cari=$request->cari;
 $tapel_nama=$request->tapel_nama;
@@ -123,22 +127,17 @@ $kelas_nama=$request->kelas_nama;
 @endphp
 {{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
 {{ $datas->onEachSide(1)
-//   ->appends(['cari'=>$cari])
-//   ->appends(['tapel_nama'=>$tapel_nama])
-//   ->appends(['kelas_nama'=>$kelas_nama])
-  ->links() }}
-{{-- <nav aria-label="breadcrumb">
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Data ditemukan</li>
 
-</ol>
-</nav> --}}
+  ->links() }}
+                    </div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
         </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 @endsection
+

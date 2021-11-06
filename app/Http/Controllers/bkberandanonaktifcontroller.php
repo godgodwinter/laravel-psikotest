@@ -29,9 +29,15 @@ class bkberandanonaktifcontroller extends Controller
     public function index(Request $request)
     {
         $pages='bk-beranda';
+        $datas=DB::table('tahun')->whereNull('deleted_at')
+        ->paginate(Fungsi::paginationjml());
 
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-        return view('pages.bk.beranda.non',compact('pages','request'));
+        return view('pages.bk.beranda.non',compact('pages','id','request','datas'));
     }
 
     public function referensi(Request $request)

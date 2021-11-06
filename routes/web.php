@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
     Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
-    Route::get('/admin/profile', [adminsettingscontroller::class, 'profile'])->name('profile');
+    Route::get('/admin/profile', [adminsettingscontroller::class, 'profile'])->name('profileadmin');
     Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
     Route::put('/admin/profile/{id}', [adminsettingscontroller::class, 'updateprofile'])->name('profile.update');
 
@@ -414,7 +414,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         //setting pengguna bk
         //Route::get('/bk/settingpengguna', [bksettingpenggunacontroller::class, 'index'])->name('bk.settingpengguna');
-        Route::get('/bk/settingpengguna', [bksettingpenggunacontroller::class, 'index'])->name('bk.settingpengguna.edit');
+        Route::get('/bk/settingpengguna', [bksettingpenggunacontroller::class, 'index'])->name('profilebk');
         Route::put('/bk/settingpengguna/{id}', [bksettingpenggunacontroller::class, 'update'])->name('bk.settingpengguna.update');
 
 
