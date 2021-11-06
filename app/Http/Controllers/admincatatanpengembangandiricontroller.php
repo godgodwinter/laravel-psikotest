@@ -219,6 +219,7 @@ class admincatatanpengembangandiricontroller extends Controller
         // dd($datas);
         $tgl=date("YmdHis");
         $pdf = PDF::loadview('pages.admin.sekolah.pages.catatanpengembangandiri.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
-        return $pdf->download('catatan'.$tgl.'-pdf');
+        return $pdf->download('catatan'.$tgl.'.pdf');
     }
+
 }
