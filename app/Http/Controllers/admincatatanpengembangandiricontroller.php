@@ -8,6 +8,7 @@ use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class admincatatanpengembangandiricontroller extends Controller
 {
@@ -206,5 +207,18 @@ class admincatatanpengembangandiricontroller extends Controller
             ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.sekolah.pages.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
+    }
+    public function cetakpersiswa(sekolah $id,catatanpengembangandirisiswa $data,Request $request){
+        $id=DB::table('sekolah')->where('id',$id->id)->first();
+
+        // $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->where('id',$data->id)
+        // ->where('sekolah_id',$id->id)
+        // ->orderBy('siswa_id','asc')
+        // ->get();
+        $datas=$data;
+        // dd($datas);
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatanpengembangandiri.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        return $pdf->download('catatan'.$tgl.'-pdf');
     }
 }
