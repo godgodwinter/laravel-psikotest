@@ -8,6 +8,7 @@ use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class admincatatankasuscontroller extends Controller
 {
@@ -203,5 +204,24 @@ class admincatatankasuscontroller extends Controller
             ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.sekolah.pages.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
+    }
+    public function cetakpersiswa(sekolah $id,catatankasussiswa $data,Request $request){
+
+        // $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->where('id',$data->id)
+        // ->where('sekolah_id',$id->id)
+        // ->orderBy('siswa_id','asc')
+        // ->get();
+        $datas=$data;
+        // dd($datas);
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatankasus.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        return $pdf->stream('catatan'.$tgl.'.pdf');
+    }
+    public function preview(sekolah $id,catatankasussiswa $data,Request $request){
+
+        $datas=$data;
+        $pages = 'catatankasus';
+        return view('pages.admin.sekolah.pages.catatankasus.preview', compact('pages', 'id', 'request', 'datas'));
+
     }
 }
