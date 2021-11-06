@@ -30,7 +30,7 @@ Data Nilai Psikologi Siswa
                     <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
                         <div id="p-2 bd-highlight ">
                         <form action="{{ route('informasipsikologi.cari') }}" method="GET" class="d-inline">
-                      
+
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
                         </div>
                         <div id="p-2 bd-highlight ">
@@ -46,13 +46,11 @@ Data Nilai Psikologi Siswa
                         data-toggle="modal" data-target="#modalsettings">Setting</button>
                         </div>
                     </div>
-                </div>
 
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
-                <div class="card-body babengcontainer">
-                    <table id="example" class="table table-striped table-bordered mt-1" >
+                    <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
                         <thead>
                             <tr id="mastertr">
                                 <th class="text-center " width="5%">  No</th>
