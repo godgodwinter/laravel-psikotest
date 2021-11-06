@@ -25,12 +25,12 @@ Data Nilai Psikologi Siswa
 
     <div class="section-body">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body babengcontainer">
 
                     <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
                         <div id="p-2 bd-highlight ">
                         <form action="{{ route('informasipsikologi.cari') }}" method="GET" class="d-inline">
-                      
+
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
                         </div>
                         <div id="p-2 bd-highlight ">
@@ -52,10 +52,10 @@ Data Nilai Psikologi Siswa
                     <x-jsdatatable/>
                 @endif
                 <div class="card-body babengcontainer">
-                    <table id="example" class="table table-striped table-bordered mt-1" >
+                    <table id="example" class="table table-striped table-bordered table-sm mt-1" >
                         <thead>
                             <tr id="mastertr">
-                                <th class="text-center " width="5%">  No</th>
+                                <th class="text-center babeng-min-row" width="5%">  No</th>
                                 <th class="th-table" >Nama </th>
 
                             </tr>
