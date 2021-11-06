@@ -27,8 +27,6 @@ Informasi Psikologis
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
-
                     <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
                         <div id="p-2 bd-highlight ">
 
@@ -51,7 +49,7 @@ Informasi Psikologis
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-                            </div>
+
                         </form>
 
                     </div>
@@ -62,7 +60,7 @@ Informasi Psikologis
                     <x-jsdatatable/>
                 @endif
 
-                <table id="example" class="table table-striped table-bordered mt-1" style="width:100%">
+                <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>
                         <tr>
                             <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>

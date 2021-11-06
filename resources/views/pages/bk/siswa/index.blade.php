@@ -27,7 +27,6 @@ Siswa
         <div class="card">
             <div class="card-body">
 
-                <div id="babeng-bar" class="text-center mt-2">
 
                     <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
                         <div id="p-2 bd-highlight ">
@@ -50,7 +49,7 @@ Siswa
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-                        </div>
+
                         </form>
 
                     </div>

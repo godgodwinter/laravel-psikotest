@@ -66,7 +66,7 @@ Catatan Kasus Siswa
                                         class="fas fa-download"></i> Export </span></a> --}}
                         </form>
                         </div>
-                    </div>
+
                 </div>
 
                 <x-jsmultidel link="{{route('bk.catatankasussiswa.multidel')}}" />
