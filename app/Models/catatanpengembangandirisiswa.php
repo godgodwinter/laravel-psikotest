@@ -21,7 +21,7 @@ class catatanpengembangandirisiswa extends Model
         'idedanimajinasi',
         'ketrampilan',
         'kreatif',
-        'oraganisasi',
+        'organisasi',
         'kelanjutanstudi',
         'hobi',
         'citacita',
