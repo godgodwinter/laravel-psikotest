@@ -25,7 +25,7 @@ Data Nilai Psikologi Siswa
 
     <div class="section-body">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body babengcontainer">
 
                     <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
                         <div id="p-2 bd-highlight ">
@@ -50,10 +50,18 @@ Data Nilai Psikologi Siswa
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
+<<<<<<< HEAD
+                <div class="card-body babengcontainer">
+                    <table id="example" class="table table-striped table-bordered table-sm mt-1" >
+                        <thead>
+                            <tr id="mastertr">
+                                <th class="text-center babeng-min-row" width="5%">  No</th>
+=======
                     <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
                         <thead>
                             <tr id="mastertr">
                                 <th class="text-center babeng-min-row" >  No</th>
+>>>>>>> fff90a480c9978a6d6de076f111da6106fe1fbd6
                                 <th class="th-table" >Nama </th>
 
                             </tr>

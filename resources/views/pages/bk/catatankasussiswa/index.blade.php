@@ -77,7 +77,7 @@ Catatan Kasus Siswa
                 <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th width="8%" class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Tanggal</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Kelas</th>
@@ -101,7 +101,7 @@ Catatan Kasus Siswa
                                  </td>
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="{{ route('bk.catatankasussiswa.edit',$data->id)}}" />
                                     <x-button-delete link="{{ route('bk.catatankasussiswa.destroy',$data->id)}}" />

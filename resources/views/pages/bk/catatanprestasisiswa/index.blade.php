@@ -63,7 +63,7 @@ Catatan Prestasi Siswa
                                 <a href="/admin/bk.catatanprestasisiswa/export" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Export </span></a> --}}
-                            
+
                             </form>
                             </div>
                     </div>
@@ -77,7 +77,7 @@ Catatan Prestasi Siswa
                 <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th width="8%" class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Tanggal</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Kelas</th>
@@ -103,7 +103,7 @@ Catatan Prestasi Siswa
 
 
 
-                                <td class="text-center">
+                                <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="{{ route('bk.catatanprestasisiswa.edit',$data->id)}}" />
                                     <x-button-delete link="{{ route('bk.catatanprestasisiswa.destroy',$data->id)}}" />

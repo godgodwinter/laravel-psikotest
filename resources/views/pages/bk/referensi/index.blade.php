@@ -66,7 +66,7 @@ Referensi Psikologi
                 <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center"> No</th>
+                            <th width="8%" class="text-center babeng-min-row"> No</th>
                             <th >Nama</th>
                             <th class="text-center">File</th>
                         </tr>
