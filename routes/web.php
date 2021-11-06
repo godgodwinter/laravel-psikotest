@@ -178,7 +178,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/penjurusan/cari', [adminpenjurusancontroller::class, 'cari'])->name('sekolah.penjurusan.cari');
     Route::get('/admin/sekolah/{id}/penjurusan/{siswa}', [adminpenjurusancontroller::class, 'edit'])->name('sekolah.penjurusan.edit');
     Route::put('/admin/sekolah/{id}/penjurusan/{siswa}', [adminpenjurusancontroller::class, 'update'])->name('sekolah.penjurusan.update');
-    Route::get('/admin/sekolah/{id}/penjurusan/cetak/{data}', [adminpenjurusancontroller::class, 'cetakpersiswa'])->name('sekolah.penjurusan.cetakpersiswa');
+    Route::get('/admin/sekolah/{id}/penjurusan/cetak/{siswa}', [adminpenjurusancontroller::class, 'cetakpersiswa'])->name('sekolah.penjurusan.cetakpersiswa');
 
     //hasilpsikologi
     Route::get('/admin/sekolah/{id}/hasilpsikologi', [adminhasilpsikologicontroller::class, 'index'])->name('sekolah.hasilpsikologi');

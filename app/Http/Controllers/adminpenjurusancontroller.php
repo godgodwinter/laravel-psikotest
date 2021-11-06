@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class adminpenjurusancontroller extends Controller
 {
@@ -63,7 +64,7 @@ class adminpenjurusancontroller extends Controller
 
                 $periksadata=DB::table('minatbakatdetail')
                 ->where('siswa_id',$d->id)
-                // ->where('id','2')
+                ->where('sekolah_id',$id->id)
                 ->where('minatbakat_id',$m->id)
                 ->get();
 
@@ -89,7 +90,7 @@ class adminpenjurusancontroller extends Controller
                 'master'=>$collectionmaster
             ]);
         }
-        // dd($collectionpenilaian);
+        // dd($collectionpenilaian,$periksadata,$d->id);
         return view('pages.admin.sekolah.pages.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
     }
     public function cari(Request $request,sekolah $id)
@@ -216,5 +217,69 @@ class adminpenjurusancontroller extends Controller
         // dd($request);
         return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
 
+}
+
+public function cetakpersiswa(sekolah $id,siswa $siswa,Request $request){
+
+    // dd($siswa);
+
+    $periksadetail=minatbakatdetail::
+    where('sekolah_id',$id->id)
+    ->where('siswa_id',$siswa->id)
+    ->count();
+    // dd($periksadetail,$id,$siswa);
+    if($periksadetail<1){
+        return redirect()->back()->with('status','Data tidak ditemukan atau belum diisi!')->with('tipe','error')->with('icon','fas fa-feather');
+    }
+
+
+    $master=minatbakat::where('kategori','Bakat dan Penjurusan')
+    ->orderBy('id','asc')
+    ->get();
+
+        $collectionpenilaian = new Collection();
+
+
+
+        $collectionmaster = new Collection();
+    $arr=[
+        'id'=>$siswa->id,
+        'nomerinduk'=>$siswa->nomerinduk,
+        'nama'=>$siswa->nama,
+    ];
+    $nomer=1;
+        foreach($master as $m){
+
+
+            $periksadata=DB::table('minatbakatdetail')
+            ->where('siswa_id',$siswa->id)
+            // ->where('id','2')
+            ->where('minatbakat_id',$m->id)
+            ->get();
+
+            if($periksadata->count()>0){
+                $ambildata=$periksadata->first();
+                $nilai=$periksadata->first()->nilai;
+            }else{
+                $nilai=null;
+            }
+            $arr2= ['nilai'.$nomer => $nilai];
+            // $arr2= [$m->nama => $nilai];
+            $arr=array_merge($arr,$arr2);
+            $nomer++;
+// dd($arr);
+        // $collectionmaster->push((object)$arr);
+
+        }
+
+        $collectionpenilaian->push((object)$arr);
+
+        $datas=$collectionpenilaian[0];
+    // dd($collectionpenilaian[0]->nama,$datas);
+
+    // $datas=$data;
+    $tgl=date("YmdHis");
+    $pdf = PDF::loadview('pages.admin.sekolah.pages.inputpenjurusan.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+    return $pdf->stream('minatbakat'.$tgl.'.pdf');
 }
 }
