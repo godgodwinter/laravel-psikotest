@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class bkberandacontroller extends Controller
+class bkberandanonaktifcontroller extends Controller
 {
 
     public function __construct()
@@ -20,9 +20,6 @@ class bkberandacontroller extends Controller
 
             if((Auth::user()->tipeuser!='bk')){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan')->with('tipe','danger');
-            }elseif((Auth::user()->tipeuser=='bk') and ($id->status=='Tidak Aktif')){
-                return redirect()->route('bk.non')->with('status','Sekolah nonaktif')->with('tipe','danger');
-
             }
 
         return $next($request);
@@ -32,15 +29,9 @@ class bkberandacontroller extends Controller
     public function index(Request $request)
     {
         $pages='bk-beranda';
-        $datas=DB::table('tahun')->whereNull('deleted_at')
-        ->paginate(Fungsi::paginationjml());
 
-        $users_id=Auth::user()->id;
-        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
-        $sekolah_id=$pengguna->sekolah_id;
-        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-        return view('pages.bk.beranda.index',compact('pages','id','request','datas'));
+        return view('pages.bk.beranda.non',compact('pages','request'));
     }
 
     public function referensi(Request $request)

@@ -29,6 +29,7 @@ use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
 use App\Http\Controllers\bkberandacontroller;
+use App\Http\Controllers\bkberandanonaktifcontroller;
 use App\Http\Controllers\bkcetakcontroller;
 use App\Http\Controllers\bkgrafikcontroller;
 use App\Http\Controllers\bkinputnilaipsikologicontroller;
@@ -340,6 +341,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         // bk
         //bk dashboard
         Route::get('/bk/beranda', [bkberandacontroller::class, 'index'])->name('bk.beranda');
+        Route::get('/bk/berandanon', [bkberandanonaktifcontroller::class, 'index'])->name('bk.non');
+
         Route::get('/bk/referensi', [bkberandacontroller::class, 'referensi'])->name('bk.referensi');
         Route::get('/bk/referensi/cari', [bkberandacontroller::class, 'cari_ref'])->name('bk.referensi.cari');
         //informasipsikologi
