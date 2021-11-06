@@ -43,7 +43,7 @@ Catatan Kasus Siswa
                             </select> --}}
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
-                        </div>
+                    </div>
                         <div class="p-2 bd-highlight">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"

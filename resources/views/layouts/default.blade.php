@@ -30,11 +30,15 @@
             <img alt="image" src="{{ asset('/') }}assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="{{ route('profile') }}" class="dropdown-item has-icon">
+              <a href="{{ route('profile'.Auth::user()->tipeuser) }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-
-              <a href="{{route('bk.settingpengguna.edit')}}" class="dropdown-item has-icon">
+                {{-- @if (Auth::user()->tipeuser=='admin')
+                {{$url=route('profile');}}
+                @elseif (Auth::user()->tipeuser=='bk')
+                {{$url=route('bk.settingpengguna.edit');}}
+                @endif --}}
+              <a href="{{Auth::user()->tipeuser=='admin' ? route('settings') : '#' }}"  class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>

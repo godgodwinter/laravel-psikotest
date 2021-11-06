@@ -29,7 +29,8 @@ Kelas
 
                 <div id="babeng-bar" class="text-center mt-2">
 
-                    <div id="babeng-row ">
+                    <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
+                        <div id="p-2 bd-highlight ">
 
                         <form action="{{ route('bk.kelas.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
@@ -41,14 +42,15 @@ Kelas
                                 <option>A - Z</option>
                                 <option>Z - A</option>
                             </select> --}}
-
+                        </div>
+                        <div id="p-2 bd-highlight">
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-
+                        </div>
                         </form>
 
                     </div>
@@ -87,17 +89,23 @@ Kelas
 
                     </tbody>
                 </table>
-                @php
-                $cari=$request->cari;
-                $tapel_nama=$request->tapel_nama;
-                $kelas_nama=$request->kelas_nama;
-                @endphp
-                {{ $datas->onEachSide(1)
-                  ->links() }}
+                <div class="d-flex justify-content-between flex-row-reverse mt-3">
+                    <div >
+@php
+$cari=$request->cari;
+$tapel_nama=$request->tapel_nama;
+$kelas_nama=$request->kelas_nama;
+@endphp
+{{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
+{{ $datas->onEachSide(1)
 
+  ->links() }}
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>
 </section>
 @endsection
+
