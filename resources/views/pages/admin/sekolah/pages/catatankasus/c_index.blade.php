@@ -66,7 +66,7 @@
                          </td>
 
                         <td class="text-center babeng-min-row">
-                            {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
+                            <a class="btn btn-sm btn-info" href="{{ route('sekolah.catatankasus.cetakpersiswa',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
                             <x-button-edit link="{{ route('sekolah.catatankasus.edit',[$id->id,$data->id])}}" />
                             <x-button-delete link="{{ route('sekolah.catatankasus.destroy',[$id->id,$data->id])}}" />
                         </td>

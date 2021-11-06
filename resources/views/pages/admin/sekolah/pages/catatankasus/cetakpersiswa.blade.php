@@ -3,7 +3,7 @@
 <x-cetak-kop></x-cetak-kop>
 
     <div style="margin-bottom: 0;text-align:center" id="judul">
-        <h2>CATATAN PENGEMBANGANDIRI SISWA</h2>
+        <h2>CATATAN KASUS SISWA</h2>
         <p for=""></p>
     </div>
 
@@ -35,44 +35,39 @@
             <td> {{Fungsi::tanggalindo($datas->tanggal)}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Ide dan Imajinasi</td>
+            <td class="babeng-min-row">Kasus</td>
             <td>:</td>
-            <td> {{$datas->idedanimajinasi}}</td>
+            <td> {{$datas->kasus}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Ketrampilan</td>
+            <td class="babeng-min-row">Pengambilan Data</td>
             <td>:</td>
-            <td> {{$datas->ketrampilan}}</td>
+            <td> {{$datas->pengambilandata}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Kreatif</td>
+            <td class="babeng-min-row">Sumber Kasus</td>
             <td>:</td>
-            <td> {{$datas->kreatif}}</td>
+            <td> {{$datas->sumberkasus}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Organisasi</td>
+            <td class="babeng-min-row">Golongan Kasus</td>
             <td>:</td>
-            <td> {{$datas->organisasi}}</td>
+            <td> {{$datas->golkasus}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Kelanjutan Studi</td>
+            <td class="babeng-min-row">Penyebab Timbul Kasus</td>
             <td>:</td>
-            <td> {{$datas->kelanjutanstudi}}</td>
+            <td> {{$datas->penyebabtimbulkasus}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Hobi</td>
+            <td class="babeng-min-row">Teknik Konseling</td>
             <td>:</td>
-            <td> {{$datas->hobi}}</td>
+            <td> {{$datas->teknikkonseling}}</td>
         </tr>
         <tr>
-            <td class="babeng-min-row">Cita-Cita</td>
+            <td class="babeng-min-row">Keberhasilan Penanganan Kasus</td>
             <td>:</td>
-            <td> {{$datas->citacita}}</td>
-        </tr>
-        <tr>
-            <td class="babeng-min-row">Kemampuan Khusus</td>
-            <td>:</td>
-            <td> {{$datas->kemampuankhusus}}</td>
+            <td> {{$datas->keberhasilanpenanganankasus}}</td>
         </tr>
     </table>
 
