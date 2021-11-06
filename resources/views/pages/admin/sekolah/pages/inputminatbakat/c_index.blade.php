@@ -66,6 +66,7 @@
                         {{$loop->index+1}}
                     </td>
                     <td class="text-center babeng-min-row">
+                        <a class="btn btn-sm btn-info" href="{{ route('sekolah.inputminatbakat.cetakpersiswa',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
                         <x-button-edit link="{{ route('sekolah.inputminatbakat.edit',[$id->id,$data->nomerinduk]) }}" />
                     </td>
                     <td class="babeng-td">
