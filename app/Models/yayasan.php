@@ -20,4 +20,9 @@ class yayasan extends Model
         'status',
         'users_id',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

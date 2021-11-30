@@ -28,6 +28,7 @@ use App\Http\Controllers\adminsiswacontroller;
 use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
+use App\Http\Controllers\adminyayasancontroller;
 use App\Http\Controllers\bkberandacontroller;
 use App\Http\Controllers\bkberandanonaktifcontroller;
 use App\Http\Controllers\bkcetakcontroller;
@@ -260,6 +261,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/referensi/update/{data}', [adminreferensicontroller::class, 'update'])->name('referensi.update');
       Route::delete('/admin/referensi/delete/{data}', [adminreferensicontroller::class, 'destroy'])->name('referensi.destroy');
       Route::delete('/admin/datareferensi/multidel', [adminreferensicontroller::class, 'multidel'])->name('referensi.multidel');
+
+
+      //yayasan
+      Route::get('/admin/yayasan', [adminyayasancontroller::class, 'index'])->name('yayasan');
+      Route::get('/admin/yayasan/create', [adminyayasancontroller::class, 'create'])->name('yayasan.create');
+      Route::post('/admin/yayasan/create', [adminyayasancontroller::class, 'store'])->name('yayasan.store');
+      Route::get('/admin/yayasan/cari', [adminyayasancontroller::class, 'cari'])->name('yayasan.cari');
+      Route::get('/admin/yayasan/edit/{data}', [adminyayasancontroller::class, 'edit'])->name('yayasan.edit');
+      Route::put('/admin/yayasan/update/{data}', [adminyayasancontroller::class, 'update'])->name('yayasan.update');
+      Route::delete('/admin/yayasan/delete/{data}', [adminyayasancontroller::class, 'destroy'])->name('yayasan.destroy');
+      Route::delete('/admin/datayayasan/multidel', [adminyayasancontroller::class, 'multidel'])->name('yayasan.multidel');
 
 
       //informasipsikologi
