@@ -13,7 +13,7 @@ class adminsettingscontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin'){
+            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='yayasan' && Auth::user()->tipeuser!='bk'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
@@ -37,6 +37,7 @@ class adminsettingscontroller extends Controller
         ]);
         return redirect()->route('settings')->with('status','Data berhasil diubah!')->with('tipe','success');
     }
+
     public function profile(){
         $pages='settings';
     $id=Auth::user()->id;
