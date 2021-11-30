@@ -38,9 +38,10 @@
                 @elseif (Auth::user()->tipeuser=='bk')
                 {{$url=route('bk.settingpengguna.edit');}}
                 @endif --}}
-              <a href="{{Auth::user()->tipeuser=='admin' ? route('settings') : '#' }}"  class="dropdown-item has-icon">
+              {{-- <a href="{{Auth::user()->tipeuser=='admin' ? route('settings') : '#' }}"  class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
-              </a>
+              </a> --}}
+
               <div class="dropdown-divider"></div>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
