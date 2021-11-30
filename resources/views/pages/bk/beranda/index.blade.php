@@ -65,7 +65,7 @@ Detail Sekolah
                                     <div class="user-name mt-2"><h4>{{$id->kepsek_nama}}</h4></div>
                                     <div class="text-job text-muted">Kepala Sekolah</div>
                                     <div class="user-cta">
-                                        <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a>
+                                        <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 " >{{$id->status}}</a>
                                     </div>
 
                                   </div>
