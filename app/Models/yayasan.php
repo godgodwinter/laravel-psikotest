@@ -6,23 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class sekolah extends Model
+class yayasan extends Model
 {
-    public $table = "sekolah";
+    public $table = "yayasan";
     use SoftDeletes;
     use HasFactory;
 
     protected $fillable = [
         'nama',
+        'kepala',
         'alamat',
+        'telp',
         'status',
-        'kepsek_nama',
-        'kepsek_photo',
-        'tahunajaran_nama',
-        'semester_nama',
-        'sekolah_logo',
-        'kecamatan',
-        'kabupaten',
-        'provinsi',
+        'users_id',
     ];
 }

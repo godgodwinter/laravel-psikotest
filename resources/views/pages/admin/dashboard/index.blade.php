@@ -41,7 +41,7 @@ Beranda
                                 <h4>Total Sekolah</h4>
                               </div>
                               <div class="card-body">
-                                10
+                                {{$jmlsekolah}}
                               </div>
                             </div>
                           </div>
@@ -56,7 +56,7 @@ Beranda
                                 <h4>Total Yayasan</h4>
                               </div>
                               <div class="card-body">
-                                42
+                                {{$jmlyayasan}}
                               </div>
                             </div>
                           </div>
@@ -71,7 +71,7 @@ Beranda
                                 <h4>Total BK</h4>
                               </div>
                               <div class="card-body">
-                                1,201
+                                {{$jmlbk}}
                               </div>
                             </div>
                           </div>
