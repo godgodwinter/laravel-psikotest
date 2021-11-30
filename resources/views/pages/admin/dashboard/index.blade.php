@@ -23,22 +23,94 @@ Beranda
             </div>
 
             <div class="section-body">
-            <h2 class="section-title">Ini halaman beranda</h2>
-            <p class="section-lead">Halaman pertama setelah login.</p>
+            <h2 class="section-title">Beranda</h2>
+            <p class="section-lead">Halaman awal setelah login.</p>
             <div class="card">
                 <div class="card-header">
-                <h4>Contoh Halaman</h4>
+                <h4>Data Web BK</h4>
                 </div>
                 <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                              <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Total Sekolah</h4>
+                              </div>
+                              <div class="card-body">
+                                10
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                              <i class="far fa-newspaper"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Total Yayasan</h4>
+                              </div>
+                              <div class="card-body">
+                                42
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                              <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Total BK</h4>
+                              </div>
+                              <div class="card-body">
+                                1,201
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                 <div class="card-footer bg-whitesmoke">
-                This is card footer
+
+                        <div class="card">
+                          <div class="card-header">
+                            <h4>Aktivitas Terakhir dari Sekolah</h4>
+                          </div>
+                          <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border">
+                              <li class="media">
+                                <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-1.png" alt="avatar">
+                                <div class="media-body">
+                                  <div class="float-right text-primary">Now</div>
+                                  <div class="media-title">Farhan A Mujib</div>
+                                  <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
+                                </div>
+                              </li>
+                              <li class="media">
+                                <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-2.png" alt="avatar">
+                                <div class="media-body">
+                                  <div class="float-right">12m</div>
+                                  <div class="media-title">Ujang Maman</div>
+                                  <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
+                                </div>
+                              </li>
+                            </ul>
+                            <div class="text-center pt-1 pb-1">
+                              <a href="#" class="btn btn-primary btn-lg btn-round">
+                                View All
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                 </div>
             </div>
             </div>
