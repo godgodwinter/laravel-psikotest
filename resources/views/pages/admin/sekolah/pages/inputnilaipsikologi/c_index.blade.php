@@ -15,6 +15,7 @@
                 @foreach ($kelas as $t)
                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
                 @endforeach
+
               </select>
 
             </div>

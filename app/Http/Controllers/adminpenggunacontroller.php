@@ -55,8 +55,8 @@ class adminpenggunacontroller extends Controller
                     $request->validate([
                     'username'=>'required|unique:users,username',
                     'email'=>'required|unique:users,email',
-                    'password' => 'min:8|required_with:password2|same:password2',
-                    'password2' => 'min:8',
+                    'password' => 'min:6|required_with:password2|same:password2',
+                    'password2' => 'min:6',
 
                     ],
                     [
@@ -68,8 +68,8 @@ class adminpenggunacontroller extends Controller
             $request->validate([
                 'nama'=>'required',
                 'username'=>'required',
-                'password' => 'min:8|required_with:password2|same:password2',
-                'password2' => 'min:8',
+                'password' => 'min:6|required_with:password2|same:password2',
+                'password2' => 'min:6',
 
             ],
             [
@@ -135,8 +135,8 @@ class adminpenggunacontroller extends Controller
         if($request->password!=null OR $request->password!=''){
 
         $request->validate([
-            'password' => 'min:8|required_with:password2|same:password2',
-            'password2' => 'min:8',
+            'password' => 'min:6|required_with:password2|same:password2',
+            'password2' => 'min:6',
         ],
         [
             'nama.required'=>'nama harus diisi',

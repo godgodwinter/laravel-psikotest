@@ -80,7 +80,6 @@ class admininputnilaipsikologicontroller extends Controller
                     $nilai=null;
                 }
 
-                $kelas=kelas::where('sekolah_id',$id->id)->get();
 
             $collectionmaster->push((object)[
                 'id'=>$m->id,
@@ -97,6 +96,8 @@ class admininputnilaipsikologicontroller extends Controller
                 'master'=>$collectionmaster
             ]);
         }
+
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
         return view('pages.admin.sekolah.pages.inputnilaipsikologi.index',compact('pages','request','datas','id','collectionpenilaian','kelas','kelaspertama'));
     }

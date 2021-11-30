@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class admininputminatbakatcontroller extends Controller
 {
@@ -216,5 +217,68 @@ class admininputminatbakatcontroller extends Controller
         // dd($request);
         $tgl=date("YmdHis");
 		return Excel::download(new exportminatbakat($id), 'psikotest-minatbakat-'.$id->id.'-'.$tgl.'.xlsx');
+    }
+
+    public function cetakpersiswa(sekolah $id,siswa $siswa,Request $request){
+
+        // dd($siswa);
+
+        $periksadetail=minatbakatdetail::
+        where('sekolah_id',$id->id)
+        ->where('siswa_id',$siswa->id)
+        ->count();
+        if($periksadetail<1){
+            return redirect()->back()->with('status','Data tidak ditemukan atau belum diisi!')->with('tipe','error')->with('icon','fas fa-feather');
+        }
+
+
+        $master=minatbakat::where('kategori','Minat dan Bakat')
+        ->orderBy('id','asc')
+        ->get();
+
+            $collectionpenilaian = new Collection();
+
+
+
+            $collectionmaster = new Collection();
+        $arr=[
+            'id'=>$siswa->id,
+            'nomerinduk'=>$siswa->nomerinduk,
+            'nama'=>$siswa->nama,
+        ];
+        $nomer=1;
+            foreach($master as $m){
+
+
+                $periksadata=DB::table('minatbakatdetail')
+                ->where('siswa_id',$siswa->id)
+                // ->where('id','2')
+                ->where('minatbakat_id',$m->id)
+                ->get();
+
+                if($periksadata->count()>0){
+                    $ambildata=$periksadata->first();
+                    $nilai=$periksadata->first()->nilai;
+                }else{
+                    $nilai=null;
+                }
+                $arr2= ['nilai'.$nomer => $nilai];
+                // $arr2= ['nilai'.$m->nama => $nilai];
+                $arr=array_merge($arr,$arr2);
+                $nomer++;
+// dd($arr);
+            // $collectionmaster->push((object)$arr);
+
+            }
+
+            $collectionpenilaian->push((object)$arr);
+
+            $datas=$collectionpenilaian[0];
+        // dd($collectionpenilaian[0]->nama,$datas);
+
+        // $datas=$data;
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.sekolah.pages.inputminatbakat.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        return $pdf->stream('minatbakat'.$tgl.'.pdf');
     }
 }
