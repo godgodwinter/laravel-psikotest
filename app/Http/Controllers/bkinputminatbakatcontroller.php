@@ -104,6 +104,7 @@ class bkinputminatbakatcontroller extends Controller
 
         $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
         $kelas_id=$kelaspertama->id;
+        
         $datas=DB::table('siswa')
         ->where('sekolah_id',$sekolah_id)
         ->where('kelas_id',$kelas_id)
