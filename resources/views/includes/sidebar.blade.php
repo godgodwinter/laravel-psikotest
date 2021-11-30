@@ -19,6 +19,8 @@
 
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i
                         class="fas fa-school"></i> <span>Sekolah</span></a></li>
+            <li {{$pages=='yayasan' ? 'class=active' : ''}}><a href="#"
+                    class="nav-link "> <i class="far fa-address-card"></i> <span>Yayasan</span> </a></li>
 
             <li {{$pages=='klasifikasijabatan' ? 'class=active' : ''}}><a href="{{route('klasifikasijabatan')}}"
                     class="nav-link "> <i class="far fa-address-card"></i> <span>Klasifikasi Jabatan</span> </a></li>
