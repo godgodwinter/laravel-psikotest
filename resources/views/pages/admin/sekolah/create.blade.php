@@ -80,11 +80,13 @@ Sekolah
                         @error('semester_nama')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                     </div>
-
-                    <div class="form-group col-md-5 col-6 col-lg-3 mt-0 ml-5">
+                    <input type="hidden" name="provinsi_nama" id="provinsi_nama" value="">
+                    <input type="hidden" name="kabupaten_nama" id="kabupaten_nama" value="">
+                    <input type="hidden" name="kecamatan_nama" id="kecamatan_nama" value="">
+                    <div class="form-group col-md-3 col-6 col-lg-3 mt-0 ml-3">
                         <label for="status">Provinsi <code>*)</code></label>
 
-                        <div class="col-sm-6 col-md-9">
+                        <div class="col-sm-6 col-md-12">
 
                             <select class="js-example-basic-single form-control-sm @error('provinsi')
                                 is-invalid
@@ -97,12 +99,19 @@ Sekolah
                           @enderror
 
                         </div>
+                        </div>
+
+
                         @push('before-script')
                         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
                         {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
                         <script type="text/javascript">
                             $(document).ready(function() {
 // variable
+let provinsi_nama=document.getElementById("provinsi_nama");
+let kabupaten_nama=document.getElementById("kabupaten_nama");
+let kecamatan_nama=document.getElementById("kecamatan_nama");
+
 let dataProvinsi=document.getElementById("dataProvinsi");
 let dataKabupaten=document.getElementById("dataKabupaten");
 let kab = document.getElementsByClassName("kab");
@@ -184,7 +193,7 @@ await axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kot
  .then(response => {
   let datas =  response.data.kecamatan;
 
-dataKecamatan.innerHTML=``;
+// dataKecamatan.innerHTML=``;
   datas.forEach(function(data){
     // console.log(data);
     dataKecamatan.innerHTML += `
@@ -201,10 +210,12 @@ dataKecamatan.innerHTML=``;
 //running
 getDatas();
 
-//
+// onchange
 getDataKabupaten=(sel)=>{
+
     let value = sel.value;
     let text = sel.options[sel.selectedIndex].text;
+    provinsi_nama.value=text;
 //   console.log(value+' '+text);
 
     //ambildataKabupaten
@@ -218,6 +229,15 @@ getDataKecamatan=(sel)=>{
     let value = sel.value;
     let text = sel.options[sel.selectedIndex].text;
     getDatasKec(value);
+    kabupaten_nama.value=text;
+//   console.log(value+' '+text);
+}
+
+inputDataKecamatan=(sel)=>{
+    let value = sel.value;
+    let text = sel.options[sel.selectedIndex].text;
+    getDatasKec(value);
+    kecamatan_nama.value=text;
 //   console.log(value+' '+text);
 }
 
@@ -241,11 +261,10 @@ getDataKecamatan=(sel)=>{
                             });
                            </script>
                         @endpush
-                    </div>
 
-                    <div class="form-group col-md-5 col-6 col-lg-3 mt-0 ml-5">
+                    <div class="form-group col-md-3 col-6 col-lg-3 mt-0 ml-0">
                         <label for="status">Kabupaten <code>*)</code></label>
-                        <div class="col-sm-6 col-md-9">
+                        <div class="col-sm-6 col-md-12">
 
                             <select class="js-example-basic-single form-control-sm @error('kabupaten')
                                 is-invalid
@@ -260,13 +279,13 @@ getDataKecamatan=(sel)=>{
                         </div>
                     </div>
 
-                    <div class="form-group col-md-3 col-3 mt-0 ml-3">
+                    <div class="form-group col-md-3 col-3 mt-0 ml-0">
                         <label for="status">Kecamatan <code>*)</code></label>
-                        <div class="col-sm-6 col-md-9">
+                        <div class="col-sm-6 col-md-12">
 
                             <select class="js-example-basic-single form-control-sm @error('kecamatan')
                                 is-invalid
-                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  required>
+                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  onchange="inputDataKecamatan(this)" required>
                                 <option disabled selected value=""> Pilih Kecamatan</option>
 
                               </select>
