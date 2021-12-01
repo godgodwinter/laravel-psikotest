@@ -82,6 +82,7 @@ Yayasan
                             <th class="text-center">Telp</th>
                             <th class="text-center babeng-min-row">Jumlah Sekolah</th>
                             <th class="text-center">Status</th>
+                            <th class="text-center">Logo</th>
                             <th  class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -112,7 +113,10 @@ Yayasan
                                     @endphp
                                     <button class="btn btn-{{$warna}} btn-sm ">{{$status}}</button>
                                 </td>
+                                <td class="babeng-min-row">
 
+                        <img alt="image" src="{{$data->yayasan_photo!=null?asset('storage/'.$data->yayasan_photo):'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="60px" height="60px" style="object-fit:cover;">
+                                </td>
                                 <td class="text-center babeng-min-row">
                                     <a href="{{route('yayasandetail',$data->id)}}" class="btn btn-info btn-sm "><i class="fas fa-angle-double-right"></i></a>
                                     <x-button-edit link="{{ route('yayasan.edit',$data->id)}}" />

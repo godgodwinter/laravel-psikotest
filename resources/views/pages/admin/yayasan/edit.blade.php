@@ -197,11 +197,11 @@ Yayasan
                 <div class="row ml-5">
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <img alt="image" src="{{$data->yayasan_photo!=null?asset('storage/'.$data->yayasan_photo):'https://ui-avatars.com/api/?name=Yayasan&amp;color=7F9CF5&amp;background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="250px" height="250px" style="object-fit:cover;">
+                        <img alt="image" src="{{$data->yayasan_photo!=null?asset('storage/'.$data->yayasan_photo):'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="250px" height="250px" style="object-fit:cover;">
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <img alt="image" src="{{$data->kepala_photo!=null?asset('storage/'.$data->kepala_photo):'https://ui-avatars.com/api/?name=Kepala&amp;color=7F9CF5&amp;background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Kepala Photo" width="250px" height="250px" style="object-fit:cover;">
+                        <img alt="image" src="{{$data->kepala_photo!=null?asset('storage/'.$data->kepala_photo):'https://ui-avatars.com/api/?name=Kepala&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Kepala Photo" width="250px" height="250px" style="object-fit:cover;">
                     </div>
                 </div>
 
