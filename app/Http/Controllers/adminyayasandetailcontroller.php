@@ -115,14 +115,23 @@ class adminyayasandetailcontroller extends Controller
     }
     public function cari(yayasan $yayasan,Request $request)
     {
-
+        $this->yayasanid=$request->cari;
 
         $cari=$request->cari;
         #WAJIB
+        // $datas = sekolah::with('yayasandetail')
+        // ->whereIn('id',function($query){
+        //     $query->select('sekolah_id')->from('yayasandetail')->where('yayasan_id',$this->yayasanid);
+        // })
+        // ->where('nama','like',"%".$cari."%")
+        // ->paginate(Fungsi::paginationjml());
         $pages='yayasan';
-        $datas = yayasandetail::with('waliyayasandetail')
+        $datas = yayasandetail::with('sekolah')
+        ->whereIn('sekolah_id',function($query){
+            $query->select('id')->from('sekolah')
+            ->where('nama','like',"%".$this->yayasanid."%");
+        })
         ->where('yayasan_id',$yayasan->id)
-        ->where('nama','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
         // $datas = yayasandetail::with('sekolah')->

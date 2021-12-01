@@ -25,4 +25,8 @@ class sekolah extends Model
         'kabupaten',
         'provinsi',
     ];
+    public function yayasandetail()
+    {
+        return $this->belongsTo('App\Models\yayasandetail');
+    }
 }

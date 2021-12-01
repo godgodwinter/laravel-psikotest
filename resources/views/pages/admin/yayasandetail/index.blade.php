@@ -72,7 +72,15 @@ Yayasan > Sekolah
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{$data->sekolah!=null?$data->sekolah->nama:'Data tidak ditemukan'}}
+                                    @php
+                                        if($data->nama!=null){
+                                            $nama=$data->nama;
+                                        }else{
+                                            $nama='Data tidak ditemukan';
+                                        }
+                                    @endphp
+                                <td> {{$data->sekolah!=null?$data->sekolah->nama:$nama}}
+
                                 </td>
                                 <td class="text-center">
                                     @php
