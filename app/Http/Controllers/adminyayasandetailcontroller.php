@@ -42,7 +42,9 @@ class adminyayasandetailcontroller extends Controller
         $this->yayasanid=$yayasan->id;
         $pages='yayasan';
         $sekolah=sekolah::whereNotIn('id',function($query){
-            $query->select('sekolah_id')->from('yayasandetail')->where('yayasan_id',$this->yayasanid)->where('deleted_at',null);
+            $query->select('sekolah_id')->from('yayasandetail')
+            // ->where('yayasan_id',$this->yayasanid)
+            ->where('deleted_at',null);
         })->get();
 
         return view('pages.admin.yayasandetail.create',compact('pages','yayasan','sekolah'));
@@ -51,8 +53,8 @@ class adminyayasandetailcontroller extends Controller
     public function store(yayasan $yayasan,Request $request)
     {
         // dd($request);
-        $cek=yayasandetail::where('yayasan_id',$yayasan->id)
-        ->where('sekolah_id',$request->sekolah_id)
+        $cek=yayasandetail::where('sekolah_id',$request->sekolah_id)
+        // ->where('yayasan_id',$yayasan->id)
         ->count();
         // dd($cek);
             if($cek>0){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Fungsi;
 use App\Models\yayasan;
 use App\Models\User;
+use App\Models\yayasandetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -127,7 +128,7 @@ class adminyayasancontroller extends Controller
     }
     public function update(yayasan $data,Request $request)
     {
-        
+
 
         $request->validate([
             'nama'=>'required',
@@ -175,12 +176,13 @@ class adminyayasancontroller extends Controller
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 
-    
+
     return redirect()->route('yayasan')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(yayasan $data){
 
         yayasan::destroy($data->id);
+        yayasandetail::where('yayasan_id',$data->id)->delete();
         User::destroy($data->users_id);
         return redirect()->route('yayasan')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
@@ -193,6 +195,7 @@ class adminyayasancontroller extends Controller
         // $ambildatayayasan=yayasan::where('id',$ids)->first();
         // $usersid=$ambildatayayasan->users_id;
         // User::destroy($data->usersid);
+        yayasandetail::whereIn('yayasan_id',$ids)->delete();
         yayasan::whereIn('id',$ids)->delete();
 
         // load ulang
