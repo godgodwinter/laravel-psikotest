@@ -19,6 +19,8 @@ class yayasan extends Model
         'telp',
         'status',
         'users_id',
+        'kepala_photo',
+        'yayasan_photo',
     ];
 
     public function users()

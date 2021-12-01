@@ -102,9 +102,8 @@ class adminyayasancontroller extends Controller
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
 
-
         //inser pengguna
-        DB::table('yayasan')->insert(
+        $yayasan_id=DB::table('yayasan')->insertGetId(
             array(
                    'nama'     =>   $request->nama,
                    'kepala'     =>   $request->kepala,
@@ -115,6 +114,53 @@ class adminyayasancontroller extends Controller
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
+
+
+        $id=yayasan::where('id',$yayasan_id)->first();
+        $imagesDir=public_path().'/storage';
+
+        $files = $request->file('yayasan_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->yayasan_photo)AND($id->yayasan_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->yayasan_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->yayasan_photo);
+            $file = $request->file('yayasan_photo');
+            $tujuan_upload = 'storage/yayasan';
+            // upload file
+            $file->move($tujuan_upload,$yayasan_id.".jpg");
+            yayasan::where('id',$yayasan_id)
+            ->update([
+                'yayasan_photo' => "yayasan/".$yayasan_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+
+        $files = $request->file('kepala_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->kepala_photo)AND($id->kepala_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->kepala_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->kepala_photo);
+            $file = $request->file('kepala_photo');
+            $tujuan_upload = 'storage/kepalayayasan';
+            // upload file
+            $file->move($tujuan_upload,$yayasan_id.".jpg");
+            yayasan::where('id',$yayasan_id)
+            ->update([
+                'kepala_photo' => "kepalayayasan/".$yayasan_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
 
     return redirect()->route('yayasan')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
@@ -176,6 +222,53 @@ class adminyayasancontroller extends Controller
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 
+
+        $id=$data;
+        $imagesDir=public_path().'/storage';
+
+        $yayasan_id=$data->id;
+        $files = $request->file('yayasan_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->yayasan_photo)AND($id->yayasan_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->yayasan_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->yayasan_photo);
+            $file = $request->file('yayasan_photo');
+            $tujuan_upload = 'storage/yayasan';
+            // upload file
+            $file->move($tujuan_upload,$yayasan_id.".jpg");
+            yayasan::where('id',$yayasan_id)
+            ->update([
+                'yayasan_photo' => "yayasan/".$yayasan_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+
+        $files = $request->file('kepala_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->kepala_photo)AND($id->kepala_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->kepala_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->kepala_photo);
+            $file = $request->file('kepala_photo');
+            $tujuan_upload = 'storage/kepalayayasan';
+            // upload file
+            $file->move($tujuan_upload,$yayasan_id.".jpg");
+            yayasan::where('id',$yayasan_id)
+            ->update([
+                'kepala_photo' => "kepalayayasan/".$yayasan_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
 
     return redirect()->route('yayasan')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }

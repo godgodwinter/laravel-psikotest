@@ -37,7 +37,7 @@ Yayasan
 
 
 
-           <form id="setting-form" method="POST" action="{{route('yayasan.store')}}">
+           <form id="setting-form" method="POST" action="{{route('yayasan.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="card" id="settings-card">
 
@@ -156,8 +156,45 @@ Yayasan
                   </div>
                 </div>
 
+                <div class="row ml-5">
+
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <div class="form-group row mb-4 mt-3">
+                            <div class="col-sm-4 col-md-4">
+                              <div id="image-preview" class="image-preview">
+                                <label for="image-upload" id="image-label2">Logo Yayasan</label>
+                                <input type="file" name="yayasan_photo" id="image-upload" class="@error('yayasan_photo')
+                                is_invalid
+                            @enderror"  accept="image/png, image/gif, image/jpeg" />
+
+                            @error('yayasan_photo')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+
+                          <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <div class="form-group row mb-4 mt-3">
+                            <div class="col-sm-4 col-md-4">
+                              <div id="image-preview2" class="image-preview">
+                                <label for="image-upload2" id="image-label">Foto Kepala Yayasan</label>
+                                <input type="file" name="kepala_photo" id="image-upload2" class="@error('kepala_photo')
+                                    is_invalid
+                                @enderror" accept="image/png, image/gif, image/jpeg" />
+
+                            @error('kepala_photo')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                </div>
+
 
                   </div>
+
+
 
 
 
