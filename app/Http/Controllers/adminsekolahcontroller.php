@@ -114,6 +114,9 @@ class adminsekolahcontroller extends Controller
                            'semester_nama'     =>   $request->semester_nama,
                            'sekolah_logo'  => "logo/".$namafilebaru.".jpg",
                            'kepsek_photo'   => "kepsek/".$namafilebarus.".jpg",
+                           'provinsi'     =>   $request->provinsi_nama,
+                           'kabupaten'     =>   $request->kabupaten_nama,
+                           'kecamatan'     =>   $request->kecamatan_nama,
                            'created_at'=>date("Y-m-d H:i:s"),
                            'updated_at'=>date("Y-m-d H:i:s")
                     ));
@@ -129,6 +132,9 @@ class adminsekolahcontroller extends Controller
                            'kepsek_nama'     =>   $request->kepsek_nama,
                            'tahunajaran_nama'     =>   $request->tahunajaran_nama,
                            'semester_nama'     =>   $request->semester_nama,
+                           'provinsi'     =>   $request->provinsi_nama,
+                           'kabupaten'     =>   $request->kabupaten_nama,
+                           'kecamatan'     =>   $request->kecamatan_nama,
 
                            'created_at'=>date("Y-m-d H:i:s"),
                            'updated_at'=>date("Y-m-d H:i:s")
@@ -186,6 +192,9 @@ class adminsekolahcontroller extends Controller
             'kepsek_nama'     =>   $request->kepsek_nama,
             'tahunajaran_nama'     =>   $request->tahunajaran_nama,
             'semester_nama'     =>   $request->semester_nama,
+            'provinsi'     =>   $request->provinsi_nama,
+            'kabupaten'     =>   $request->kabupaten_nama,
+            'kecamatan'     =>   $request->kecamatan_nama,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 
