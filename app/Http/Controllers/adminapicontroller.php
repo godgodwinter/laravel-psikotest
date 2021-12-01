@@ -45,15 +45,21 @@ class adminapicontroller extends Controller
         // ->where('sekolah_id',$id->id)
         // ->orderBy('nama','asc')
         ->first();
-        $siswa_nama=$ambildatasiswa->nama;
+        $ceksiswa=DB::table('siswa')
+        ->where('id',$siswa)
+        // ->where('sekolah_id',$id->id)
+        // ->orderBy('nama','asc')
+        ->count();
+        $siswa_nama=$ambildatasiswa?$ambildatasiswa->nama:'Data tidak ditemukan';
 
+        if($ceksiswa>0){
         $cek=DB::table('inputnilaipsikologi')
         ->where('siswa_id',$siswa)
         ->where('masternilaipsikologi_id',$ambildatamaster->id)
         ->count();
         // dd($request,$cek);
         // jika belum maka insert
-        if($cek<1){
+        if($cek>0){
             DB::table('inputnilaipsikologi')->insert(
              array(
                     'siswa_id'     =>   $siswa,
@@ -73,6 +79,7 @@ class adminapicontroller extends Controller
                     'nilai'     =>   $nilai,
                 ]);
 
+        }
         }
 
         return response()->json([

@@ -84,11 +84,12 @@
                 href="{{$id->status=='Aktif' ? route('bk.settingpengguna.edit') : '#' }}"><i class="fas fa-school"></i>
                 <span>Setting user</span></a></li> --}}
             <li class="menu-header">Menu</li>
+            {{-- {{dd($id->status)}} --}}
             <li {{$pages=='bk-beranda' ? 'class=active' : ''}}><a class="nav-link"
-                    href="{{$id->status=='Aktif' ?  route('bk.beranda') : '#'}}"><i class="fas fa-school"></i>
+                    href="{{route('bk.beranda') }}"><i class="fas fa-school"></i>
                     <span>Dashboard Sekolah</span></a></li>
             <li {{$pages=='bk-siswa' ? 'class=active' : ''}}><a class="nav-link"
-                    href="{{$id->status=='Aktif' ?  route('bk.siswa') : '#'}}"><i class="fas fa-user-tie"></i>
+                    href="{{route('bk.siswa')}}"><i class="fas fa-user-tie"></i>
                     <span>Siswa</span></a></li>
             <li {{$pages=='bk-walikelas' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.walikelas') : '#'}}"><i class="fas fa-school"></i>

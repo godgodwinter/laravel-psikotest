@@ -80,6 +80,201 @@ Sekolah
                         @error('semester_nama')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
                     </div>
+
+                    <div class="form-group col-md-5 col-6 col-lg-3 mt-0 ml-5">
+                        <label for="status">Provinsi <code>*)</code></label>
+
+                        <div class="col-sm-6 col-md-9">
+
+                            <select class="js-example-basic-single form-control-sm @error('provinsi')
+                                is-invalid
+                            @enderror" name="provinsi"  style="width: 75%" id="dataProvinsi" onchange="getDataKabupaten(this)" required>
+                                <option disabled selected value=""> Pilih Provinsi</option>
+
+                              </select>
+
+                          @error('provinsi')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        @push('before-script')
+                        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                        {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+// variable
+let dataProvinsi=document.getElementById("dataProvinsi");
+let dataKabupaten=document.getElementById("dataKabupaten");
+let kab = document.getElementsByClassName("kab");
+let kec = document.getElementsByClassName("kec");
+
+//fungsi
+// function addOption(id='0',data='Data tidak ditemukan'){
+// //     var node = document.createElement("OPTION");
+// //     var textSelect= document.createTextNode(data);
+// //     var idSelect= document.createIdNode(idc);
+// //     node.appendChild(textSelect);
+// //     dataprovinsi.appendChild(node);
+
+// }
+
+//Select2
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            // theme: "classic",
+            // allowClear: true,
+            width: "resolve"
+        });
+    });
+
+
+// console.log(dataprovinsi);
+
+    //ambildatanconst
+getDatas = async () => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get('https://dev.farizdotid.com/api/daerahindonesia/provinsi')
+ .then(response => {
+  let datas =  response.data.provinsi;
+
+//   dataKabupaten.remove();
+//     dataKecamatan.remove();
+dataKabupaten.innerHTML=`<option disabled selected value=""> Pilih Kabupaten</option>`;
+dataKecamatan.innerHTML=`<option disabled selected value=""> Pilih Kecamatan</option>`;
+  datas.forEach(function(data){
+    // console.log(data);
+    // addOption(data.id,data.nama);
+
+    dataProvinsi.innerHTML += `
+    <option value="${data.id}"> ${data.nama}</option>
+    `;
+  })
+//   console.log(`GET data`, datas);
+
+})
+ .catch(error => console.error(error));
+};
+
+//ambildataKab
+getDatasKab = async (id='1') => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${id}`)
+ .then(response => {
+  let datas =  response.data.kota_kabupaten;
+
+dataKabupaten.innerHTML=`<option disabled selected value=""> Pilih Kabupaten</option>`;
+dataKecamatan.innerHTML=`<option disabled selected value=""> Pilih Kecamatan</option>`;
+  datas.forEach(function(data){
+    // console.log(data);
+    dataKabupaten.innerHTML += `
+    <option value="${data.id}" class="kab"> ${data.nama}</option>
+    `;
+  })
+//   console.log(`GET data`, datas);
+
+})
+ .catch(error => console.error(error));
+};
+
+
+//ambildataKab
+getDatasKec = async (id='1') => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=${id}`)
+ .then(response => {
+  let datas =  response.data.kecamatan;
+
+dataKecamatan.innerHTML=``;
+  datas.forEach(function(data){
+    // console.log(data);
+    dataKecamatan.innerHTML += `
+    <option value="${data.id}" class="kec"> ${data.nama}</option>
+    `;
+  })
+  console.log(`GET data`, datas);
+
+})
+ .catch(error => console.error(error));
+};
+
+
+//running
+getDatas();
+
+//
+getDataKabupaten=(sel)=>{
+    let value = sel.value;
+    let text = sel.options[sel.selectedIndex].text;
+//   console.log(value+' '+text);
+
+    //ambildataKabupaten
+    getDatasKab(value);
+
+
+}
+
+
+getDataKecamatan=(sel)=>{
+    let value = sel.value;
+    let text = sel.options[sel.selectedIndex].text;
+    getDatasKec(value);
+//   console.log(value+' '+text);
+}
+
+// activities.addEventListener("click", function() {
+//     var options = activities.querySelectorAll("option");
+//     var count = options.length;
+//     if(typeof(count) === "undefined" || count < 2)
+//     {
+//         addActivityItem();
+//     }
+// });
+
+// activities.addEventListener("change", function() {
+//     if(activities.value == "addNew")
+//     {
+//         addActivityItem();
+//     }
+// });
+
+
+                            });
+                           </script>
+                        @endpush
+                    </div>
+
+                    <div class="form-group col-md-5 col-6 col-lg-3 mt-0 ml-5">
+                        <label for="status">Kabupaten <code>*)</code></label>
+                        <div class="col-sm-6 col-md-9">
+
+                            <select class="js-example-basic-single form-control-sm @error('kabupaten')
+                                is-invalid
+                            @enderror" name="kabupaten"  style="width: 75%" id="dataKabupaten" onchange="getDataKecamatan(this)"  required>
+                                <option disabled selected value=""> Pilih Kabupaten</option>
+
+                              </select>
+
+                          @error('kabupaten')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-3 mt-0 ml-3">
+                        <label for="status">Kecamatan <code>*)</code></label>
+                        <div class="col-sm-6 col-md-9">
+
+                            <select class="js-example-basic-single form-control-sm @error('kecamatan')
+                                is-invalid
+                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  required>
+                                <option disabled selected value=""> Pilih Kecamatan</option>
+
+                              </select>
+
+                          @error('kecamatan')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
                     </div>
 
                     @push('after-script')
@@ -106,7 +301,7 @@ Sekolah
                                     });
                                     </script>
                                 @endpush
-
+                                <div class="form-group col-md-5 col-5 mt-0 ml-5">
                     <div class="form-group row mb-4 mt-3">
                         <div class="col-sm-4 col-md-4">
                           <div id="image-preview" class="image-preview">
@@ -120,8 +315,9 @@ Sekolah
                           </div>
                         </div>
                       </div>
+                      </div>
 
-
+                      <div class="form-group col-md-5 col-5 mt-0 ml-5">
                     <div class="form-group row mb-4 mt-3">
                         <div class="col-sm-4 col-md-4">
                           <div id="image-preview2" class="image-preview">
@@ -135,7 +331,9 @@ Sekolah
                           </div>
                         </div>
                       </div>
+                      </div>
 
+                    </div>
 
                     <div class="card-footer text-right mr-5">
                         <button class="btn btn-primary">Simpan</button>
