@@ -86,45 +86,12 @@ class adminsekolahcontroller extends Controller
                 'nama.nama'=>'Nama harus diisi',
             ]);
 
-            $file = $request->file('sekolah_logo');
-            $files = $request->file('kepsek_photo');
-
-            if($files!=null or $file!=null){
-                $namafilebaru='logo_'.$request->nama;
-
-                $tujuan_upload = 'storage/logo';
-                        // upload file
-                $file->move($tujuan_upload,"logo/".$namafilebaru.".jpg");
-
-
-                $namafilebarus='foto_kepala_sekolah_'.$request->nama;
-                // menyimpan data file yang diupload ke variabel $file
-
-                $tujuan_uploads = 'storage/kepsek';
-                        // upload file
-                $files->move($tujuan_uploads,"kepsek/".$namafilebarus.".jpg");
-
-                DB::table('sekolah')->insert(
-                    array(
-                           'nama'     =>   $request->nama,
-                           'alamat'     =>   $request->alamat,
-                           'status'     =>   $request->status,
-                           'kepsek_nama'     =>   $request->kepsek_nama,
-                           'tahunajaran_nama'     =>   $request->tahunajaran_nama,
-                           'semester_nama'     =>   $request->semester_nama,
-                           'sekolah_logo'  => "logo/".$namafilebaru.".jpg",
-                           'kepsek_photo'   => "kepsek/".$namafilebarus.".jpg",
-                           'provinsi'     =>   $request->provinsi_nama,
-                           'kabupaten'     =>   $request->kabupaten_nama,
-                           'kecamatan'     =>   $request->kecamatan_nama,
-                           'created_at'=>date("Y-m-d H:i:s"),
-                           'updated_at'=>date("Y-m-d H:i:s")
-                    ));
-            }else{
 
 
 
-                DB::table('sekolah')->insert(
+
+
+                $sekolah_id=DB::table('sekolah')->insertGetId(
                     array(
                            'nama'     =>   $request->nama,
                            'alamat'     =>   $request->alamat,
@@ -135,19 +102,56 @@ class adminsekolahcontroller extends Controller
                            'provinsi'     =>   $request->provinsi_nama,
                            'kabupaten'     =>   $request->kabupaten_nama,
                            'kecamatan'     =>   $request->kecamatan_nama,
-
                            'created_at'=>date("Y-m-d H:i:s"),
                            'updated_at'=>date("Y-m-d H:i:s")
                     ));
+
+        $id=sekolah::where('id',$sekolah_id)->first();
+        $imagesDir=public_path().'/storage';
+
+        $files = $request->file('sekolah_logo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->sekolah_logo)AND($id->sekolah_logo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->sekolah_logo;
+                unlink($image_path);
             }
-
-        //inser siswa
-
-
-
             // dd('storage'.'/'.$id->sekolah_logo);
+            $file = $request->file('sekolah_logo');
+            $tujuan_upload = 'storage/sekolah';
+            // upload file
+            $file->move($tujuan_upload,$sekolah_id.".jpg");
+            sekolah::where('id',$sekolah_id)
+            ->update([
+                'sekolah_logo' => "sekolah/".$sekolah_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
 
 
+        $files = $request->file('kepsek_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->kepsek_photo)AND($id->kepsek_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->kepsek_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->kepsek_photo);
+            $file = $request->file('kepsek_photo');
+            $tujuan_upload = 'storage/kepsek';
+            // upload file
+            $file->move($tujuan_upload,$sekolah_id.".jpg");
+            sekolah::where('id',$sekolah_id)
+            ->update([
+                'kepsek_photo' => "kepsek/".$sekolah_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+
+        }
 
     return redirect()->route('sekolah')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
 
@@ -200,55 +204,55 @@ class adminsekolahcontroller extends Controller
 
 
 
-        $files = $request->file('sekolah_logo');
 
-        $imagesDir=public_path().'/storage';
-        // dd($request);
-        if($files!=null){
+            $sekolah_id=$id->id;
+            $id=sekolah::where('id',$sekolah_id)->first();
+            $imagesDir=public_path().'/storage';
 
-            if (file_exists( public_path().'/storage'.'/'.$id->sekolah_logo)AND($id->sekolah_logo!=null)){
-                chmod($imagesDir, 0777);
-                $image_path = public_path().'/storage'.'/'.$id->sekolah_logo;
-                unlink($image_path);
-            }
-            // dd('storage'.'/'.$id->sekolah_logo);
-            $namafilebaru=$id->id;
-            $file = $request->file('sekolah_logo');
-            $tujuan_upload = 'storage/logo';
-                    // upload file
-            $file->move($tujuan_upload,"logo/".$namafilebaru.".jpg");
-            sekolah::where('id',$id->id)
-            ->update([
-                'sekolah_logo' => "logo/".$namafilebaru.".jpg",
-            'updated_at'=>date("Y-m-d H:i:s")
-            ]);
+            $files = $request->file('sekolah_logo');
+            if($files!=null){
 
-        }
+                if (file_exists( public_path().'/storage'.'/'.$id->sekolah_logo)AND($id->sekolah_logo!=null)){
+                    chmod($imagesDir, 0777);
+                    $image_path = public_path().'/storage'.'/'.$id->sekolah_logo;
+                    unlink($image_path);
+                }
+                // dd('storage'.'/'.$id->sekolah_logo);
+                $file = $request->file('sekolah_logo');
+                $tujuan_upload = 'storage/sekolah';
+                // upload file
+                $file->move($tujuan_upload,$sekolah_id.".jpg");
+                sekolah::where('id',$sekolah_id)
+                ->update([
+                    'sekolah_logo' => "sekolah/".$sekolah_id.".jpg",
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
 
-
-        $files = $request->file('kepsek_photo');
-
-        // dd($request);
-        if($files!=null){
-            if (file_exists( public_path().'/storage'.'/'.$id->kepsek_photo)AND($id->kepsek_photo!=null)){
-                chmod($imagesDir, 0777);
-                $image_path = public_path().'/storage'.'/'.$id->kepsek_photo;
-                unlink($image_path);
             }
 
-            $namafilebaru=$id->id;
-            // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('kepsek_photo');
-            $tujuan_upload = 'storage/kepsek';
-                    // upload file
-            $file->move($tujuan_upload,"kepsek/".$namafilebaru.".jpg");
-            sekolah::where('id',$id->id)
-            ->update([
-                'kepsek_photo' => "kepsek/".$namafilebaru.".jpg",
-            'updated_at'=>date("Y-m-d H:i:s")
-            ]);
 
-        }
+            $files = $request->file('kepsek_photo');
+            if($files!=null){
+
+                if (file_exists( public_path().'/storage'.'/'.$id->kepsek_photo)AND($id->kepsek_photo!=null)){
+                    chmod($imagesDir, 0777);
+                    $image_path = public_path().'/storage'.'/'.$id->kepsek_photo;
+                    unlink($image_path);
+                }
+                // dd('storage'.'/'.$id->kepsek_photo);
+                $file = $request->file('kepsek_photo');
+                $tujuan_upload = 'storage/kepsek';
+                // upload file
+                $file->move($tujuan_upload,$sekolah_id.".jpg");
+                sekolah::where('id',$sekolah_id)
+                ->update([
+                    'kepsek_photo' => "kepsek/".$sekolah_id.".jpg",
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+
+            }
+
 
     return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }

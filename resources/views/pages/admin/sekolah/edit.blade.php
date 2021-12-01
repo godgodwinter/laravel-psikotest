@@ -30,7 +30,7 @@ Sekolah
             </div>
             <div class="card-body">
 
-                <form action="{{route('sekolah.update',$id->id)}}" method="post">
+                <form action="{{route('sekolah.update',$id->id)}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
 
@@ -325,40 +325,55 @@ inputDataKecamatan=(sel)=>{
                                     });
                                     </script>
                                 @endpush
-                <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                    <div class="form-group row mb-4 mt-3">
-                        <div class="col-sm-4 col-md-4">
-                          <div id="image-preview" class="image-preview">
-                            <label for="image-upload" id="image-label2">Logo Sekolah</label>
-                            <input type="file" name="sekolah_logo" id="image-upload" class="@error('sekolah_logo')
-                            is_invalid
-                        @enderror"  accept="image/png, image/gif, image/jpeg" />
 
-                        @error('sekolah_logo')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-
-                      <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                    <div class="form-group row mb-4 mt-3">
-                        <div class="col-sm-4 col-md-4">
-                          <div id="image-preview2" class="image-preview">
-                            <label for="image-upload2" id="image-label">Foto Kepala Sekolah</label>
-                            <input type="file" name="kepsek_photo" id="image-upload2" class="@error('kepsek_photo')
-                                is_invalid
-                            @enderror" accept="image/png, image/gif, image/jpeg" />
-
-                        @error('kepsek_photo')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                          </div>
-                        </div>
-                      </div>
                       </div>
 
 
                     </div>
+                    <div class="row ml-5">
+                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                            <div class="form-group row mb-4 mt-3">
+                                <div class="col-sm-4 col-md-4">
+                                  <div id="image-preview" class="image-preview">
+                                    <label for="image-upload" id="image-label2">Logo Sekolah</label>
+                                    <input type="file" name="sekolah_logo" id="image-upload" class="@error('sekolah_logo')
+                                    is_invalid
+                                @enderror"  accept="image/png, image/gif, image/jpeg" />
+
+                                @error('sekolah_logo')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                                  </div>
+                                </div>
+                              </div>
+                              </div>
+
+                              <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                            <div class="form-group row mb-4 mt-3">
+                                <div class="col-sm-4 col-md-4">
+                                  <div id="image-preview2" class="image-preview">
+                                    <label for="image-upload2" id="image-label">Foto Kepala Sekolah</label>
+                                    <input type="file" name="kepsek_photo" id="image-upload2" class="@error('kepsek_photo')
+                                        is_invalid
+                                    @enderror" accept="image/png, image/gif, image/jpeg" />
+
+                                @error('kepsek_photo')<div class="invalid-feedback"> {{$message}}</div>
+                                @enderror
+                                  </div>
+                                </div>
+                              </div>
+                    </div>
+                    </div>
+                    <div class="row ml-5">
+
+                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                            <img alt="image" src="{{$id->sekolah_logo!=null?asset('storage/'.$id->sekolah_logo):'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="250px" height="250px" style="object-fit:cover;">
+                        </div>
+
+                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                            <img alt="image" src="{{$id->kepsek_photo!=null?asset('storage/'.$id->kepsek_photo):'https://ui-avatars.com/api/?name=Kepala&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Kepala Photo" width="250px" height="250px" style="object-fit:cover;">
+                        </div>
+                    </div>
+
 
                     <div class="card-footer text-right mr-5">
                         <button class="btn btn-primary">Simpan</button>

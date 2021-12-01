@@ -79,6 +79,7 @@ Sekolah
                             <th >Nama</th>
                             <th>Alamat</th>
                             <th width="10%" class="text-center">Status</th>
+                            <th width="10%" class="text-center">Logo</th>
                             <th width="10%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -103,6 +104,10 @@ Sekolah
                                     @endphp
                                     <div class="badge badge-{{$warna}}">{{$data->status}}</div>
 
+                                </td>
+                                <td class="babeng-min-row">
+
+                        <img alt="image" src="{{$data->sekolah_logo!=null?asset('storage/'.$data->sekolah_logo):'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="60px" height="60px" style="object-fit:cover;">
                                 </td>
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
