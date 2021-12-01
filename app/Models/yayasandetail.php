@@ -17,4 +17,15 @@ class yayasandetail extends Model
         'sekolah_id',
         'status',
     ];
+
+    public function sekolah()
+    {
+        return $this->belongsTo('App\Models\sekolah');
+    }
+
+    public function yayasan()
+    {
+        return $this->belongsTo('App\Models\yayasan');
+    }
+
 }

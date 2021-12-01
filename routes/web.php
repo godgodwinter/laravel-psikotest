@@ -29,6 +29,7 @@ use App\Http\Controllers\admintahunajarancontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\adminwalikelascontroller;
 use App\Http\Controllers\adminyayasancontroller;
+use App\Http\Controllers\adminyayasandetailcontroller;
 use App\Http\Controllers\bkberandacontroller;
 use App\Http\Controllers\bkberandanonaktifcontroller;
 use App\Http\Controllers\bkcetakcontroller;
@@ -273,6 +274,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::delete('/admin/yayasan/delete/{data}', [adminyayasancontroller::class, 'destroy'])->name('yayasan.destroy');
       Route::delete('/admin/datayayasan/multidel', [adminyayasancontroller::class, 'multidel'])->name('yayasan.multidel');
 
+
+      //yayasandetail
+      Route::get('/admin/yayasandetail/{yayasan}', [adminyayasandetailcontroller::class, 'index'])->name('yayasandetail');
+      Route::get('/admin/yayasandetail/create/{yayasan}', [adminyayasandetailcontroller::class, 'create'])->name('yayasandetail.create');
+      Route::post('/admin/yayasandetail/create/{yayasan}', [adminyayasandetailcontroller::class, 'store'])->name('yayasandetail.store');
+      Route::get('/admin/yayasandetail/cari/{yayasan}', [adminyayasandetailcontroller::class, 'cari'])->name('yayasandetail.cari');
+      Route::get('/admin/yayasandetail/edit/{yayasan}/{data}', [adminyayasandetailcontroller::class, 'edit'])->name('yayasandetail.edit');
+      Route::put('/admin/yayasandetail/update/{yayasan}/{data}', [adminyayasandetailcontroller::class, 'update'])->name('yayasandetail.update');
+      Route::delete('/admin/yayasandetail/delete/{yayasan}/{data}', [adminyayasandetailcontroller::class, 'destroy'])->name('yayasandetail.destroy');
+      Route::delete('/admin/datayayasandetail/multidel/{yayasan}', [adminyayasandetailcontroller::class, 'multidel'])->name('yayasandetail.multidel');
 
       //informasipsikologi
       Route::get('/admin/informasipsikologi', [admininformasipsikologicontroller::class, 'index'])->name('informasipsikologi');

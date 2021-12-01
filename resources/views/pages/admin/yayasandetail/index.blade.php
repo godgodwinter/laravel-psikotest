@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Yayasan
+Yayasan > Sekolah
 @endsection
 
 @push('before-script')
@@ -31,16 +31,7 @@ Yayasan
 
                     <div class="p-2 bd-highlight">
 
-                        <form action="{{ route('yayasan.cari') }}" method="GET">
-                            {{-- <label for="">Urutkan </label>
-                            <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
-
-                                <option>Terbaru</option>
-                                <option>Terlama</option>
-
-                                <option>A - Z</option>
-                                <option>Z - A</option>
-                            </select> --}}
+                        <form action="{{ route('yayasandetail.cari',$yayasan->id) }}" method="GET">
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
                         </div>
@@ -52,22 +43,15 @@ Yayasan
 
                         </div>
                         <div class="ml-auto p-2 bd-highlight">
-                            <a href="{{route('yayasan.create')}}" type="submit" value="Import"
+                            <a href="{{route('yayasandetail.create',$yayasan->id)}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
-                            {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
-                                data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                                Import
-                            </button>
-                            <a href="/admin/yayasan/export" type="submit" value="Import"
-                                class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Export </span></a> --}}
                         </form>
 
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('yayasan.multidel')}}" />
+                <x-jsmultidel link="{{route('yayasandetail.multidel',$yayasan->id)}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
@@ -76,11 +60,7 @@ Yayasan
                     <thead>
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama Yayasan</th>
-                            <th class="text-center">Username</th>
-                            <th class="text-center">Nama Kepala Yayasan</th>
-                            <th class="text-center">Telp</th>
-                            <th class="text-center babeng-min-row">Jumlah Sekolah</th>
+                            <th >Nama Sekolah</th>
                             <th class="text-center">Status</th>
                             <th  class="text-center">Aksi</th>
                         </tr>
@@ -91,16 +71,8 @@ Yayasan
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->nama,25,' ...')}}
+                                <td> {{$data->sekolah!=null?$data->sekolah->nama:'Data tidak ditemukan'}}
                                 </td>
-                                <td class="text-center">
-                                    {{$data->users!=null?$data->users->username:'Data tidak ditemukan'}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->kepala,25,' ...')}}
-                                </td>
-                                <td class="text-center">{{$data->telp}}</td>
-                                <td class=" text-center">{{\App\Models\yayasandetail::where('yayasan_id',$data->id)->count()}}</td>
                                 <td class="text-center">
                                     @php
                                         $warna='danger';
@@ -114,9 +86,8 @@ Yayasan
                                 </td>
 
                                 <td class="text-center babeng-min-row">
-                                    <a href="{{route('yayasandetail',$data->id)}}" class="btn btn-info btn-sm "><i class="fas fa-angle-double-right"></i></a>
-                                    <x-button-edit link="{{ route('yayasan.edit',$data->id)}}" />
-                                    <x-button-delete link="{{ route('yayasan.destroy',$data->id)}}" />
+                                    <x-button-edit link="{{ route('yayasandetail.edit',[$yayasan->id,$data->id])}}" />
+                                    <x-button-delete link="{{ route('yayasandetail.destroy',[$yayasan->id,$data->id])}}" />
                                 </td>
                             </tr>
                 @empty
