@@ -62,6 +62,9 @@ Yayasan > Sekolah
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama Sekolah</th>
+                            <th >Provinsi</th>
+                            <th >Kabupaten</th>
+                            <th >Kecamatan</th>
                             <th class="text-center">Status</th>
                             <th  class="text-center">Aksi</th>
                         </tr>
@@ -72,16 +75,10 @@ Yayasan > Sekolah
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                    @php
-                                        if($data->nama!=null){
-                                            $nama=$data->nama;
-                                        }else{
-                                            $nama='Data tidak ditemukan';
-                                        }
-                                    @endphp
-                                <td> {{$data->sekolah!=null?$data->sekolah->nama:$nama}}
-
-                                </td>
+                                <td> {{$data->sekolah!=null?$data->sekolah->nama:'Data tidak ditemukan'}}</td>
+                                <td> {{$data->sekolah!=null?$data->sekolah->provinsi:'Data tidak ditemukan'}}</td>
+                                <td> {{$data->sekolah!=null?$data->sekolah->kabupaten:'Data tidak ditemukan'}}</td>
+                                <td> {{$data->sekolah!=null?$data->sekolah->kecamatan:'Data tidak ditemukan'}}</td>
                                 <td class="text-center">
                                     @php
                                         $warna='danger';
