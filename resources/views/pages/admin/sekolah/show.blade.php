@@ -162,6 +162,7 @@ Detail Sekolah
                                 <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a> --}}
 
                             </div>
+                            <input type="hidden" name="status" value="{{$id->status?$id->status:'Nonaktif'}}">
                             <div class="col-11 col-lg-8 py-0 col-md-12">
                                 <div class="form-group row align-items-center">
                                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Sekolah</label>
