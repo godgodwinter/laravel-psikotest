@@ -54,7 +54,7 @@
                                 <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                 </td>
                                 <td>
-{{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
+                                    {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
                                 </td>
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
@@ -77,20 +77,13 @@
             $tapel_nama=$request->tapel_nama;
             $kelas_nama=$request->kelas_nama;
             @endphp
-            {{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
+
             {{ $datas->onEachSide(1)
-            //   ->appends(['cari'=>$cari])
-            //   ->appends(['tapel_nama'=>$tapel_nama])
-            //   ->appends(['kelas_nama'=>$kelas_nama])
+
               ->links() }}
                 </div>
                 <div>
-            {{-- <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Data ditemukan</li>
 
-            </ol>
-            </nav> --}}
             <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
                         onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
                         <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>

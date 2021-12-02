@@ -380,15 +380,40 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //siswa
         Route::get('/bk/siswa', [bksiswacontroller::class, 'index'])->name('bk.siswa');
         Route::get('/bk/siswa/cari', [bksiswacontroller::class, 'cari'])->name('bk.siswa.cari');
+        Route::get('/bk/siswa/create', [bksiswacontroller::class, 'create'])->name('bk.siswa.create');
+        Route::post('/bk/siswa/create', [bksiswacontroller::class, 'store'])->name('bk.siswa.store');
+        Route::get('/bk/siswa/{data}', [bksiswacontroller::class, 'edit'])->name('bk.siswa.edit');
+        Route::put('/bk/siswa/{data}', [bksiswacontroller::class, 'update'])->name('bk.siswa.update');
+        Route::delete('/bk/siswa/{data}', [bksiswacontroller::class, 'destroy'])->name('bk.siswa.destroy');
+        Route::delete('/bk/siswa/multidel', [bksiswacontroller::class, 'multidel'])->name('bk.siswa.multidel');
+
         //walikelas
         Route::get('/bk/walikelas', [bkwalikelascontroller::class, 'index'])->name('bk.walikelas');
         Route::get('/bk/walikelas/cari', [bkwalikelascontroller::class, 'cari'])->name('bk.walikelas.cari');
+        Route::get('/bk/walikelas/create', [bkwalikelascontroller::class, 'create'])->name('bk.walikelas.create');
+        Route::post('/bk/walikelas/create', [bkwalikelascontroller::class, 'store'])->name('bk.walikelas.store');
+        Route::get('/bk/walikelas/{data}', [bkwalikelascontroller::class, 'edit'])->name('bk.walikelas.edit');
+        Route::put('/bk/walikelas/{data}', [bkwalikelascontroller::class, 'update'])->name('bk.walikelas.update');
+        Route::delete('/bk/walikelas/{data}', [bkwalikelascontroller::class, 'destroy'])->name('bk.walikelas.destroy');
+        Route::delete('/bk/walikelas/multidel', [bkwalikelascontroller::class, 'multidel'])->name('bk.walikelas.multidel');
         //kelas
         Route::get('/bk/kelas', [bkkelascontroller::class, 'index'])->name('bk.kelas');
         Route::get('/bk/kelas/cari', [bkkelascontroller::class, 'cari'])->name('bk.kelas.cari');
+        Route::get('/bk/kelas/create', [bkkelascontroller::class, 'create'])->name('bk.kelas.create');
+        Route::post('/bk/kelas/create', [bkkelascontroller::class, 'store'])->name('bk.kelas.store');
+        Route::get('/bk/kelas/{data}', [bkkelascontroller::class, 'edit'])->name('bk.kelas.edit');
+        Route::put('/bk/kelas/{data}', [bkkelascontroller::class, 'update'])->name('bk.kelas.update');
+        Route::delete('/bk/kelas/{data}', [bkkelascontroller::class, 'destroy'])->name('bk.kelas.destroy');
+        Route::delete('/bk/kelas/multidel', [bkkelascontroller::class, 'multidel'])->name('bk.kelas.multidel');
         //menu pengguna
         Route::get('/bk/pengguna', [bkpenggunacontroller::class, 'index'])->name('bk.pengguna');
         Route::get('/bk/pengguna/cari', [bkpenggunacontroller::class, 'cari'])->name('bk.pengguna.cari');
+        Route::get('/bk/pengguna/create', [bkpenggunacontroller::class, 'create'])->name('bk.pengguna.create');
+        Route::post('/bk/pengguna/create', [bkpenggunacontroller::class, 'store'])->name('bk.pengguna.store');
+        Route::get('/bk/pengguna/{data}', [bkpenggunacontroller::class, 'edit'])->name('bk.pengguna.edit');
+        Route::put('/bk/pengguna/{data}', [bkpenggunacontroller::class, 'update'])->name('bk.pengguna.update');
+        Route::delete('/bk/pengguna/{data}', [bkpenggunacontroller::class, 'destroy'])->name('bk.pengguna.destroy');
+        Route::delete('/bk/pengguna/multidel', [bkpenggunacontroller::class, 'multidel'])->name('bk.pengguna.multidel');
         //menu inputnilaipsikologi
         Route::get('/bk/inputnilaipsikologi', [bkinputnilaipsikologicontroller::class, 'index'])->name('bk.inputnilaipsikologi');
         //penjurusan

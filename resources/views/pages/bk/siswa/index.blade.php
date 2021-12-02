@@ -53,9 +53,23 @@ Siswa
                         </form>
 
                     </div>
+                    <div class="ml-auto p-2 bd-highlight">
+
+                        <a href="{{route('bk.siswa.create',$id->id)}}" type="submit" value="Import"
+                           class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                   class="fas fa-download"></i> Tambah </span></a>
+                       {{--            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                                       data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                                       Import
+                                   </button>
+                                   <a href="/admin/sekolah/export" type="submit" value="Import"
+                                       class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
+                                               class="fas fa-download"></i> Export </span></a> --}}
+                   </form>
+               </div>
                 </div>
 
-                <x-jsmultidel link="{{route('referensi.multidel')}}" />
+                <x-jsmultidel link="{{route('bk.siswa.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
@@ -63,20 +77,28 @@ Siswa
                 <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center babeng-min-row">No</th>
+                            <th width="8%" class="text-center babeng-min-row"><input type="checkbox" id="chkCheckAll">No</th>
                             <th>Nama siswa</th>
                             <th>Kelas</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                     @forelse ($datas as $data)
                             <tr id="sid{{ $data->id }}">
                                     <td class="text-center">
+                                        <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                         {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                     <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                     </td>
                                     <td>
-    {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
+                                      {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
+                                    </td>
+
+                                    <td class="text-center babeng-min-row">
+                                        {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
+                                        <x-button-edit link="{{ route('bk.siswa.edit',[$data->id])}}" />
+                                        <x-button-delete link="{{ route('bk.siswa.destroy',[$data->id])}}" />
                                     </td>
 
                                 </tr>
@@ -90,17 +112,23 @@ Siswa
                 </table>
                 <div class="d-flex justify-content-between flex-row-reverse mt-3">
                     <div >
-@php
-$cari=$request->cari;
-$tapel_nama=$request->tapel_nama;
-$kelas_nama=$request->kelas_nama;
-@endphp
-{{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
-{{ $datas->onEachSide(1)
+                @php
+                $cari=$request->cari;
+                $tapel_nama=$request->tapel_nama;
+                $kelas_nama=$request->kelas_nama;
+                @endphp
 
-  ->links() }}
+                {{ $datas->onEachSide(1)
+
+                  ->links() }}
                     </div>
+                    <div>
 
+                <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+                            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
+                            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
