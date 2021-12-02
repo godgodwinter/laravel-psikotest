@@ -85,10 +85,10 @@ Siswa
                     </thead>
                     <tbody>
                     @forelse ($datas as $data)
-                            <tr id="sid{{ $data->id }}">
-                                    <td class="text-center">
-                                        <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
-                                        {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+                    <tr id="sid{{ $data->id }}">
+                        <td class="text-center">
+                            <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
+                            {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                     <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                     </td>
                                     <td>
@@ -104,7 +104,7 @@ Siswa
                                 </tr>
                     @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                                    <td colspan="4" class="text-center">Data tidak ditemukan</td>
                                 </tr>
                     @endforelse
 

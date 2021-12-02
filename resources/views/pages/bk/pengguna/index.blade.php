@@ -68,10 +68,10 @@ Pengguna
                </div>
                 </div>
 
-                {{-- <x-jsmultidel link="{{route('referensi.multidel')}}" />
+                <x-jsmultidel link="{{route('bk.pengguna.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
-                @endif --}}
+                @endif
 
                 <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
                     <thead>

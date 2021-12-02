@@ -317,7 +317,7 @@ public function __construct()
 
     }
 
-    public function multidel(sekolah $id,Request $request)
+    public function multidel(Request $request)
     {
 
         $ids=$request->ids;
@@ -325,7 +325,7 @@ public function __construct()
 
         // load ulang
         #WAJIB
-        $pages='bk-catatanpengembangandirisiswa';
+        $pages='bk-siswa';
                 $users_id=Auth::user()->id;
                 $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
                 $sekolah_id=$pengguna->sekolah_id;

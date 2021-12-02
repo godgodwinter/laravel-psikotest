@@ -42,7 +42,7 @@ class bkcatatanprestasisiswacontroller extends Controller
         {
             $cari=$request->cari;
             #WAJIB
-            $pages='bk_catatanprestasisiswa';
+            $pages='bk-catatanprestasisiswa';
             $users_id=Auth::user()->id;
             $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
             $sekolah_id=$pengguna->sekolah_id;

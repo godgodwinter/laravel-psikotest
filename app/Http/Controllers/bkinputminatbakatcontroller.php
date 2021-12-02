@@ -97,14 +97,14 @@ class bkinputminatbakatcontroller extends Controller
     public function cari(Request $request,sekolah $id)
     {
         // dd('cari',$request);
-        $pages='inputminatbakat';
+        $pages='bk-inputminatbakat';
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
 
         $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
         $kelas_id=$kelaspertama->id;
-        
+
         $datas=DB::table('siswa')
         ->where('sekolah_id',$sekolah_id)
         ->where('kelas_id',$kelas_id)
