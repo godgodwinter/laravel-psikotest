@@ -90,7 +90,7 @@ Sekolah
 
                             <select class="js-example-basic-single form-control-sm @error('provinsi')
                                 is-invalid
-                            @enderror" name="provinsi"  style="width: 75%" id="dataProvinsi" onchange="getDataKabupaten(this)" required>
+                            @enderror" name="provinsi"  style="width: 75%" id="dataProvinsi" onchange="getDataKabupaten(this)" >
                                 <option disabled selected value=""> Pilih Provinsi</option>
 
                               </select>
@@ -268,7 +268,7 @@ inputDataKecamatan=(sel)=>{
 
                             <select class="js-example-basic-single form-control-sm @error('kabupaten')
                                 is-invalid
-                            @enderror" name="kabupaten"  style="width: 75%" id="dataKabupaten" onchange="getDataKecamatan(this)"  required>
+                            @enderror" name="kabupaten"  style="width: 75%" id="dataKabupaten" onchange="getDataKecamatan(this)"  >
                                 <option disabled selected value=""> Pilih Kabupaten</option>
 
                               </select>
@@ -285,7 +285,7 @@ inputDataKecamatan=(sel)=>{
 
                             <select class="js-example-basic-single form-control-sm @error('kecamatan')
                                 is-invalid
-                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  onchange="inputDataKecamatan(this)" required>
+                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  onchange="inputDataKecamatan(this)" >
                                 <option disabled selected value=""> Pilih Kecamatan</option>
 
                               </select>

@@ -95,7 +95,7 @@ Sekolah
 
                             <select class="js-example-basic-single form-control-sm @error('provinsi')
                                 is-invalid
-                            @enderror" name="provinsi"  style="width: 75%" id="dataProvinsi" onchange="getDataKabupaten(this)" required>
+                            @enderror" name="provinsi"  style="width: 75%" id="dataProvinsi" onchange="getDataKabupaten(this)" >
                                 <option  selected value="{{old('provinsi_nama')?old('provinsi_nama'):$id->provinsi}}"> {{old('provinsi_nama')?old('provinsi_nama'):$id->provinsi}}</option>
 
                               </select>
@@ -273,7 +273,7 @@ inputDataKecamatan=(sel)=>{
 
                             <select class="js-example-basic-single form-control-sm @error('kabupaten')
                                 is-invalid
-                            @enderror" name="kabupaten"  style="width: 75%" id="dataKabupaten" onchange="getDataKecamatan(this)"  required>
+                            @enderror" name="kabupaten"  style="width: 75%" id="dataKabupaten" onchange="getDataKecamatan(this)"  >
                                 <option selected value="{{old('kabupaten_nama')?old('kabupaten_nama'):$id->kabupaten}}">{{old('kabupaten_nama')?old('kabupaten_nama'):$id->kabupaten}}</option>
 
                               </select>
@@ -290,7 +290,7 @@ inputDataKecamatan=(sel)=>{
 
                             <select class="js-example-basic-single form-control-sm @error('kecamatan')
                                 is-invalid
-                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  onchange="inputDataKecamatan(this)" required>
+                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  onchange="inputDataKecamatan(this)" >
                                 <option selected value="{{old('kecamatan_nama')?old('kecamatan_nama'):$id->kecamatan}}">{{old('kecamatan_nama')?old('kecamatan_nama'):$id->kecamatan}}</option>
 
                               </select>
