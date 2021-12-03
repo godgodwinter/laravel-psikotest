@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('user', [apilogincontroller::class, 'getuser']);
+// Route::get('user', [apilogincontroller::class, 'getuser']);
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 
 // Route::post('/logout', [apilogincontroller::class, 'logout']);
