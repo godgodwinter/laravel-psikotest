@@ -141,4 +141,16 @@ class apilogincontroller extends Controller
             'message' => 'Logout Semua akun Success!',
         ]);
     }
+
+    public function validasitoken(Request $request)
+    {
+        $user = $request->user();
+        // $user = DB::table('personal_access_tokens')::where('email', $request->email)
+        # code...
+        return response()->json([
+            'success' => true,
+            'message' => 'Success!',
+            // 'data' =>$user
+        ]);
+    }
 }

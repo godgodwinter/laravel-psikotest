@@ -26,9 +26,13 @@ Route::post('login', [apilogincontroller::class, 'login']);
 // Route::group(['prefix' => 'auth', 'middleware' => 'auth:sanctum'], function() {
 Route::group(['middleware' => ['auth:sanctum']], function() {
     // manggil controller sesuai bawaan laravel 8
+
+    Route::post('/validasitoken', [apilogincontroller::class, 'validasitoken']);
+
+
+
     Route::post('/logout', [apilogincontroller::class, 'logout']);
     // manggil controller dengan mengubah namespace di RouteServiceProvider.php biar bisa kayak versi2 sebelumnya
-
 Route::post('/logoutall', [apilogincontroller::class, 'logoutall']);
     // Route::post('logoutall', 'AuthController@logoutall');
 });
