@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\yayasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,9 @@ class apilogincontroller extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)
+        ->where('tipeuser','yayasan')
+        ->first();
 
             // $tokenResult = $user->createToken('token-auth')->plainTextToken;
 
@@ -40,7 +43,9 @@ class apilogincontroller extends Controller
             ]);
         }
 
-        $user = User::where('username', $request->email)->first();
+        $user = User::where('username', $request->email)
+        ->where('tipeuser','yayasan')
+        ->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
             return response()->json([
