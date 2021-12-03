@@ -153,4 +153,16 @@ class apilogincontroller extends Controller
             // 'data' =>$user
         ]);
     }
+
+    public function getuser(Request $request)
+    {
+        $user = User::get();
+        // $user = DB::table('personal_access_tokens')::where('email', $request->email)
+        # code...
+        return response()->json([
+            'success' => true,
+            'message' => 'Success!',
+            'data' =>$user
+        ]);
+    }
 }
