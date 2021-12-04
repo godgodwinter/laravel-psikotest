@@ -492,10 +492,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/yayasan/sekolah/{id}/inputnilaipsikologi', [yayasansekolahcontroller::class, 'inputnilaipsikologi'])->name('yayasan.sekolah.inputnilaipsikologi');
         Route::get('/yayasan/sekolah/{id}/inputnilaipsikologicari', [yayasansekolahcontroller::class, 'inputnilaipsikologicari'])->name('yayasan.sekolah.inputnilaipsikologi.cari');
         Route::get('/yayasan/sekolah/{id}/inputminatbakat', [yayasansekolahcontroller::class, 'inputminatbakat'])->name('yayasan.sekolah.inputminatbakat');
+        Route::get('/yayasan/sekolah/{id}/inputminatbakatcari', [yayasansekolahcontroller::class, 'inputminatbakatcari'])->name('yayasan.sekolah.inputminatbakatcari');
         Route::get('/yayasan/sekolah/{id}/penjurusan', [yayasansekolahcontroller::class, 'penjurusan'])->name('yayasan.sekolah.penjurusan');
+        Route::get('/yayasan/sekolah/{id}/penjurusancari', [yayasansekolahcontroller::class, 'penjurusancari'])->name('yayasan.sekolah.penjurusancari');
         Route::get('/yayasan/sekolah/{id}/hasilpsikologi', [yayasansekolahcontroller::class, 'hasilpsikologi'])->name('yayasan.sekolah.hasilpsikologi');
         Route::get('/yayasan/sekolah/{id}/catatankasus', [yayasansekolahcontroller::class, 'catatankasus'])->name('yayasan.sekolah.catatankasus');
+        Route::get('/yayasan/sekolah/{id}/catatankasuscari', [yayasansekolahcontroller::class, 'catatankasuscari'])->name('yayasan.sekolah.catatankasuscari');
         Route::get('/yayasan/sekolah/{id}/catatanpengembangandiri', [yayasansekolahcontroller::class, 'catatanpengembangandiri'])->name('yayasan.sekolah.catatanpengembangandiri');
+        Route::get('/yayasan/sekolah/{id}/catatanpengembangandiricari', [yayasansekolahcontroller::class, 'catatanpengembangandiricari'])->name('yayasan.sekolah.catatanpengembangandiricari');
         Route::get('/yayasan/sekolah/{id}/catatanprestasi', [yayasansekolahcontroller::class, 'catatanprestasi'])->name('yayasan.sekolah.catatanprestasi');
+        Route::get('/yayasan/sekolah/{id}/catatanprestasicari', [yayasansekolahcontroller::class, 'catatanprestasicari'])->name('yayasan.sekolah.catatanprestasicari');
 
 });

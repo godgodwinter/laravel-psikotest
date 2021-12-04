@@ -38,7 +38,7 @@ Detail Sekolah
 
                 <div class="p-2 bd-highlight">
 
-        <form action="{{route('sekolah.catatankasus.cari',$id->id)}}" method="GET" class="babeng-form">
+        <form action="{{route('yayasan.sekolah.catatankasuscari',$id->id)}}" method="GET" class="babeng-form">
             <input type="text" class="babeng babeng-select  ml-0" name="cari">
         </div>
 

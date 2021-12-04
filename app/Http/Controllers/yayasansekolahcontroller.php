@@ -186,10 +186,10 @@ class yayasansekolahcontroller extends Controller
     public function inputnilaipsikologicari(sekolah $id,Request $request)
     {
 
-        $this->cari=$request->kelas_id;
         // dd($this->cari,$id);
         $pages='inputnilaipsikologi';
 
+        $this->cari=$request->kelas_id;
         $kelaspertama=kelas::where('id',$this->cari)
         ->where('sekolah_id',$id->id)
         ->first();
@@ -335,6 +335,76 @@ class yayasansekolahcontroller extends Controller
         // dd($collectionpenilaian);
         return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
     }
+
+    public function inputminatbakatcari(Request $request,sekolah $id)
+    {
+        $pages='inputminatbakat';
+        $this->cari=$request->kelas_id;
+        $kelaspertama=kelas::where('id',$this->cari)
+        ->where('sekolah_id',$id->id)
+        ->first();
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        $datas=DB::table('siswa')
+        ->where('sekolah_id',$id->id)
+        ->where('kelas_id',$this->cari)
+        ->whereNull('deleted_at')->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+        $dataakhir = collect();
+
+        $dataakhir_array = $dataakhir->toArray();
+
+        $master=minatbakat::where('kategori','Minat dan Bakat')
+        ->orderBy('id','asc')
+        ->get();
+
+            $collectionpenilaian = new Collection();
+
+        foreach($datas as $d){
+
+            $collectionmaster = new Collection();
+
+            foreach($master as $m){
+
+
+                $periksadata=DB::table('minatbakatdetail')
+                ->where('siswa_id',$d->id)
+                // ->where('id','2')
+                ->where('minatbakat_id',$m->id)
+                ->get();
+
+                if($periksadata->count()>0){
+                    $ambildata=$periksadata->first();
+                    $nilai=$periksadata->first()->nilai;
+                }else{
+                    $nilai=null;
+                }
+
+            $collectionmaster->push((object)[
+                'id'=>$m->id,
+                'kategori'=>$m->kategori,
+                'nilai'=>$nilai
+            ]);
+
+            }
+
+            $collectionpenilaian->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'master'=>$collectionmaster
+            ]);
+        }
+
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        // dd($collectionpenilaian);
+        return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
+    }
     public function penjurusan(Request $request,sekolah $id)
     {
         $pages='penjurusan';
@@ -353,6 +423,76 @@ class yayasansekolahcontroller extends Controller
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
+
+        $dataakhir = collect();
+
+        $dataakhir_array = $dataakhir->toArray();
+
+        $master=minatbakat::where('kategori','Bakat dan Penjurusan')
+        ->orderBy('id','asc')
+        ->get();
+
+            $collectionpenilaian = new Collection();
+
+        foreach($datas as $d){
+
+            $collectionmaster = new Collection();
+
+            foreach($master as $m){
+
+
+                $periksadata=DB::table('minatbakatdetail')
+                ->where('siswa_id',$d->id)
+                ->where('sekolah_id',$id->id)
+                ->where('minatbakat_id',$m->id)
+                ->get();
+
+                if($periksadata->count()>0){
+                    $ambildata=$periksadata->first();
+                    $nilai=$periksadata->first()->nilai;
+                }else{
+                    $nilai=null;
+                }
+
+            $collectionmaster->push((object)[
+                'id'=>$m->id,
+                'kategori'=>$m->kategori,
+                'nilai'=>$nilai
+            ]);
+
+            }
+
+            $collectionpenilaian->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'master'=>$collectionmaster
+            ]);
+        }
+        // dd($collectionpenilaian,$periksadata,$d->id);
+        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+    }
+    public function penjurusancari(Request $request,sekolah $id)
+    {
+        $pages='penjurusan';
+        $this->cari=$request->kelas_id;
+        $kelaspertama=kelas::where('id',$this->cari)
+        ->where('sekolah_id',$id->id)
+        ->first();
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        $datas=DB::table('siswa')
+        ->where('sekolah_id',$id->id)
+        ->where('kelas_id',$this->cari)
+        ->whereNull('deleted_at')->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
 
         $dataakhir = collect();
 
@@ -430,6 +570,28 @@ class yayasansekolahcontroller extends Controller
 
         return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
     }
+    public function catatankasuscari(sekolah $id, Request $request)
+    {
+        $pages = 'catatankasus';
+
+
+        $datas = catatankasussiswa::with('siswa')->with('kelas')
+            ->where('sekolah_id', $id->id)
+            ->whereHas('siswa', function ($query) {
+                global $request;
+                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->orWhereHas('kelas', function ($query) {
+                global $request;
+                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->where('sekolah_id', $id->id)
+            ->orWhere('kasus', 'like', "%" . $request->cari . "%")
+            ->where('sekolah_id', $id->id)
+            ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
+    }
     public function catatanpengembangandiri(sekolah $id, Request $request)
     {
         $pages = 'catatanpengembangandiri';
@@ -441,6 +603,27 @@ class yayasansekolahcontroller extends Controller
 
         return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
     }
+    public function catatanpengembangandiricari(sekolah $id, Request $request)
+    {
+        $pages = 'catatanpengembangandiri';
+
+        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')
+            ->where('sekolah_id', $id->id)
+            ->whereHas('siswa', function ($query) {
+                global $request;
+                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->orWhereHas('kelas', function ($query) {
+                global $request;
+                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->where('sekolah_id', $id->id)
+            ->orWhere('idedanimajinasi', 'like', "%" . $request->cari . "%")
+            ->where('sekolah_id', $id->id)
+            ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
+    }
     public function catatanprestasi(sekolah $id, Request $request)
     {
         $pages = 'catatanprestasi';
@@ -448,6 +631,27 @@ class yayasansekolahcontroller extends Controller
         $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
+    }
+    public function catatanprestasicari(sekolah $id, Request $request)
+    {
+        $pages = 'catatanprestasi';
+
+        $datas = catatanprestasisiswa::with('siswa')->with('kelas')
+            ->where('sekolah_id', $id->id)
+            ->whereHas('siswa', function ($query) {
+                global $request;
+                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->orWhereHas('kelas', function ($query) {
+                global $request;
+                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->where('sekolah_id', $id->id)
+            ->orWhere('prestasi', 'like', "%" . $request->cari . "%")
+            ->where('sekolah_id', $id->id)
             ->paginate(Fungsi::paginationjml());
 
         return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
