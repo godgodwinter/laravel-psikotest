@@ -485,4 +485,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/yayasan/sekolah', [yayasansekolahcontroller::class, 'index'])->name('yayasan.sekolah');
         Route::get('/yayasan/datasekolah/cari', [yayasansekolahcontroller::class, 'cari'])->name('yayasan.sekolah.cari');
 
+        Route::get('/yayasan/sekolahdetail/{sekolah}', [yayasansekolahcontroller::class, 'detail'])->name('yayasan.sekolah.detail');
+        Route::get('/yayasan/sekolahdetail/{sekolah}/siswa', [yayasansekolahcontroller::class, 'siswa'])->name('yayasan.sekolah.siswa');
+        Route::get('/yayasan/sekolahdetailcari/{sekolah}/siswa', [yayasansekolahcontroller::class, 'siswacari'])->name('yayasan.sekolah.siswa.cari');
+
 });

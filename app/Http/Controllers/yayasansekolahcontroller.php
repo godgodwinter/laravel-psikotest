@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\sekolah;
+use App\Models\siswa;
 use App\Models\yayasan;
 use App\Models\yayasandetail;
 use Illuminate\Http\Request;
@@ -63,5 +64,35 @@ class yayasansekolahcontroller extends Controller
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.yayasan.sekolah.index',compact('pages','request','datas'));
+    }
+
+    public function detail(sekolah $sekolah,Request $request)
+    {
+        $pages='sekolah';
+
+        return view('pages.yayasan.sekolah.detail',compact('pages','request','sekolah'));
+    }
+
+    public function siswa(sekolah $sekolah,Request $request)
+    {
+        $pages='sekolah';
+        $datas=siswa::where('sekolah_id',$sekolah->id)
+        ->orderBy('nama','asc')
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.siswa.index',compact('pages','request','sekolah','datas'));
+    }
+    public function siswacari(sekolah $sekolah,Request $request)
+    {
+
+        $this->cari=$request->cari;
+        #WAJIB
+        $pages='sekolah';
+        $datas = siswa::
+        where('sekolah_id',$sekolah->id)
+        ->where('nama','like',"%".$this->cari."%")
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.siswa.index',compact('pages','request','sekolah','datas'));
     }
 }

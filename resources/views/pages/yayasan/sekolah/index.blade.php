@@ -79,7 +79,7 @@ Sekolah
                                 <td class="text-center babeng-min-row">
 
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td class="babeng-min-row text-center"> <a href="{{route('yayasandetail',$data->id)}}" class="btn btn-info btn-sm "><i class="fas fa-angle-double-right"></i></a>
+                                <td class="babeng-min-row text-center"> <a href="{{route('yayasan.sekolah.detail',$data->sekolah_id)}}" class="btn btn-info btn-sm "><i class="fas fa-angle-double-right"></i></a>
                                 </td>
                                 <td>
                                         {{$data->sekolah!=null?$data->sekolah->nama:'Data tidak ditemukan'}}

@@ -34,30 +34,30 @@ class oneseeder extends Seeder
 
 
         //BK SEEDER
-        DB::table('users')->insert([
-            'name' => 'bk',
-            'email' => 'bk@gmail.com',
-            'password' => Hash::make('bk'),
-            'tipeuser' => 'bk',
-            'nomerinduk' => '111',
-            'username' => 'bk',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-         ]);
+        // DB::table('users')->insert([
+        //     'name' => 'bk',
+        //     'email' => 'bk@gmail.com',
+        //     'password' => Hash::make('bk'),
+        //     'tipeuser' => 'bk',
+        //     'nomerinduk' => '111',
+        //     'username' => 'bk',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
 
 
 
         //BK SEEDER
-        DB::table('users')->insert([
-            'name' => 'yayasan',
-            'email' => 'yayasan@gmail.com',
-            'password' => Hash::make('yayasan'),
-            'tipeuser' => 'yayasan',
-            'nomerinduk' => '111',
-            'username' => 'yayasan',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-         ]);
+        // DB::table('users')->insert([
+        //     'name' => 'yayasan',
+        //     'email' => 'yayasan@gmail.com',
+        //     'password' => Hash::make('yayasan'),
+        //     'tipeuser' => 'yayasan',
+        //     'nomerinduk' => '111',
+        //     'username' => 'yayasan',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        //  ]);
 
 
          DB::table('settings')->truncate();
