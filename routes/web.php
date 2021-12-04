@@ -491,5 +491,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         Route::get('/yayasan/sekolah/{id}/inputnilaipsikologi', [yayasansekolahcontroller::class, 'inputnilaipsikologi'])->name('yayasan.sekolah.inputnilaipsikologi');
         Route::get('/yayasan/sekolah/{id}/inputnilaipsikologicari', [yayasansekolahcontroller::class, 'inputnilaipsikologicari'])->name('yayasan.sekolah.inputnilaipsikologi.cari');
+        Route::get('/yayasan/sekolah/{id}/inputminatbakat', [yayasansekolahcontroller::class, 'inputminatbakat'])->name('yayasan.sekolah.inputminatbakat');
+        Route::get('/yayasan/sekolah/{id}/penjurusan', [yayasansekolahcontroller::class, 'penjurusan'])->name('yayasan.sekolah.penjurusan');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi', [yayasansekolahcontroller::class, 'hasilpsikologi'])->name('yayasan.sekolah.hasilpsikologi');
+        Route::get('/yayasan/sekolah/{id}/catatankasus', [yayasansekolahcontroller::class, 'catatankasus'])->name('yayasan.sekolah.catatankasus');
+        Route::get('/yayasan/sekolah/{id}/catatanpengembangandiri', [yayasansekolahcontroller::class, 'catatanpengembangandiri'])->name('yayasan.sekolah.catatanpengembangandiri');
+        Route::get('/yayasan/sekolah/{id}/catatanprestasi', [yayasansekolahcontroller::class, 'catatanprestasi'])->name('yayasan.sekolah.catatanprestasi');
 
 });

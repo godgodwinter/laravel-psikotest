@@ -19,7 +19,7 @@ Detail Sekolah
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('yayasan.sekolah')}}">Sekolah</a></div>
-            <div class="breadcrumb-item">{{ $sekolah->nama }}</div>
+            <div class="breadcrumb-item">{{ $id->nama }}</div>
         </div>
     </div>
 
@@ -37,7 +37,7 @@ Detail Sekolah
             Import Detail Data Sekolah
         </button>
 
-        <a href="{{ route('detailsekolah.export',$sekolah->id) }}" type="submit" value="Import"
+        <a href="{{ route('detailsekolah.export',$id->id) }}" type="submit" value="Import"
             class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
                     class="fas fa-download"></i> Export </span></a> --}}
 
@@ -46,16 +46,16 @@ Detail Sekolah
                   <div class="card profile-widget">
                     <div class="profile-widget-header">
                         @php
-                        $sekolah_logo=asset('/storage/').'/'.$sekolah->sekolah_logo;
-                        $randomimg='https://ui-avatars.com/api/?name='.$sekolah->nama.'&color=7F9CF5&background=EBF4FF';
-                        // dd($sekolah_logo)
+                        $id_logo=asset('/storage/').'/'.$id->sekolah_logo;
+                        $randomimg='https://ui-avatars.com/api/?name='.$id->nama.'&color=7F9CF5&background=EBF4FF';
+                        // dd($id_logo)
                         @endphp
-                      <img alt="image" src="{{$sekolah->sekolah_logo!=null ? $sekolah_logo : $randomimg}}" class="rounded-circle profile-widget-picture" style="object-fit:cover;" >
+                      <img alt="image" src="{{$id->sekolah_logo!=null ? $id_logo : $randomimg}}" class="rounded-circle profile-widget-picture" style="object-fit:cover;" >
                       <div class="profile-widget-items">
 
                         <div class="profile-widget-item">
                           {{-- <div class="profile-widget-item-label">Following</div> --}}
-                          <div class="profile-widget-item-value py-2">{{$sekolah->nama}}</div>
+                          <div class="profile-widget-item-value py-2">{{$id->nama}}</div>
                         </div>
                       </div>
                     </div>
@@ -68,14 +68,14 @@ Detail Sekolah
 
                                 <div class="user-details py-1 px-4 ml-0 text-center">
                                     @php
-                                    $kepsek_photo=asset('/storage/').'/'.$sekolah->kepsek_photo;
+                                    $kepsek_photo=asset('/storage/').'/'.$id->kepsek_photo;
                                     @endphp
-                                <img alt="image" src="{{$sekolah->kepsek_photo!=null  ? $kepsek_photo : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="{{$sekolah->kepsek_nama}}" width="150px" height="150px" style="object-fit:cover;">
-                                    <div class="user-name mt-2"><h4>{{$sekolah->kepsek_nama}}</h4></div>
+                                <img alt="image" src="{{$id->kepsek_photo!=null  ? $kepsek_photo : $randomimg}}" class="img-thumbnail" data-toggle="tooltip" title="{{$id->kepsek_nama}}" width="150px" height="150px" style="object-fit:cover;">
+                                    <div class="user-name mt-2"><h4>{{$id->kepsek_nama}}</h4></div>
                                     <div class="text-job text-muted">Kepala Sekolah</div>
                                     <div class="user-cta">
 
-                                        <input name="status" type="button" class="btn btn-{{$sekolah->status!='Aktif' ? 'danger' : 'success' }}" id="btnstatus" value="{{$sekolah->status}}" >
+                                        <input name="status" type="button" class="btn btn-{{$id->status!='Aktif' ? 'danger' : 'success' }}" id="btnstatus" value="{{$id->status}}" >
 
 
 
@@ -117,22 +117,22 @@ Detail Sekolah
 
 
                                 {{-- <div class="avatar-badge" title="Editor" data-toggle="tooltip"><i class="fas fa-wrench"></i></div> --}}
-                                {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $sekolah->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture"> --}}
+                                {{-- <img alt="image" src="https://ui-avatars.com/api/?name={{ $id->nama }}&color=7F9CF5&background=EBF4FF" class="img-thumbnail profile-widget-picture"> --}}
                                 {{-- <div class="clearfix"></div>
                                 <a href="#" class="btn btn-primary mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">Edit</a> --}}
 
                                 {{-- <div class="clearfix"></div>
-                                <a href="#" class="btn btn-{{ $sekolah->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$sekolah->status}}</a> --}}
+                                <a href="#" class="btn btn-{{ $id->status=='Aktif' ? 'success' : 'danger'}}  mt-3 follow-btn" data-follow-action="alert('follow clicked');" data-unfollow-action="alert('unfollow clicked');">{{$id->status}}</a> --}}
 
                             </div>
-                            <input type="hidden" name="status" value="{{$sekolah->status?$sekolah->status:'Nonaktif'}}">
+                            <input type="hidden" name="status" value="{{$id->status?$id->status:'Nonaktif'}}">
                             <div class="col-11 col-lg-8 py-0 col-md-12">
                                 <div class="form-group row align-items-center">
                                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Sekolah</label>
                                     <div class="col-sm-3 col-md-9">
                                       <input type="text"  class="form-control @error('nama')
                                           is_invalid
-                                      @enderror" id="site-title"  name="nama" value="{{old('nama') ? old('nama') : $sekolah->nama}}" disabled>
+                                      @enderror" id="site-title"  name="nama" value="{{old('nama') ? old('nama') : $id->nama}}" disabled>
                                       @error('nama')<div class="invalid-feedback"> {{$message}}</div>
                                       @enderror
                                     </div>
@@ -143,7 +143,7 @@ Detail Sekolah
                                     <div class="col-sm-3 col-md-9">
                                       <input type="text"  class="form-control @error('alamat')
                                           is_invalid
-                                      @enderror" id="site-title"   name="alamat" value="{{old('alamat') ? old('alamat') : $sekolah->alamat}}" disabled>
+                                      @enderror" id="site-title"   name="alamat" value="{{old('alamat') ? old('alamat') : $id->alamat}}" disabled>
                                       @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
                                       @enderror
                                     </div>
@@ -154,7 +154,7 @@ Detail Sekolah
                                     <div class="col-sm-3 col-md-9">
                                       <input type="text"  class="form-control @error('kepsek_nama')
                                           is_invalid
-                                      @enderror" id="site-title"   name="kepsek_nama" value="{{old('kepsek_nama') ? old('kepsek_nama') : $sekolah->kepsek_nama}}" disabled>
+                                      @enderror" id="site-title"   name="kepsek_nama" value="{{old('kepsek_nama') ? old('kepsek_nama') : $id->kepsek_nama}}" disabled>
                                     </div>
                                     @error('kepsek_nama')<div class="invalid-feedback"> {{$message}}</div>
                                     @enderror
@@ -165,7 +165,7 @@ Detail Sekolah
                                     <div class="col-sm-3 col-md-9">
                                       <input type="text"  class="form-control @error('tahunajaran_nama')
                                           is_invalid
-                                      @enderror" id="site-title"   name="tahunajaran_nama" value="{{old('tahunajaran_nama') ? old('tahunajaran_nama') : $sekolah->tahunajaran_nama}}" disabled>
+                                      @enderror" id="site-title"   name="tahunajaran_nama" value="{{old('tahunajaran_nama') ? old('tahunajaran_nama') : $id->tahunajaran_nama}}" disabled>
                                       @error('tahun_ajaran_nama')<div class="invalid-feedback"> {{$message}}</div>
                                       @enderror
                                     </div>
@@ -176,7 +176,7 @@ Detail Sekolah
                                     <div class="col-sm-3 col-md-9">
                                       <input type="text"  class="form-control @error('semester_nama')
                                           is_invalid
-                                      @enderror" id="site-title"   name="semester_nama" value="{{old('semester_nama') ? old('semester_nama') : $sekolah->semester_nama}}" readonly>
+                                      @enderror" id="site-title"   name="semester_nama" value="{{old('semester_nama') ? old('semester_nama') : $id->semester_nama}}" readonly>
                                       @error('semester_nama')<div class="invalid-feedback"> {{$message}}</div>
                                       @enderror
                                     </div>
@@ -187,9 +187,9 @@ Detail Sekolah
                     <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Provinsi</label>
                         <div class="col-sm-3 col-md-9">
-                            @if ($sekolah->provinsi!=null AND $sekolah->provinsi!=null)
+                            @if ($id->provinsi!=null AND $id->provinsi!=null)
                             @php
-                                $datasebelumnya=$sekolah->provinsi;
+                                $datasebelumnya=$id->provinsi;
                             @endphp
                             @else
                             @php
@@ -374,9 +374,9 @@ inputDataKecamatan=(sel)=>{
                             <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kabupaten</label>
                             <div class="col-sm-3 col-md-9">
 
-                                @if ($sekolah->kabupaten!=null || $sekolah->kabupaten!='')
+                                @if ($id->kabupaten!=null || $id->kabupaten!='')
                                 @php
-                                    $datasebelumnya=$sekolah->kabupaten;
+                                    $datasebelumnya=$id->kabupaten;
                                 @endphp
                                 @else
                                 @php
@@ -400,9 +400,9 @@ inputDataKecamatan=(sel)=>{
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kecamatan</label>
                         <div class="col-sm-3 col-md-9">
 
-                            @if ($sekolah->kecamatan!=null AND $sekolah->kecamatan!=null)
+                            @if ($id->kecamatan!=null AND $id->kecamatan!=null)
                             @php
-                                $datasebelumnya=$sekolah->kecamatan;
+                                $datasebelumnya=$id->kecamatan;
                             @endphp
                             @else
                             @php
@@ -444,7 +444,7 @@ inputDataKecamatan=(sel)=>{
               <!-- Import Excel -->
               <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <form method="post" action="{{ route('detailsekolah.import',$sekolah->id) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('detailsekolah.import',$id->id) }}" enctype="multipart/form-data">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Import Detail Data Sekolag</h5>
