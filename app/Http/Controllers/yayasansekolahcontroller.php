@@ -29,11 +29,11 @@ class yayasansekolahcontroller extends Controller
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
+            $this->datayayasan=yayasan::where('users_id',Auth::user()->id)->first();
         return $next($request);
 
         });
 
-        $this->datayayasan=yayasan::where('users_id','3')->first();
 
     }
     public function index(Request $request)
