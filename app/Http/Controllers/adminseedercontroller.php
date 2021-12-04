@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\catatankasussiswa;
+use App\Models\catatanpengembangandirisiswa;
+use App\Models\catatanprestasisiswa;
+use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
 use App\Models\masternilaibidangstudi;
 use App\Models\masternilaipsikologi;
 use App\Models\minatbakat;
+use App\Models\minatbakatdetail;
 use App\Models\pengguna;
 use App\Models\referensi;
 use App\Models\sekolah;
@@ -13,6 +18,8 @@ use App\Models\semester;
 use App\Models\siswa;
 use App\Models\tahun;
 use App\Models\walikelas;
+use App\Models\yayasan;
+use App\Models\yayasandetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
@@ -76,15 +83,6 @@ class adminseedercontroller extends Controller
         for($i=0;$i<$jmlseeder;$i++){
             // 3. insert data siswa
 
-            $nama=$faker->unique()->name;
-            $nomerinduk=$faker->unique()->ean8;
-            DB::table('siswa')->insert([
-                'nama' => $nama,
-                'nomerinduk' => $nomerinduk,
-                'sekolah_id' => $id,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
 
                 $nama=$faker->unique()->name;
                 // $nomerinduk=$faker->unique()->creditCardNumber;
@@ -97,7 +95,9 @@ class adminseedercontroller extends Controller
                     'updated_at' => Carbon::now()
                 ]);
 
-                $ambilwali=DB::table('walikelas')->orderBy('id','desc')->where('sekolah_id',$id)->first();
+                $ambilwali=DB::table('walikelas')->orderBy('id','desc')->where('sekolah_id',$id)
+                ->inRandomOrder()
+                ->first();
 
 
                 $nama=$faker->unique()->company;
@@ -110,6 +110,42 @@ class adminseedercontroller extends Controller
                     'updated_at' => Carbon::now()
                 ]);
 
+                $ambilkelas=DB::table('kelas')->orderBy('id','desc')->where('sekolah_id',$id)
+                ->inRandomOrder()
+                ->first();
+
+                $nama=$faker->unique()->name;
+                $nomerinduk=$faker->unique()->ean8;
+                DB::table('siswa')->insert([
+                    'nama' => $nama,
+                    'nomerinduk' => $nomerinduk,
+                    'kelas_id' => $ambilkelas->id,
+                    'sekolah_id' => $id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+
+                $nama=$faker->unique()->name;
+                $nomerinduk=$faker->unique()->ean8;
+                DB::table('siswa')->insert([
+                    'nama' => $nama,
+                    'nomerinduk' => $nomerinduk,
+                    'kelas_id' => $ambilkelas->id,
+                    'sekolah_id' => $id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+
+                $nama=$faker->unique()->name;
+                $nomerinduk=$faker->unique()->ean8;
+                DB::table('siswa')->insert([
+                    'nama' => $nama,
+                    'nomerinduk' => $nomerinduk,
+                    'kelas_id' => $ambilkelas->id,
+                    'sekolah_id' => $id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
 
      }
      $sekolah=$pre.' '.$num.' '.$city;
@@ -716,6 +752,14 @@ class adminseedercontroller extends Controller
         referensi::truncate();
         masternilaipsikologi::truncate();
         masternilaibidangstudi::truncate();
+        catatanprestasisiswa::truncate();
+        catatankasussiswa::truncate();
+        catatanpengembangandirisiswa::truncate();
+        inputnilaipsikologi::truncate();
+        minatbakat::truncate();
+        minatbakatdetail::truncate();
+        yayasandetail::truncate();
+        yayasan::truncate();
         DB::table('users')->where('tipeuser','bk')->delete();
         DB::table('users')->where('tipeuser','yayasan')->delete();
         return redirect()->back()->with('status','Hard Reset berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
