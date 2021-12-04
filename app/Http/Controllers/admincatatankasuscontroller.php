@@ -27,7 +27,7 @@ class admincatatankasuscontroller extends Controller
     {
         $pages = 'catatankasus';
 
-        $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
@@ -40,7 +40,7 @@ class admincatatankasuscontroller extends Controller
         #WAJIB
         $pages = 'catatankasussiswa';
 
-        $datas = catatankasussiswa::with('siswa')->with('kelas')
+        $datas = catatankasussiswa::with('siswa')
             ->where('sekolah_id', $id->id)
             ->whereHas('siswa', function ($query) {
                 global $request;
@@ -125,7 +125,7 @@ class admincatatankasuscontroller extends Controller
     public function edit(sekolah $id, catatankasussiswa $data)
     {
         $pages = 'catatankasussiswa';
-        $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
             ->where('id', $data->id)
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
@@ -198,7 +198,7 @@ class admincatatankasuscontroller extends Controller
         #WAJIB
         $pages = 'catatankasus';
 
-        $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
@@ -207,7 +207,7 @@ class admincatatankasuscontroller extends Controller
     }
     public function cetakpersiswa(sekolah $id,catatankasussiswa $data,Request $request){
 
-        // $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->where('id',$data->id)
+        // $datas = catatanpengembangandirisiswa::with('siswa')->where('id',$data->id)
         // ->where('sekolah_id',$id->id)
         // ->orderBy('siswa_id','asc')
         // ->get();

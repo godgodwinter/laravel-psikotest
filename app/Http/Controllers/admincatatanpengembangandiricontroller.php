@@ -27,7 +27,7 @@ class admincatatanpengembangandiricontroller extends Controller
     {
         $pages = 'catatanpengembangandiri';
 
-        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatanpengembangandirisiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
@@ -40,7 +40,7 @@ class admincatatanpengembangandiricontroller extends Controller
         #WAJIB
         $pages = 'catatanpengembangandirisiswa';
 
-        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')
+        $datas = catatanpengembangandirisiswa::with('siswa')
             ->where('sekolah_id', $id->id)
             ->whereHas('siswa', function ($query) {
                 global $request;
@@ -125,7 +125,7 @@ class admincatatanpengembangandiricontroller extends Controller
     public function edit(sekolah $id, catatanpengembangandirisiswa $data)
     {
         $pages = 'catatanpengembangandirisiswa';
-        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatanpengembangandirisiswa::with('siswa')->whereNull('deleted_at')
             ->where('id', $data->id)
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
@@ -201,7 +201,7 @@ class admincatatanpengembangandiricontroller extends Controller
         #WAJIB
         $pages = 'catatanpengembangandiri';
 
-        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatanpengembangandirisiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
@@ -210,7 +210,7 @@ class admincatatanpengembangandiricontroller extends Controller
     }
     public function cetakpersiswa(sekolah $id,catatanpengembangandirisiswa $data,Request $request){
 
-        // $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->where('id',$data->id)
+        // $datas = catatanpengembangandirisiswa::with('siswa')->where('id',$data->id)
         // ->where('sekolah_id',$id->id)
         // ->orderBy('siswa_id','asc')
         // ->get();
