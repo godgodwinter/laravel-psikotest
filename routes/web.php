@@ -47,6 +47,7 @@ use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\prosescontroller;
+use App\Http\Controllers\yayasansekolahcontroller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -480,5 +481,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //bkcetak
         Route::get('/bk/grafik/nilaipsikologi', [bkgrafikcontroller::class, 'nilaipsikologi'])->name('bk.grafik.nilaipsikologi');
 
+        //yayasan dashboard
+        Route::get('/yayasan/sekolah', [yayasansekolahcontroller::class, 'index'])->name('yayasan.sekolah');
 
 });

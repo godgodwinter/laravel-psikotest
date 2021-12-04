@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Helpers\Fungsi;
+use App\Models\sekolah;
+use App\Models\yayasan;
+use App\Models\yayasandetail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class yayasansekolahcontroller extends Controller
+{
+    protected $datayayasan;
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='yayasan'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
+
+        return $next($request);
+
+        });
+
+        $this->datayayasan=yayasan::where('users_id','3')->first();
+
+    }
+    public function index(Request $request)
+    {
+        $pages='hasilpsikologi';
+        // dd($this->datayayasan);
+        if($this->datayayasan!=null){
+
+            $datas = yayasandetail::with('sekolah')
+            ->where('yayasan_id',$this->datayayasan->id)
+            ->orderBy('id','asc')
+            ->paginate(Fungsi::paginationjml());
+
+        }else{
+            $datas = yayasandetail::with('sekolah')
+            ->where('yayasan_id','0')
+            ->orderBy('id','asc')
+            ->paginate(Fungsi::paginationjml());
+        }
+        // dd($datas);
+
+        return view('pages.yayasan.sekolah.index',compact('pages','request','datas'));
+    }
+}
