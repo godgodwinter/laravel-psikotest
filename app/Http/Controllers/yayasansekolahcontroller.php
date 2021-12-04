@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\catatankasussiswa;
+use App\Models\catatanpengembangandirisiswa;
+use App\Models\catatanprestasisiswa;
+use App\Models\hasilpsikologi;
 use App\Models\kelas;
 use App\Models\minatbakat;
 use App\Models\sekolah;
@@ -330,5 +334,122 @@ class yayasansekolahcontroller extends Controller
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
         return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
+    }
+    public function penjurusan(Request $request,sekolah $id)
+    {
+        $pages='penjurusan';
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->first();
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+
+        $datas=DB::table('siswa')
+        ->where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->whereNull('deleted_at')->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+        $dataakhir = collect();
+
+        $dataakhir_array = $dataakhir->toArray();
+
+        $master=minatbakat::where('kategori','Bakat dan Penjurusan')
+        ->orderBy('id','asc')
+        ->get();
+
+            $collectionpenilaian = new Collection();
+
+        foreach($datas as $d){
+
+            $collectionmaster = new Collection();
+
+            foreach($master as $m){
+
+
+                $periksadata=DB::table('minatbakatdetail')
+                ->where('siswa_id',$d->id)
+                ->where('sekolah_id',$id->id)
+                ->where('minatbakat_id',$m->id)
+                ->get();
+
+                if($periksadata->count()>0){
+                    $ambildata=$periksadata->first();
+                    $nilai=$periksadata->first()->nilai;
+                }else{
+                    $nilai=null;
+                }
+
+            $collectionmaster->push((object)[
+                'id'=>$m->id,
+                'kategori'=>$m->kategori,
+                'nilai'=>$nilai
+            ]);
+
+            }
+
+            $collectionpenilaian->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'master'=>$collectionmaster
+            ]);
+        }
+        // dd($collectionpenilaian,$periksadata,$d->id);
+        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+    }
+    public function hasilpsikologi(sekolah $id,Request $request)
+    {
+        $pages='hasilpsikologi';
+        // $datas=DB::table('kelas')->whereNull('deleted_at')
+        // ->where('sekolah_id',$id->id)
+        // // ->with('walikelas','nama')
+        // ->orderBy('nama','asc')
+        // ->paginate(Fungsi::paginationjml());
+
+        $datas = hasilpsikologi::with('siswa')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('id','asc')
+        ->paginate(Fungsi::paginationjml());
+        // dd($datas);
+
+        return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas'));
+    }
+    public function catatankasus(sekolah $id, Request $request)
+    {
+        $pages = 'catatankasus';
+
+        $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+            ->where('sekolah_id', $id->id)
+            ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
+    }
+    public function catatanpengembangandiri(sekolah $id, Request $request)
+    {
+        $pages = 'catatanpengembangandiri';
+
+        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+            ->where('sekolah_id', $id->id)
+            ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
+    }
+    public function catatanprestasi(sekolah $id, Request $request)
+    {
+        $pages = 'catatanprestasi';
+
+        $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+            ->where('sekolah_id', $id->id)
+            ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
     }
 }
