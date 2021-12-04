@@ -16,7 +16,7 @@ class catatanpengembangandirisiswa extends Model
     protected $fillable = [
 
         'siswa_id',
-        'kelas_id',
+        // 'kelas_id',
         'tanggal',
         'idedanimajinasi',
         'ketrampilan',
@@ -29,10 +29,10 @@ class catatanpengembangandirisiswa extends Model
         'keterangan',
         'sekolah_id',
     ];
-    public function kelas()
-    {
-        return $this->belongsTo('App\Models\kelas');
-    }
+    // public function kelas()
+    // {
+    //     return $this->belongsTo('App\Models\kelas');
+    // }
     public function siswa()
     {
         return $this->belongsTo('App\Models\siswa');

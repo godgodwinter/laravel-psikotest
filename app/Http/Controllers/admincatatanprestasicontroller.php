@@ -103,7 +103,7 @@ class admincatatanprestasicontroller extends Controller
         DB::table('catatanprestasisiswa')->insert(
             array(
                 'siswa_id'  =>$request->siswa_id,
-                'kelas_id'  =>$request->kelas_id,
+                // 'kelas_id'  =>$request->kelas_id,
                 'tanggal'  =>$request->tanggal,
                 'prestasi'  =>$request->prestasi,
                 'teknikbelajar'  =>$request->teknikbelajar,
@@ -161,7 +161,7 @@ class admincatatanprestasicontroller extends Controller
         catatanprestasisiswa::where('id',$data->id)
         ->update([
             'siswa_id'  =>$request->siswa_id,
-                'kelas_id'  =>$request->kelas_id,
+                // 'kelas_id'  =>$request->kelas_id,
                 'tanggal'  =>$request->tanggal,
                 'prestasi'  =>$request->prestasi,
                 'teknikbelajar'  =>$request->teknikbelajar,

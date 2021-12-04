@@ -103,7 +103,7 @@ class admincatatankasuscontroller extends Controller
         DB::table('catatankasussiswa')->insert(
             array(
                 'siswa_id'  => $request->siswa_id,
-                'kelas_id'  => $request->kelas_id,
+                // 'kelas_id'  => $request->kelas_id,
                 'kasus' => $request->kasus,
                 'tanggal'   => $request->tanggal,
                 'pengambilandata'   => $request->pengambilandata,
@@ -165,7 +165,7 @@ class admincatatankasuscontroller extends Controller
         catatankasussiswa::where('id', $data->id)
             ->update([
                 'siswa_id'  => $request->siswa_id,
-                'kelas_id'  => $request->kelas_id,
+                // 'kelas_id'  => $request->kelas_id,
                 'kasus' => $request->kasus,
                 'tanggal' => $request->tanggal,
                 'pengambilandata'   => $request->pengambilandata,

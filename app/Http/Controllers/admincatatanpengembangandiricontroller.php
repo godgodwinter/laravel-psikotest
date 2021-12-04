@@ -103,7 +103,7 @@ class admincatatanpengembangandiricontroller extends Controller
         DB::table('catatanpengembangandirisiswa')->insert(
             array(
                 'siswa_id'  =>$request->siswa_id,
-                'kelas_id'  =>$request->kelas_id,
+                // 'kelas_id'  =>$request->kelas_id,
                 'tanggal'    =>$request->tanggal,
                 'idedanimajinasi'    =>$request->idedanimajinasi,
                 'ketrampilan'    =>$request->ketrampilan,
@@ -165,7 +165,7 @@ class admincatatanpengembangandiricontroller extends Controller
         catatanpengembangandirisiswa::where('id',$data->id)
         ->update([
             'siswa_id'  =>$request->siswa_id,
-            'kelas_id'  =>$request->kelas_id,
+            // 'kelas_id'  =>$request->kelas_id,
             'tanggal'    =>$request->tanggal,
                 'idedanimajinasi'    =>$request->idedanimajinasi,
                 'ketrampilan'    =>$request->ketrampilan,
