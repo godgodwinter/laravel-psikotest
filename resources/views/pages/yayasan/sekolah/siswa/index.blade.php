@@ -19,12 +19,12 @@ Detail Sekolah
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{route('sekolah')}}">Sekolah</a></div>
-            <div class="breadcrumb-item">{{ $sekolah->nama }}</div>
+            <div class="breadcrumb-item">{{ $id->nama }}</div>
         </div>
     </div>
 
     <div class="section-body">
-        <h2 class="section-title">{{$sekolah->nama}}</h2>
+        <h2 class="section-title">{{$id->nama}}</h2>
 
         <div id="output-status"></div>
         <div class="row">
@@ -41,7 +41,7 @@ Detail Sekolah
                   <div class="d-flex bd-highlight mb-0 align-items-center">
                       <div class="p-2 bd-highlight">
 
-                          <form action="{{route('yayasan.sekolah.siswa.cari',$sekolah->id)}}" method="GET">
+                          <form action="{{route('yayasan.sekolah.siswa.cari',$id->id)}}" method="GET">
                               <input type="text" class="babeng babeng-select  ml-0" name="cari">
                       </div>
                       <div class="p-2 bd-highlight">

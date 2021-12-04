@@ -99,7 +99,7 @@ Sekolah
                                 </td>
                                 <td class="text-center">
 
-                        <img alt="image" src="{{$data->sekolah!=null?'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF' : 'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="100px" height="100px" style="object-fit:cover;">
+                        <img alt="image" src="{{$data->sekolah!=null?'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF' : 'https://ui-avatars.com/api/?name=Yayasan&amp&color=7F9CF5&amp&background=EBF4FF'}}" class="img-thumbnail" data-toggle="tooltip" title="Yayasan Photo" width="80px" height="80px" style="object-fit:cover;">
                                 </td>
                             </tr>
                 @empty
