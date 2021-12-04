@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class yayasansekolahcontroller extends Controller
 {
     protected $datayayasan;
+    protected $cari;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -28,7 +29,7 @@ class yayasansekolahcontroller extends Controller
     }
     public function index(Request $request)
     {
-        $pages='hasilpsikologi';
+        $pages='sekolah';
         // dd($this->datayayasan);
         if($this->datayayasan!=null){
 
@@ -43,7 +44,23 @@ class yayasansekolahcontroller extends Controller
             ->orderBy('id','asc')
             ->paginate(Fungsi::paginationjml());
         }
-        // dd($datas);
+
+        return view('pages.yayasan.sekolah.index',compact('pages','request','datas'));
+    }
+
+    public function cari(Request $request)
+    {
+
+        $this->cari=$request->cari;
+        #WAJIB
+        $pages='sekolah';
+        $datas = yayasandetail::with('sekolah')
+        ->where('sekolah_id',function($query){
+            $query->select('id')->from('sekolah')
+            ->where('nama','like',"%".$this->cari."%");
+        })
+        ->where('yayasan_id',$this->datayayasan->id)
+        ->paginate(Fungsi::paginationjml());
 
         return view('pages.yayasan.sekolah.index',compact('pages','request','datas'));
     }

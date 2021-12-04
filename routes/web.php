@@ -483,5 +483,6 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         //yayasan dashboard
         Route::get('/yayasan/sekolah', [yayasansekolahcontroller::class, 'index'])->name('yayasan.sekolah');
+        Route::get('/yayasan/datasekolah/cari', [yayasansekolahcontroller::class, 'cari'])->name('yayasan.sekolah.cari');
 
 });
