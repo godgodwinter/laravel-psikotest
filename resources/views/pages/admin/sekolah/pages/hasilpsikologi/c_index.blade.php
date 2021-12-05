@@ -1,35 +1,58 @@
 
-                <div class="d-flex bd-highlight mb-0 align-items-center">
+ <form action="{{route('sekolah.hasilpsikologi.cari',$id->id)}}" method="GET" class="babeng-form">
+    <div class="row mb-2">
 
-                    <div class="p-2 bd-highlight">
+        <div class="col-6 col-md-3 col-sm-4">
+            {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
+            <select class="js-example-basic-single  form-control @error('kelas_id')
+            is-invalid
+        @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
+            <option disabled selected value=""> Pilih kelas</option>
+            @foreach ($kelas as $t)
+                <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+            @endforeach
+          </select>
+        </div>
+        @push('before-script')
+        <script type="text/javascript">
+            $(document).ready(function() {
 
-            <form action="{{route('sekolah.hasilpsikologi.cari',$id->id)}}" method="GET" class="babeng-form">
-                <input type="text" class="babeng babeng-select  ml-0" name="cari">
-            </div>
-
-            <div class="p-2 bd-highlight">
-                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
-            </div>
-
-            <div class="ml-auto p-2 bd-highlight">
-                <a href="{{route('sekolah.hasilpsikologi.create',$id->id)}}" type="submit" value="Import"
-                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                            class="fas fa-download"></i> Tambah </span></a>
-                <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
-                data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                Import
-            </button>
-            <a href="{{ route('sekolah.hasilpsikologi.export',$id->id) }}" type="submit" value="Import"
-                class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
-                        class="fas fa-download"></i> Export </span></a>
-            </form>
+                // In your Javascript (external .js resource or <script> tag)
+                    $(document).ready(function() {
+                        $('.js-example-basic-single').select2({
+                            // theme: "classic",
+                            // allowClear: true,
+                            width: "resolve"
+                        });
+                    });
+            });
+           </script>
+        @endpush
+        <div class="col-6 col-md-3 col-sm-4">
+            <span>
+                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
+            </span>
         </div>
 
+        <div class="col-12 col-md-6 col-sm-4  text-right">
+            <a href="{{route('sekolah.hasilpsikologi.create',$id->id)}}" type="submit" value="Import"
+                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                        class="fas fa-download"></i> Tambah </span></a>
+            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+            data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+            Import
+        </button>
+        <a href="{{ route('sekolah.hasilpsikologi.export',$id->id) }}" type="submit" value="Import"
+            class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
+                    class="fas fa-download"></i> Export </span></a>
+        </div>
     </div>
+</form>
+
 
 <div class="card" id="settings-card">
     <div class="card-header">
-        <h4>Hasil Psikologi </h4>
+        <h4>Hasil Psikologi kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }}</h4>
     </div>
     <div class="card-body babengcontainer">
         <div id="babeng-bar" class="text-right mt-2">
@@ -58,14 +81,14 @@
                         {{$data->siswa!=null ? $data->siswa->nama : 'Data tidak ditemukan'}}
                     </td>
                     <td class="text-center">
-                        {{$data->nilai}}
+                        {{$data->nilai?$data->nilai:'Data tidak ditemukan'}}
                     </td>
                     <td class="text-center">
                         <button class="btn btn-sm btn-info"> Lihat </button>
 
                     </td>
                     <td class="text-center babeng-min-row">
-                        <x-button-edit link="{{ route('sekolah.hasilpsikologi.edit',[$id,$data->id]) }}" />
+                        <x-button-edit link="{{route('sekolah.hasilpsikologi.create',$id->id)}}?siswa_id={{$data->id}}" />
                         <x-button-delete link="{{ route('sekolah.hasilpsikologi.destroy',[$id,$data->id]) }}" />
 
 
