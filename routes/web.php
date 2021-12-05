@@ -207,6 +207,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/sekolah/{id}/catatankasus/{data}', [admincatatankasuscontroller::class, 'destroy'])->name('sekolah.catatankasus.destroy');
     Route::delete('/admin/sekolah/catatankasus/multidel/{id}', [admincatatankasuscontroller::class, 'multidel'])->name('sekolah.catatankasus.multidel');
     Route::get('/admin/sekolah/{id}/catatankasus/cetak/{data}', [admincatatankasuscontroller::class, 'cetakpersiswa'])->name('sekolah.catatankasus.cetakpersiswa');
+    Route::get('/admin/sekolah/{id}/catatankasus/detail/{data}', [admincatatankasuscontroller::class, 'detail'])->name('sekolah.catatankasus.detail');
     Route::get('/admin/sekolah/{id}/catatankasus/preview/{data}', [admincatatankasuscontroller::class, 'preview'])->name('sekolah.catatankasus.preview');
 
     //catatanpengembangandiri
