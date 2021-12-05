@@ -50,10 +50,9 @@ class adminhasilpsikologicontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=DB::table('siswa')
-        ->where('sekolah_id',$id->id)
+        $datasiswa=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
-        ->whereNull('deleted_at')->where('sekolah_id',$id->id)
+        ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
@@ -65,13 +64,11 @@ class adminhasilpsikologicontroller extends Controller
 
 
 
-                $periksadata=DB::table('hasilpsikologi')
-                ->where('siswa_id',$d->id)
+                $periksadata=hasilpsikologi::where('siswa_id',$d->id)
                 ->count();
 
                 if($periksadata>0){
-                    $ambil=DB::table('hasilpsikologi')
-                    ->where('siswa_id',$d->id)
+                    $ambil=hasilpsikologi::where('siswa_id',$d->id)
                     ->first();
                     $nilai=$ambil->nilai;
                 }else{
@@ -115,8 +112,7 @@ class adminhasilpsikologicontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=DB::table('siswa')
-        ->where('sekolah_id',$id->id)
+        $datasiswa=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
@@ -243,9 +239,10 @@ class adminhasilpsikologicontroller extends Controller
         ]);
     return redirect()->route('sekolah.hasilpsikologi',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(sekolah $id,hasilpsikologi $data){
+    public function destroy(sekolah $id,siswa $siswa){
 
-        hasilpsikologi::destroy($data->id);
+        hasilpsikologi::where('siswa_id',$siswa->id)->delete();
+        // dd('tes',$siswa->id);
         return redirect()->route('sekolah.hasilpsikologi',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }

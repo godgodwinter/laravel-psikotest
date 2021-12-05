@@ -63,7 +63,8 @@
         <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
             <thead>
                 <tr>
-                    <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
+                    <th class="text-center babeng-min-row">
+                        No</th>
                     <th class="text-center" > Nama </th>
                     <th class="text-center" > Hasil Deteksi </th>
                     <th class="text-center" > Sertifikat </th>
