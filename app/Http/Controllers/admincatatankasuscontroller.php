@@ -199,7 +199,7 @@ class admincatatankasuscontroller extends Controller
         return view('pages.admin.sekolah.pages.catatankasus.index', compact('pages', 'id', 'request', 'datas','kelas'));
     }
 
-    public function create(sekolah $id)
+    public function create(sekolah $id, Request $request)
     {
         $pages = 'catatankasussiswa';
         $kelas = DB::table('kelas')->where('id', $id->id)->get();
@@ -207,7 +207,9 @@ class admincatatankasuscontroller extends Controller
             ->where('sekolah_id', $id->id)
             ->orderBy('nama', 'asc')->get();
 
-        return view('pages.admin.sekolah.pages.catatankasus.create', compact('pages', 'id', 'siswa', 'kelas'));
+            $ambildata=siswa::where('id',$request->siswa_id)->first();
+
+        return view('pages.admin.sekolah.pages.catatankasus.create', compact('pages', 'id', 'siswa', 'kelas','request','ambildata'));
     }
 
 

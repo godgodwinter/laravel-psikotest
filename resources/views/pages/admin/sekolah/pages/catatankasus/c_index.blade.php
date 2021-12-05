@@ -37,7 +37,7 @@
         <div class="col-12 col-md-6 col-sm-4  text-right">
             <a href="{{route('sekolah.catatankasus.create',$id->id)}}" type="submit" value="Import"
                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                        class="fas fa-download"></i> Tambah </span></a>
+                        class="fas fa-plus"></i> Tambah </span></a>
         </div>
     </div>
 </form>
@@ -82,8 +82,12 @@
 
                         <td class="text-center babeng-min-row">
                             <a class="btn btn-sm btn-info" href="{{ route('sekolah.catatankasus.cetakpersiswa',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
+
+                        <a href="{{route('sekolah.catatankasus.create',[$id->id,'siswa_id'=>$data->id])}}" type="submit" value="Import"
+                            class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                    class="fas fa-plus"></i>  </span></a>
                             {{-- <x-button-edit link="{{ route('sekolah.catatankasus.edit',[$id->id,$data->id])}}" /> --}}
-                            <x-button-delete link="{{ route('sekolah.catatankasus.destroy',[$id->id,$data->id])}}" />
+                            {{-- <x-button-delete link="{{ route('sekolah.catatankasus.destroy',[$id->id,$data->id])}}" /> --}}
                         </td>
                     </tr>
         @empty
