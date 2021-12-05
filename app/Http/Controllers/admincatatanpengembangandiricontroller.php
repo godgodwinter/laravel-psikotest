@@ -97,7 +97,7 @@ class admincatatanpengembangandiricontroller extends Controller
             ->paginate(Fungsi::paginationjml());
             // dd($datas);
 
-        return view('pages.admin.sekolah.pages.catatanpengembangandiri.detail', compact('pages', 'id', 'request', 'datas'));
+        return view('pages.admin.sekolah.pages.catatanpengembangandiri.detail', compact('pages', 'id', 'request', 'datas','data'));
     }
 
     public function cari(sekolah $id, Request $request)
