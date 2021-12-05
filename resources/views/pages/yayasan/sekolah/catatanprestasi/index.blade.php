@@ -71,9 +71,7 @@ Detail Sekolah
                     </div>
 
                     <div class="col-12 col-md-6 col-sm-4  text-right">
-                        <a href="{{route('sekolah.catatanprestasi.create',$id->id)}}" type="submit" value="Import"
-                            class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                                    class="fas fa-download"></i> Tambah </span></a>
+
                     </div>
                 </div>
             </form>
