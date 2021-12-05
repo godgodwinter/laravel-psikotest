@@ -65,6 +65,9 @@ Catatan Pengembangan diri
 <div class="card-body babengcontainer">
 
 
+    <div class="card-header">
+        <h4>Catatan Pengembangandiri Siswa : {{ $data!=null?$data->nama:'Kelas tidak ditemukan' }}</h4>
+        </div>
     <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
         <thead>
             <tr>

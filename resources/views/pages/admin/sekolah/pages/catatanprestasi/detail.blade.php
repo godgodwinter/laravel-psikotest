@@ -64,6 +64,9 @@ Catatan Prestasi
 </div> --}}
 <div class="card-body babengcontainer">
 
+    <div class="card-header">
+        <h4>Catatan Prestasi Siswa : {{ $data!=null?$data->nama:'Kelas tidak ditemukan' }}</h4>
+        </div>
 
     <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
         <thead>
