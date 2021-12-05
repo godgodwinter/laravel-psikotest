@@ -71,9 +71,7 @@ Catatan Prestasi
                 <th class="text-center babeng-min-row">
                     No
                 </th>
-                <th >Tanggal</th>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Kelas</th>
+                <th class="text-center">Tanggal</th>
                 <th class="text-center">Prestasi</th>
                 <th class="text-center" > Aksi </th>
 
@@ -84,14 +82,8 @@ Catatan Prestasi
             <tr id="sid{{ $data->id }}">
                     <td class="text-center">
                         {{ ((($loop->index)+1)) }}</td>
-                    <td> {{$data->tanggal}}
+                    <td class="babeng-min-row"> {{Fungsi::tanggalindo($data->tanggal)}}
                     </td>
-                    <td class="text-center">
-                        {{$data->siswa!=null?Str::limit($data->siswa->nama,25,' ...'):''}}
-                    </td>
-                    <td class="text-center">
-                        {{$data->kelas!=null?$data->kelas->nama:''}}
-                     </td>
 
                      <td class="text-center">
                         {{$data->prestasi}}
