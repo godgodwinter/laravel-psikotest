@@ -542,118 +542,584 @@ class yayasansekolahcontroller extends Controller
         // dd($collectionpenilaian,$periksadata,$d->id);
         return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
     }
+
     public function hasilpsikologi(sekolah $id,Request $request)
     {
         $pages='hasilpsikologi';
-        // $datas=DB::table('kelas')->whereNull('deleted_at')
-        // ->where('sekolah_id',$id->id)
-        // // ->with('walikelas','nama')
-        // ->orderBy('nama','asc')
-        // ->paginate(Fungsi::paginationjml());
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        $pages='hasilpsikologi';
+        if($this->cari!=null){
+            $cari=$this->cari;
 
-        $datas = hasilpsikologi::with('siswa')
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
         ->where('sekolah_id',$id->id)
-        ->orderBy('id','asc')
-        ->paginate(Fungsi::paginationjml());
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=hasilpsikologi::where('siswa_id',$d->id)
+                ->count();
+
+                if($periksadata>0){
+                    $ambil=hasilpsikologi::where('siswa_id',$d->id)
+                    ->first();
+                    $nilai=$ambil->nilai;
+                }else{
+                    $nilai=null;
+                }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'nilai'=>$nilai,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+
+        return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
+    }
+
+
+    public function hasilpsikologicari(sekolah $id,Request $request)
+    {
+        $this->cari=$request->kelas_id;
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        $pages='hasilpsikologi';
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->whereNull('deleted_at')->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=DB::table('hasilpsikologi')
+                ->where('siswa_id',$d->id)
+                ->count();
+
+                if($periksadata>0){
+                    $ambil=DB::table('hasilpsikologi')
+                    ->where('siswa_id',$d->id)
+                    ->first();
+                    $nilai=$ambil->nilai;
+                }else{
+                    $nilai=null;
+                }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'nilai'=>$nilai,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($datas);
 
-        return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas'));
+        return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
     }
+    // public function hasilpsikologi(sekolah $id,Request $request)
+    // {
+    //     $pages='hasilpsikologi';
+    //     // $datas=DB::table('kelas')->whereNull('deleted_at')
+    //     // ->where('sekolah_id',$id->id)
+    //     // // ->with('walikelas','nama')
+    //     // ->orderBy('nama','asc')
+    //     // ->paginate(Fungsi::paginationjml());
+
+    //     $datas = hasilpsikologi::with('siswa')
+    //     ->where('sekolah_id',$id->id)
+    //     ->orderBy('id','asc')
+    //     ->paginate(Fungsi::paginationjml());
+    //     // dd($datas);
+
+    //     return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas'));
+    // }
     public function catatankasus(sekolah $id, Request $request)
     {
         $pages = 'catatankasus';
 
-        $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
-            ->where('sekolah_id', $id->id)
-            ->orderBy('siswa_id', 'asc')
-            ->paginate(Fungsi::paginationjml());
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
 
-        return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatankasussiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatankasussiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
+
     public function catatankasuscari(sekolah $id, Request $request)
+    {
+        $this->cari=$request->kelas_id;
+        $pages = 'catatankasus';
+
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatankasussiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatankasussiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+    }
+    public function catatankasusdetail(sekolah $id,siswa $data, Request $request)
     {
         $pages = 'catatankasus';
 
-
-        $datas = catatankasussiswa::with('siswa')->with('kelas')
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
-            ->whereHas('siswa', function ($query) {
-                global $request;
-                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->orWhereHas('kelas', function ($query) {
-                global $request;
-                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->where('sekolah_id', $id->id)
-            ->orWhere('kasus', 'like', "%" . $request->cari . "%")
-            ->where('sekolah_id', $id->id)
+            ->where('siswa_id', $data->id)
+            ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
 
-        return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
+            $kelas=kelas::where('sekolah_id',$id->id)->get();
+    return view('pages.yayasan.sekolah.catatankasus.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
     }
+
+
     public function catatanpengembangandiri(sekolah $id, Request $request)
     {
         $pages = 'catatanpengembangandiri';
 
-        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
-            ->where('sekolah_id', $id->id)
-            ->orderBy('siswa_id', 'asc')
-            ->paginate(Fungsi::paginationjml());
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
 
-        return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
-    public function catatanpengembangandiricari(sekolah $id, Request $request)
+    public function catatanpengembangandiridetail(sekolah $id,siswa $data, Request $request)
     {
         $pages = 'catatanpengembangandiri';
 
-        $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')
-            ->where('sekolah_id', $id->id)
-            ->whereHas('siswa', function ($query) {
-                global $request;
-                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->orWhereHas('kelas', function ($query) {
-                global $request;
-                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->where('sekolah_id', $id->id)
-            ->orWhere('idedanimajinasi', 'like', "%" . $request->cari . "%")
-            ->where('sekolah_id', $id->id)
+        $datas = catatanpengembangandirisiswa::with('siswa')
+            ->where('siswa_id', $data->id)
+            ->orderBy('tanggal', 'asc')
             ->paginate(Fungsi::paginationjml());
+            // dd($datas);
 
-        return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
+        return view('pages.yayasan.sekolah.catatanpengembangandiri.detail', compact('pages', 'id', 'request', 'datas','data'));
     }
+
+    public function catatanpengembangandiricari(sekolah $id, Request $request)
+    {
+        $pages = 'catatanpengembangandiri';
+        $this->cari=$request->kelas_id;
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+    }
+
     public function catatanprestasi(sekolah $id, Request $request)
     {
         $pages = 'catatanprestasi';
 
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
-            ->where('sekolah_id', $id->id)
-            ->orderBy('siswa_id', 'asc')
-            ->paginate(Fungsi::paginationjml());
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
 
-        return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatanprestasisiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatanprestasisiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
+
     public function catatanprestasicari(sekolah $id, Request $request)
     {
         $pages = 'catatanprestasi';
+        $this->cari=$request->kelas_id;
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
 
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatanprestasisiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatanprestasisiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+    }
+    public function catatanprestasidetail(sekolah $id,siswa $data, Request $request)
+    {
+        $pages = 'catatanprestasi';
+
+        $datas = catatanprestasisiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
-            ->whereHas('siswa', function ($query) {
-                global $request;
-                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->orWhereHas('kelas', function ($query) {
-                global $request;
-                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->where('sekolah_id', $id->id)
-            ->orWhere('prestasi', 'like', "%" . $request->cari . "%")
-            ->where('sekolah_id', $id->id)
+            ->where('siswa_id', $data->id)
+            ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
 
-        return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
+            $kelas=kelas::where('sekolah_id',$id->id)->get();
+    return view('pages.yayasan.sekolah.catatanprestasi.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
     }
+    // public function catatanprestasi(sekolah $id, Request $request)
+    // {
+    //     $pages = 'catatanprestasi';
+
+    //     $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+    //         ->where('sekolah_id', $id->id)
+    //         ->orderBy('siswa_id', 'asc')
+    //         ->paginate(Fungsi::paginationjml());
+
+    //     return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
+    // }
+    // public function catatanprestasicari(sekolah $id, Request $request)
+    // {
+    //     $pages = 'catatanprestasi';
+
+    //     $datas = catatanprestasisiswa::with('siswa')->with('kelas')
+    //         ->where('sekolah_id', $id->id)
+    //         ->whereHas('siswa', function ($query) {
+    //             global $request;
+    //             $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
+    //         })
+    //         ->orWhereHas('kelas', function ($query) {
+    //             global $request;
+    //             $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
+    //         })
+    //         ->where('sekolah_id', $id->id)
+    //         ->orWhere('prestasi', 'like', "%" . $request->cari . "%")
+    //         ->where('sekolah_id', $id->id)
+    //         ->paginate(Fungsi::paginationjml());
+
+    //     return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
+    // }
 }
