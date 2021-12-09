@@ -322,6 +322,7 @@ public function __construct()
 
         $ids=$request->ids;
         siswa::whereIn('id',$ids)->delete();
+        echo"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
         // load ulang
         #WAJIB

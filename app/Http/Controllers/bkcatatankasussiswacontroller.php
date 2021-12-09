@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\catatankasussiswa;
+use App\Models\kelas;
 use App\Models\sekolah;
 use App\Models\siswa;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class bkcatatankasussiswacontroller extends Controller
             $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
             $sekolah_id=$pengguna->sekolah_id;
             $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
-            $kelas=DB::table('kelas')->where('id',$sekolah_id)->get();
+            $kelas=DB::table('kelas')->where('sekolah_id',$sekolah_id)->get();
             $siswa=DB::table('siswa')->whereNull('deleted_at')
             ->where('sekolah_id',$id->id)
             ->orderBy('nama','asc')->get();
@@ -228,5 +229,6 @@ class bkcatatankasussiswacontroller extends Controller
 
                 return view('pages.bk.catatankasussiswa.index',compact('pages','id','request','datas'));
     }
-    }
+    
+}
 

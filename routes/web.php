@@ -429,6 +429,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/datacatatankasussiswa/create', [bkcatatankasussiswacontroller::class, 'create'])->name('bk.catatankasussiswa.create');
         Route::post('/bk/datacatatankasussiswa', [bkcatatankasussiswacontroller::class, 'store'])->name('bk.catatankasussiswa.store');
         Route::delete('/bk/datacatatankasussiswa/multidel', [bkcatatankasussiswacontroller::class, 'multidel'])->name('bk.catatankasussiswa.multidel');
+      //  Route::get('/bk/datacatatankasussiswa/autocomplete', [bkcatatankasussiswacontroller::class, 'autocomplete'])->name('bk.catatankasussiswa.autocomplete');
 
         //catatanpengembangandirisiswa
         Route::get('/bk/catatanpengembangandirisiswa', [bkcatatanpengembangandirisiswacontroller::class, 'index'])->name('bk.catatanpengembangandirisiswa');

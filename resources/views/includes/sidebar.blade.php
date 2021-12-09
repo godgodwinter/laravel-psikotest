@@ -130,7 +130,7 @@
                         class="fas fa-school"></i> <span>Catatan Prestasi Siswa</span></a></li>
 
 
-                        @elseif((Auth::user()->tipeuser)=='yayasan')
+                @elseif((Auth::user()->tipeuser)=='yayasan')
             <li class="menu-header">Menu</li>
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i
                         class="fas fa-home"></i> <span>Sekolah</span></a></li>
