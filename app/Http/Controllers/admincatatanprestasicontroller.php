@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
 use App\Models\catatanprestasisiswa;
+use App\Models\kelas;
 use App\Models\sekolah;
+use App\Models\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
 
 class admincatatanprestasicontroller extends Controller
 {
+    protected $cari;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -23,42 +27,177 @@ class admincatatanprestasicontroller extends Controller
         });
     }
 
+
     public function index(sekolah $id, Request $request)
     {
         $pages = 'catatanprestasi';
 
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatanprestasisiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatanprestasisiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.admin.sekolah.pages.catatanprestasi.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+    }
+
+    public function cari(sekolah $id, Request $request)
+    {
+        $pages = 'catatanprestasi';
+        $this->cari=$request->kelas_id;
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$id->id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatanprestasisiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatanprestasisiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        return view('pages.admin.sekolah.pages.catatanprestasi.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+    }
+    public function detail(sekolah $id,siswa $data, Request $request)
+    {
+        $pages = 'catatanprestasi';
+
+        $datas = catatanprestasisiswa::with('siswa')->whereNull('deleted_at')
+            ->where('sekolah_id', $id->id)
+            ->where('siswa_id', $data->id)
+            ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
+
+            $kelas=kelas::where('sekolah_id',$id->id)->get();
+    return view('pages.admin.sekolah.pages.catatanprestasi.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
+    }
+    public function indexbackup(sekolah $id, Request $request)
+    {
+        $pages = 'catatanprestasi';
+
+        $datas = catatanprestasisiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.sekolah.pages.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
     }
-    public function cari(sekolah $id, Request $request)
-    {
-        $cari = $request->cari;
-        #WAJIB
-        $pages = 'catatanprestasisiswa';
+    // public function cari(sekolah $id, Request $request)
+    // {
+    //     $cari = $request->cari;
+    //     #WAJIB
+    //     $pages = 'catatanprestasisiswa';
 
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')
-            ->where('sekolah_id', $id->id)
-            ->whereHas('siswa', function ($query) {
-                global $request;
-                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->orWhereHas('kelas', function ($query) {
-                global $request;
-                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
-            })
-            ->where('sekolah_id', $id->id)
-            ->orWhere('prestasi', 'like', "%" . $request->cari . "%")
-            ->where('sekolah_id', $id->id)
-            ->paginate(Fungsi::paginationjml());
-        // dd($datas,$cari);
-        return view('pages.admin.sekolah.pages.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
-    }
+    //     $datas = catatanprestasisiswa::with('siswa')
+    //         ->where('sekolah_id', $id->id)
+    //         ->whereHas('siswa', function ($query) {
+    //             global $request;
+    //             $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
+    //         })
+    //         ->orWhereHas('kelas', function ($query) {
+    //             global $request;
+    //             $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
+    //         })
+    //         ->where('sekolah_id', $id->id)
+    //         ->orWhere('prestasi', 'like', "%" . $request->cari . "%")
+    //         ->where('sekolah_id', $id->id)
+    //         ->paginate(Fungsi::paginationjml());
+    //     // dd($datas,$cari);
+    //     return view('pages.admin.sekolah.pages.catatanprestasi.index', compact('pages', 'id', 'request', 'datas'));
+    // }
 
-    public function create(sekolah $id)
+    public function create(sekolah $id, Request $request)
     {
         $pages = 'catatanprestasisiswa';
         $kelas = DB::table('kelas')->where('id', $id->id)->get();
@@ -66,7 +205,8 @@ class admincatatanprestasicontroller extends Controller
             ->where('sekolah_id', $id->id)
             ->orderBy('nama', 'asc')->get();
 
-        return view('pages.admin.sekolah.pages.catatanprestasi.create', compact('pages', 'id', 'siswa', 'kelas'));
+            $ambildata=siswa::where('id',$request->siswa_id)->first();
+        return view('pages.admin.sekolah.pages.catatanprestasi.create', compact('pages', 'id', 'siswa', 'kelas','request','ambildata'));
     }
 
 
@@ -98,12 +238,14 @@ class admincatatanprestasicontroller extends Controller
             ]
         );
 
+        $ambilsiswa = siswa::where('id', $request->siswa_id)
+        ->first();
 
         //inser siswa
         DB::table('catatanprestasisiswa')->insert(
             array(
                 'siswa_id'  =>$request->siswa_id,
-                'kelas_id'  =>$request->kelas_id,
+                // 'kelas_id'  =>$request->kelas_id,
                 'tanggal'  =>$request->tanggal,
                 'prestasi'  =>$request->prestasi,
                 'teknikbelajar'  =>$request->teknikbelajar,
@@ -115,13 +257,13 @@ class admincatatanprestasicontroller extends Controller
                 'updated_at'=>date("Y-m-d H:i:s"),
             ));
 
-        return redirect()->route('sekolah.catatanprestasi', $id->id)->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
+        return redirect()->route('sekolah.catatanprestasi.cari', [$id->id,'kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
 
     public function edit(sekolah $id, catatanprestasisiswa $data)
     {
         $pages = 'catatanprestasisiswa';
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatanprestasisiswa::with('siswa')->whereNull('deleted_at')
             ->where('id', $data->id)
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
@@ -161,7 +303,7 @@ class admincatatanprestasicontroller extends Controller
         catatanprestasisiswa::where('id',$data->id)
         ->update([
             'siswa_id'  =>$request->siswa_id,
-                'kelas_id'  =>$request->kelas_id,
+                // 'kelas_id'  =>$request->kelas_id,
                 'tanggal'  =>$request->tanggal,
                 'prestasi'  =>$request->prestasi,
                 'teknikbelajar'  =>$request->teknikbelajar,
@@ -193,7 +335,7 @@ class admincatatanprestasicontroller extends Controller
         #WAJIB
         $pages = 'catatanprestasi';
 
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
+        $datas = catatanprestasisiswa::with('siswa')->whereNull('deleted_at')
             ->where('sekolah_id', $id->id)
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
@@ -202,7 +344,7 @@ class admincatatanprestasicontroller extends Controller
     }
     public function cetakpersiswa(sekolah $id,catatanprestasisiswa $data,Request $request){
 
-        // $datas = catatanpengembangandirisiswa::with('siswa')->with('kelas')->where('id',$data->id)
+        // $datas = catatanpengembangandirisiswa::with('siswa')->where('id',$data->id)
         // ->where('sekolah_id',$id->id)
         // ->orderBy('siswa_id','asc')
         // ->get();

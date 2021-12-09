@@ -15,7 +15,11 @@
                             <select class="js-example-basic-single form-control-sm @error('siswa_id')
                                 is-invalid
                             @enderror" name="siswa_id"  style="width: 75%" required>
-                                <option disabled selected value=""> Pilih Siswa</option>
+                            @if($request->siswa_id)
+                                <option  selected value="{{$ambildata->id}}">{{$ambildata->nama}}</option>
+                            @else
+                            <option disabled selected value=""> Pilih Siswa</option>
+                            @endif
                                 @foreach ($siswa as $t)
                                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
                                 @endforeach
@@ -27,7 +31,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group row align-items-center">
+                      {{-- <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelas</label>
                         <div class="col-sm-6 col-md-9">
 
@@ -44,7 +48,7 @@
                           @enderror
 
                         </div>
-                      </div>
+                      </div> --}}
 
 
                       <div class="form-group row align-items-center">

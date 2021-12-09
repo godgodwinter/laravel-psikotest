@@ -7,7 +7,7 @@
             <a href="{{route('dashboard')}}">{{Fungsi::app_namapendek()}}</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Layout v1.3</li>
+            <li class="menu-header">Layout v1.5</li>
 
 
             @if((Auth::user()->tipeuser)=='admin')
@@ -132,7 +132,7 @@
 
                 @elseif((Auth::user()->tipeuser)=='yayasan')
             <li class="menu-header">Menu</li>
-            <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i
+            <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('yayasan.sekolah')}}"><i
                         class="fas fa-home"></i> <span>Sekolah</span></a></li>
 
                     @else

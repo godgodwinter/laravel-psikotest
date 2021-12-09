@@ -47,6 +47,7 @@ use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\prosescontroller;
+use App\Http\Controllers\yayasansekolahcontroller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -189,7 +190,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/hasilpsikologi/cari', [adminhasilpsikologicontroller::class, 'cari'])->name('sekolah.hasilpsikologi.cari');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'edit'])->name('sekolah.hasilpsikologi.edit');
     Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
-    Route::delete('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
+    Route::delete('/admin/sekolah/{id}/hasilpsikologi/{siswa}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
     //export
     Route::get('/admin/datahasilpsikologi/{id}/export', [adminhasilpsikologicontroller::class, 'export'])->name('sekolah.hasilpsikologi.export');
     //import
@@ -206,6 +207,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/sekolah/{id}/catatankasus/{data}', [admincatatankasuscontroller::class, 'destroy'])->name('sekolah.catatankasus.destroy');
     Route::delete('/admin/sekolah/catatankasus/multidel/{id}', [admincatatankasuscontroller::class, 'multidel'])->name('sekolah.catatankasus.multidel');
     Route::get('/admin/sekolah/{id}/catatankasus/cetak/{data}', [admincatatankasuscontroller::class, 'cetakpersiswa'])->name('sekolah.catatankasus.cetakpersiswa');
+    Route::get('/admin/sekolah/{id}/catatankasus/detail/{data}', [admincatatankasuscontroller::class, 'detail'])->name('sekolah.catatankasus.detail');
     Route::get('/admin/sekolah/{id}/catatankasus/preview/{data}', [admincatatankasuscontroller::class, 'preview'])->name('sekolah.catatankasus.preview');
 
     //catatanpengembangandiri
@@ -218,7 +220,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/sekolah/{id}/catatanpengembangandiri/{data}', [admincatatanpengembangandiricontroller::class, 'destroy'])->name('sekolah.catatanpengembangandiri.destroy');
     Route::delete('/admin/sekolah/catatanpengembangandiri/multidel/{id}', [admincatatanpengembangandiricontroller::class, 'multidel'])->name('sekolah.catatanpengembangandiri.multidel');
     Route::get('/admin/sekolah/{id}/catatanpengembangandiri/cetak/{data}', [admincatatanpengembangandiricontroller::class, 'cetakpersiswa'])->name('sekolah.catatanpengembangandiri.cetakpersiswa');
-
+    Route::get('/admin/sekolah/{id}/catatanpengembangandiri/detail/{data}', [admincatatanpengembangandiricontroller::class, 'detail'])->name('sekolah.catatanpengembangandiri.detail');
 
     //catatanprestasi
     Route::get('/admin/sekolah/{id}/catatanprestasi', [admincatatanprestasicontroller::class, 'index'])->name('sekolah.catatanprestasi');
@@ -230,6 +232,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/sekolah/{id}/catatanprestasi/{data}', [admincatatanprestasicontroller::class, 'destroy'])->name('sekolah.catatanprestasi.destroy');
     Route::delete('/admin/sekolah/catatanprestasi/multidel/{id}', [admincatatanprestasicontroller::class, 'multidel'])->name('sekolah.catatanprestasi.multidel');
     Route::get('/admin/sekolah/{id}/catatanprestasi/cetak/{data}', [admincatatanprestasicontroller::class, 'cetakpersiswa'])->name('sekolah.catatanprestasi.cetakpersiswa');
+    Route::get('/admin/sekolah/{id}/catatanprestasi/detail/{data}', [admincatatanprestasicontroller::class, 'detail'])->name('sekolah.catatanprestasi.detail');
 
 
       //pengguna
@@ -481,5 +484,30 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //bkcetak
         Route::get('/bk/grafik/nilaipsikologi', [bkgrafikcontroller::class, 'nilaipsikologi'])->name('bk.grafik.nilaipsikologi');
 
+        //yayasan dashboard
+        Route::get('/yayasan/sekolah', [yayasansekolahcontroller::class, 'index'])->name('yayasan.sekolah');
+        Route::get('/yayasan/datasekolah/cari', [yayasansekolahcontroller::class, 'cari'])->name('yayasan.sekolah.cari');
+
+        Route::get('/yayasan/sekolahdetail/{id}', [yayasansekolahcontroller::class, 'detail'])->name('yayasan.sekolah.detail');
+        Route::get('/yayasan/sekolahdetail/{id}/siswa', [yayasansekolahcontroller::class, 'siswa'])->name('yayasan.sekolah.siswa');
+        Route::get('/yayasan/sekolahdetailcari/{id}/siswa', [yayasansekolahcontroller::class, 'siswacari'])->name('yayasan.sekolah.siswa.cari');
+
+        Route::get('/yayasan/sekolah/{id}/inputnilaipsikologi', [yayasansekolahcontroller::class, 'inputnilaipsikologi'])->name('yayasan.sekolah.inputnilaipsikologi');
+        Route::get('/yayasan/sekolah/{id}/inputnilaipsikologicari', [yayasansekolahcontroller::class, 'inputnilaipsikologicari'])->name('yayasan.sekolah.inputnilaipsikologi.cari');
+        Route::get('/yayasan/sekolah/{id}/inputminatbakat', [yayasansekolahcontroller::class, 'inputminatbakat'])->name('yayasan.sekolah.inputminatbakat');
+        Route::get('/yayasan/sekolah/{id}/inputminatbakatcari', [yayasansekolahcontroller::class, 'inputminatbakatcari'])->name('yayasan.sekolah.inputminatbakatcari');
+        Route::get('/yayasan/sekolah/{id}/penjurusan', [yayasansekolahcontroller::class, 'penjurusan'])->name('yayasan.sekolah.penjurusan');
+        Route::get('/yayasan/sekolah/{id}/penjurusancari', [yayasansekolahcontroller::class, 'penjurusancari'])->name('yayasan.sekolah.penjurusancari');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi', [yayasansekolahcontroller::class, 'hasilpsikologi'])->name('yayasan.sekolah.hasilpsikologi');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologicari', [yayasansekolahcontroller::class, 'hasilpsikologicari'])->name('yayasan.sekolah.hasilpsikologicari');
+        Route::get('/yayasan/sekolah/{id}/catatankasus', [yayasansekolahcontroller::class, 'catatankasus'])->name('yayasan.sekolah.catatankasus');
+        Route::get('/yayasan/sekolah/{id}/catatankasuscari', [yayasansekolahcontroller::class, 'catatankasuscari'])->name('yayasan.sekolah.catatankasuscari');
+        Route::get('/yayasan/sekolah/{id}/catatankasusdetail/{data}', [yayasansekolahcontroller::class, 'catatankasusdetail'])->name('yayasan.sekolah.catatankasusdetail');
+        Route::get('/yayasan/sekolah/{id}/catatanpengembangandiri', [yayasansekolahcontroller::class, 'catatanpengembangandiri'])->name('yayasan.sekolah.catatanpengembangandiri');
+        Route::get('/yayasan/sekolah/{id}/catatanpengembangandiricari', [yayasansekolahcontroller::class, 'catatanpengembangandiricari'])->name('yayasan.sekolah.catatanpengembangandiricari');
+        Route::get('/yayasan/sekolah/{id}/catatanpengembangandiridetail/{data}', [yayasansekolahcontroller::class, 'catatanpengembangandiridetail'])->name('yayasan.sekolah.catatanpengembangandiridetail');
+        Route::get('/yayasan/sekolah/{id}/catatanprestasi', [yayasansekolahcontroller::class, 'catatanprestasi'])->name('yayasan.sekolah.catatanprestasi');
+        Route::get('/yayasan/sekolah/{id}/catatanprestasicari', [yayasansekolahcontroller::class, 'catatanprestasicari'])->name('yayasan.sekolah.catatanprestasicari');
+        Route::get('/yayasan/sekolah/{id}/catatanprestasidetail/{data}', [yayasansekolahcontroller::class, 'catatanprestasidetail'])->name('yayasan.sekolah.catatanprestasidetail');
 
 });

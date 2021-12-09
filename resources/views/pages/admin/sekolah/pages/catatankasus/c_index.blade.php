@@ -1,31 +1,47 @@
 
-                <div class="d-flex bd-highlight mb-0 align-items-center">
+ <form action="{{route('sekolah.catatankasus.cari',$id->id)}}" method="GET" class="babeng-form">
+    <div class="row mb-2">
 
-                    <div class="p-2 bd-highlight">
+        <div class="col-6 col-md-3 col-sm-4">
+            {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
+            <select class="js-example-basic-single  form-control @error('kelas_id')
+            is-invalid
+        @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
+            <option disabled selected value=""> Pilih kelas</option>
+            @foreach ($kelas as $t)
+                <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+            @endforeach
+          </select>
+        </div>
+        @push('before-script')
+        <script type="text/javascript">
+            $(document).ready(function() {
 
-            <form action="{{route('sekolah.catatankasus.cari',$id->id)}}" method="GET" class="babeng-form">
-                <input type="text" class="babeng babeng-select  ml-0" name="cari">
-            </div>
-
-            <div class="p-2 bd-highlight">
-                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
-            </div>
-
-            <div class="ml-auto p-2 bd-highlight">
-                <a href="{{route('sekolah.catatankasus.create',$id->id)}}" type="submit" value="Import"
-                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                            class="fas fa-download"></i> Tambah </span></a>
-                {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
-                data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-                Import
-            </button> --}}
-            {{-- <a href="{{ route('sekolah.catatankasus.export',$id->id) }}" type="submit" value="Import"
-                class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
-                        class="fas fa-download"></i> Export </span></a> --}}
-            </form>
+                // In your Javascript (external .js resource or <script> tag)
+                    $(document).ready(function() {
+                        $('.js-example-basic-single').select2({
+                            // theme: "classic",
+                            // allowClear: true,
+                            width: "resolve"
+                        });
+                    });
+            });
+           </script>
+        @endpush
+        <div class="col-6 col-md-3 col-sm-4">
+            <span>
+                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
+            </span>
         </div>
 
+        <div class="col-12 col-md-6 col-sm-4  text-right">
+            <a href="{{route('sekolah.catatankasus.create',$id->id)}}" type="submit" value="Import"
+                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                        class="fas fa-plus"></i> Tambah </span></a>
+        </div>
     </div>
+</form>
+
 
 <div class="card" id="settings-card">
     {{-- <div class="card-header">
@@ -34,13 +50,15 @@
     <div class="card-body babengcontainer">
 
 
+        <div class="card-header">
+        <h4>Catatan Kasus Kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }}</h4>
+        </div>
         <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
             <thead>
                 <tr>
-                    <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                    <th >Tanggal</th>
+                    <th class="text-center babeng-min-row">
+                        No</th>
                     <th class="text-center">Nama</th>
-                    <th class="text-center">Kelas</th>
                     <th class="text-center">Kasus</th>
                     <th class="text-center" > Aksi </th>
 
@@ -50,25 +68,26 @@
                 @forelse ($datas as $data)
                 <tr id="sid{{ $data->id }}">
                         <td class="text-center">
-                            <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
-                            {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                        <td> {{$data->tanggal}}
+                            {{ ((($loop->index)+1)) }}</td>
                         </td>
                         <td class="text-center">
                             {{$data->siswa!=null?Str::limit($data->siswa->nama,25,' ...'):''}}
                         </td>
-                        <td class="text-center">
-                            {{$data->kelas!=null?$data->kelas->nama:''}}
-                         </td>
 
                          <td class="text-center">
-                            {{$data->kasus}}
+
+                            <a class="btn btn-sm btn-light px-3" href="{{ route('sekolah.catatankasus.detail',[$id->id,$data->id])}}"> {{$data->jmldata}}</a>
+
                          </td>
 
                         <td class="text-center babeng-min-row">
                             <a class="btn btn-sm btn-info" href="{{ route('sekolah.catatankasus.cetakpersiswa',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
-                            <x-button-edit link="{{ route('sekolah.catatankasus.edit',[$id->id,$data->id])}}" />
-                            <x-button-delete link="{{ route('sekolah.catatankasus.destroy',[$id->id,$data->id])}}" />
+
+                        <a href="{{route('sekolah.catatankasus.create',[$id->id,'siswa_id'=>$data->id])}}" type="submit" value="Import"
+                            class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                    class="fas fa-plus"></i>  </span></a>
+                            {{-- <x-button-edit link="{{ route('sekolah.catatankasus.edit',[$id->id,$data->id])}}" /> --}}
+                            {{-- <x-button-delete link="{{ route('sekolah.catatankasus.destroy',[$id->id,$data->id])}}" /> --}}
                         </td>
                     </tr>
         @empty
@@ -80,35 +99,7 @@
             </tbody>
         </table>
 
-        <div class="d-flex justify-content-between flex-row-reverse mt-3">
-            <div >
 
-                <x-jsmultidel link="{{route('sekolah.catatankasus.multidel',$id)}}" />
-        @php
-$cari=$request->cari;
-$tapel_nama=$request->tapel_nama;
-$kelas_nama=$request->kelas_nama;
-@endphp
-{{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
-{{ $datas->onEachSide(1)
-//   ->appends(['cari'=>$cari])
-//   ->appends(['tapel_nama'=>$tapel_nama])
-//   ->appends(['kelas_nama'=>$kelas_nama])
-->links() }}
-            </div>
-            <div>
-{{-- <nav aria-label="breadcrumb">
-<ol class="breadcrumb">
-<li class="breadcrumb-item"><i class="fas fa-paste"></i> {{ $datas->total() }} Data ditemukan</li>
-
-</ol>
-</nav> --}}
-<a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
-        onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
-        <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-    </a>
-</div>
-</div>
 
     </div>
 </div>
