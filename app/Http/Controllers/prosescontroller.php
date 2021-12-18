@@ -71,4 +71,24 @@ class prosescontroller extends Controller
         $tgl=date("YmdHis");
 		return Excel::download(new exportdetailsekolah($id), 'psikotest-detailsekolah-'.$id->id.'-'.$tgl.'.xlsx');
     }
+
+    public function sinkronujian(Request $request){
+        $data = array(
+            'username' => 'RAHASIA'
+         );
+
+        $client = new \GuzzleHttp\Client();
+$response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
+    'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+    'body'    => json_encode($data)
+]
+);
+
+echo $response->getStatusCode(); // 200
+echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
+echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
+
+        dd('asdasd');
+
+    }
 }

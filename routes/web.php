@@ -352,6 +352,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
 
         Route::post('admin/cleartemp', 'App\Http\Controllers\prosescontroller@cleartemp')->name('cleartemp');
+        Route::post('admin/sinkronujian', 'App\Http\Controllers\prosescontroller@sinkronujian')->name('sinkronujian');
 
         // API
         Route::get('/admin/api/inputnilaipsikologi', [adminapicontroller::class, 'inputnilaipsikologi'])->name('api.inputnilaipsikologi');

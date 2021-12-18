@@ -96,6 +96,11 @@ Pengaturan
                         <button class="btn btn-danger">Clear Temporary</button>
                     </form>
 
+
+                    <form action="{{route('sinkronujian')}}" method="post"  class="d-inline ">
+                        @csrf
+                        <button class="btn btn-success">Sinkronisasi Data Ujian</button>
+                    </form>
                 </div>
             </div>
             </div>
