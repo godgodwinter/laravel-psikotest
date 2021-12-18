@@ -35,70 +35,98 @@ Detail Sekolah
 
 
 
-                <div class="d-flex bd-highlight mb-0 align-items-center">
-
-                    <div class="p-2 bd-highlight">
-
             <form action="{{route('yayasan.sekolah.catatanprestasicari',$id->id)}}" method="GET" class="babeng-form">
-                <input type="text" class="babeng babeng-select  ml-0" name="cari">
-            </div>
+                <div class="row mb-2">
 
-            <div class="p-2 bd-highlight">
-                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
-            </div>
+                    <div class="col-6 col-md-3 col-sm-4">
+                        {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
+                        <select class="js-example-basic-single  form-control @error('kelas_id')
+                        is-invalid
+                    @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
+                        <option disabled selected value=""> Pilih kelas</option>
+                        @foreach ($kelas as $t)
+                            <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    @push('before-script')
+                    <script type="text/javascript">
+                        $(document).ready(function() {
 
-            <div class="ml-auto p-2 bd-highlight">
+                            // In your Javascript (external .js resource or <script> tag)
+                                $(document).ready(function() {
+                                    $('.js-example-basic-single').select2({
+                                        // theme: "classic",
+                                        // allowClear: true,
+                                        width: "resolve"
+                                    });
+                                });
+                        });
+                       </script>
+                    @endpush
+                    <div class="col-6 col-md-3 col-sm-4">
+                        <span>
+                            <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
+                        </span>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-sm-4  text-right">
+
+                    </div>
+                </div>
             </form>
-        </div>
-
-    </div>
-
-<div class="card" id="settings-card">
-    {{-- <div class="card-header">
-        <h4>Hasil Psikologi </h4>
-    </div> --}}
-    <div class="card-body babengcontainer">
 
 
-        <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
-            <thead>
-                <tr>
-                    <th class="text-center babeng-min-row">
-                          No</th>
-                    <th >Tanggal</th>
-                    <th class="text-center">Nama</th>
-                    <th class="text-center">Kelas</th>
-                    <th class="text-center">Prestasi</th>
+            <div class="card" id="settings-card">
+                {{-- <div class="card-header">
+                    <h4>Hasil Psikologi </h4>
+                </div> --}}
+                <div class="card-body babengcontainer">
 
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($datas as $data)
-                <tr id="sid{{ $data->id }}">
-                        <td class="text-center">
-                            {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                        <td> {{$data->tanggal}}
-                        </td>
-                        <td class="text-center">
-                            {{$data->siswa!=null?Str::limit($data->siswa->nama,25,' ...'):''}}
-                        </td>
-                        <td class="text-center">
-                            {{$data->kelas!=null?$data->kelas->nama:''}}
-                         </td>
 
-                         <td class="text-center">
-                            {{$data->prestasi}}
-                         </td>
+                    <div class="card-header">
+                    <h4>Catatan Prestasi Kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }}</h4>
+                    </div>
+                    <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
+                        <thead>
+                            <tr>
+                                <th class="text-center babeng-min-row">
+                                    No</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Catatan</th>
+                                <th class="text-center" > Aksi </th>
 
-                    </tr>
-        @empty
-                    <tr>
-                        <td colspan="5" class="text-center">Data tidak ditemukan</td>
-                    </tr>
-        @endforelse
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($datas as $data)
+                            <tr id="sid{{ $data->id }}">
+                                    <td class="text-center">
+                                        {{ ((($loop->index)+1)) }}</td>
+                                    </td>
+                                    <td class="text-center">
+                                        {{$data->siswa!=null?Str::limit($data->siswa->nama,25,' ...'):''}}
+                                    </td>
 
-            </tbody>
-        </table>
+                                     <td class="text-center">
+
+                                        <a class="btn btn-sm btn-light px-3" href="{{ route('yayasan.sekolah.catatanprestasidetail',[$id->id,$data->id])}}"> {{$data->jmldata}}</a>
+
+                                     </td>
+
+                                    <td class="text-center babeng-min-row">
+                                        <a class="btn btn-sm btn-info" href="{{ route('sekolah.catatanprestasi.cetakpersiswa',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
+
+ </td>
+                                </tr>
+                    @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                                </tr>
+                    @endforelse
+
+                        </tbody>
+                    </table>
 
 
     </div>

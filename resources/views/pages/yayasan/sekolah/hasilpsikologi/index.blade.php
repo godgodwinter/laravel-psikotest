@@ -34,69 +34,93 @@ Detail Sekolah
           <div class="col-md-9">
 
 
-            <div class="d-flex bd-highlight mb-0 align-items-center">
+            <form action="{{route('yayasan.sekolah.hasilpsikologicari',$id->id)}}" method="GET" class="babeng-form">
+                <div class="row mb-2">
 
-                <div class="p-2 bd-highlight">
+                    <div class="col-6 col-md-3 col-sm-4">
+                        {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
+                        <select class="js-example-basic-single  form-control @error('kelas_id')
+                        is-invalid
+                    @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
+                        <option disabled selected value=""> Pilih kelas</option>
+                        @foreach ($kelas as $t)
+                            <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    @push('before-script')
+                    <script type="text/javascript">
+                        $(document).ready(function() {
 
-        <form action="{{route('sekolah.hasilpsikologi.cari',$id->id)}}" method="GET" class="babeng-form">
-            <input type="text" class="babeng babeng-select  ml-0" name="cari">
-        </div>
+                            // In your Javascript (external .js resource or <script> tag)
+                                $(document).ready(function() {
+                                    $('.js-example-basic-single').select2({
+                                        // theme: "classic",
+                                        // allowClear: true,
+                                        width: "resolve"
+                                    });
+                                });
+                        });
+                       </script>
+                    @endpush
+                    <div class="col-6 col-md-3 col-sm-4">
+                        <span>
+                            <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
+                        </span>
+                    </div>
 
-        <div class="p-2 bd-highlight">
-                <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Cari">
-        </div>
-
-        <div class="ml-auto p-2 bd-highlight">
-        </form>
-    </div>
-
-</div>
-
-<div class="card" id="settings-card">
-<div class="card-header">
-    <h4>Hasil Psikologi </h4>
-</div>
-<div class="card-body babengcontainer">
-    <div id="babeng-bar" class="text-right mt-2">
-
-    </div>
+                    <div class="col-12 col-md-6 col-sm-4  text-right">
+                    </div>
+                </div>
+            </form>
 
 
-    <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
-        <thead>
-            <tr>
-                <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                <th class="text-center" > Nama </th>
-                <th class="text-center" > Hasil Deteksi </th>
-                <th class="text-center" > Sertifikat </th>
+            <div class="card" id="settings-card">
+                <div class="card-header">
+                    <h4>Hasil Psikologi kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }}</h4>
+                </div>
+                <div class="card-body babengcontainer">
+                    <div id="babeng-bar" class="text-right mt-2">
 
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($datas as $data)
-            <tr id="sid{{ $loop->index+1 }}">
-                <td class="text-center ">
-                    {{$loop->index+1}}
-                </td>
-                <td >
-                    {{$data->siswa!=null ? $data->siswa->nama : 'Data tidak ditemukan'}}
-                </td>
-                <td class="text-center">
-                    {{$data->nilai}}
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-sm btn-info"> Lihat </button>
+                    </div>
 
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="5" class="text-center">Data tidak ditemukan</td>
-            </tr>
-            @endforelse
 
-        </tbody>
-    </table>
+                    <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
+                        <thead>
+                            <tr>
+                                <th class="text-center babeng-min-row">
+                                    No</th>
+                                <th class="text-center" > Nama </th>
+                                <th class="text-center" > Hasil Deteksi </th>
+                                <th class="text-center" > Sertifikat </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($datas as $data)
+                            <tr id="sid{{ $loop->index+1 }}">
+                                <td class="text-center ">
+                                    {{$loop->index+1}}
+                                </td>
+                                <td >
+                                    {{$data->siswa!=null ? $data->siswa->nama : 'Data tidak ditemukan'}}
+                                </td>
+                                <td class="text-center">
+                                    {{$data->nilai?$data->nilai:'Data tidak ditemukan'}}
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-info"> Lihat </button>
+
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                            </tr>
+                            @endforelse
+
+                        </tbody>
+                    </table>
 
 </div>
 </div>

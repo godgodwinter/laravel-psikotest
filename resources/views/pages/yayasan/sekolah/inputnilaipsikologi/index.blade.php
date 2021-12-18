@@ -34,55 +34,48 @@ Detail Sekolah
           <div class="col-md-9">
 
     <div class="card-body">
-        <div class="d-flex bd-highlight mb-0 align-items-center">
+        <form action="{{route('yayasan.sekolah.inputnilaipsikologi.cari',$id->id)}}" method="GET" class="babeng-form">
+        <div class="row">
 
-            <div class="p-0 bd-highlight">
-
-            <form action="{{route('yayasan.sekolah.inputnilaipsikologi.cari',$id->id)}}" method="GET" class="babeng-form">
+            <div class="col-12 col-md-3 col-sm-5">
                 {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
-            </div>
-            <div class="p-0 bd-highlight">
-                <select class="js-example-basic-single mx-5 form-control-sm @error('kelas_id')
+                <select class="js-example-basic-single  form-control @error('kelas_id')
                 is-invalid
-            @enderror" name="kelas_id"  style="width: 75%" required>
+            @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
                 <option disabled selected value=""> Pilih kelas</option>
                 @foreach ($kelas as $t)
                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
                 @endforeach
-
               </select>
-
             </div>
-            <div class="p-2 bd-highlight">
+            @push('before-script')
+            <script type="text/javascript">
+                $(document).ready(function() {
+
+                    // In your Javascript (external .js resource or <script> tag)
+                        $(document).ready(function() {
+                            $('.js-example-basic-single').select2({
+                                // theme: "classic",
+                                // allowClear: true,
+                                width: "resolve"
+                            });
+                        });
+                });
+               </script>
+            @endpush
+            <div class="col-12 col-md-3 col-sm-5">
                 <span>
                     <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
                 </span>
             </div>
-            <div class="ml-auto p-2 bd-highlight">
-
-
-
-
-                 {{-- <a href="{{route('sekolah.masternilaibidangstudi.create',$id->id)}}" type="submit" value="Import"
-                    class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
-                            class="fas fa-download"></i> Tambah </span></a> --}}
-                {{--<button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0" data-toggle="modal"
-                    data-target="#importExcel"><i class="fas fa-upload"></i>
-                    Import
-                </button>
-                <a href="/admin/sekolah/export" type="submit" value="Import"
-                    class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                            class="fas fa-download"></i> Export </span></a> --}}
-            </form>
         </div>
-
-    </div>
+    </form>
 
     </div>
 
 <div class="card" id="settings-card">
     <div class="card-header">
-        <h4>Master Nilai Psikologi </h4>
+        <h4>Master Nilai Psikologi  kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }}</h4>
     </div>
     <div class="card-body babengcontainer">
         <div id="babeng-bar" class="text-right mt-2">
