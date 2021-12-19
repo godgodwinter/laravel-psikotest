@@ -261,24 +261,24 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'eq_persen',
             ],
             [
-                'nama' => 'eqh',
-                'singkatan' => 'eqh',
+                'nama' => 'eq_persen_keterangan',
+                'singkatan' => 'eq_persen_keterangan',
             ],
             [
                 'nama' => 'sq_persen',
                 'singkatan' => 'sq_persen',
             ],
             [
-                'nama' => 'sqh',
-                'singkatan' => 'sqh',
+                'nama' => 'sq_persen_keterangan',
+                'singkatan' => 'sq_persen_keterangan',
             ],
             [
                 'nama' => 'scq_persen',
                 'singkatan' => 'scq_persen',
             ],
             [
-                'nama' => 'scqh',
-                'singkatan' => 'scqh',
+                'nama' => 'scq_persen_keterangan',
+                'singkatan' => 'scq_persen_keterangan',
             ],
             [
                 'nama' => 'hspq_a_kn_persen',
@@ -489,76 +489,76 @@ class adminseedercontroller extends Controller
                 'singkatan' => 'hspq_q4_kr_keterangan',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.1',
-                'singkatan' => 'A.Kepri.Terkuat.1',
+                'nama' => 'hspq_rank_1',
+                'singkatan' => 'hspq_rank_1',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.2',
-                'singkatan' => 'A.Kepri.Terkuat.2',
+                'nama' => 'hspq_rank_2',
+                'singkatan' => 'hspq_rank_2',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.3',
-                'singkatan' => 'A.Kepri.Terkuat.3',
+                'nama' => 'hspq_rank_3',
+                'singkatan' => 'hspq_rank_3',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.4',
-                'singkatan' => 'A.Kepri.Terkuat.4',
+                'nama' => 'hspq_rank_4',
+                'singkatan' => 'hspq_rank_4',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.5',
-                'singkatan' => 'A.Kepri.Terkuat.5',
+                'nama' => 'hspq_rank_5',
+                'singkatan' => 'hspq_rank_5',
             ],
             [
-                'nama' => 'Positif.rank.1',
-                'singkatan' => 'Positif.rank.1',
+                'nama' => 'hspq_rank_1_positif',
+                'singkatan' => 'hspq_rank_1_positif',
             ],
             [
-                'nama' => 'Positif.rank.2',
-                'singkatan' => 'Positif.rank.2',
+                'nama' => 'hspq_rank_2_positif',
+                'singkatan' => 'hspq_rank_2_positif',
             ],
             [
-                'nama' => 'Positif.rank.3',
-                'singkatan' => 'Positif.rank.3',
+                'nama' => 'hspq_rank_3_positif',
+                'singkatan' => 'hspq_rank_3_positif',
             ],
             [
-                'nama' => 'Positif.rank.4',
-                'singkatan' => 'Positif.rank.4',
+                'nama' => 'hspq_rank_4_positif',
+                'singkatan' => 'hspq_rank_4_positif',
             ],
             [
-                'nama' => 'Positif.rank.5',
-                'singkatan' => 'Positif.rank.5',
+                'nama' => 'hspq_rank_5_positif',
+                'singkatan' => 'hspq_rank_5_positif',
             ],
             [
-                'nama' => 'Negatif.rank.1',
-                'singkatan' => 'Negatif.rank.1',
+                'nama' => 'hspq_rank_1_negatif',
+                'singkatan' => 'hspq_rank_1_negatif',
             ],
             [
-                'nama' => 'Negatif.rank.2',
-                'singkatan' => 'Negatif.rank.2',
+                'nama' => 'hspq_rank_2_negatif',
+                'singkatan' => 'hspq_rank_2_negatif',
             ],
             [
-                'nama' => 'Negatif.rank.3',
-                'singkatan' => 'Negatif.rank.3',
+                'nama' => 'hspq_rank_3_negatif',
+                'singkatan' => 'hspq_rank_3_negatif',
             ],
             [
-                'nama' => 'Negatif.rank.4',
-                'singkatan' => 'Negatif.rank.4',
+                'nama' => 'hspq_rank_4_negatif',
+                'singkatan' => 'hspq_rank_4_negatif',
             ],
             [
-                'nama' => 'Negatif.rank.5',
-                'singkatan' => 'Negatif.rank.5',
+                'nama' => 'hspq_rank_5_negatif',
+                'singkatan' => 'hspq_rank_5_negatif',
             ],
             [
-                'nama' => 'M1%',
-                'singkatan' => 'M1%',
+                'nama' => 'minat_pekerjaan_1_persen',
+                'singkatan' => 'minat_pekerjaan_1_persen',
             ],
             [
-                'nama' => 'M2%',
-                'singkatan' => 'M2%',
+                'nama' => 'minat_pekerjaan_2_persen',
+                'singkatan' => 'minat_pekerjaan_2_persen',
             ],
             [
-                'nama' => 'M3%',
-                'singkatan' => 'M3%',
+                'nama' => 'minat_pekerjaan_3_persen',
+                'singkatan' => 'minat_pekerjaan_3_persen',
             ],
         ]);
 
@@ -578,27 +578,27 @@ class adminseedercontroller extends Controller
         minatbakat::truncate();
         $dataku = collect([
             [
-                'nama' => 'CITA.1/Minat.1',
+                'nama' => 'minat_pekerjaan_1',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'CITA.2/Minat.2',
+                'nama' => 'minat_pekerjaan_2',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'CITA.3/Minat.3',
+                'nama' => 'minat_pekerjaan_3',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'Tambahan CITA_CITA_1',
+                'nama' => 'mnt_cita2_1',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'Tambahan CITA_CITA_2',
+                'nama' => 'mnt_cita2_2',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'Tambahan CITA_CITA_3',
+                'nama' => 'mnt_cita2_3',
                 'kategori' => 'Minat dan Bakat',
             ],
             //diisi bk
@@ -628,91 +628,71 @@ class adminseedercontroller extends Controller
                 'menukhusus' => 'bk',
             ],
             [
-                'nama' => 'Tipe Bakat.1',
+                'nama' => 'tipe_bakat_1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Tipe Bakat.2',
+                'nama' => 'tipe_bakat_2',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Tipe Bakat.3',
+                'nama' => 'tipe_bakat_3',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMP',
+                'nama' => 'mnt_studi_lanjut_smp',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_1_FAKULTAS',
+                'nama' => 'mnt_studi_lanjut_sma_smk_1_fakultas',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_1_PRODI',
+                'nama' => 'mnt_studi_lanjut_sma_smk_1_prodi',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_2_FAKULTAS',
+                'nama' => 'mnt_studi_lanjut_sma_smk_2_fakultas',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_2_PRODI',
+                'nama' => 'mnt_studi_lanjut_sma_smk_2_prodi',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_KEDINASAN',
+                'nama' => 'mnt_studi_lanjut_sma_smk_kedinasan',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMA/MA',
+                'nama' => 'mnt_jurusan_lanjut_sma',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMK1',
+                'nama' => 'mnt_jurusan_lanjut_smk_1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMK2',
+                'nama' => 'mnt_jurusan_lanjut_smk_2',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMK3',
+                'nama' => 'mnt_jurusan_lanjut_smk_3',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Disarankan studi SMA/MA/SMK',
+                'nama' => 'sekolah_lanjutan',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Jurusan SMA/MA',
+                'nama' => 'sekolah_jurusan',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Jur SMK(BK/Bidg keahlian)',
+                'nama' => 'saran_fakultas_1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'SMK (PK/Program keahlian)',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'Jur.Disarankan SMA/MA',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'Jur.Dipertimbangkan SMA/MA',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'Jur.Tdk.Disarankan SMA/MA',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'D / S.1 Disarankan Fakultas',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'D / S.1 Disarankan Prodi',
+                'nama' => 'saran_fakultas_1_prodi',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
