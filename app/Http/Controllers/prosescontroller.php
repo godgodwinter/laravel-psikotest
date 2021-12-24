@@ -6,6 +6,8 @@ use App\Exports\exportdetailsekolah;
 use App\Exports\exportsekolah;
 use App\Imports\importdetailsekolah;
 use App\Imports\importsekolah;
+use App\Imports\importusername;
+use App\Models\apiprobk;
 use App\Models\sekolah;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -91,4 +93,65 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
         dd('asdasd');
 
     }
+
+	public function importusername(sekolah $id,Request $request)
+	{
+		// dd($request,$id->id);
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		$file = $request->file('file');
+
+		$nama_file = rand().$file->getClientOriginalName();
+
+		$file->move('file_temp',$nama_file);
+
+		Excel::import(new importusername($id->id), public_path('/file_temp/'.$nama_file));
+
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+
+	}
+
+	public function sinkronapiprobk(sekolah $id,Request $request)
+	{
+		// dd($request,$id->id);
+        //sertifikat
+        //ambil apiprobk where sertifikat == belum
+        $datas=apiprobk::where('sertifikat','belum')->get();
+        // dd($datas);
+        foreach($datas as $data){
+
+        $username = array(
+            'username' => $data->username
+         );
+
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
+            'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+            'body'    => json_encode($username)
+        ]
+        );
+
+        // echo $response->getStatusCode(); // 200
+        // echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
+        // echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
+        $hasil=json_decode($response->getBody());
+        // dd($hasil);
+            // dd($hasil->nama);
+            foreach($hasil as $key => $value){
+                dd($key,$value);
+            }
+
+
+        }
+
+
+        //deteksi
+        //ambil apiprobk where deteksi == belum
+
+        return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+
+	}
 }
