@@ -52,6 +52,20 @@ Sekolah
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
 
+            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+            data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+            Import Data ProBK
+        </button>
+
+        <button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
+        data-toggle="modal" data-target="#sinkron"><i class="fas fa-upload"></i>
+        Sinkron
+    </button>
+
+        {{-- <a href="{{ route('detailsekolah.sinkronapiprobk') }}" type="submit" value="Import"
+            class="btn btn-icon btn-success btn-sm mr-0"><span class="pcoded-micon"> <i
+                    class="fas fa-download"></i> Sinkron </span></a> --}}
+
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
@@ -169,6 +183,77 @@ Sekolah
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Import</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+              <!-- Import Excel -->
+              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('detailsekolah.importusername') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Data ProBK</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+                        <label>Pilih file excel(.xlsx)</label>
+                        <div class="form-group">
+                          <input type="file" name="file" required="required">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+              <!-- Sinkron -->
+              <div class="modal fade" id="sinkron" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('detailsekolah.sinkronapiprobk') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sinkron API ProBK</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="replace" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Update data sudah ada</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsekolah" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data sekolah yang belum ada</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsiswa" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data Siswa yang belum ada</span>
+                          </label>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Simpan dan Sinkron data</button>
                       </div>
                     </div>
                   </form>

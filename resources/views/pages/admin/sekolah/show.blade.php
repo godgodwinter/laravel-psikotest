@@ -32,14 +32,6 @@ Detail Sekolah
           </div>
           <div class="col-md-9">
 
-            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
-            data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
-            Import Data ProBK
-        </button>
-
-        <a href="{{ route('detailsekolah.sinkronapiprobk',$id->id) }}" type="submit" value="Import"
-            class="btn btn-icon btn-success btn-sm mr-0"><span class="pcoded-micon"> <i
-                    class="fas fa-download"></i> Sinkron </span></a>
 
         <a href="{{ route('detailsekolah.export',$id->id) }}" type="submit" value="Import"
             class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
@@ -515,36 +507,4 @@ inputDataKecamatan=(sel)=>{
         </div>
     </div>
 </section>
-@endsection
-
-
-@section('containermodal')
-
-              <!-- Import Excel -->
-              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <form method="post" action="{{ route('detailsekolah.importusername',$id->id) }}" enctype="multipart/form-data">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Import Data ProBK</h5>
-                      </div>
-                      <div class="modal-body">
-
-                        {{ csrf_field() }}
-
-                        <label>Pilih file excel(.xlsx)</label>
-                        <div class="form-group">
-                          <input type="file" name="file" required="required">
-                        </div>
-
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Import</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
 @endsection
