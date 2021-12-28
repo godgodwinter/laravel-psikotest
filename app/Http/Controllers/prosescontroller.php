@@ -296,9 +296,9 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
     public function apitesting(){
 
-        // $username = array(
-        //     'username' => '1VU6X-8WNPR-0B3MA'
-        //  );
+        $username = array(
+            'username' => '1VU6X-8WNPR-0B3MA'
+         );
         // $client = new \GuzzleHttp\Client();
         // $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
         //     'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
@@ -344,15 +344,35 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
 $httpClient = new Client();
 
+// $response = $httpClient->post(
+//     'https://postman-echo.com/post',
+//     [
+//         RequestOptions::BODY => 'POST raw request content',
+//         RequestOptions::HEADERS => [
+//             'Content-Type' => 'application/x-www-form-urlencoded',
+//         ],
+//     ]
+// );
 $response = $httpClient->post(
-    'https://postman-echo.com/post',
+    'http://161.97.84.91:9001/api/probk/DataSertifikat_Get',
     [
-        RequestOptions::BODY => 'POST raw request content',
+        RequestOptions::BODY => json_encode($username),
         RequestOptions::HEADERS => [
-            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
         ],
     ]
 );
+
+// $client = new \GuzzleHttp\Client();
+// $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
+//     'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+//     'body'    => json_encode($username),
+//     'allow_redirects' => true,
+//     'timeout' => 2000,
+//     'http_errors' => false
+// ]
+// );
 
 echo(
     $response->getBody()->getContents()
