@@ -294,24 +294,28 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
     public function apitesting(){
 
-        $username = array(
-            'username' => '1VU6X-8WNPR-0B3MA'
-         );
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
-            'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-            'body'    => json_encode($username),
-            'allow_redirects' => true,
-            'timeout' => 2000,
-            'http_errors' => false
-        ]
-        );
+        // $username = array(
+        //     'username' => '1VU6X-8WNPR-0B3MA'
+        //  );
+        // $client = new \GuzzleHttp\Client();
+        // $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
+        //     'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+        //     'body'    => json_encode($username),
+        //     'allow_redirects' => true,
+        //     'timeout' => 2000,
+        //     'http_errors' => false
+        // ]
+        // );
 
-        // echo $response->getStatusCode(); // 200
-        // echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
-        // echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
-        $hasil=json_decode($response->getBody());
-        dd($hasil);
+        // // echo $response->getStatusCode(); // 200
+        // // echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
+        // // echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
+        // $hasil=json_decode($response->getBody());
+$ch = curl_init("http://google.com");    // initialize curl handle
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+$data = curl_exec($ch);
+print($data);
+        // dd($hasil);
     }
     public function sinkronapiprobk(){
         // 1.ambil data apiprobk
