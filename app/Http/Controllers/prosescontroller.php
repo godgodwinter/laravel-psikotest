@@ -126,6 +126,7 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
 	public function backuptemp(Request $request)
 	{
+        ini_set('max_execution_time', 3000);
         $replace=$request->replace;
         $insertsekolah=$request->insertsekolah;
         $insertsiswa=$request->insertsiswa;
@@ -379,6 +380,8 @@ echo(
 );
     }
     public function sinkronapiprobk(){
+
+        ini_set('max_execution_time', 3000);
         // 1.ambil data apiprobk
         $getdatas=apiprobk::get();
         foreach($getdatas as $data){
