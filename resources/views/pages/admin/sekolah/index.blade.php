@@ -62,9 +62,9 @@ Sekolah
         Sinkron
     </button>
 
-        {{-- <a href="{{ route('detailsekolah.sinkronapiprobk') }}" type="submit" value="Import"
-            class="btn btn-icon btn-success btn-sm mr-0"><span class="pcoded-micon"> <i
-                    class="fas fa-download"></i> Sinkron </span></a> --}}
+        <a href="{{ route('apitesting') }}" type="submit" value="Import"
+            class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
+                    class="fas fa-download"></i> Testing </span></a>
 
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
