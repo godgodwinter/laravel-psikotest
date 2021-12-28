@@ -74,15 +74,19 @@ Pengaturan
                 </div>
                 <div class="card-body">
 
+                    <form action="{{route('seeder.masternilaipsikologi')}}" method="post" class="d-inline">
+                        @csrf
+                        <button class="btn btn-primary">Seeder Master Nilai Psikologi</button>
+                    </form>
+
+                    <br>
+                    <br>
+
                     <form action="{{route('seeder.sekolah')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-warning">Seeder Data Sekolah</button>
                     </form>
 
-                    <form action="{{route('seeder.masternilaipsikologi')}}" method="post" class="d-inline">
-                        @csrf
-                        <button class="btn btn-warning">Seeder Master Nilai Psikologi</button>
-                    </form>
                     <br>
                     <br>
 

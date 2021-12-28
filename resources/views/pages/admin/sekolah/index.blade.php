@@ -226,14 +226,18 @@ Sekolah
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Sinkron API ProBK</h5>
                       </div>
+                      {{-- <div class="modal-header">
+                        <label >Proses perubahan dari backup apiprobk ke dalam data masing-masing sekolah</label>
+                      </div> --}}
                       <div class="modal-body">
 
                         {{ csrf_field() }}
 
+
                         <label class="custom-switch">
                             <input type="checkbox" name="replace" value="1" class="custom-switch-input" checked>
                             <span class="custom-switch-indicator"></span>
-                            <span class="custom-switch-description">Update data sudah ada</span>
+                            <span class="custom-switch-description">Update data sudah ada (yang sudah pernah disinkron)</span>
                           </label>
 
 
@@ -248,6 +252,12 @@ Sekolah
                             <input type="checkbox" name="insertsiswa" value="1" class="custom-switch-input" checked>
                             <span class="custom-switch-indicator"></span>
                             <span class="custom-switch-description">Tambahkan data Siswa yang belum ada</span>
+                          </label>
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="refreshall" value="1" class="custom-switch-input" >
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Refresh semua data API (yang sudah dan belum disinkron)</span>
                           </label>
 
                       </div>

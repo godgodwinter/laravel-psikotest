@@ -13,6 +13,8 @@ use App\Models\apiprobk_sertifikat;
 use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
 use App\Models\masternilaipsikologi;
+use App\Models\minatbakat;
+use App\Models\minatbakatdetail;
 use App\Models\sekolah;
 use App\Models\siswa;
 use Illuminate\Filesystem\Filesystem;
@@ -130,10 +132,10 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
         //deteksi
         //ambil apiprobk where deteksi == belum
-        $datas=apiprobk::where('deteksi','belum')->get();
+        $datas=apiprobk::where('deteksi','!=','sudah')->get();
         // dd($datas);
         foreach($datas as $data){
-
+        // dd('tes');
             $username = array(
                 'username' => $data->username
              );
@@ -142,7 +144,10 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
             $client = new \GuzzleHttp\Client();
             $responsedeteksi = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataDeteksi_Get', [
                 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-                'body'    => json_encode($username)
+                'body'    => json_encode($username),
+                'allow_redirects' => true,
+                'timeout' => 2000,
+                'http_errors' => false
             ]
             );
 
@@ -193,7 +198,21 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
                 }
 
 
-
+        // echo $response->getStatusCode(); // 200
+        // dd($responsedeteksi->getStatusCode());
+        if($responsedeteksi->getStatusCode()==200){
+              apiprobk::where('id',$data->id)
+                ->update([
+                    'deteksi'     =>   'sudah',
+                   'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+        }else{
+            apiprobk::where('id',$data->id)
+              ->update([
+                  'deteksi'     =>   'gagal',
+                 'updated_at'=>date("Y-m-d H:i:s")
+              ]);
+        }
 
         }
 
@@ -201,7 +220,7 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 		// dd($replace);
         //sertifikat
         //ambil apiprobk where sertifikat == belum
-        $datas=apiprobk::where('sertifikat','belum')->get();
+        $datas=apiprobk::where('sertifikat','!=','sudah')->get();
         // dd($datas);
         foreach($datas as $data){
 
@@ -213,7 +232,10 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
         $client = new \GuzzleHttp\Client();
         $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
             'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
-            'body'    => json_encode($username)
+            'body'    => json_encode($username),
+            'allow_redirects' => true,
+            'timeout' => 2000,
+            'http_errors' => false
         ]
         );
 
@@ -249,6 +271,19 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
             // dd('update');
         }
 
+        if($response->getStatusCode()==200){
+            apiprobk::where('id',$data->id)
+              ->update([
+                  'sertifikat'     =>   'sudah',
+                 'updated_at'=>date("Y-m-d H:i:s")
+              ]);
+      }else{
+          apiprobk::where('id',$data->id)
+            ->update([
+                'sertifikat'     =>   'gagal',
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+      }
         //end apiprobk (username)
     }
 
@@ -259,7 +294,7 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
     public function sinkronapiprobk(){
         // 1.ambil data apiprobk
-        $getdatas=apiprobk::where('deteksi','belum')->get();
+        $getdatas=apiprobk::get();
         foreach($getdatas as $data){
 
         // 2. periksa jika deteksi==belum maka sinkron
@@ -362,6 +397,38 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
             }
         }
 
+        //minatbakat
+        $getmasterminatbakat=minatbakat::get();
+        foreach($getmasterminatbakat as $master){
+            $isi=null;
+            // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
+            $getapiprobk=apiprobk_sertifikat::where('kunci',$namamaster)->first();
+            if($getapiprobk!=null){
+                $isi=$getapiprobk->isi;
+            }
+
+            // c. jika belum ada maka insert
+            $periksa=minatbakatdetail::where('siswa_id',$datasiswa->id)
+            ->where('minatbakat_id',$master->id)
+            ->where('sekolah_id',$sekolah_id)
+            ->count();
+
+            if($periksa<1){
+                DB::table('minatbakatdetail')->insert(
+                    array(
+                        'siswa_id'     =>  $datasiswa->id,
+                        'minatbakat_id'     =>  $master->id,
+                        'nilai'     =>  $isi,
+                        'sekolah_id'     =>  $sekolah_id,
+                        'created_at'=>date("Y-m-d H:i:s"),
+                        'updated_at'=>date("Y-m-d H:i:s")
+                    ));
+            }
+
+        }
+
+
+//end datas
     }
         return redirect()->back()->with('status','Data berhasil Di sinkron!')->with('tipe','success')->with('icon','fas fa-edit');
     }
