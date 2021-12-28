@@ -296,9 +296,9 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
     public function apitesting(){
 
-        $username = array(
-            'username' => '1VU6X-8WNPR-0B3MA'
-         );
+        // $username = array(
+        //     'username' => '1VU6X-8WNPR-0B3MA'
+        //  );
         // $client = new \GuzzleHttp\Client();
         // $response = $client->request('POST', 'http://161.97.84.91:9001/api/probk/DataSertifikat_Get', [
         //     'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
@@ -356,10 +356,10 @@ $httpClient = new Client();
 $response = $httpClient->post(
     'http://161.97.84.91:9001/api/probk/DataSertifikat_Get',
     [
-        RequestOptions::BODY => json_encode($username),
+        RequestOptions::BODY => 'POST raw request content',
         RequestOptions::HEADERS => [
             'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
+            'Accept' => 'application/json'
         ],
     ]
 );
