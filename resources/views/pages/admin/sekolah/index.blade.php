@@ -163,7 +163,7 @@ Sekolah
 @section('containermodal')
 
               <!-- Import Excel -->
-              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              {{-- <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <form method="post" action="{{ route('sekolah.import') }}" enctype="multipart/form-data">
                     <div class="modal-content">
@@ -187,7 +187,7 @@ Sekolah
                     </div>
                   </form>
                 </div>
-              </div>
+              </div> --}}
 
 
               <!-- Import Excel -->
@@ -221,7 +221,7 @@ Sekolah
               <!-- Sinkron -->
               <div class="modal fade" id="sinkron" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <form method="post" action="{{ route('detailsekolah.sinkronapiprobk') }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('detailsekolah.backuptemp') }}" enctype="multipart/form-data">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Sinkron API ProBK</h5>

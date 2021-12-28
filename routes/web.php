@@ -352,7 +352,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::post('admin/datasekolah/importdetailsekolah/{id}', 'App\Http\Controllers\prosescontroller@importdetailsekolah')->name('detailsekolah.import');
       Route::post('admin/datasekolah/importusername', 'App\Http\Controllers\prosescontroller@importusername')->name('detailsekolah.importusername');
     //sinkron api probk
-      Route::post('admin/datasekolah/sinkronapiprobk', 'App\Http\Controllers\prosescontroller@sinkronapiprobk')->name('detailsekolah.sinkronapiprobk');
+      Route::post('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontroller@backuptemp')->name('detailsekolah.backuptemp');
+      Route::get('admin/datasekolah/sinkronapiprobk', 'App\Http\Controllers\prosescontroller@sinkronapiprobk')->name('detailsekolah.sinkronapiprobk');
 
 
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApiprobkSertifikatTable extends Migration
+class CreateApiprobkDeteksiListTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateApiprobkSertifikatTable extends Migration
      */
     public function up()
     {
-        Schema::create('apiprobk_sertifikat', function (Blueprint $table) {
+        Schema::create('apiprobk_deteksi_list', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama')->nullable();
+            $table->string('score')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->string('rank')->nullable();
             $table->string('apiprobk_id')->nullable();
-            $table->string('kunci')->nullable(); //key
-            $table->string('isi')->nullable(); //value
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ class CreateApiprobkSertifikatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apiprobk_sertifikat');
+        Schema::dropIfExists('apiprobk_deteksi_list');
     }
 }
