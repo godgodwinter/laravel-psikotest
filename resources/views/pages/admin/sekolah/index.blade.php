@@ -72,7 +72,7 @@ asdasd
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Fetch POST Request Example' })
+        body: JSON.stringify({ username: '1VU6X-8WNPR-0B3MA' })
     };
     const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
     const data = await response.json();
