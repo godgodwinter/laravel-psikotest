@@ -311,11 +311,34 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
         // // echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
         // // echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
         // $hasil=json_decode($response->getBody());
-$ch = curl_init("http://google.com");    // initialize curl handle
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-$data = curl_exec($ch);
-print($data);
+// $ch = curl_init("http://google.com");    // initialize curl handle
+// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+// $data = curl_exec($ch);
+// print($data);
         // dd($hasil);
+
+        $curlHandler = curl_init();
+
+curl_setopt_array($curlHandler, [
+    CURLOPT_URL => 'https://postman-echo.com/post',
+    CURLOPT_RETURNTRANSFER => true,
+
+    /**
+     * Specify POST method
+     */
+    CURLOPT_POST => true,
+
+    /**
+     * Specify request content
+     */
+    CURLOPT_POSTFIELDS => 'POST raw request content',
+]);
+
+$response = curl_exec($curlHandler);
+
+curl_close($curlHandler);
+
+echo($response);
     }
     public function sinkronapiprobk(){
         // 1.ambil data apiprobk
