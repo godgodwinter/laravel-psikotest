@@ -21,6 +21,8 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
 class prosescontroller extends Controller
 {
@@ -317,28 +319,44 @@ echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 // print($data);
         // dd($hasil);
 
-        $curlHandler = curl_init();
+//         $curlHandler = curl_init();
 
-curl_setopt_array($curlHandler, [
-    CURLOPT_URL => 'https://postman-echo.com/post',
-    CURLOPT_RETURNTRANSFER => true,
+// curl_setopt_array($curlHandler, [
+//     CURLOPT_URL => 'https://postman-echo.com/post',
+//     CURLOPT_RETURNTRANSFER => true,
 
-    /**
-     * Specify POST method
-     */
-    CURLOPT_POST => true,
+//     /**
+//      * Specify POST method
+//      */
+//     CURLOPT_POST => true,
 
-    /**
-     * Specify request content
-     */
-    CURLOPT_POSTFIELDS => 'POST raw request content',
-]);
+//     /**
+//      * Specify request content
+//      */
+//     CURLOPT_POSTFIELDS => 'POST raw request content',
+// ]);
 
-$response = curl_exec($curlHandler);
+// $response = curl_exec($curlHandler);
 
-curl_close($curlHandler);
+// curl_close($curlHandler);
 
-echo($response);
+// echo($response);
+
+$httpClient = new Client();
+
+$response = $httpClient->post(
+    'https://postman-echo.com/post',
+    [
+        RequestOptions::BODY => 'POST raw request content',
+        RequestOptions::HEADERS => [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ],
+    ]
+);
+
+echo(
+    $response->getBody()->getContents()
+);
     }
     public function sinkronapiprobk(){
         // 1.ambil data apiprobk
