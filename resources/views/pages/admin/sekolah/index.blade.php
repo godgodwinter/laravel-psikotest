@@ -61,7 +61,27 @@ Sekolah
         data-toggle="modal" data-target="#sinkron"><i class="fas fa-upload"></i>
         Sinkron
     </button>
+    <h2 id="testing">
+asdasd
+    </h2>
+    @push('before-script')
+    <script>
+        (async () => {
+    // POST request using fetch with async/await
+    const element = document.getElementById('testing');
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'Fetch POST Request Example' })
+    };
+    const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
+    const data = await response.json();
+    element.innerHTML = data;
+})();
+    // element.innerHTML = 'tees';
+    </script>
 
+    @endpush
         <a href="{{ route('apitesting') }}" type="submit" value="Import"
             class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
                     class="fas fa-download"></i> Testing </span></a>
