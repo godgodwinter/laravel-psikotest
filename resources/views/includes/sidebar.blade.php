@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Layout v1.5</li>
 
-
+            @if(Auth::user()!=null)
             @if((Auth::user()->tipeuser)=='admin')
             <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i
                         class="fas fa-home"></i> <span>Dashboard</span></a></li>
@@ -137,6 +137,7 @@
 
                     @else
 
+            @endif
             @endif
         </ul>
 
