@@ -530,4 +530,12 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 
 
     }
+    public function backuptempfestore(Request $request){
+        // $datas=$request->data;
+        // foreach($datas as $data){
+        //     dd($data);
+        // }
+        dd(json_decode($request->data));
+
+    }
 }

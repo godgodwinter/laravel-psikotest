@@ -71,6 +71,13 @@ Object.keys(datas).forEach(key => {
                     // console.log(data);
                     dataAkhir.push( data );
                     jml++;
+                    $("#btnsimpan").html(`
+                    <input type="text" value="" name="data" id="dataForm">
+                    <button class="btn btn-rounded btn-success">Simpan</button>`);
+
+                    $('#dataForm').val(JSON.stringify(dataAkhir));
+
+                    $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldata').innerText
                 = jml;
                 })();
@@ -87,6 +94,13 @@ console.log(dataAkhir);
                 <div>
                 <h2 id="jmldata">Jumlah Data</h2>
                 </div>
+                <form method="post" action="{{route('detailsekolah.backuptempfe.store')}}">
+                    @csrf
+                <div class="mb-5" id='btnsimpan'>
+
+                </div>
+            </form>
+
             <table id="example" class="table table-striped table-bordered " style="width:100%">
                 <thead>
                     <tr>
