@@ -29,7 +29,8 @@ Getting Data from APIPROBK
     @push('before-script')
     <script>
 
-
+var dataAkhir = [];
+let jml=0;
             // //CONTOH DATA
                 let datas = [
                     @foreach ($datas as $data)
@@ -67,18 +68,25 @@ Object.keys(datas).forEach(key => {
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
                     const data = await response.json();
                     // element.innerHTML = data;
-                    console.log(data);
+                    // console.log(data);
+                    dataAkhir.push( data );
+                    jml++;
+                    document.getElementById('jmldata').innerText
+                = jml;
                 })();
 
 });
 
                 }
-
+console.log(dataAkhir);
     // element.innerHTML = 'tees';
     </script>
     @endpush
 
             <div class="card-body">
+                <div>
+                <h2 id="jmldata">Jumlah Data</h2>
+                </div>
             <table id="example" class="table table-striped table-bordered " style="width:100%">
                 <thead>
                     <tr>
