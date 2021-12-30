@@ -69,7 +69,7 @@ Sekolah
     {{-- <h2 id="testing">
 asdasd
     </h2> --}}
-    @push('before-script')
+    {{-- @push('before-script')
     <script>
         (async () => {
     // POST request using fetch with async/await
@@ -86,7 +86,7 @@ asdasd
     // element.innerHTML = 'tees';
     </script>
 
-    @endpush
+    @endpush --}}
         <a href="{{ route('apitesting') }}" type="submit" value="Import"
             class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
                     class="fas fa-download"></i> Testing </span></a>
@@ -300,7 +300,7 @@ asdasd
               <!-- Sinkron -->
               <div class="modal fade" id="sinkronfe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <form method="post" action="{{ route('detailsekolah.backuptempfe') }}" enctype="multipart/form-data">
+                  <form method="get" action="{{ route('detailsekolah.backuptempfe') }}" enctype="multipart/form-data">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Sinkron FE API ProBK</h5>

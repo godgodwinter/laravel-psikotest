@@ -59,7 +59,7 @@ Object.keys(datas).forEach(key => {
                 // console.log('test');
                         (async () => {
                     // POST request using fetch with async/await
-                    const element = document.getElementById('testing');
+                    // const element = document.getElementById('testing');
                     const requestOptions = {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
