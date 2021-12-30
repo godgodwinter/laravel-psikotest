@@ -518,3 +518,4 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 });
 
 Route::get('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontroller@backuptemp')->name('detailsekolah.backuptemp2');
+Route::get('admin/datasekolah/backuptempfe', 'App\Http\Controllers\prosescontroller@backuptempfe')->name('detailsekolah.backuptempfe');

@@ -521,4 +521,13 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
     }
         return redirect()->back()->with('status','Data berhasil Di sinkron!')->with('tipe','success')->with('icon','fas fa-edit');
     }
+	public function backuptempfe(Request $request)
+	{
+        $pages='sekolah';
+        $datas=apiprobk::where('deteksi','!=','sudah')->orderBy('created_at','desc')->get();
+
+        return view('pages.admin.sekolah.backupapiprobk',compact('datas','request','pages'));
+
+
+    }
 }
