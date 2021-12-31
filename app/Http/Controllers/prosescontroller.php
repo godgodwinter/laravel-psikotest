@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Support\Facades\Validator;
 
 class prosescontroller extends Controller
 {
@@ -776,4 +777,81 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
             }
                 return redirect()->back()->with('status','Data berhasil Di sinkron!')->with('tipe','success')->with('icon','fas fa-edit');
             }
+
+    public function apibackupdatafromfe(Request $request)
+    {
+        //validate data
+        // $validator = Validator::make($request->all(), [
+        //     'title'     => 'required',
+        //     'content'   => 'required',
+        // ],
+        //     [
+        //         'title.required' => 'Masukkan Title Post !',
+        //         'content.required' => 'Masukkan Content Post !',
+        //     ]
+        // );
+
+        // if($validator->fails()) {
+
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Silahkan Isi Bidang Yang Kosong',
+        //         'data'    => $validator->errors()
+        //     ],401);
+
+        // } else {
+
+            // $post = Post::whereId($request->input('id'))->update([
+            //     'title'     => $request->input('title'),
+            //     'content'   => $request->input('content'),
+            // ]);
+
+            // if ($post) {
+
+
+                foreach($request->data as  $key => $value){
+                    $key = $key;
+                    $value = $value;
+                    if($key=='apiprobk_id'){
+                        $apiprobk_id=$value;
+                    }
+                }
+                // dd($apiprobk_id);
+
+                foreach($request->data as  $key => $value){
+                    $key = $key;
+                    $value = $value;
+                    // if($key=='apiprobk_id'){
+                    //     $apiprobk_id=$value;
+                    // }
+
+                    DB::table('apiprobk_sertifikat')->insert(
+                        array(
+                            'apiprobk_id'     =>  $apiprobk_id,
+                            'kunci'     =>   $key,
+                            'isi'     =>   $value,
+                            'deleted_at' => null,
+                            'created_at'=>date("Y-m-d H:i:s"),
+                            'updated_at'=>date("Y-m-d H:i:s")
+                        ));
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Post Berhasil Diupdate!',
+                    'data' => $request->data,
+                    'key' => $key,
+                    'value' => $value,
+                    // 'key' => $request->key,
+                ], 200);
+            // } else {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Post Gagal Diupdate!',
+            //     ], 401);
+            // }
+
+        // }
+
+    }
 }

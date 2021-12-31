@@ -33,7 +33,6 @@ var dataAkhirDeteksi = [];
 var dataAkhir = [];
 let jmlDeteksi=0;
 let jml=0;
-let jmlTersimpan=0;
             // //CONTOH DATA
                 let datas = [
                     @foreach ($datas as $data)
@@ -76,12 +75,12 @@ Object.keys(datas).forEach(key => {
                     Array.prototype.push.apply(data,username);
                     // element.innerHTML = data;
                     // console.log(data);
-                    // dataAkhirDeteksi.push( data );
+                    dataAkhirDeteksi.push( data );
                     jmlDeteksi++;
                     $("#Inputan1").html(`
-                    <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
+                    <input type="text" value="" name="dataDeteksi" id="dataFormDeteksi">`);
 
-                    // $('#dataFormDeteksi').val(JSON.stringify(dataAkhirDeteksi));
+                    $('#dataFormDeteksi').val(JSON.stringify(dataAkhirDeteksi));
 
                     // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldataDeteksi').innerText = jmlDeteksi;
@@ -98,11 +97,8 @@ Object.keys(datas).forEach(key => {
                     };
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
                     let data = await response.json();
-                    // let username = [{username : datas[key].username }];
-                    // Array.prototype.push.apply(data,username);
-                    data.username = datas[key].username;
-                    data.apiprobk_id = datas[key].id;
-                    // data.concat(username);
+                    let username = [ datas[key].username ];
+                    Array.prototype.push.apply(data,username);
                     // element.innerHTML = data;
                     // console.log(data);
                     dataAkhir.push( data );
@@ -115,84 +111,20 @@ Object.keys(datas).forEach(key => {
 
                     // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldataSertifikat').innerText = jml;
-
-        // console.log(data);
-        // proses backupdata  ke server
-
-                //         (async() => {
-
-                //                     const users = 123;
-
-                //                     const asyncExample = async() => {
-                //                     let data;
-                //                     try {
-                //                         data = await Promise.resolve(users);
-                //                     } catch (err) {
-                //                         console.log(err);
-                //                     }
-                //                     return data;
-                //                     };
-
-                //                     //Save response on a variable
-                //                     const globalData = await asyncExample();
-                //                     console.log(globalData);
-                //                     // return globalData;
-                //                     })();
-
-                    // let formdata=data,{username};
-                    // console.log(formdata);
-                    // console.log(data);
-            $.ajax({
-                url: '{{route('api.apibackupdatafromfe')}}',
-                type: 'GET',
-                enctype: 'multipart/form-data',
-                data: {data : data},
-
-                // data: {bar: $("#bar").val()},
-                success: function (result) {
-                    jmlTersimpan++;
-                    document.getElementById('dataDeteksiTersimpan').innerText = jmlTersimpan;
-                    console.log(result);
-                }
-            });
-
                 })();
-
-
 
 });
 
                 }
 console.log(dataAkhir);
     // element.innerHTML = 'tees';
-
     </script>
     @endpush
 
             <div class="card-body">
                 <div>
-                    <div class="mb-5" id='Inputan0'>
-                        <h4>Total {{count($datas)}} data</h4>
-                    </div>
-                <h1>Proses Get Data From API</h1>
-                <div class="row ml-5">
-                    <h2 id="jmldataDeteksi" class="mr-3">0 </h2> <h2> Data</h2>
-                </div>
-                <div class="row ml-5">
-                    <h2 id="jmldataSertifikat" class="mr-3">0 </h2>  <h2> Data</h2>
-                </div>
-
-
-
-                <h1>Proses Backup Data ke Server</h1>
-                <div class="row  ml-5">
-                    <h2 id="dataDeteksiTersimpan" class="mr-3">0 </h2> <h2> Data</h2>
-                </div>
-                <div class="row ml-5">
-                    <h2 id="dataSertifikatTersimpan" class="mr-3">0 </h2>  <h2> Data</h2>
-                </div>
-
-
+                <h2 id="jmldataDeteksi">Jumlah Data</h2>
+                <h2 id="jmldataSertifikat">Jumlah Data</h2>
                 </div>
                 <form method="post" action="{{route('detailsekolah.backuptempfe.store')}}">
                     @csrf
