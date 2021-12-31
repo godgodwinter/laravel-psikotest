@@ -17,7 +17,7 @@ class CreateApiprobkDeteksiListTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama')->nullable();
             $table->string('score')->nullable();
-            $table->string('keterangan')->nullable();
+            $table->longText('keterangan')->nullable();
             $table->string('rank')->nullable();
             $table->string('apiprobk_id')->nullable();
             $table->softDeletes();

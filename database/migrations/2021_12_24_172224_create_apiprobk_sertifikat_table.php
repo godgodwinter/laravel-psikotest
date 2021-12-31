@@ -17,7 +17,7 @@ class CreateApiprobkSertifikatTable extends Migration
             $table->bigIncrements('id');
             $table->string('apiprobk_id')->nullable();
             $table->string('kunci')->nullable(); //key
-            $table->string('isi')->nullable(); //value
+            $table->longText('isi')->nullable(); //value
             $table->softDeletes();
             $table->timestamps();
         });
