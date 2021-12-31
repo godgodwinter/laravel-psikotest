@@ -65,7 +65,7 @@ Detail Sekolah
            </script>
         @endpush
         <div class="col-6 col-md-3 col-sm-4">
-            <span>
+          <span>
                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
             </span>
         </div>

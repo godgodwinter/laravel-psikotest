@@ -379,8 +379,9 @@ echo(
     $response->getBody()->getContents()
 );
     }
-    public function sinkronapiprobk(){
 
+    public function sinkronapiprobk(){
+// dd('tes');
         ini_set('max_execution_time', 3000);
         // 1.ambil data apiprobk
         $getdatas=apiprobk::get();
@@ -590,6 +591,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
               ]);
         }
 
+        // dd($hasilsertifikat);
     //     //looping sertifikat
         foreach($hasilsertifikat as $data){
             foreach($data as $k => $v){
@@ -614,7 +616,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                                     'created_at'=>date("Y-m-d H:i:s"),
                                     'updated_at'=>date("Y-m-d H:i:s")
                                 ));
-               
+
                 }
             // dd($username);
             //end loopingsertifikat
@@ -627,8 +629,151 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 
         // dd($hasildeteksi);
         //simpan
-       
-return redirect()->route('detailsekolah.sinkronapiprobk')->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+
+return redirect()->route('detailsekolah.sinkronfromfe')->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
     }
+
+    public function sinkronfromfe(){
+                ini_set('max_execution_time', 3000);
+                // 1.ambil data apiprobk
+                $getdatas=apiprobk::get();
+
+                foreach($getdatas as $data){
+
+                // 2. periksa jika deteksi==belum maka sinkron
+
+                // 3. periksa jika sertifikat==belum maka sinkron
+
+                    // dd($data->id);
+
+                $getapi=apiprobk_deteksi::where('kunci','sekolah')->where('apiprobk_id',$data->id)->first();
+                // dd($getapi);
+                $namasekolah=$getapi->isi;
+                //1. Periksa sekolah ada?
+                    $periksasekolah=sekolah::where('nama',$namasekolah)->count();
+                    if($periksasekolah<1){
+                        DB::table('sekolah')->insert(
+                            array(
+                                'nama'     =>  $namasekolah,
+                                'status'     =>   'Aktif',
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+
+                    }
+
+            $periksasekolah=sekolah::where('nama',$namasekolah)->first();
+            $sekolah_id=$periksasekolah->id;
+
+                //2. Periksa kelas ada?
+            $getapi=apiprobk_deteksi::where('kunci','kelas')->where('apiprobk_id',$data->id)->first();
+            $periksa=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->count();
+            if($periksa<1){
+                //inser siswa
+                        DB::table('kelas')->insert(
+                            array(
+                                'sekolah_id'     =>  $sekolah_id,
+                                'nama'     =>  $getapi->isi,
+                                'walikelas_id'     =>  null,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+
+            }
+            $getkelas=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->first();
+
+                //3. Periksa siswa ada?
+            $namasiswa=apiprobk_sertifikat::where('kunci','nama')->where('apiprobk_id',$data->id)->first();
+            $no_induk=apiprobk_sertifikat::where('kunci','no_induk')->where('apiprobk_id',$data->id)->first();
+            $periksa=siswa::where('sekolah_id',$sekolah_id)
+                        ->where('nama',$namasiswa->isi)
+                        ->where('nomerinduk',$no_induk->isi)
+                        ->count();
+            if($periksa<1){
+                //inser siswa
+                        DB::table('siswa')->insert(
+                            array(
+                                'nomerinduk'     =>  $no_induk->isi,
+                                'nama'     =>  $namasiswa->isi,
+                                'kelas_id'     =>  $getkelas->id,
+                                'sekolah_id'     =>  $sekolah_id,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+
+            }
+        // ambildata siswa
+        $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
+            ->where('nama',$namasiswa->isi)
+            ->where('sekolah_id',$sekolah_id)
+            ->first();
+
+            // dd($periksa);
+                //3. Periksa nilai siswa ada?
+                // a. get masternilaipsikologi
+                $getmasternilaipsikologi=masternilaipsikologi::get();
+                foreach($getmasternilaipsikologi as $master){
+                    $namamaster=$master->nama;
+                    $isi=null;
+                    // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
+                    $getapiprobk=apiprobk_sertifikat::where('kunci',$namamaster)->where('apiprobk_id',$data->id)->first();
+                    if($getapiprobk!=null){
+                        $isi=$getapiprobk->isi;
+                    }
+                    // dd($getapiprobk->isi);
+                    // c. jika belum ada maka insert
+                    $periksa=inputnilaipsikologi::where('siswa_id',$datasiswa->id)
+                    ->where('masternilaipsikologi_id',$master->id)
+                    ->where('sekolah_id',$sekolah_id)
+                    ->count();
+                    // dd($datasiswa,$isi);
+                    if($periksa<1){
+                        DB::table('inputnilaipsikologi')->insert(
+                            array(
+                                'siswa_id'     =>  $datasiswa->id,
+                                'masternilaipsikologi_id'     =>  $master->id,
+                                'nilai'     =>  $isi,
+                                'sekolah_id'     =>  $sekolah_id,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+                    }
+                }
+
+                //minatbakat
+                $getmasterminatbakat=minatbakat::get();
+                foreach($getmasterminatbakat as $master){
+                    $isi=null;
+                    // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
+                    $getapiprobk=apiprobk_sertifikat::where('kunci',$master->nama)->where('apiprobk_id',$data->id)->first();
+                    if($getapiprobk!=null){
+                        $isi=$getapiprobk->isi;
+                    }
+
+                    // c. jika belum ada maka insert
+                    $periksa=minatbakatdetail::where('siswa_id',$datasiswa->id)
+                    ->where('minatbakat_id',$master->id)
+                    ->where('sekolah_id',$sekolah_id)
+                    ->count();
+                    // dd($datasiswa,$isi,$master->nama);
+                    if($periksa<1){
+                        DB::table('minatbakatdetail')->insert(
+                            array(
+                                'siswa_id'     =>  $datasiswa->id,
+                                'minatbakat_id'     =>  $master->id,
+                                'nilai'     =>  $isi,
+                                'sekolah_id'     =>  $sekolah_id,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+                    }
+
+                }
+
+
+        //end datas
+            }
+                return redirect()->back()->with('status','Data berhasil Di sinkron!')->with('tipe','success')->with('icon','fas fa-edit');
+            }
 }
