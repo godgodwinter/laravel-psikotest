@@ -629,8 +629,8 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 
         // dd($hasildeteksi);
         //simpan
-
-return redirect()->route('detailsekolah.sinkronfromfe')->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+        dd('proses1');
+// return redirect()->route('detailsekolah.sinkronfromfe')->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
     }
 

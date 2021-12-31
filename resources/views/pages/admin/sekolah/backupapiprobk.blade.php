@@ -72,20 +72,20 @@ Object.keys(datas).forEach(key => {
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
                     let data = await response.json();
                     let username = [ datas[key].username ];
-                    Array.prototype.push.apply(data,username); 
+                    Array.prototype.push.apply(data,username);
                     // element.innerHTML = data;
                     // console.log(data);
                     dataAkhirDeteksi.push( data );
                     jmlDeteksi++;
                     $("#Inputan1").html(`
-                    <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
+                    <input type="text" value="" name="dataDeteksi" id="dataFormDeteksi">`);
 
                     $('#dataFormDeteksi').val(JSON.stringify(dataAkhirDeteksi));
 
                     // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldataDeteksi').innerText = jmlDeteksi;
                 })();
-                
+
                 //sertifikat
                         (async () => {
                     // POST request using fetch with async/await
@@ -98,7 +98,7 @@ Object.keys(datas).forEach(key => {
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
                     let data = await response.json();
                     let username = [ datas[key].username ];
-                    Array.prototype.push.apply(data,username); 
+                    Array.prototype.push.apply(data,username);
                     // element.innerHTML = data;
                     // console.log(data);
                     dataAkhir.push( data );
