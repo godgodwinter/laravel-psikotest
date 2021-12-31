@@ -29,7 +29,9 @@ Getting Data from APIPROBK
     @push('before-script')
     <script>
 
+var dataAkhirDeteksi = [];
 var dataAkhir = [];
+let jmlDeteksi=0;
 let jml=0;
             // //CONTOH DATA
                 let datas = [
@@ -57,6 +59,32 @@ Object.keys(datas).forEach(key => {
                         // console.log(item);
                     // }
                 // console.log('test');
+
+
+                (async () => {
+                    // POST request using fetch with async/await
+                    // const element = document.getElementById('testing');
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username: datas[key].username })
+                    };
+                    const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
+                    const data = await response.json();
+                    // element.innerHTML = data;
+                    // console.log(data);
+                    dataAkhirDeteksi.push( data );
+                    jmlDeteksi++;
+                    $("#Inputan1").html(`
+                    <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
+
+                    $('#dataFormDeteksi').val(JSON.stringify(dataAkhirDeteksi));
+
+                    // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
+                    document.getElementById('jmldataDeteksi').innerText = jmlDeteksi;
+                })();
+                
+                //sertifikat
                         (async () => {
                     // POST request using fetch with async/await
                     // const element = document.getElementById('testing');
@@ -71,15 +99,14 @@ Object.keys(datas).forEach(key => {
                     // console.log(data);
                     dataAkhir.push( data );
                     jml++;
-                    $("#btnsimpan").html(`
-                    <input type="text" value="" name="data" id="dataForm">
+                    $("#Inputan2").html(`
+                    <input type="hidden" value="" name="data" id="dataForm">
                     <button class="btn btn-rounded btn-success">Simpan</button>`);
 
                     $('#dataForm').val(JSON.stringify(dataAkhir));
 
-                    $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
-                    document.getElementById('jmldata').innerText
-                = jml;
+                    // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
+                    document.getElementById('jmldataSertifikat').innerText = jml;
                 })();
 
 });
@@ -92,13 +119,13 @@ console.log(dataAkhir);
 
             <div class="card-body">
                 <div>
-                <h2 id="jmldata">Jumlah Data</h2>
+                <h2 id="jmldataDeteksi">Jumlah Data</h2>
+                <h2 id="jmldataSertifikat">Jumlah Data</h2>
                 </div>
                 <form method="post" action="{{route('detailsekolah.backuptempfe.store')}}">
                     @csrf
-                <div class="mb-5" id='btnsimpan'>
-
-                </div>
+                <div class="mb-5" id='Inputan1'></div>
+                <div class="mb-5" id='Inputan2'></div>
             </form>
 
             <table id="example" class="table table-striped table-bordered " style="width:100%">

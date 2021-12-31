@@ -535,7 +535,8 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
         // foreach($datas as $data){
         //     dd($data);
         // }
-        dd(json_decode($request->data));
+        dd($request,json_decode($request->dataDeteksi),json_decode($request->data));
+        //simpan
 
     }
 }

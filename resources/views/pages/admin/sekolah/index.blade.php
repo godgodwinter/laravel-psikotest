@@ -57,10 +57,10 @@ Sekolah
             Import Data ProBK
         </button>
 
-        <button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
+    {{-- <button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
         data-toggle="modal" data-target="#sinkron"><i class="fas fa-upload"></i>
         Sinkron
-    </button>
+    </button> --}}
 
     <button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
     data-toggle="modal" data-target="#sinkronfe"><i class="fas fa-upload"></i>
@@ -87,9 +87,9 @@ asdasd
     </script>
 
     @endpush --}}
-        <a href="{{ route('apitesting') }}" type="submit" value="Import"
+        {{-- <a href="{{ route('apitesting') }}" type="submit" value="Import"
             class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
-                    class="fas fa-download"></i> Testing </span></a>
+                    class="fas fa-download"></i> Testing </span></a> --}}
 
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
