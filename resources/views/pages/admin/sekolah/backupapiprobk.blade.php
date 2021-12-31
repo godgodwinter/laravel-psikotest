@@ -70,7 +70,9 @@ Object.keys(datas).forEach(key => {
                         body: JSON.stringify({ username: datas[key].username })
                     };
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
-                    const data = await response.json();
+                    let data = await response.json();
+                    let username = [ datas[key].username ];
+                    Array.prototype.push.apply(data,username); 
                     // element.innerHTML = data;
                     // console.log(data);
                     dataAkhirDeteksi.push( data );
@@ -94,7 +96,9 @@ Object.keys(datas).forEach(key => {
                         body: JSON.stringify({ username: datas[key].username })
                     };
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
-                    const data = await response.json();
+                    let data = await response.json();
+                    let username = [ datas[key].username ];
+                    Array.prototype.push.apply(data,username); 
                     // element.innerHTML = data;
                     // console.log(data);
                     dataAkhir.push( data );
