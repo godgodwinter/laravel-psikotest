@@ -788,11 +788,11 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         $apiprobk_id=$value;
                     }
                 }
+                $periksa=apiprobk_sertifikat::where('apiprobk_id',$apiprobk_id)->count();
+                if($periksa<1){
                 foreach($request->data as  $key => $value){
                     $key = $key;
                     $value = $value;
-                    $periksa=apiprobk_sertifikat::where('apiprobk_id',$apiprobk_id)->count();
-                    if($periksa<1){
                         DB::table('apiprobk_sertifikat')->insert(
                             array(
                                 'apiprobk_id'     =>  $apiprobk_id,
@@ -809,10 +809,11 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                             'sertifikat'     =>   'sudah',
                         'updated_at'=>date("Y-m-d H:i:s")
                         ]);
-                    }else{
-                        $msg='Sertifikat Sudah pernah Diupdate!';
 
-                    }
+                }
+            }else{
+                    $msg='Sertifikat Sudah pernah Diupdate!';
+
                 }
                 return response()->json([
                     'success' => true,
@@ -834,11 +835,11 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         $apiprobk_id=$value;
                     }
                 }
+                $periksa=apiprobk_deteksi::where('apiprobk_id',$apiprobk_id)->count();
+                if($periksa<1){
                 foreach($request->data as  $key => $value){
                     $key = $key;
                     $value = $value;
-                    $periksa=apiprobk_deteksi::where('apiprobk_id',$apiprobk_id)->count();
-                    if($periksa<1){
                         if($key!='deteksi_list'){
                             DB::table('apiprobk_deteksi')->insert(
                                 array(
@@ -874,10 +875,10 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         'updated_at'=>date("Y-m-d H:i:s")
                         ]);
 
-                    }else{
-                        $msg='Deteksi sudah pernah di update!';
-                    }
                 }
+            }else{
+                $msg='Deteksi sudah pernah di update!';
+            }
 
                 return response()->json([
                     'success' => true,
