@@ -25,8 +25,20 @@ Getting Data from APIPROBK
 
     <div class="section-body">
         <div class="card">
-
+            @push('after-style')
+            <meta name="csrf-token" content="{{ csrf_token() }}" />
+            @endpush
     @push('before-script')
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
+
     <script>
 
 var dataAkhirDeteksi = [];
@@ -105,13 +117,13 @@ Object.keys(datas).forEach(key => {
                     // data.concat(username);
                     // element.innerHTML = data;
                     // console.log(data);
-                    dataAkhir.push( data );
+                    // dataAkhir.push( data );
                     jml++;
                     $("#Inputan2").html(`
                     <input type="hidden" value="" name="data" id="dataForm">
                     <button class="btn btn-rounded btn-success">Simpan</button>`);
 
-                    $('#dataForm').val(JSON.stringify(dataAkhir));
+                    // $('#dataForm').val(JSON.stringify(dataAkhir));
 
                     // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldataSertifikat').innerText = jml;
@@ -144,8 +156,11 @@ Object.keys(datas).forEach(key => {
                     // console.log(data);
             $.ajax({
                 url: '{{route('api.apibackupdatafromfe')}}',
-                type: 'GET',
+                type: 'POST',
                 enctype: 'multipart/form-data',
+                // headers: {
+                //     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                //     },
                 data: {data : data},
 
                 // data: {bar: $("#bar").val()},

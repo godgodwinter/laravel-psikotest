@@ -521,4 +521,4 @@ Route::get('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontrolle
 Route::get('admin/datasekolah/backuptempfe', 'App\Http\Controllers\prosescontroller@backuptempfe')->name('detailsekolah.backuptempfe');
 Route::post('admin/datasekolah/backuptempfe/store', 'App\Http\Controllers\prosescontroller@backuptempfestore')->name('detailsekolah.backuptempfe.store');
 Route::get('admin/datasekolah/sinkronfromfe', 'App\Http\Controllers\prosescontroller@sinkronfromfe')->name('detailsekolah.sinkronfromfe');
-Route::get('admin/api/datasekolah/apibackupdatafromfe', 'App\Http\Controllers\prosescontroller@apibackupdatafromfe')->name('api.apibackupdatafromfe');
+Route::post('admin/api/datasekolah/apibackupdatafromfe', 'App\Http\Controllers\prosescontroller@apibackupdatafromfe')->name('api.apibackupdatafromfe');
