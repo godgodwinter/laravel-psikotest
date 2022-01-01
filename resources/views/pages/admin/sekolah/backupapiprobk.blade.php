@@ -98,7 +98,7 @@ Object.keys(datas).forEach(key => {
                     document.getElementById('jmldataDeteksi').innerText = jmlDeteksi;
             $.ajax({
                     url: '{{route('api.apibackupdatafromfedeteksi')}}',
-                    type: 'GET',
+                    type: 'POST',
                     enctype: 'multipart/form-data',
                     data: {data : data},
                     success: function (result) {
