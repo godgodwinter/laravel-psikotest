@@ -163,7 +163,7 @@ class adminpenjurusancontroller extends Controller
 
     public function edit(Request $request,sekolah $id,$siswa){
         // dd('edit');
-        $data=siswa::where('sekolah_id',$id->id)->where('nomerinduk',$siswa)->first();
+        $data=siswa::where('sekolah_id',$id->id)->where('id',$siswa)->first();
 
         $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
