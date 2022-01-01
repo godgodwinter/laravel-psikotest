@@ -46,6 +46,7 @@ var dataAkhir = [];
 let jmlDeteksi=0;
 let jml=0;
 let jmlTersimpan=0;
+let jmlDeteksiTersimpan=0;
             // //CONTOH DATA
                 let datas = [
                     @foreach ($datas as $data)
@@ -85,10 +86,8 @@ Object.keys(datas).forEach(key => {
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
                     let data = await response.json();
                     let username = [ datas[key].username ];
-                    Array.prototype.push.apply(data,username);
-                    // element.innerHTML = data;
-                    // console.log(data);
-                    // dataAkhirDeteksi.push( data );
+                    data.username = datas[key].username;
+                    data.apiprobk_id = datas[key].id;
                     jmlDeteksi++;
                     $("#Inputan1").html(`
                     <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
@@ -97,6 +96,17 @@ Object.keys(datas).forEach(key => {
 
                     // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldataDeteksi').innerText = jmlDeteksi;
+            $.ajax({
+                    url: '{{route('api.apibackupdatafromfedeteksi')}}',
+                    type: 'GET',
+                    enctype: 'multipart/form-data',
+                    data: {data : data},
+                    success: function (result) {
+                        jmlDeteksiTersimpan++;
+                        document.getElementById('dataDeteksiTersimpan').innerText = jmlDeteksiTersimpan;
+                        console.log(result);
+                    }
+                });
                 })();
 
                 //sertifikat
@@ -110,66 +120,26 @@ Object.keys(datas).forEach(key => {
                     };
                     const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
                     let data = await response.json();
-                    // let username = [{username : datas[key].username }];
-                    // Array.prototype.push.apply(data,username);
                     data.username = datas[key].username;
                     data.apiprobk_id = datas[key].id;
-                    // data.concat(username);
                     // element.innerHTML = data;
                     // console.log(data);
-                    // dataAkhir.push( data );
                     jml++;
                     $("#Inputan2").html(`
                     <input type="hidden" value="" name="data" id="dataForm">
                     <button class="btn btn-rounded btn-success">Simpan</button>`);
-
-                    // $('#dataForm').val(JSON.stringify(dataAkhir));
-
-                    // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
                     document.getElementById('jmldataSertifikat').innerText = jml;
-
-        // console.log(data);
-        // proses backupdata  ke server
-
-                //         (async() => {
-
-                //                     const users = 123;
-
-                //                     const asyncExample = async() => {
-                //                     let data;
-                //                     try {
-                //                         data = await Promise.resolve(users);
-                //                     } catch (err) {
-                //                         console.log(err);
-                //                     }
-                //                     return data;
-                //                     };
-
-                //                     //Save response on a variable
-                //                     const globalData = await asyncExample();
-                //                     console.log(globalData);
-                //                     // return globalData;
-                //                     })();
-
-                    // let formdata=data,{username};
-                    // console.log(formdata);
-                    // console.log(data);
             $.ajax({
-                url: '{{route('api.apibackupdatafromfe')}}',
-                type: 'POST',
-                enctype: 'multipart/form-data',
-                // headers: {
-                //     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-                //     },
-                data: {data : data},
-
-                // data: {bar: $("#bar").val()},
-                success: function (result) {
-                    jmlTersimpan++;
-                    document.getElementById('dataDeteksiTersimpan').innerText = jmlTersimpan;
-                    console.log(result);
-                }
-            });
+                    url: '{{route('api.apibackupdatafromfe')}}',
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    data: {data : data},
+                    success: function (result) {
+                        jmlTersimpan++;
+                        document.getElementById('dataSertifikatTersimpan').innerText = jmlTersimpan;
+                        console.log(result);
+                    }
+                });
 
                 })();
 

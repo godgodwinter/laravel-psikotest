@@ -780,35 +780,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 
     public function apibackupdatafromfe(Request $request)
     {
-        //validate data
-        // $validator = Validator::make($request->all(), [
-        //     'title'     => 'required',
-        //     'content'   => 'required',
-        // ],
-        //     [
-        //         'title.required' => 'Masukkan Title Post !',
-        //         'content.required' => 'Masukkan Content Post !',
-        //     ]
-        // );
-
-        // if($validator->fails()) {
-
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => 'Silahkan Isi Bidang Yang Kosong',
-        //         'data'    => $validator->errors()
-        //     ],401);
-
-        // } else {
-
-            // $post = Post::whereId($request->input('id'))->update([
-            //     'title'     => $request->input('title'),
-            //     'content'   => $request->input('content'),
-            // ]);
-
-            // if ($post) {
-
-
+        $msg="Gagal di update!";
                 foreach($request->data as  $key => $value){
                     $key = $key;
                     $value = $value;
@@ -816,42 +788,104 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         $apiprobk_id=$value;
                     }
                 }
-                // dd($apiprobk_id);
-
                 foreach($request->data as  $key => $value){
                     $key = $key;
                     $value = $value;
-                    // if($key=='apiprobk_id'){
-                    //     $apiprobk_id=$value;
-                    // }
+                    $periksa=apiprobk_sertifikat::where('apiprobk_id',$apiprobk_id)->count();
+                    if($periksa<1){
+                        DB::table('apiprobk_sertifikat')->insert(
+                            array(
+                                'apiprobk_id'     =>  $apiprobk_id,
+                                'kunci'     =>   $key,
+                                'isi'     =>   $value,
+                                'deleted_at' => null,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                            ));
+                            $msg="Sertifikat Berhasil di update!";
 
-                    DB::table('apiprobk_sertifikat')->insert(
-                        array(
-                            'apiprobk_id'     =>  $apiprobk_id,
-                            'kunci'     =>   $key,
-                            'isi'     =>   $value,
-                            'deleted_at' => null,
-                            'created_at'=>date("Y-m-d H:i:s"),
-                            'updated_at'=>date("Y-m-d H:i:s")
-                        ));
+                        apiprobk::where('id',$apiprobk_id)
+                        ->update([
+                            'sertifikat'     =>   'sudah',
+                        'updated_at'=>date("Y-m-d H:i:s")
+                        ]);
+                    }else{
+                        $msg='Sertifikat Sudah pernah Diupdate!';
+
+                    }
                 }
-
                 return response()->json([
                     'success' => true,
-                    'message' => 'Post Berhasil Diupdate!',
+                    'message' => $msg,
                     'data' => $request->data,
                     'key' => $key,
                     'value' => $value,
                     // 'key' => $request->key,
                 ], 200);
-            // } else {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'Post Gagal Diupdate!',
-            //     ], 401);
-            // }
 
-        // }
+    }
 
+    public function apibackupdatafromfedeteksi(Request $request)
+    {
+                foreach($request->data as  $key => $value){
+                    $key = $key;
+                    $value = $value;
+                    if($key=='apiprobk_id'){
+                        $apiprobk_id=$value;
+                    }
+                }
+                foreach($request->data as  $key => $value){
+                    $key = $key;
+                    $value = $value;
+                    $periksa=apiprobk_deteksi::where('apiprobk_id',$apiprobk_id)->count();
+                    if($periksa<1){
+                        if($key!='deteksi_list'){
+                            DB::table('apiprobk_deteksi')->insert(
+                                array(
+                                    'apiprobk_id'     =>  $apiprobk_id,
+                                    'kunci'     =>   $key,
+                                    'isi'     =>   $value,
+                                    'deleted_at' => null,
+                                    'created_at'=>date("Y-m-d H:i:s"),
+                                    'updated_at'=>date("Y-m-d H:i:s")
+                                ));
+                        }else{
+
+                            foreach($value as $item){
+                                // dd($v['deteksi_nama']);
+                                    DB::table('apiprobk_deteksi_list')->insert(
+                                        array(
+                                            'apiprobk_id'     =>  $apiprobk_id,
+                                            'nama'     =>   $item['deteksi_nama'],
+                                            'score'     =>   $item['deteksi_score'],
+                                            'keterangan'  =>   $item['deteksi_keterangan'],
+                                            'rank'     =>   $item['deteksi_rank'],
+                                            'deleted_at' => null,
+                                            'created_at'=>date("Y-m-d H:i:s"),
+                                            'updated_at'=>date("Y-m-d H:i:s")
+                                        ));
+                        }
+                        }
+                        $msg='Deteksi Berhasil Diupdate!';
+
+                        apiprobk::where('id',$apiprobk_id)
+                        ->update([
+                            'deteksi'     =>   'sudah',
+                        'updated_at'=>date("Y-m-d H:i:s")
+                        ]);
+
+                    }else{
+                        $msg='Deteksi sudah pernah di update!';
+                    }
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'message' => $msg,
+                    'data' => $request->data,
+                    'key' => $key,
+                    'value' => $value,
+                    // 'key' => $request->key,
+                ], 200);
     }
 }
