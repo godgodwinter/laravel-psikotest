@@ -191,6 +191,12 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'edit'])->name('sekolah.hasilpsikologi.edit');
     Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
     Route::delete('/admin/sekolah/{id}/hasilpsikologi/{siswa}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
+
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}/deteksi_lihat', [adminhasilpsikologicontroller::class, 'deteksi_lihat'])->name('sekolah.hasilpsikologi.deteksi_lihat');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}/deteksi_cetak', [adminhasilpsikologicontroller::class, 'deteksi_cetak'])->name('sekolah.hasilpsikologi.deteksi_cetak');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}/sertifikat_lihat', [adminhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('sekolah.hasilpsikologi.sertifikat_lihat');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}/sertifikat_cetak', [adminhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('sekolah.hasilpsikologi.sertifikat_cetak');
+
     //export
     Route::get('/admin/datahasilpsikologi/{id}/export', [adminhasilpsikologicontroller::class, 'export'])->name('sekolah.hasilpsikologi.export');
     //import

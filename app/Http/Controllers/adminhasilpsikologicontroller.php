@@ -270,5 +270,21 @@ class adminhasilpsikologicontroller extends Controller
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
 	}
+    public function deteksi_lihat(Request $request)
+    {
+        dd('lihat deteksi');
+    }
+    public function deteksi_cetak(Request $request)
+    {
+        dd('cetak deteksi');
+    }
+    public function sertifikat_lihat(Request $request)
+    {
+        dd('lihat Sertifikat');
+    }
+    public function sertifikat_cetak(Request $request)
+    {
+        dd('cetak Sertifikat');
+    }
 
 }
