@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\masternilaipsikologi;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +35,9 @@ class adminsekolahcontroller extends Controller
         $pages='sekolah';
         $datas=DB::table('sekolah')->whereNull('deleted_at')
         ->paginate(Fungsi::paginationjml());
+        $cekseedermastering=masternilaipsikologi::count();
 
-        return view('pages.admin.sekolah.index',compact('datas','request','pages'));
+        return view('pages.admin.sekolah.index',compact('datas','request','pages','cekseedermastering'));
     }
     public function cari(Request $request)
     {

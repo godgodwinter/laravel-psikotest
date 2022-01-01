@@ -9,6 +9,7 @@ use App\Imports\importsekolah;
 use App\Imports\importusername;
 use App\Models\apiprobk;
 use App\Models\apiprobk_deteksi;
+use App\Models\apiprobk_deteksi_list;
 use App\Models\apiprobk_sertifikat;
 use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
@@ -896,8 +897,9 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
     {
         $pages='sekolah';
         $datas=apiprobk::where('sinkron',NULL)->orderBy('created_at','desc')->get();
+        $cekseedermastering=masternilaipsikologi::count();
         // dd($datas,'tes');
-        return view('pages.admin.sekolah.sinkrondata',compact('datas','request','pages'));
+        return view('pages.admin.sekolah.sinkrondata',compact('datas','request','pages','cekseedermastering'));
     }
     public function sinkronfestore(Request $request)
     {
@@ -1057,5 +1059,21 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
             'message' => $msg,
             'data' => $datas,
         ], 200);
+    }
+public function resetalldata(Request $request)
+    {
+
+        apiprobk::truncate();
+        apiprobk_deteksi::truncate();
+        apiprobk_deteksi_list::truncate();
+        apiprobk_sertifikat::truncate();
+        sekolah::truncate();
+        kelas::truncate();
+        siswa::truncate();
+        inputnilaipsikologi::truncate();
+        minatbakatdetail::truncate();
+        minatbakat::truncate();
+        masternilaipsikologi::truncate();
+        return redirect()->back()->with('status','Reset berhasil dilakukan!')->with('tipe','success')->with('icon','fas fa-edit');
     }
 }

@@ -95,6 +95,9 @@ asdasd
             class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
                     class="fas fa-download"></i> Testing </span></a> --}}
 
+                    <a href="{{route('resetalldata')}}" type="submit" value="Import"
+                    class="btn btn-icon btn-danger btn-sm ml-2"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Reset </span></a>
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
@@ -308,6 +311,7 @@ asdasd
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Sinkron dari backup ke Data Siswa</h5>
+
                       </div>
                       {{-- <div class="modal-header">
                         <label >Proses perubahan dari backup apiprobk ke dalam data masing-masing sekolah</label>
@@ -346,7 +350,11 @@ asdasd
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Simpan dan Sinkron data</button>
+                        @if($cekseedermastering<1)
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">Seeder Master Psikologi belum di tambahkan</h5>
+                        @else
+                        <button type="submit" class="btn btn-success ">Simpan dan Sinkron data</button>
+                        @endif
                       </div>
                     </div>
                   </form>

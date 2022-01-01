@@ -40,6 +40,7 @@ Sinkron Data ke Database Siswa
     </script>
 
     <script>
+        jQuery(document).ready(function() {
 
 let jml=0;
 let jmlDeteksiTersimpan=0;
@@ -73,7 +74,7 @@ Object.keys(datas).forEach(key => {
     $.ajax({
 
             url: '{{route('api.sinkronfestore')}}',
-            type: 'GET',
+            type: 'POST',
             enctype: 'multipart/form-data',
             data: {data : data},
             success: function (result) {
@@ -86,6 +87,7 @@ Object.keys(datas).forEach(key => {
 });
 
                 }
+        });
     </script>
     @endpush
 
