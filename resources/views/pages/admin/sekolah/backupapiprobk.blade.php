@@ -89,8 +89,8 @@ Object.keys(datas).forEach(key => {
                     data.username = datas[key].username;
                     data.apiprobk_id = datas[key].id;
                     jmlDeteksi++;
-                    $("#Inputan1").html(`
-                    <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
+                    // $("#Inputan1").html(`
+                    // <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
 
                     // $('#dataFormDeteksi').val(JSON.stringify(dataAkhirDeteksi));
 
@@ -125,9 +125,9 @@ Object.keys(datas).forEach(key => {
                     // element.innerHTML = data;
                     // console.log(data);
                     jml++;
-                    $("#Inputan2").html(`
-                    <input type="hidden" value="" name="data" id="dataForm">
-                    <button class="btn btn-rounded btn-success">Simpan</button>`);
+                    // $("#Inputan2").html(`
+                    // <input type="hidden" value="" name="data" id="dataForm">
+                    // <button class="btn btn-rounded btn-success">Simpan</button>`);
                     document.getElementById('jmldataSertifikat').innerText = jml;
             $.ajax({
                     url: '{{route('api.apibackupdatafromfe')}}',

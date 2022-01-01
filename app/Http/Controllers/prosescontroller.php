@@ -891,4 +891,12 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                     // 'key' => $request->key,
                 ], 200);
     }
+
+    public function sinkronfe(Request $request)
+    {
+        $pages='sekolah';
+        $datas=apiprobk::where('deteksisinkron',NULL)->orderBy('created_at','desc')->get();
+        // dd($datas,'tes');
+        return view('pages.admin.sekolah.sinkrondata',compact('datas','request','pages'));
+    }
 }

@@ -522,4 +522,6 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::post('admin/api/datasekolah/apibackupdatafromfedeteksi', 'App\Http\Controllers\prosescontroller@apibackupdatafromfedeteksi')->name('api.apibackupdatafromfedeteksi');
         Route::post('admin/api/datasekolah/apibackupdatafromfe', 'App\Http\Controllers\prosescontroller@apibackupdatafromfe')->name('api.apibackupdatafromfe');
 
+
+        Route::get('admin/datasekolah/sinkronfe', 'App\Http\Controllers\prosescontroller@sinkronfe')->name('detailsekolah.sinkronfe');
 });
