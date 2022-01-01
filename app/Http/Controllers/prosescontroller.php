@@ -807,6 +807,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         apiprobk::where('id',$apiprobk_id)
                         ->update([
                             'sertifikat'     =>   'sudah',
+                            'sertifikat_tgl'=>date("Y-m-d H:i:s"),
                         'updated_at'=>date("Y-m-d H:i:s")
                         ]);
 
@@ -872,6 +873,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         apiprobk::where('id',$apiprobk_id)
                         ->update([
                             'deteksi'     =>   'sudah',
+                        'deteksi_tgl'=>date("Y-m-d H:i:s"),
                         'updated_at'=>date("Y-m-d H:i:s")
                         ]);
 

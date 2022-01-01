@@ -515,11 +515,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/yayasan/sekolah/{id}/catatanprestasicari', [yayasansekolahcontroller::class, 'catatanprestasicari'])->name('yayasan.sekolah.catatanprestasicari');
         Route::get('/yayasan/sekolah/{id}/catatanprestasidetail/{data}', [yayasansekolahcontroller::class, 'catatanprestasidetail'])->name('yayasan.sekolah.catatanprestasidetail');
 
-});
+        Route::get('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontroller@backuptemp')->name('detailsekolah.backuptemp2');
+        Route::get('admin/datasekolah/backuptempfe', 'App\Http\Controllers\prosescontroller@backuptempfe')->name('detailsekolah.backuptempfe');
+        Route::post('admin/datasekolah/backuptempfe/store', 'App\Http\Controllers\prosescontroller@backuptempfestore')->name('detailsekolah.backuptempfe.store');
+        Route::get('admin/datasekolah/sinkronfromfe', 'App\Http\Controllers\prosescontroller@sinkronfromfe')->name('detailsekolah.sinkronfromfe');
+        Route::post('admin/api/datasekolah/apibackupdatafromfedeteksi', 'App\Http\Controllers\prosescontroller@apibackupdatafromfedeteksi')->name('api.apibackupdatafromfedeteksi');
+        Route::post('admin/api/datasekolah/apibackupdatafromfe', 'App\Http\Controllers\prosescontroller@apibackupdatafromfe')->name('api.apibackupdatafromfe');
 
-Route::get('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontroller@backuptemp')->name('detailsekolah.backuptemp2');
-Route::get('admin/datasekolah/backuptempfe', 'App\Http\Controllers\prosescontroller@backuptempfe')->name('detailsekolah.backuptempfe');
-Route::post('admin/datasekolah/backuptempfe/store', 'App\Http\Controllers\prosescontroller@backuptempfestore')->name('detailsekolah.backuptempfe.store');
-Route::get('admin/datasekolah/sinkronfromfe', 'App\Http\Controllers\prosescontroller@sinkronfromfe')->name('detailsekolah.sinkronfromfe');
-Route::post('admin/api/datasekolah/apibackupdatafromfedeteksi', 'App\Http\Controllers\prosescontroller@apibackupdatafromfedeteksi')->name('api.apibackupdatafromfedeteksi');
-Route::post('admin/api/datasekolah/apibackupdatafromfe', 'App\Http\Controllers\prosescontroller@apibackupdatafromfe')->name('api.apibackupdatafromfe');
+});
