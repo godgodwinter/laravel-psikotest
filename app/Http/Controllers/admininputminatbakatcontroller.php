@@ -170,7 +170,7 @@ class admininputminatbakatcontroller extends Controller
 
     }
     public function update(Request $request,sekolah $id,siswa $siswa){
-
+        // dd('edit');
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
