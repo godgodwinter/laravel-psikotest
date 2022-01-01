@@ -169,7 +169,7 @@ class adminpenjurusancontroller extends Controller
         ->orderBy('id','asc')
         ->get();
         // dd($data,$siswa);
-        $pages='inputminatbakat';
+        $pages='penjurusan';
         return view('pages.admin.sekolah.pages.inputpenjurusan.edit',compact('pages','request','siswa','id','data','master'));
 
     }
