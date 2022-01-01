@@ -16,7 +16,7 @@ class CreateSiswaTable extends Migration
         Schema::create('siswa', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('nomerinduk');
+            $table->string('nomerinduk')->nullable();
             $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();

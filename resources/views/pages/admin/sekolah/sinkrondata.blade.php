@@ -41,11 +41,7 @@ Sinkron Data ke Database Siswa
 
     <script>
 
-var dataAkhirDeteksi = [];
-var dataAkhir = [];
-let jmlDeteksi=0;
 let jml=0;
-let jmlTersimpan=0;
 let jmlDeteksiTersimpan=0;
             // //CONTOH DATA
                 let datas = [
@@ -68,7 +64,25 @@ let jmlDeteksiTersimpan=0;
 
 
 Object.keys(datas).forEach(key => {
-  console.log(datas[key].username);
+    let data=[{
+        id : datas[key].id,
+        username : datas[key].username,
+    }];
+//    data.id = datas[key].id;
+//    data.username = datas[key].username;
+    $.ajax({
+
+            url: '{{route('api.sinkronfestore')}}',
+            type: 'GET',
+            enctype: 'multipart/form-data',
+            data: {data : data},
+            success: function (result) {
+  console.log(data);
+                jmlDeteksiTersimpan++;
+                document.getElementById('jmlDataDeteksi').innerText = jmlDeteksiTersimpan;
+                console.log(result);
+            }
+        });
 });
 
                 }
@@ -80,17 +94,12 @@ Object.keys(datas).forEach(key => {
                     <div class="mb-5" id='Inputan0'>
                         <h4>Total {{count($datas)}} data</h4>
                     </div>
-                <h1>Sinkron data Deteksi</h1>
+                <h1>Sinkron data </h1>
                 <div class="row ml-5">
                     <h2 id="jmlDataDeteksi" class="mr-3">0 </h2> <h2> Data</h2>
                 </div>
 
 
-
-                <h1>Sinkron data Sertifikat</h1>
-                <div class="row  ml-5">
-                    <h2 id="jmlDataSertifikat" class="mr-3">0 </h2> <h2> Data</h2>
-                </div>
 
 
                 </div>
@@ -105,10 +114,8 @@ Object.keys(datas).forEach(key => {
                     <tr>
                         <th class="babeng-min-row">No</th>
                         <th>Username</th>
-                        <th>Sertifikat</th>
-                        <th>Tanggal Backup</th>
-                        <th>Deteksi</th>
-                        <th>Tanggal Backup</th>
+                        <th>Sinkron</th>
+                        <th>Tanggal Sinkron</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -117,10 +124,8 @@ Object.keys(datas).forEach(key => {
                     <tr>
                         <td class="text-center">{{$loop->index+1}}</td>
                         <td>{{$data->username}}</td>
-                        <td>{{$data->sertifikatsinkron}}</td>
-                        <td>{{$data->sertifikatsinkron_tgl}}</td>
-                        <td>{{$data->deteksisinkron}}</td>
-                        <td>{{$data->deteksisinkron_tgl}}</td>
+                        <td>{{$data->sinkron}}</td>
+                        <td>{{$data->sinkron_tgl}}</td>
                         <td></td>
                     </tr>
 

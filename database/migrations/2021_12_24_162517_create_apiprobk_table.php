@@ -18,12 +18,10 @@ class CreateApiprobkTable extends Migration
             $table->string('username')->nullable();
             $table->string('sertifikat')->nullable(); //status -> belum / sukses / gagal
             $table->string('sertifikat_tgl')->nullable(); //tgl backup
-            $table->string('sertifikatsinkron')->nullable(); //status -> belum / sukses / gagal
-            $table->string('sertifikatsinkron_tgl')->nullable(); //tgl backup
             $table->string('deteksi')->nullable(); //status -> belum / sukses / gagal
             $table->string('deteksi_tgl')->nullable(); //tgl sinkron
-            $table->string('deteksisinkron')->nullable(); //status -> belum / sukses / gagal
-            $table->string('deteksisinkron_tgl')->nullable(); //tgl sinkron
+            $table->string('sinkron')->nullable(); //status -> belum / sukses / gagal
+            $table->string('sinkron_tgl')->nullable(); //tgl sinkron
             $table->softDeletes();
             $table->timestamps();
         });
