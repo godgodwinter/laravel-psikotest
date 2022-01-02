@@ -16,6 +16,11 @@ class siswa extends Model
         protected $fillable = [
             'nama',
             'nomerinduk',
+            'apiprobk_id',
+            'apiprobk_username',
+            'users_id',
+            'sekolah_id',
+            'kelas_id',
         ];
 
         public function kelas()

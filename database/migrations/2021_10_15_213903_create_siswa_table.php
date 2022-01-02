@@ -17,6 +17,8 @@ class CreateSiswaTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('nomerinduk')->nullable();
+            $table->string('apiprobk_id')->nullable();
+            $table->string('apiprobk_username')->nullable();
             $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();

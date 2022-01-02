@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exports\exporthasilpsikologi;
 use App\Helpers\Fungsi;
 use App\Imports\importhasilpsikologi;
+use App\Models\apiprobk_deteksi;
+use App\Models\apiprobk_deteksi_list;
 use App\Models\hasilpsikologi;
 use App\Models\kelas;
 use App\Models\sekolah;
@@ -270,9 +272,20 @@ class adminhasilpsikologicontroller extends Controller
         return redirect()->back()->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
 	}
-    public function deteksi_lihat(Request $request)
+    public function deteksi_lihat(sekolah $id,siswa $siswa,Request $request)
     {
-        dd('lihat deteksi');
+        $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $datas=[];
+        foreach($getdatadeteksi as $item){
+            array_push($datas,(object)[
+                $item->kunci => $item->isi,
+            ]);
+        }
+        $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        // foreach($datas as $data){
+        //     dd($data->no_induk);
+        // }
+        dd($datas,$deteksi_list,'lihat deteksi',$siswa);
     }
     public function deteksi_cetak(Request $request)
     {

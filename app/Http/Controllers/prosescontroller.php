@@ -929,6 +929,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 
         //2. Periksa kelas ada?
     $getapi=apiprobk_deteksi::where('kunci','kelas')->where('apiprobk_id',$r['id'])->first();
+    $getapiprobk=apiprobk::where('id',$r['id'])->first();
     $periksa=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->count();
     if($periksa<1){
         //inser siswa
@@ -960,6 +961,8 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         'nama'     =>  $namasiswa->isi,
                         'kelas_id'     =>  $getkelas->id,
                         'sekolah_id'     =>  $sekolah_id,
+                        'apiprobk_id'     =>  $r['id'],
+                        'apiprobk_username'     =>  $getapiprobk->username,
                         'created_at'=>date("Y-m-d H:i:s"),
                         'updated_at'=>date("Y-m-d H:i:s")
                     ));
