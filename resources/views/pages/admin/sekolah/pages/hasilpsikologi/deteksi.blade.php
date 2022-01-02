@@ -87,6 +87,19 @@ Hasil Deteksi Psikologi
                 @empty
 
                 @endforelse
+                <tr>
+                    <td colspan="2">RATA - RATA NILAI NEGATIF </td>
+                    <td> - </td>
+                    <td> {{$datas['deteksi_total_persen']}}</td>
+                    <td> {{$datas['deteksi_total_keterangan']}}</td>
+                    <td >
+                        <div class="grey_bg" style="width:{{$datas['deteksi_total_persen']}}%;background-color: #00FFFF">
+                            &nbsp;
+                            {{-- <h5>a</h5> --}}
+                        </div>
+
+                    </td>
+                </tr>
             </tbody>
 
         </table>

@@ -949,6 +949,12 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
         //3. Periksa siswa ada?
     $namasiswa=apiprobk_sertifikat::where('kunci','nama')->where('apiprobk_id',$r['id'])->first();
     $no_induk=apiprobk_sertifikat::where('kunci','no_induk')->where('apiprobk_id',$r['id'])->first();
+    $jeniskelamin="Laki-laki";
+    $getjk=apiprobk_deteksi::where('kunci','jenis_kelamin')->where('apiprobk_id',$r['id'])->first();
+    if($getjk->isi!="L"){
+        $jeniskelamin="Perempuan";
+    }
+    $getusia=apiprobk_deteksi::where('kunci','umur')->where('apiprobk_id',$r['id'])->first();
     $periksa=siswa::where('sekolah_id',$sekolah_id)
                 ->where('nama',$namasiswa->isi)
                 ->where('nomerinduk',$no_induk->isi)
@@ -961,6 +967,8 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         'nama'     =>  $namasiswa->isi,
                         'kelas_id'     =>  $getkelas->id,
                         'sekolah_id'     =>  $sekolah_id,
+                        'jeniskelamin'     =>  $jeniskelamin,
+                        'usia'     =>  $getusia->isi,
                         'apiprobk_id'     =>  $r['id'],
                         'apiprobk_username'     =>  $getapiprobk->username,
                         'created_at'=>date("Y-m-d H:i:s"),
