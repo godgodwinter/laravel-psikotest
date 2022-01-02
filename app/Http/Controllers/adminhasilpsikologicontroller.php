@@ -275,17 +275,28 @@ class adminhasilpsikologicontroller extends Controller
     public function deteksi_lihat(sekolah $id,siswa $siswa,Request $request)
     {
         $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
-        $datas=[];
+        // $datas=[];
         foreach($getdatadeteksi as $item){
-            array_push($datas,(object)[
-                $item->kunci => $item->isi,
-            ]);
+            // array_push($datas,
+            //     (object)[$item->kunci => $item->isi]
+            // );
+            $datas[$item->kunci]=$item->isi;
         }
         $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
-        // foreach($datas as $data){
-        //     dd($data->no_induk);
+        // foreach($deteksi_list as $dl){
+        //     dd($dl->nama);
         // }
-        dd($datas,$deteksi_list,'lihat deteksi',$siswa);
+        // foreach($datas as $data){
+        // //     // $deteksi_eq_total_persen=$data;
+        // //     // dd($data->no_induk);
+        //     dd($data['no_induk']);
+        // }
+        // dd($datas['no_induk']);
+
+        // dd($datas,$deteksi_list,'lihat deteksi',$siswa);
+        $pages='sekolah';
+            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+        return view('pages.admin.sekolah.pages.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa'));
     }
     public function deteksi_cetak(Request $request)
     {

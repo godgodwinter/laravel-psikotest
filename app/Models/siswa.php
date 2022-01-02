@@ -27,4 +27,8 @@ class siswa extends Model
         {
             return $this->belongsTo('App\Models\kelas');
         }
+        public function sekolah()
+        {
+            return $this->belongsTo('App\Models\sekolah');
+        }
 }
