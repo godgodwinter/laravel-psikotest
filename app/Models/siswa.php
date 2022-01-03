@@ -31,4 +31,8 @@ class siswa extends Model
         {
             return $this->belongsTo('App\Models\sekolah');
         }
+        public function users()
+        {
+            return $this->belongsTo('App\Models\User');
+        }
 }
