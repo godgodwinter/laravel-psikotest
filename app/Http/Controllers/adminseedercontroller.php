@@ -7,6 +7,7 @@ use App\Models\catatanpengembangandirisiswa;
 use App\Models\catatanprestasisiswa;
 use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
+use App\Models\masterdeteksi;
 use App\Models\masternilaibidangstudi;
 use App\Models\masternilaipsikologi;
 use App\Models\minatbakat;
@@ -718,6 +719,37 @@ class adminseedercontroller extends Controller
                 'updated_at' => Carbon::now()
             ]);
         }
+
+
+        masterdeteksi::truncate();
+        $dataku = collect([
+            [
+                'nama' => 'AGRESIF',
+                'singkatan' => 'AGRESIF',
+            ],
+            [
+                'nama' => 'MELAMUN',
+                'singkatan' => 'MELAMUN',
+            ],
+            [
+                'nama' => 'MALAS',
+                'singkatan' => 'MALAS',
+            ],
+        ]);
+
+
+        foreach($dataku as $data){
+            // dd($data['nama']);
+            DB::table('masterdeteksi')->insert([
+                'nama' => $data['nama'],
+                'singkatan' => $data['singkatan'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
+
+
+
         return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
 
     }

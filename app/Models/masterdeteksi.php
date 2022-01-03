@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 // use App\Models\walikelas;
 
-class masternilaibidangstudi extends Model
+class masterdeteksi extends Model
 {
-        public $table = "masternilaibidangstudi";
+        public $table = "masterdeteksi";
 
         use SoftDeletes;
         use HasFactory;

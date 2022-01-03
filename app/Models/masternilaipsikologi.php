@@ -18,7 +18,7 @@ class masternilaipsikologi extends Model
         protected $fillable = [
             'nama',
             'singkatan',
-            'sekolah_id',
+            // 'sekolah_id',
         ];
 
 }
