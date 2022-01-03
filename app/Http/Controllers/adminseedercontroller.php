@@ -721,6 +721,13 @@ class adminseedercontroller extends Controller
         }
 
 
+
+
+
+        return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
+
+    }
+    public function masterdeteksi(Request $request){
         masterdeteksi::truncate();
         $dataku = collect([
             [
@@ -735,6 +742,10 @@ class adminseedercontroller extends Controller
                 'nama' => 'MALAS',
                 'singkatan' => 'MALAS',
             ],
+            [
+                'nama' => 'MEMBANGKANG',
+                'singkatan' => 'MEMBANGKANG',
+            ],
         ]);
 
 
@@ -747,9 +758,6 @@ class adminseedercontroller extends Controller
                 'updated_at' => Carbon::now()
             ]);
         }
-
-
-
         return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
 
     }

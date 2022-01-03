@@ -74,13 +74,15 @@ Hasil Deteksi Psikologi
                     <td>{{$loop->index+1}}</td>
                     <td>{{$master->nama}}</td>
                     @php
+                    $getdeteksi_list_count=\App\Models\apiprobk_deteksi_list::where('nama',$master->nama)->where('apiprobk_id',$datasiswa->apiprobk_id)->count();
                         $getdeteksi_list=\App\Models\apiprobk_deteksi_list::where('nama',$master->nama)->where('apiprobk_id',$datasiswa->apiprobk_id)->first();
+                        // dd($getdeteksi_list_count);
                     @endphp
-                    <td class="text-center">{{$getdeteksi_list->rank}}</td>
-                    <td class="text-center">{{$getdeteksi_list->score}}</td>
-                    <td class="text-center">{{$getdeteksi_list->keterangan}}</td>
+                    <td class="text-center">{{$getdeteksi_list_count!=0?$getdeteksi_list->rank:"Data tidak ditemukan"}}</td>
+                    <td class="text-center">{{$getdeteksi_list_count!=0?$getdeteksi_list->score:"Data tidak ditemukan"}}</td>
+                    <td class="text-center">{{$getdeteksi_list_count!=0?$getdeteksi_list->keterangan:"Data tidak ditemukan"}}</td>
                     <td >
-                        <div class="grey_bg" style="width:{{$getdeteksi_list->score}}%;background-color: #00FFFF">
+                        <div class="grey_bg" style="width:{{$getdeteksi_list_count!=0?$getdeteksi_list->score:0}}%;background-color: #00FFFF">
                             &nbsp;
                         </div>
                     </td>

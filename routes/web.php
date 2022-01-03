@@ -377,6 +377,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
         Route::post('/admin/seeder/masternilaipsikologi', [adminseedercontroller::class, 'masternilaipsikologi'])->name('seeder.masternilaipsikologi');
+        Route::post('/admin/seeder/masterdeteksi', [adminseedercontroller::class, 'masterdeteksi'])->name('seeder.masterdeteksi');
         Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
 
         //Example

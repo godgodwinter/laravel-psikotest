@@ -78,6 +78,10 @@ Pengaturan
                         @csrf
                         <button class="btn btn-primary">Seeder Master Nilai Psikologi</button>
                     </form>
+                    <form action="{{route('seeder.masterdeteksi')}}" method="post" class="d-inline">
+                        @csrf
+                        <button class="btn btn-primary">Seeder Master Deteksi</button>
+                    </form>
 
                     <br>
                     <br>
