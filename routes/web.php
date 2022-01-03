@@ -129,6 +129,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/sekolah/{id}/siswa/{data}', [adminsiswacontroller::class, 'destroy'])->name('sekolah.siswa.destroy');
     Route::delete('/admin/sekolah/siswa/multidel/{id}', [adminsiswacontroller::class, 'multidel'])->name('sekolah.siswa.multidel');
 
+    Route::get('/admin/sekolah/{id}/datasiswa/generate', [adminsiswacontroller::class, 'generate'])->name('sekolah.siswa.generate');
+
 
     //walikelas
     Route::get('/admin/sekolah/{id}/walikelas', [adminwalikelascontroller::class, 'index'])->name('sekolah.walikelas');

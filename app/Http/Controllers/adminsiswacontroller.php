@@ -302,4 +302,8 @@ class adminsiswacontroller extends Controller
 
         return view('pages.admin.sekolah.pages.siswa_index',compact('pages','id','request','datas'));
     }
+    public function generate(sekolah $id,Request $request)
+    {
+        dd('prosesgenerateakun',$id);
+    }
 }

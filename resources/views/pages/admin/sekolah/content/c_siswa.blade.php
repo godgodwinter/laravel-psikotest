@@ -17,7 +17,7 @@
                                 </span>
                             </div>
                         <div class="ml-auto p-2 bd-highlight">
-
+                                <a href="{{route('sekolah.siswa.generate',$id->id)}}" class="btn btn-warning btn-sm">Generate Akun</a>
                                  <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
