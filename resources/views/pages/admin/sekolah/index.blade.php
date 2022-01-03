@@ -321,12 +321,6 @@ asdasd
                         {{ csrf_field() }}
 
 
-                        <label class="custom-switch">
-                            <input type="checkbox" name="replace" value="1" class="custom-switch-input" checked>
-                            <span class="custom-switch-indicator"></span>
-                            <span class="custom-switch-description">Update data sudah ada (yang sudah pernah disinkron)</span>
-                          </label>
-
 
                         <label class="custom-switch">
                             <input type="checkbox" name="insertsekolah" value="1" class="custom-switch-input" checked>
@@ -396,11 +390,7 @@ asdasd
                             <span class="custom-switch-description">Tambahkan data Siswa yang belum ada</span>
                           </label>
 
-                        <label class="custom-switch">
-                            <input type="checkbox" name="refreshall" value="1" class="custom-switch-input" >
-                            <span class="custom-switch-indicator"></span>
-                            <span class="custom-switch-description">Refresh semua data API (yang sudah dan belum disinkron)</span>
-                          </label>
+
 
                       </div>
                       <div class="modal-footer">

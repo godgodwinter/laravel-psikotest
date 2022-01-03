@@ -156,7 +156,9 @@ console.log(dataAkhir);
 
             <div class="card-body">
                 <div>
-                    <div class="mb-5" id='Inputan0'>
+
+                    <a href="{{route('sekolah')}}" class="btn btn-warning">Kembali</a>
+                    <div class="mb-5 mt-3" id='Inputan0'>
                         <h4>Total {{count($datas)}} data</h4>
                     </div>
                 <h1>Proses Get Data From API</h1>
