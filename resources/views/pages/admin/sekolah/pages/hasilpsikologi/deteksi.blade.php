@@ -40,7 +40,7 @@ Hasil Deteksi Psikologi
         <button class="btn btn-primary"> Cetak </button>
     </div>
     <div class="card-header">
-        <h4>Gangguan Masalah dan Perkembangan Siswa   </h4>
+        <h4>Gangguan Masalah dan Perkembangan Siswa </h4>
     </div>
     <div class="card-body babengcontainer">
     <table border="0" width="60%">
