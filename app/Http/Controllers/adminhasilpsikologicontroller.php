@@ -9,6 +9,7 @@ use App\Models\apiprobk_deteksi;
 use App\Models\apiprobk_deteksi_list;
 use App\Models\hasilpsikologi;
 use App\Models\kelas;
+use App\Models\masterdeteksi;
 use App\Models\sekolah;
 use App\Models\siswa;
 use Illuminate\Http\Request;
@@ -296,7 +297,8 @@ class adminhasilpsikologicontroller extends Controller
         // dd($datas,$deteksi_list,'lihat deteksi',$siswa);
         $pages='sekolah';
             $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
-        return view('pages.admin.sekolah.pages.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa'));
+            $masterdeteksi=masterdeteksi::get();
+        return view('pages.admin.sekolah.pages.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
     }
     public function deteksi_cetak(Request $request)
     {

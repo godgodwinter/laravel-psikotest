@@ -69,9 +69,22 @@ Hasil Deteksi Psikologi
                 </tr>
             </thead>
             <tbody>
-                @forelse ($deteksi_list as $dl)
+                @forelse ($masterdeteksi as $master)
                 <tr>
                     <td>{{$loop->index+1}}</td>
+                    <td>{{$master->nama}}</td>
+                    @php
+                        $getdeteksi_list=\App\Models\apiprobk_deteksi_list::where('nama',$master->nama)->where('apiprobk_id',$datasiswa->apiprobk_id)->first();
+                    @endphp
+                    <td class="text-center">{{$getdeteksi_list->rank}}</td>
+                    <td class="text-center">{{$getdeteksi_list->score}}</td>
+                    <td class="text-center">{{$getdeteksi_list->keterangan}}</td>
+                    <td >
+                        <div class="grey_bg" style="width:{{$getdeteksi_list->score}}%;background-color: #00FFFF">
+                            &nbsp;
+                        </div>
+                    </td>
+                     {{--
                     <td>{{$dl->nama}}</td>
                     <td class="text-center">{{$dl->rank}}</td>
                     <td class="text-center">{{$dl->score}}</td>
@@ -79,10 +92,10 @@ Hasil Deteksi Psikologi
                     <td >
                         <div class="grey_bg" style="width:{{$dl->score}}%;background-color: #00FFFF">
                             &nbsp;
-                            {{-- <h5>a</h5> --}}
+                          <h5>a</h5>
                         </div>
 
-                    </td>
+                    </td> --}}
                 </tr>
                 @empty
 
