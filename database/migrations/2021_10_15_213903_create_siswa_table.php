@@ -20,6 +20,8 @@ class CreateSiswaTable extends Migration
             $table->string('apiprobk_id')->nullable();
             $table->string('apiprobk_username')->nullable();
             $table->string('sekolah_id');
+            $table->string('users_id')->nullable();
+            $table->string('passworddefault')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

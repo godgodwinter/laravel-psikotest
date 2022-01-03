@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Faker\Factory as Faker;
 
 class adminsiswacontroller extends Controller
 {
@@ -304,6 +305,32 @@ class adminsiswacontroller extends Controller
     }
     public function generate(sekolah $id,Request $request)
     {
-        dd('prosesgenerateakun',$id);
+        $faker = Faker::create('id_ID');
+        $getsiswa=siswa::where('sekolah_id',$id->id)->get();
+        foreach($getsiswa as $siswa){
+            $siswa_id=$siswa->id;
+            //periksa apakah user where siswa_id sudah ada?
+            // $username=$faker->unique()->username;
+            $username = substr(strtolower(str_replace(' ', '', $siswa->nama)),0,6).$faker->numberBetween(0,999);
+            $password=$faker->password(6, 6);
+            dd($username,$password);
+           $users_id=DB::table('users')->insertGetId(
+                array(
+                       'name'     =>   $siswa->nama,
+                       'email'     =>   $faker->unique()->email,
+                       'username'     =>   $username,
+                       'nomerinduk'     => date('YmdHis'),
+                       'password' => Hash::make($request->password),
+                       'tipeuser' => 'siswa',
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+                // update
+                // 1 users_id
+                // 2 passworddefault
+
+        }
+        dd('prosesgenerateakun',$getsiswa);
     }
 }
