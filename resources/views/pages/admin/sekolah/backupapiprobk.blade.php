@@ -148,7 +148,7 @@ function updateDataSertifikat(data=0){
     // console.log('updateDataSertifikat');
             $.ajax({
                     url: '{{route('api.apibackupdatafromfe')}}',
-                    type: 'GET',
+                    type: 'POST',
                     enctype: 'multipart/form-data',
                     data: {data : data},
                     success: function (result) {
@@ -199,7 +199,7 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                             <div class="card card-statistic-1">
                               <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
+                                <i class="fas fa-database"></i>
                               </div>
                               <div class="card-wrap">
                                 <div class="card-header">
@@ -213,8 +213,8 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                           </div>
                           <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                               <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
-                                  <i class="far fa-user"></i>
+                                <div class="card-icon bg-danger">
+                                    <i class="fas fa-exclamation-triangle"></i>
                                 </div>
                                 <div class="card-wrap">
                                   <div class="card-header">
@@ -234,7 +234,7 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                           <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                              <i class="far fa-user"></i>
+                                <i class="fas fa-tasks"></i>
                             </div>
                             <div class="card-wrap">
                               <div class="card-header">
@@ -248,8 +248,8 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                           <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                              <i class="far fa-newspaper"></i>
+                            <div class="card-icon bg-info">
+                                <i class="fas fa-check"></i>
                             </div>
                             <div class="card-wrap">
                               <div class="card-header">
@@ -263,8 +263,8 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                           <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                              <i class="far fa-file"></i>
+                            <div class="card-icon bg-success">
+                                <i class="fas fa-check-circle"></i>
                             </div>
                             <div class="card-wrap">
                               <div class="card-header">
@@ -278,8 +278,8 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                           <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                              <i class="far fa-file"></i>
+                            <div class="card-icon bg-danger">
+                                <i class="fas fa-exclamation-circle"></i>
                             </div>
                             <div class="card-wrap">
                               <div class="card-header">
