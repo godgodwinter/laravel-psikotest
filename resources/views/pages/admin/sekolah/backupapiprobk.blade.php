@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Getting Data from APIPROBK
+Backup Data from APIPROBK
 @endsection
 
 @push('before-script')
@@ -40,145 +40,165 @@ Getting Data from APIPROBK
     </script>
 
     <script>
+        jQuery(document).ready(function() {
 
-var dataAkhirDeteksi = [];
-var dataAkhir = [];
-let jmlDeteksi=0;
-let jml=0;
-let jmlTersimpan=0;
-let jmlDeteksiTersimpan=0;
 let progess=0;
 let jmlProgress=0;
+let diproses=0;
+let sukses=0;
+let gagal=0;
+//fungsi
+function getApiDeteksi(id=0,username=0){
+    (async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username })
+        };
+        const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
+        let data = await response.json();
+        if (response.ok){
+            // console.log('ok');
+             updateProgress(1);
+            data.username = username;
+            data.apiprobk_id = id;
+            // console.log(data);
+             sukses++;
+            document.getElementById('sukses').innerText = sukses;
+             //getApiSertifikat
+        }else{
+            // console.log('error!');
+             gagal+=4;
+            document.getElementById('gagal').innerText = gagal;
+            //addObjectKeGagal
+            //add 4progress gagal
+             updateProgress(1);
+             updateProgress(1);
+             updateProgress(1);
+             updateProgress(1);
 
-            // //CONTOH DATA
-                let datas = [
-                    @foreach ($datas as $data)
-                    {
-                    id : {{$data->id}},
-                    username : '{{$data->username}}',
-                    sertifikat :'{{$data->sertifikat}}',
-                    sertifikat_tgl : '{{$data->sertifikat_tgl}}',
-                    deteksi : '{{$data->deteksi}}',
-                    deteksi_tgl : '{{$data->deteksi_tgl}}',
-                },
-                    @endforeach
-                ];
-
-                console.log(datas.length);
-                if(datas.length>0){
-
-                    console.log(typeof(datas));
+        }
 
 
-Object.keys(datas).forEach(key => {
-//   console.log(datas[key].username);
-                    // datas.forEach(function(item){
-                        // console.log(item);
-                    // }
-                // console.log('test');
+    })();
 
+    // console.log('getDeteksi '+ id + '======' + username);
+}
 
-                (async () => {
-                    // POST request using fetch with async/await
-                    // const element = document.getElementById('testing');
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ username: datas[key].username })
-                    };
-                    const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
-                    let data = await response.json();
-                    let username = [ datas[key].username ];
-                    data.username = datas[key].username;
-                    data.apiprobk_id = datas[key].id;
-                    jmlDeteksi++;
-                    updateProgress(1);
-                    // $("#Inputan1").html(`
-                    // <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
+function getApiSertifikat(id=0,username=0){
 
-                    // $('#dataFormDeteksi').val(JSON.stringify(dataAkhirDeteksi));
+    console.log('getSertifikat');
+}
 
-                    // $("#btnsimpan").append(`<input type="button" value="Show list" onclick="console.log(dataAkhir)">`);
-                    document.getElementById('jmldataDeteksi').innerText = jmlDeteksi;
-            $.ajax({
-                    url: '{{route('api.apibackupdatafromfedeteksi')}}',
-                    type: 'POST',
-                    enctype: 'multipart/form-data',
-                    data: {data : data},
-                    success: function (result) {
-                        jmlDeteksiTersimpan++;
-                        document.getElementById('dataDeteksiTersimpan').innerText = jmlDeteksiTersimpan;
-                        // console.log(result);
-                         updateProgress(1);
-                    }
-                });
-                })();
+function updateProgress($item=1){
+    // console.log('progress');
+    jmlProgress++;
+    diproses++;
+    // console.log(jmlProgress);
+    // console.log('Total '+{{count($datas)*4}});
+    progess=jmlProgress/{{count($datas)*4}}*100;
+    document.getElementById('progress1').innerText = progess.toFixed(2)+'%';
+    document.getElementById('progress1').style.width= progess+'%';
+    document.getElementById('diproses').innerText = diproses;
+}
 
-                //sertifikat
-                        (async () => {
-                    // POST request using fetch with async/await
-                    // const element = document.getElementById('testing');
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ username: datas[key].username })
-                    };
-                    const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
-                    let data = await response.json();
-                    data.username = datas[key].username;
-                    data.apiprobk_id = datas[key].id;
-                    // element.innerHTML = data;
-                    // console.log(data);
-                    jml++;
-                    // $("#Inputan2").html(`
-                    // <input type="hidden" value="" name="data" id="dataForm">
-                    // <button class="btn btn-rounded btn-success">Simpan</button>`);
-                    document.getElementById('jmldataSertifikat').innerText = jml;
+@foreach ($datas as $data)
+getApiDeteksi('{{$data->id}}','{{$data->username}}');
+@endforeach
 
-                    updateProgress(1);
-            $.ajax({
-                    url: '{{route('api.apibackupdatafromfe')}}',
-                    type: 'POST',
-                    enctype: 'multipart/form-data',
-                    data: {data : data},
-                    success: function (result) {
-                        jmlTersimpan++;
-                        document.getElementById('dataSertifikatTersimpan').innerText = jmlTersimpan;
-                        // console.log(result);
-                         updateProgress(1);
-                    }
-                });
-
-                })();
-
-                function updateProgress($item=1){
-                    jmlProgress++;
-                    // console.log(jmlProgress);
-                    progess=jmlProgress/{{count($datas)*4}}*100;
-                    document.getElementById('progress1').innerText = progess.toFixed(2)+'%';
-                    document.getElementById('progress1').style.width= progess+'%';
-                }
 
 });
-
-                }
-console.log(dataAkhir);
-    // element.innerHTML = 'tees';
-
     </script>
     @endpush
 
             <div class="card-body">
                 <div>
 
-                    <a href="{{route('sekolah')}}" class="btn btn-warning">Kembali</a>
-                    <div class="mb-5 mt-3" id='Inputan0'>
+                    <a href="{{route('sekolah')}}" class="btn btn-warning mb-5">Kembali</a>
+                    {{-- <div class="mb-5 mt-3" id='Inputan0'>
                         <h4>Total {{count($datas)}} data</h4>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div> --}}
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                              <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                              </div>
+                              <div class="card-wrap">
+                                <div class="card-header">
+                                  <h4>Total Data</h4>
+                                </div>
+                                <div class="card-body">
+                                  {{count($datas)}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    <div class="progress" style="height: 40px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info " id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                       </div>
-                <h1>Proses Get Data From API</h1>
+                      <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                              <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Total Proses</h4>
+                              </div>
+                              <div class="card-body">
+                                {{count($datas)*4}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                              <i class="far fa-newspaper"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Telah Diproses</h4>
+                              </div>
+                              <div class="card-body" id="diproses">
+                                0
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                              <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Berhasil</h4>
+                              </div>
+                              <div class="card-body" id="sukses">
+                                0
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                              <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Gagal</h4>
+                              </div>
+                              <div class="card-body" id="gagal">
+                                0
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                {{-- <h1>Proses Get Data From API</h1>
                 <div class="row ml-5">
                     <h2 id="jmldataDeteksi" class="mr-3">0 </h2> <h2> Data</h2>
                 </div>
@@ -202,9 +222,9 @@ console.log(dataAkhir);
                     @csrf
                 <div class="mb-5" id='Inputan1'></div>
                 <div class="mb-5" id='Inputan2'></div>
-            </form>
+            </form> --}}
 
-            <table id="example" class="table table-striped table-bordered " style="width:100%">
+            {{-- <table id="example" class="table table-striped table-bordered " style="width:100%">
                 <thead>
                     <tr>
                         <th class="babeng-min-row">No</th>
@@ -232,7 +252,7 @@ console.log(dataAkhir);
 
                     @endforelse
                 </tbody>
-            </table>
+            </table> --}}
 
         </div>
     </div>

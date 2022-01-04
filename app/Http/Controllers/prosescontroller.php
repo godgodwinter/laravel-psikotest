@@ -527,14 +527,18 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 	public function backuptempfe(Request $request)
 	{
         $pages='sekolah';
-        $datas=apiprobk::where('deteksi','!=','sudah')->orderBy('created_at','desc')->get();
-
+        $datas=apiprobk::where('deteksi','!=','sudah')
+        ->where('deteksi','belum')
+        ->orderBy('created_at','desc')
+        ->skip(0)->take(10)
+        ->get();
+            // dd('backuptempfe',$datas);
         return view('pages.admin.sekolah.backupapiprobk',compact('datas','request','pages'));
 
 
     }
     public function backuptempfestore(Request $request){
-        // $datas=$request->data;
+        $datas=$request->data;
         // foreach($datas as $data){
         //     dd($data);
         // }
@@ -898,7 +902,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
         $pages='sekolah';
         $datas=apiprobk::where('sinkron',NULL)->orderBy('created_at','desc')->get();
         $cekseedermastering=masternilaipsikologi::count();
-        // dd($datas,'tes');
+        dd($datas,'sinkronfe');
         return view('pages.admin.sekolah.sinkrondata',compact('datas','request','pages','cekseedermastering'));
     }
     public function sinkronfestore(Request $request)
