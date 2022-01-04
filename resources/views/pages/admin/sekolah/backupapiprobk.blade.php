@@ -47,6 +47,7 @@ let jmlProgress=0;
 let diproses=0;
 let sukses=0;
 let gagal=0;
+let gagalData=0;
 //fungsi
 function getApiDeteksi(id=0,username=0){
     (async () => {
@@ -66,10 +67,14 @@ function getApiDeteksi(id=0,username=0){
              sukses++;
             document.getElementById('sukses').innerText = sukses;
              //getApiSertifikat
+             getApiSertifikat(id,username);
+             updateDataDeteksi(data);
         }else{
             // console.log('error!');
              gagal+=4;
             document.getElementById('gagal').innerText = gagal;
+            gagalData++;
+            document.getElementById('gagalData').innerText = gagalData;
             //addObjectKeGagal
             //add 4progress gagal
              updateProgress(1);
@@ -86,8 +91,80 @@ function getApiDeteksi(id=0,username=0){
 }
 
 function getApiSertifikat(id=0,username=0){
+    (async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username })
+        };
+        const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
+        let data = await response.json();
+        if (response.ok){
+            // console.log('ok');
+             updateProgress(1);
+            data.username = username;
+            data.apiprobk_id = id;
+            // console.log(data);
+             sukses++;
+            document.getElementById('sukses').innerText = sukses;
+             //getApiSertifikat
+             updateDataSertifikat(data);
+            //  getApiSertifikat(id,username);
+        }else{
+            // console.log('error!');
 
-    console.log('getSertifikat');
+        }
+
+
+    })();
+
+    // console.log('getSertifikat');
+}
+
+function updateDataDeteksi(data=0){
+    // console.log('updateDataDeteksi');
+            $.ajax({
+                    url: '{{route('api.apibackupdatafromfedeteksi')}}',
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    data: {data : data},
+                    success: function (result) {
+                        // console.log(result + 'deteksi');
+                        if(result.success){
+                                // console.log('berhasil');
+                                sukses++;
+                                document.getElementById('sukses').innerText = sukses;
+                        }else{
+                                // console.log('gagal');
+                                gagal++;
+                                document.getElementById('gagal').innerText = gagal;
+                        }
+                         updateProgress(1);
+                    }
+                });
+}
+
+function updateDataSertifikat(data=0){
+    // console.log('updateDataSertifikat');
+            $.ajax({
+                    url: '{{route('api.apibackupdatafromfe')}}',
+                    type: 'GET',
+                    enctype: 'multipart/form-data',
+                    data: {data : data},
+                    success: function (result) {
+                        if(result.success){
+                                console.log('berhasil');
+                                sukses++;
+                                document.getElementById('sukses').innerText = sukses;
+                        }else{
+                                console.log('gagal');
+                                gagal++;
+                                document.getElementById('gagal').innerText = gagal;
+                        }
+                         updateProgress(1);
+                    }
+                });
+
 }
 
 function updateProgress($item=1){
@@ -118,6 +195,7 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                     {{-- <div class="mb-5 mt-3" id='Inputan0'>
                         <h4>Total {{count($datas)}} data</h4>
                     </div> --}}
+                      <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                             <div class="card card-statistic-1">
                               <div class="card-icon bg-primary">
@@ -133,6 +211,22 @@ getApiDeteksi('{{$data->id}}','{{$data->username}}');
                               </div>
                             </div>
                           </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                              <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                  <i class="far fa-user"></i>
+                                </div>
+                                <div class="card-wrap">
+                                  <div class="card-header">
+                                    <h4>Total Data Gagal di muat</h4>
+                                  </div>
+                                  <div class="card-body" id="gagalData">
+                                   0
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                     <div class="progress" style="height: 40px;">
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-info " id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                       </div>

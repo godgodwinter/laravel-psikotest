@@ -793,7 +793,8 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         $apiprobk_id=$value;
                     }
                 }
-                $periksa=apiprobk_sertifikat::where('apiprobk_id',$apiprobk_id)->count();
+                $periksa=apiprobk::where('sertifikat','sudah')->where('id',$apiprobk_id)->count();
+                // dd($periksa);
                 if($periksa<1){
                 foreach($request->data as  $key => $value){
                     $key = $key;
@@ -815,20 +816,29 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                             'sertifikat_tgl'=>date("Y-m-d H:i:s"),
                         'updated_at'=>date("Y-m-d H:i:s")
                         ]);
+                        return response()->json([
+                            'success' => true,
+                            'message' => $msg,
+                            // 'data' => $request->data,
+                            'key' => $key,
+                            'value' => $value,
+                            // 'key' => $request->key,
+                        ], 200);
 
                 }
             }else{
                     $msg='Sertifikat Sudah pernah Diupdate!';
+                    return response()->json([
+                        'success' => false,
+                        'message' => $msg,
+                        // 'data' => $request->data,
+                        'key' => $key,
+                        'value' => $value,
+                        // 'key' => $request->key,
+                    ], 200);
 
                 }
-                return response()->json([
-                    'success' => true,
-                    'message' => $msg,
-                    'data' => $request->data,
-                    'key' => $key,
-                    'value' => $value,
-                    // 'key' => $request->key,
-                ], 200);
+
 
     }
 
@@ -841,7 +851,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                         $apiprobk_id=$value;
                     }
                 }
-                $periksa=apiprobk_deteksi::where('apiprobk_id',$apiprobk_id)->count();
+                $periksa=apiprobk::where('deteksi','sudah')->where('id',$apiprobk_id)->count();
                 if($periksa<1){
                 foreach($request->data as  $key => $value){
                     $key = $key;
@@ -885,12 +895,20 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                 }
             }else{
                 $msg='Deteksi sudah pernah di update!';
+                return response()->json([
+                    'success' => false,
+                    'message' => $msg,
+                    // 'data' => $request->data,
+                    'key' => $key,
+                    'value' => $value,
+                    // 'key' => $request->key,
+                ], 200);
             }
 
                 return response()->json([
                     'success' => true,
                     'message' => $msg,
-                    'data' => $request->data,
+                    // 'data' => $request->data,
                     'key' => $key,
                     'value' => $value,
                     // 'key' => $request->key,
