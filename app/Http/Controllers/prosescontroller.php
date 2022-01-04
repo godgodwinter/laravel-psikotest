@@ -538,251 +538,251 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
 
 
     }
-    public function backuptempfestore(Request $request){
-        $datas=$request->data;
-        // foreach($datas as $data){
-        //     dd($data);
-        // }
-        // dd($request,json_decode($request->dataDeteksi),json_decode($request->data));
-        $hasildeteksi=json_decode($request->dataDeteksi);
-        $hasilsertifikat=json_decode($request->data);
-            //looping deteksi
-        foreach($hasildeteksi as $data){
-            foreach($data as $k => $v){
-                // dd($v);
-                if($k==='0'){
-                    $username=$v;
-                }
-            }
-            // dd($hasildeteksi);
-            $getid=apiprobk::where('username',$username)->first();
-            $itemscount=apiprobk_deteksi::where('apiprobk_id',$getid->id)->count();
-            foreach($data as  $key => $value){
-                if($key!='deteksi_list'){
-                    // dd($value);
-                        //simpan apiprobk_deteksi
-                            //insert all
-                            DB::table('apiprobk_deteksi')->insert(
-                                array(
-                                    'apiprobk_id'     =>  $getid->id,
-                                    'kunci'     =>   $key,
-                                    'isi'     =>   $value,
-                                    'deleted_at' => null,
-                                    'created_at'=>date("Y-m-d H:i:s"),
-                                    'updated_at'=>date("Y-m-d H:i:s")
-                                ));
-                }else{
-                //   dd('list');
-                    foreach($data->deteksi_list as $item){
-                        // dd($item->deteksi_nama);
-                            DB::table('apiprobk_deteksi_list')->insert(
-                                array(
-                                    'apiprobk_id'     =>  $getid->id,
-                                    'nama'     =>   $item->deteksi_nama,
-                                    'score'     =>   $item->deteksi_score,
-                                    'keterangan'  =>   $item->deteksi_keterangan,
-                                    'rank'     =>   $item->deteksi_rank,
-                                    'deleted_at' => null,
-                                    'created_at'=>date("Y-m-d H:i:s"),
-                                    'updated_at'=>date("Y-m-d H:i:s")
-                                ));
-                }
-                }
-            }
-            // dd($username);
-            //end loopingdeteksi
-            apiprobk::where('id',$getid->id)
-              ->update([
-                  'deteksi'     =>   'sudah',
-                 'updated_at'=>date("Y-m-d H:i:s")
-              ]);
-        }
+//     public function backuptempfestore(Request $request){
+//         $datas=$request->data;
+//         // foreach($datas as $data){
+//         //     dd($data);
+//         // }
+//         // dd($request,json_decode($request->dataDeteksi),json_decode($request->data));
+//         $hasildeteksi=json_decode($request->dataDeteksi);
+//         $hasilsertifikat=json_decode($request->data);
+//             //looping deteksi
+//         foreach($hasildeteksi as $data){
+//             foreach($data as $k => $v){
+//                 // dd($v);
+//                 if($k==='0'){
+//                     $username=$v;
+//                 }
+//             }
+//             // dd($hasildeteksi);
+//             $getid=apiprobk::where('username',$username)->first();
+//             $itemscount=apiprobk_deteksi::where('apiprobk_id',$getid->id)->count();
+//             foreach($data as  $key => $value){
+//                 if($key!='deteksi_list'){
+//                     // dd($value);
+//                         //simpan apiprobk_deteksi
+//                             //insert all
+//                             DB::table('apiprobk_deteksi')->insert(
+//                                 array(
+//                                     'apiprobk_id'     =>  $getid->id,
+//                                     'kunci'     =>   $key,
+//                                     'isi'     =>   $value,
+//                                     'deleted_at' => null,
+//                                     'created_at'=>date("Y-m-d H:i:s"),
+//                                     'updated_at'=>date("Y-m-d H:i:s")
+//                                 ));
+//                 }else{
+//                 //   dd('list');
+//                     foreach($data->deteksi_list as $item){
+//                         // dd($item->deteksi_nama);
+//                             DB::table('apiprobk_deteksi_list')->insert(
+//                                 array(
+//                                     'apiprobk_id'     =>  $getid->id,
+//                                     'nama'     =>   $item->deteksi_nama,
+//                                     'score'     =>   $item->deteksi_score,
+//                                     'keterangan'  =>   $item->deteksi_keterangan,
+//                                     'rank'     =>   $item->deteksi_rank,
+//                                     'deleted_at' => null,
+//                                     'created_at'=>date("Y-m-d H:i:s"),
+//                                     'updated_at'=>date("Y-m-d H:i:s")
+//                                 ));
+//                 }
+//                 }
+//             }
+//             // dd($username);
+//             //end loopingdeteksi
+//             apiprobk::where('id',$getid->id)
+//               ->update([
+//                   'deteksi'     =>   'sudah',
+//                  'updated_at'=>date("Y-m-d H:i:s")
+//               ]);
+//         }
 
-        // dd($hasilsertifikat);
-    //     //looping sertifikat
-        foreach($hasilsertifikat as $data){
-            foreach($data as $k => $v){
-                // dd($v);
-                if($k==='0'){
-                    $username=$v;
-                }
-            }
-            // dd($username);
-            $getid=apiprobk::where('username',$username)->first();
-            $itemscount=apiprobk_sertifikat::where('apiprobk_id',$getid->id)->count();
-            foreach($data as  $key => $value){
-                    // dd($value);
-                        //simpan apiprobk_deteksi
-                            //insert all
-                            DB::table('apiprobk_sertifikat')->insert(
-                                array(
-                                    'apiprobk_id'     =>  $getid->id,
-                                    'kunci'     =>   $key,
-                                    'isi'     =>   $value,
-                                    'deleted_at' => null,
-                                    'created_at'=>date("Y-m-d H:i:s"),
-                                    'updated_at'=>date("Y-m-d H:i:s")
-                                ));
+//         // dd($hasilsertifikat);
+//     //     //looping sertifikat
+//         foreach($hasilsertifikat as $data){
+//             foreach($data as $k => $v){
+//                 // dd($v);
+//                 if($k==='0'){
+//                     $username=$v;
+//                 }
+//             }
+//             // dd($username);
+//             $getid=apiprobk::where('username',$username)->first();
+//             $itemscount=apiprobk_sertifikat::where('apiprobk_id',$getid->id)->count();
+//             foreach($data as  $key => $value){
+//                     // dd($value);
+//                         //simpan apiprobk_deteksi
+//                             //insert all
+//                             DB::table('apiprobk_sertifikat')->insert(
+//                                 array(
+//                                     'apiprobk_id'     =>  $getid->id,
+//                                     'kunci'     =>   $key,
+//                                     'isi'     =>   $value,
+//                                     'deleted_at' => null,
+//                                     'created_at'=>date("Y-m-d H:i:s"),
+//                                     'updated_at'=>date("Y-m-d H:i:s")
+//                                 ));
 
-                }
-            // dd($username);
-            //end loopingsertifikat
-            apiprobk::where('id',$getid->id)
-              ->update([
-                  'sertifikat'     =>   'sudah',
-                 'updated_at'=>date("Y-m-d H:i:s")
-              ]);
-        }
+//                 }
+//             // dd($username);
+//             //end loopingsertifikat
+//             apiprobk::where('id',$getid->id)
+//               ->update([
+//                   'sertifikat'     =>   'sudah',
+//                  'updated_at'=>date("Y-m-d H:i:s")
+//               ]);
+//         }
 
-        // dd($hasildeteksi);
-        //simpan
-        dd('proses1');
-// return redirect()->route('detailsekolah.sinkronfromfe')->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
+//         // dd($hasildeteksi);
+//         //simpan
+//         dd('proses1');
+// // return redirect()->route('detailsekolah.sinkronfromfe')->with('status','Data berhasil Diimport!')->with('tipe','success')->with('icon','fas fa-edit');
 
-    }
+//     }
 
-    public function sinkronfromfe(){
-                ini_set('max_execution_time', 3000);
-                // 1.ambil data apiprobk
-                $getdatas=apiprobk::get();
+    // public function sinkronfromfe(){
+    //             ini_set('max_execution_time', 3000);
+    //             // 1.ambil data apiprobk
+    //             $getdatas=apiprobk::get();
 
-                foreach($getdatas as $data){
+    //             foreach($getdatas as $data){
 
-                // 2. periksa jika deteksi==belum maka sinkron
+    //             // 2. periksa jika deteksi==belum maka sinkron
 
-                // 3. periksa jika sertifikat==belum maka sinkron
+    //             // 3. periksa jika sertifikat==belum maka sinkron
 
-                    // dd($data->id);
+    //                 // dd($data->id);
 
-                $getapi=apiprobk_deteksi::where('kunci','sekolah')->where('apiprobk_id',$data->id)->first();
-                // dd($getapi);
-                $namasekolah=$getapi->isi;
-                //1. Periksa sekolah ada?
-                    $periksasekolah=sekolah::where('nama',$namasekolah)->count();
-                    if($periksasekolah<1){
-                        DB::table('sekolah')->insert(
-                            array(
-                                'nama'     =>  $namasekolah,
-                                'status'     =>   'Aktif',
-                                'created_at'=>date("Y-m-d H:i:s"),
-                                'updated_at'=>date("Y-m-d H:i:s")
-                            ));
+    //             $getapi=apiprobk_deteksi::where('kunci','sekolah')->where('apiprobk_id',$data->id)->first();
+    //             // dd($getapi);
+    //             $namasekolah=$getapi->isi;
+    //             //1. Periksa sekolah ada?
+    //                 $periksasekolah=sekolah::where('nama',$namasekolah)->count();
+    //                 if($periksasekolah<1){
+    //                     DB::table('sekolah')->insert(
+    //                         array(
+    //                             'nama'     =>  $namasekolah,
+    //                             'status'     =>   'Aktif',
+    //                             'created_at'=>date("Y-m-d H:i:s"),
+    //                             'updated_at'=>date("Y-m-d H:i:s")
+    //                         ));
 
-                    }
+    //                 }
 
-            $periksasekolah=sekolah::where('nama',$namasekolah)->first();
-            $sekolah_id=$periksasekolah->id;
+    //         $periksasekolah=sekolah::where('nama',$namasekolah)->first();
+    //         $sekolah_id=$periksasekolah->id;
 
-                //2. Periksa kelas ada?
-            $getapi=apiprobk_deteksi::where('kunci','kelas')->where('apiprobk_id',$data->id)->first();
-            $periksa=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->count();
-            if($periksa<1){
-                //inser siswa
-                        DB::table('kelas')->insert(
-                            array(
-                                'sekolah_id'     =>  $sekolah_id,
-                                'nama'     =>  $getapi->isi,
-                                'walikelas_id'     =>  null,
-                                'created_at'=>date("Y-m-d H:i:s"),
-                                'updated_at'=>date("Y-m-d H:i:s")
-                            ));
+    //             //2. Periksa kelas ada?
+    //         $getapi=apiprobk_deteksi::where('kunci','kelas')->where('apiprobk_id',$data->id)->first();
+    //         $periksa=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->count();
+    //         if($periksa<1){
+    //             //inser siswa
+    //                     DB::table('kelas')->insert(
+    //                         array(
+    //                             'sekolah_id'     =>  $sekolah_id,
+    //                             'nama'     =>  $getapi->isi,
+    //                             'walikelas_id'     =>  null,
+    //                             'created_at'=>date("Y-m-d H:i:s"),
+    //                             'updated_at'=>date("Y-m-d H:i:s")
+    //                         ));
 
-            }
-            $getkelas=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->first();
+    //         }
+    //         $getkelas=kelas::where('sekolah_id',$sekolah_id)->where('nama',$getapi->isi)->first();
 
-                //3. Periksa siswa ada?
-            $namasiswa=apiprobk_sertifikat::where('kunci','nama')->where('apiprobk_id',$data->id)->first();
-            $no_induk=apiprobk_sertifikat::where('kunci','no_induk')->where('apiprobk_id',$data->id)->first();
-            $periksa=siswa::where('sekolah_id',$sekolah_id)
-                        ->where('nama',$namasiswa->isi)
-                        ->where('nomerinduk',$no_induk->isi)
-                        ->count();
-            if($periksa<1){
-                //inser siswa
-                        DB::table('siswa')->insert(
-                            array(
-                                'nomerinduk'     =>  $no_induk->isi,
-                                'nama'     =>  $namasiswa->isi,
-                                'kelas_id'     =>  $getkelas->id,
-                                'sekolah_id'     =>  $sekolah_id,
-                                'created_at'=>date("Y-m-d H:i:s"),
-                                'updated_at'=>date("Y-m-d H:i:s")
-                            ));
+    //             //3. Periksa siswa ada?
+    //         $namasiswa=apiprobk_sertifikat::where('kunci','nama')->where('apiprobk_id',$data->id)->first();
+    //         $no_induk=apiprobk_sertifikat::where('kunci','no_induk')->where('apiprobk_id',$data->id)->first();
+    //         $periksa=siswa::where('sekolah_id',$sekolah_id)
+    //                     ->where('nama',$namasiswa->isi)
+    //                     ->where('nomerinduk',$no_induk->isi)
+    //                     ->count();
+    //         if($periksa<1){
+    //             //inser siswa
+    //                     DB::table('siswa')->insert(
+    //                         array(
+    //                             'nomerinduk'     =>  $no_induk->isi,
+    //                             'nama'     =>  $namasiswa->isi,
+    //                             'kelas_id'     =>  $getkelas->id,
+    //                             'sekolah_id'     =>  $sekolah_id,
+    //                             'created_at'=>date("Y-m-d H:i:s"),
+    //                             'updated_at'=>date("Y-m-d H:i:s")
+    //                         ));
 
-            }
-        // ambildata siswa
-        $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
-            ->where('nama',$namasiswa->isi)
-            ->where('sekolah_id',$sekolah_id)
-            ->first();
+    //         }
+    //     // ambildata siswa
+    //     $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
+    //         ->where('nama',$namasiswa->isi)
+    //         ->where('sekolah_id',$sekolah_id)
+    //         ->first();
 
-            // dd($periksa);
-                //3. Periksa nilai siswa ada?
-                // a. get masternilaipsikologi
-                $getmasternilaipsikologi=masternilaipsikologi::get();
-                foreach($getmasternilaipsikologi as $master){
-                    $namamaster=$master->nama;
-                    $isi=null;
-                    // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
-                    $getapiprobk=apiprobk_sertifikat::where('kunci',$namamaster)->where('apiprobk_id',$data->id)->first();
-                    if($getapiprobk!=null){
-                        $isi=$getapiprobk->isi;
-                    }
-                    // dd($getapiprobk->isi);
-                    // c. jika belum ada maka insert
-                    $periksa=inputnilaipsikologi::where('siswa_id',$datasiswa->id)
-                    ->where('masternilaipsikologi_id',$master->id)
-                    ->where('sekolah_id',$sekolah_id)
-                    ->count();
-                    // dd($datasiswa,$isi);
-                    if($periksa<1){
-                        DB::table('inputnilaipsikologi')->insert(
-                            array(
-                                'siswa_id'     =>  $datasiswa->id,
-                                'masternilaipsikologi_id'     =>  $master->id,
-                                'nilai'     =>  $isi,
-                                'sekolah_id'     =>  $sekolah_id,
-                                'created_at'=>date("Y-m-d H:i:s"),
-                                'updated_at'=>date("Y-m-d H:i:s")
-                            ));
-                    }
-                }
+    //         // dd($periksa);
+    //             //3. Periksa nilai siswa ada?
+    //             // a. get masternilaipsikologi
+    //             $getmasternilaipsikologi=masternilaipsikologi::get();
+    //             foreach($getmasternilaipsikologi as $master){
+    //                 $namamaster=$master->nama;
+    //                 $isi=null;
+    //                 // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
+    //                 $getapiprobk=apiprobk_sertifikat::where('kunci',$namamaster)->where('apiprobk_id',$data->id)->first();
+    //                 if($getapiprobk!=null){
+    //                     $isi=$getapiprobk->isi;
+    //                 }
+    //                 // dd($getapiprobk->isi);
+    //                 // c. jika belum ada maka insert
+    //                 $periksa=inputnilaipsikologi::where('siswa_id',$datasiswa->id)
+    //                 ->where('masternilaipsikologi_id',$master->id)
+    //                 ->where('sekolah_id',$sekolah_id)
+    //                 ->count();
+    //                 // dd($datasiswa,$isi);
+    //                 if($periksa<1){
+    //                     DB::table('inputnilaipsikologi')->insert(
+    //                         array(
+    //                             'siswa_id'     =>  $datasiswa->id,
+    //                             'masternilaipsikologi_id'     =>  $master->id,
+    //                             'nilai'     =>  $isi,
+    //                             'sekolah_id'     =>  $sekolah_id,
+    //                             'created_at'=>date("Y-m-d H:i:s"),
+    //                             'updated_at'=>date("Y-m-d H:i:s")
+    //                         ));
+    //                 }
+    //             }
 
-                //minatbakat
-                $getmasterminatbakat=minatbakat::get();
-                foreach($getmasterminatbakat as $master){
-                    $isi=null;
-                    // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
-                    $getapiprobk=apiprobk_sertifikat::where('kunci',$master->nama)->where('apiprobk_id',$data->id)->first();
-                    if($getapiprobk!=null){
-                        $isi=$getapiprobk->isi;
-                    }
+    //             //minatbakat
+    //             $getmasterminatbakat=minatbakat::get();
+    //             foreach($getmasterminatbakat as $master){
+    //                 $isi=null;
+    //                 // b. get apiproduk_sertifikat where kunci= nama masternilaipsikologi
+    //                 $getapiprobk=apiprobk_sertifikat::where('kunci',$master->nama)->where('apiprobk_id',$data->id)->first();
+    //                 if($getapiprobk!=null){
+    //                     $isi=$getapiprobk->isi;
+    //                 }
 
-                    // c. jika belum ada maka insert
-                    $periksa=minatbakatdetail::where('siswa_id',$datasiswa->id)
-                    ->where('minatbakat_id',$master->id)
-                    ->where('sekolah_id',$sekolah_id)
-                    ->count();
-                    // dd($datasiswa,$isi,$master->nama);
-                    if($periksa<1){
-                        DB::table('minatbakatdetail')->insert(
-                            array(
-                                'siswa_id'     =>  $datasiswa->id,
-                                'minatbakat_id'     =>  $master->id,
-                                'nilai'     =>  $isi,
-                                'sekolah_id'     =>  $sekolah_id,
-                                'created_at'=>date("Y-m-d H:i:s"),
-                                'updated_at'=>date("Y-m-d H:i:s")
-                            ));
-                    }
+    //                 // c. jika belum ada maka insert
+    //                 $periksa=minatbakatdetail::where('siswa_id',$datasiswa->id)
+    //                 ->where('minatbakat_id',$master->id)
+    //                 ->where('sekolah_id',$sekolah_id)
+    //                 ->count();
+    //                 // dd($datasiswa,$isi,$master->nama);
+    //                 if($periksa<1){
+    //                     DB::table('minatbakatdetail')->insert(
+    //                         array(
+    //                             'siswa_id'     =>  $datasiswa->id,
+    //                             'minatbakat_id'     =>  $master->id,
+    //                             'nilai'     =>  $isi,
+    //                             'sekolah_id'     =>  $sekolah_id,
+    //                             'created_at'=>date("Y-m-d H:i:s"),
+    //                             'updated_at'=>date("Y-m-d H:i:s")
+    //                         ));
+    //                 }
 
-                }
+    //             }
 
 
-        //end datas
-            }
-                return redirect()->back()->with('status','Data berhasil Di sinkron!')->with('tipe','success')->with('icon','fas fa-edit');
-            }
+    //     //end datas
+    //         }
+    //             return redirect()->back()->with('status','Data berhasil Di sinkron!')->with('tipe','success')->with('icon','fas fa-edit');
+    //         }
 
     public function apibackupdatafromfe(Request $request)
     {
@@ -798,6 +798,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                 // dd($periksa);
                 if($periksa<1){
                 foreach($request->data as  $key => $value){
+                    // dd('key',$key,$value,$apiprobk_id);
                     $key = $key;
                     $value = $value;
                         DB::table('apiprobk_sertifikat')->insert(
@@ -811,22 +812,9 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                             ));
                             $msg="Sertifikat Berhasil di update!";
 
-                        apiprobk::where('id',$apiprobk_id)
-                        ->update([
-                            'sertifikat'     =>   'sudah',
-                            'sertifikat_tgl'=>date("Y-m-d H:i:s"),
-                        'updated_at'=>date("Y-m-d H:i:s")
-                        ]);
-                        return response()->json([
-                            'success' => true,
-                            'message' => $msg,
-                            // 'data' => $request->data,
-                            'key' => $key,
-                            'value' => $value,
-                            // 'key' => $request->key,
-                        ], 200);
 
                 }
+                // dd('success');
             }else{
                     $msg='Sertifikat Sudah pernah Diupdate!';
                     return response()->json([
@@ -839,6 +827,22 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
                     ], 200);
 
                 }
+
+                apiprobk::where('id',$apiprobk_id)
+                ->update([
+                    'sertifikat'     =>   'sudah',
+                    'sertifikat_tgl'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => $msg,
+                    // 'data' => $request->data,
+                    // 'key' => $key,
+                    // 'value' => $value,
+                    // 'key' => $request->key,
+                ], 200);
 
 
     }
@@ -919,16 +923,26 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
     public function sinkronfe(Request $request)
     {
         $pages='sekolah';
-        $datas=apiprobk::where('sinkron',NULL)->orderBy('created_at','desc')->get();
+        $datas=apiprobk::where('sinkron',NULL)
+        ->where('sertifikat','sudah')
+        ->where('deteksi','sudah')
+        ->orderBy('created_at','desc')->get();
         $cekseedermastering=masternilaipsikologi::count();
-        dd($datas,'sinkronfe');
+        // dd($datas,'sinkronfe');
         return view('pages.admin.sekolah.sinkrondata',compact('datas','request','pages','cekseedermastering'));
     }
     public function sinkronfestore(Request $request)
     {
+        // dd('testsinkron');
         $msg='Gagal2';
         $req=$request->data;
         foreach($req as $r){
+            // return response()->json([
+            //     'success' => false,
+            //     'message' => $msg,
+            //     'r' => $r['id'],
+            //     // 'data' => $datas,
+            // ], 200);
             // $datas=$r['id'];
             // 1.sekolah
             $getapi=apiprobk_deteksi::where('kunci','sekolah')->where('apiprobk_id',$r['id'])->first();
@@ -978,6 +992,7 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
         $jeniskelamin="Perempuan";
     }
     $getusia=apiprobk_deteksi::where('kunci','umur')->where('apiprobk_id',$r['id'])->first();
+    // dd($namasiswa,$no_induk);
     $periksa=siswa::where('sekolah_id',$sekolah_id)
                 ->where('nama',$namasiswa->isi)
                 ->where('nomerinduk',$no_induk->isi)

@@ -533,7 +533,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
 
         Route::get('admin/datasekolah/sinkronfe', 'App\Http\Controllers\prosescontroller@sinkronfe')->name('detailsekolah.sinkronfe');
-        Route::post('admin/datasekolah/sinkronfestore', 'App\Http\Controllers\prosescontroller@sinkronfestore')->name('api.sinkronfestore');
+        Route::get('admin/datasekolah/sinkronfestore', 'App\Http\Controllers\prosescontroller@sinkronfestore')->name('api.sinkronfestore');
 
         Route::get('admin/datasekolah/resetalldata', 'App\Http\Controllers\prosescontroller@resetalldata')->name('resetalldata');
 });

@@ -40,59 +40,44 @@ Sinkron Data ke Database Siswa
     </script>
 
     <script>
-        jQuery(document).ready(function() {
-
-let jml=0;
-let jmlDeteksiTersimpan=0;
-            // //CONTOH DATA
-                let datas = [
-                    @foreach ($datas as $data)
-                    {
-                    id : {{$data->id}},
-                    username : '{{$data->username}}',
-                    sertifikat :'{{$data->sertifikat}}',
-                    sertifikat_tgl : '{{$data->sertifikat_tgl}}',
-                    deteksi : '{{$data->deteksi}}',
-                    deteksi_tgl : '{{$data->deteksi_tgl}}',
-                },
-                    @endforeach
-                ];
-
-                console.log(datas.length);
-                if(datas.length>0){
-
-                    console.log(typeof(datas));
+jQuery(document).ready(function() {
+let sukses=0;
+let gagal=0;
+let jmlProgress=0;
+let progess=0;
 
 
-Object.keys(datas).forEach(key => {
-    let data=[{
-        id : datas[key].id,
-        username : datas[key].username,
-    }];
-   data.id = datas[key].id;
-   data.username = datas[key].username;
+//
+
+//fungsi
+function storeData(id=0,username=0){
+    let data=[
+        {
+        id : id,
+        username : username,
+    }
+    ];
     $.ajax({
 
             url: '{{route('api.sinkronfestore')}}',
-            type: 'POST',
+            type: 'GET',
             enctype: 'multipart/form-data',
             data: {data : data},
             success: function (result) {
-  console.log(data);
-                jmlDeteksiTersimpan++;
-                document.getElementById('jmlDataDeteksi').innerText = jmlDeteksiTersimpan;
+//   console.log(data);
                 console.log(result);
+                if(result.success){
+             sukses++;
+            document.getElementById('sukses').innerText = sukses;
+                }else{
+             gagal++;
+            document.getElementById('gagalData').innerText = gagal;
+
+                }
                 updateProgress(1);
             }
         });
-});
-
-                }
-
-
-        });
-        let jmlProgress=0;
-        let progess=0;
+}
         function updateProgress($item=1){
                     jmlProgress++;
                     // console.log(jmlProgress);
@@ -101,6 +86,14 @@ Object.keys(datas).forEach(key => {
                     document.getElementById('progress1').style.width= progess+'%';
                 }
 
+
+// call
+@foreach ($datas as $data)
+storeData('{{$data->id}}','{{$data->username}}');
+@endforeach
+
+});
+
     </script>
     @endpush
 
@@ -108,52 +101,63 @@ Object.keys(datas).forEach(key => {
                 <div>
 
                     <a href="{{route('sekolah')}}" class="btn btn-warning">Kembali</a>
-                    <div class="mb-5 mt-3" id='Inputan0'>
-                        <h4>Total {{count($datas)}} data</h4>
-                    </div>
-                <h1>Sinkron data </h1>
-                <div class="row ml-5">
-                    <h2 id="jmlDataDeteksi" class="mr-3">0 </h2> <h2> Data</h2>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-                  </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                              <div class="card-icon bg-primary">
+                                <i class="fas fa-database"></i>
+                              </div>
+                              <div class="card-wrap">
+                                <div class="card-header">
+                                  <h4>Total Data</h4>
+                                </div>
+                                <div class="card-body">
+                                  {{count($datas)}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                              <div class="card card-statistic-1">
+                                <div class="card-icon bg-success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="card-wrap">
+                                  <div class="card-header">
+                                    <h4>Berhasil disimpan</h4>
+                                  </div>
+                                  <div class="card-body" id="sukses">
+                                    0
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                              <div class="card card-statistic-1">
+                                <div class="card-icon bg-danger">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="card-wrap">
+                                  <div class="card-header">
+                                    <h4>Total Data Gagal di muat</h4>
+                                  </div>
+                                  <div class="card-body" id="gagalData">
+                                   0
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    <div class="progress" style="height: 40px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info " id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                      </div>
 
 
 
 
                 </div>
-                <form method="post" action="{{route('detailsekolah.backuptempfe.store')}}">
-                    @csrf
-                <div class="mb-5" id='Inputan1'></div>
-                <div class="mb-5" id='Inputan2'></div>
-            </form>
 
-            <table id="example" class="table table-striped table-bordered " style="width:100%">
-                <thead>
-                    <tr>
-                        <th class="babeng-min-row">No</th>
-                        <th>Username</th>
-                        <th>Sinkron</th>
-                        <th>Tanggal Sinkron</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($datas as $data)
-                    <tr>
-                        <td class="text-center">{{$loop->index+1}}</td>
-                        <td>{{$data->username}}</td>
-                        <td>{{$data->sinkron}}</td>
-                        <td>{{$data->sinkron_tgl}}</td>
-                        <td></td>
-                    </tr>
-
-                    @empty
-
-                    @endforelse
-                </tbody>
-            </table>
 
         </div>
     </div>

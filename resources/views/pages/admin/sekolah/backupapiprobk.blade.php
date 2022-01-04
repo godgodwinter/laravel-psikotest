@@ -97,7 +97,7 @@ function getApiSertifikat(id=0,username=0){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: username })
         };
-        const response = await fetch('http://161.97.84.91:9001/api/probk/DataDeteksi_Get', requestOptions);
+        const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
         let data = await response.json();
         if (response.ok){
             // console.log('ok');
