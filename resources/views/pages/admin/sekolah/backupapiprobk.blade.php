@@ -155,7 +155,7 @@ Object.keys(datas).forEach(key => {
                     jmlProgress++;
                     // console.log(jmlProgress);
                     progess=jmlProgress/{{count($datas)*4}}*100;
-                    document.getElementById('progress1').innerText = progess+'%';
+                    document.getElementById('progress1').innerText = progess.toFixed(2)+'%';
                     document.getElementById('progress1').style.width= progess+'%';
                 }
 
