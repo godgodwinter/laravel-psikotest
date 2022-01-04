@@ -319,7 +319,8 @@ class adminsiswacontroller extends Controller
             // $username=$faker->unique()->username;
             // $username = substr(strtolower(str_replace(' ', '', $siswa->nama)),0,6).$faker->numberBetween(0,999);
             $username = Fungsi::randomuserssiswa($siswa->nama,$siswa_id);
-            $password=$faker->password(8, 8);
+            $password=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 6);
+            // $password=$faker->password(8, 8);
             // if($)
             // if($periksausername>0){
 
