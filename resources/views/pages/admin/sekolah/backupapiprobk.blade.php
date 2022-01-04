@@ -47,6 +47,9 @@ let jmlDeteksi=0;
 let jml=0;
 let jmlTersimpan=0;
 let jmlDeteksiTersimpan=0;
+let progess=0;
+let jmlProgress=0;
+
             // //CONTOH DATA
                 let datas = [
                     @foreach ($datas as $data)
@@ -68,7 +71,7 @@ let jmlDeteksiTersimpan=0;
 
 
 Object.keys(datas).forEach(key => {
-  console.log(datas[key].username);
+//   console.log(datas[key].username);
                     // datas.forEach(function(item){
                         // console.log(item);
                     // }
@@ -89,6 +92,7 @@ Object.keys(datas).forEach(key => {
                     data.username = datas[key].username;
                     data.apiprobk_id = datas[key].id;
                     jmlDeteksi++;
+                    updateProgress(1);
                     // $("#Inputan1").html(`
                     // <input type="hidden" value="" name="dataDeteksi" id="dataFormDeteksi">`);
 
@@ -104,7 +108,8 @@ Object.keys(datas).forEach(key => {
                     success: function (result) {
                         jmlDeteksiTersimpan++;
                         document.getElementById('dataDeteksiTersimpan').innerText = jmlDeteksiTersimpan;
-                        console.log(result);
+                        // console.log(result);
+                         updateProgress(1);
                     }
                 });
                 })();
@@ -129,6 +134,8 @@ Object.keys(datas).forEach(key => {
                     // <input type="hidden" value="" name="data" id="dataForm">
                     // <button class="btn btn-rounded btn-success">Simpan</button>`);
                     document.getElementById('jmldataSertifikat').innerText = jml;
+
+                    updateProgress(1);
             $.ajax({
                     url: '{{route('api.apibackupdatafromfe')}}',
                     type: 'POST',
@@ -137,13 +144,20 @@ Object.keys(datas).forEach(key => {
                     success: function (result) {
                         jmlTersimpan++;
                         document.getElementById('dataSertifikatTersimpan').innerText = jmlTersimpan;
-                        console.log(result);
+                        // console.log(result);
+                         updateProgress(1);
                     }
                 });
 
                 })();
 
-
+                function updateProgress($item=1){
+                    jmlProgress++;
+                    // console.log(jmlProgress);
+                    progess=jmlProgress/{{count($datas)*4}}*100;
+                    document.getElementById('progress1').innerText = progess+'%';
+                    document.getElementById('progress1').style.width= progess+'%';
+                }
 
 });
 
@@ -161,6 +175,9 @@ console.log(dataAkhir);
                     <div class="mb-5 mt-3" id='Inputan0'>
                         <h4>Total {{count($datas)}} data</h4>
                     </div>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                      </div>
                 <h1>Proses Get Data From API</h1>
                 <div class="row ml-5">
                     <h2 id="jmldataDeteksi" class="mr-3">0 </h2> <h2> Data</h2>
