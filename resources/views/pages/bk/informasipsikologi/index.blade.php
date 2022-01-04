@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Informasi Psikologis
+Buletin Psikologi
 @endsection
 
 @push('before-script')

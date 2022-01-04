@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Yayasan
+Yayasan/Dinas
 @endsection
 
 @push('before-script')
@@ -76,9 +76,9 @@ Yayasan
                     <thead>
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama Yayasan</th>
+                            <th >Nama Yayasan/Dinas</th>
                             <th class="text-center">Username</th>
-                            <th class="text-center">Nama Kepala Yayasan</th>
+                            <th class="text-center">Nama Kepala Yayasan/Dinas</th>
                             <th class="text-center">Telp</th>
                             <th class="text-center babeng-min-row">Jumlah Sekolah</th>
                             <th class="text-center">Status</th>
