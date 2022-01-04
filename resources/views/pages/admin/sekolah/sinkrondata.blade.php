@@ -69,8 +69,8 @@ Object.keys(datas).forEach(key => {
         id : datas[key].id,
         username : datas[key].username,
     }];
-//    data.id = datas[key].id;
-//    data.username = datas[key].username;
+   data.id = datas[key].id;
+   data.username = datas[key].username;
     $.ajax({
 
             url: '{{route('api.sinkronfestore')}}',
@@ -82,12 +82,25 @@ Object.keys(datas).forEach(key => {
                 jmlDeteksiTersimpan++;
                 document.getElementById('jmlDataDeteksi').innerText = jmlDeteksiTersimpan;
                 console.log(result);
+                updateProgress(1);
             }
         });
 });
 
                 }
+
+
         });
+        let jmlProgress=0;
+        let progess=0;
+        function updateProgress($item=1){
+                    jmlProgress++;
+                    // console.log(jmlProgress);
+                    progess=jmlProgress/{{count($datas)}}*100;
+                    document.getElementById('progress1').innerText = progess+'%';
+                    document.getElementById('progress1').style.width= progess+'%';
+                }
+
     </script>
     @endpush
 
@@ -102,6 +115,9 @@ Object.keys(datas).forEach(key => {
                 <div class="row ml-5">
                     <h2 id="jmlDataDeteksi" class="mr-3">0 </h2> <h2> Data</h2>
                 </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progress1" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                  </div>
 
 
 
