@@ -529,8 +529,9 @@ $datasiswa=siswa::where('nomerinduk',$no_induk->isi)
         $pages='sekolah';
         $datas=apiprobk::where('deteksi','!=','sudah')
         ->where('deteksi','belum')
+        ->orWhere('sertifikat','belum')
         ->orderBy('created_at','desc')
-        ->skip(0)->take(10)
+        // ->skip(0)->take(10)
         ->get();
             // dd('backuptempfe',$datas);
         return view('pages.admin.sekolah.backupapiprobk',compact('datas','request','pages'));

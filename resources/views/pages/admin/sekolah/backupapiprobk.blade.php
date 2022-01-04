@@ -153,11 +153,11 @@ function updateDataSertifikat(data=0){
                     data: {data : data},
                     success: function (result) {
                         if(result.success){
-                                console.log('berhasil');
+                                // console.log('berhasil');
                                 sukses++;
                                 document.getElementById('sukses').innerText = sukses;
                         }else{
-                                console.log('gagal');
+                                // console.log('gagal');
                                 gagal++;
                                 document.getElementById('gagal').innerText = gagal;
                         }
