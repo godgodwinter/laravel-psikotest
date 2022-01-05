@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\apiprobk_sertifikat;
 use App\Models\kelas;
 use App\Models\minatbakat;
 use App\Models\minatbakatdetail;
@@ -62,15 +63,12 @@ class adminpenjurusancontroller extends Controller
             foreach($master as $m){
 
 
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                ->where('sekolah_id',$id->id)
-                ->where('minatbakat_id',$m->id)
-                ->get();
 
+                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
+                ->where('apiprobk_id',$d->apiprobk_id)->get();
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
+                    $nilai=$periksadata->first()->isi;
                 }else{
                     $nilai=null;
                 }
@@ -129,15 +127,12 @@ class adminpenjurusancontroller extends Controller
             foreach($master as $m){
 
 
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('minatbakat_id',$m->id)
-                ->get();
 
+                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
+                ->where('apiprobk_id',$d->apiprobk_id)->get();
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
+                    $nilai=$periksadata->first()->isi;
                 }else{
                     $nilai=null;
                 }
