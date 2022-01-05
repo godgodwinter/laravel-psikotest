@@ -1125,4 +1125,19 @@ public function resetalldata(Request $request)
         masternilaipsikologi::truncate();
         return redirect()->back()->with('status','Reset berhasil dilakukan!')->with('tipe','success')->with('icon','fas fa-edit');
     }
+    public function resetsinkrondata(Request $request)
+        {
+            apiprobk::where('sinkron','!=',null)
+            ->update([
+                'sinkron' => null,
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+            sekolah::truncate();
+            kelas::truncate();
+            siswa::truncate();
+            inputnilaipsikologi::truncate();
+            minatbakatdetail::truncate();
+            return redirect()->back()->with('status','Reset berhasil dilakukan!')->with('tipe','success')->with('icon','fas fa-edit');
+        }
 }
