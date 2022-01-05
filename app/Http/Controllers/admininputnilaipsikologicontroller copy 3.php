@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
-use App\Models\apiprobk_sertifikat;
-use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
@@ -69,17 +67,15 @@ class admininputnilaipsikologicontroller extends Controller
             foreach($master as $m){
 
 
-                // $periksadata=DB::table('inputnilaipsikologi')
-                // ->where('siswa_id',$d->id)
-                // // ->where('id','2')
-                // ->where('masternilaipsikologi_id',$m->id)
-                // ->get();
+                $periksadata=DB::table('inputnilaipsikologi')
+                ->where('siswa_id',$d->id)
+                // ->where('id','2')
+                ->where('masternilaipsikologi_id',$m->id)
+                ->get();
 
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
+                    $nilai=$periksadata->first()->nilai;
                 }else{
                     $nilai=null;
                 }
@@ -150,15 +146,18 @@ class admininputnilaipsikologicontroller extends Controller
             foreach($master as $m){
 
 
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
+                $periksadata=DB::table('inputnilaipsikologi')
+                ->where('siswa_id',$d->id)
+                // ->where('id','2')
+                ->where('masternilaipsikologi_id',$m->id)
+                ->get();
+
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
+                    $nilai=$periksadata->first()->nilai;
                 }else{
                     $nilai=null;
                 }
-
 
                 $kelas=kelas::where('sekolah_id',$id->id)->get();
 

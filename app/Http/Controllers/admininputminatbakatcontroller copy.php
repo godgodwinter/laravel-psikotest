@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\exportminatbakat;
-use App\Models\apiprobk_sertifikat;
 use App\Models\kelas;
 use App\Models\minatbakat;
 use App\Models\minatbakatdetail;
@@ -62,13 +61,15 @@ class admininputminatbakatcontroller extends Controller
             foreach($master as $m){
 
 
-
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
+                $periksadata=DB::table('minatbakatdetail')
+                ->where('siswa_id',$d->id)
+                // ->where('id','2')
+                ->where('minatbakat_id',$m->id)
+                ->get();
 
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
+                    $nilai=$periksadata->first()->nilai;
                 }else{
                     $nilai=null;
                 }
@@ -123,18 +124,15 @@ class admininputminatbakatcontroller extends Controller
             foreach($master as $m){
 
 
-                // $periksadata=DB::table('minatbakatdetail')
-                // ->where('siswa_id',$d->id)
-                // // ->where('id','2')
-                // ->where('minatbakat_id',$m->id)
-                // ->get();
-
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
+                $periksadata=DB::table('minatbakatdetail')
+                ->where('siswa_id',$d->id)
+                // ->where('id','2')
+                ->where('minatbakat_id',$m->id)
+                ->get();
 
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
+                    $nilai=$periksadata->first()->nilai;
                 }else{
                     $nilai=null;
                 }
