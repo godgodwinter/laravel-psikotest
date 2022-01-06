@@ -190,6 +190,7 @@ class adminsiswacontroller extends Controller
             //'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 
+
         siswa::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,

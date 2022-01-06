@@ -308,10 +308,28 @@ class adminhasilpsikologicontroller extends Controller
     public function sertifikat_lihat(sekolah $id,siswa $siswa,Request $request)
     {
         $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
-
         $pages='sekolah';
-            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+        $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
         return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+    }
+    public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
+    {
+        $datas=null;
+        $status=false;
+        $msg="Data gagal di muat!";
+
+        $datas=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        if($datas!=null){
+            $status=true;
+            $msg="Ambil data berhasil";
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg,
+            'data' => $datas,
+        ], 200);
+
     }
     public function sertifikat_cetak(Request $request)
     {
