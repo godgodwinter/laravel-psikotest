@@ -121,12 +121,28 @@ Detail Sekolah
                     @endforeach
                 <script>
                     $(function () {
+                        let testData='';
+                        let item='';
+                            // if (document.getElementById('aaa')!=false){
+                            //     console.log('true');
+                            // }else{
+                            // console.log('false');
+                            // }
                         @foreach ($getData as $d)
+                             testData = !!document.getElementById("{{$data->id}}-{{$d->kunci}}");
+                            if (testData===true){
+
                         (async () => {
-                            await console.log('{{$data->id}}-{{$d->kunci}}');
-                            await console.log('{{$d->isi}}');
-            document.getElementById('{{$data->id}}-{{$d->kunci}}').innerText = '{{$d->isi}}';
+                            // await console.log('{{$data->id}}-{{$d->kunci}}');
+                            // await console.log('{{$d->isi}}');
+                             item = '{{$d->isi}}';
+                          document.getElementById('{{$data->id}}-{{$d->kunci}}').innerText = await item;
                         })();
+                        // console.log('sukses');
+                            }
+                            // else{
+                            //     console.log('404');
+                            // }
                         @endforeach
                     });
                 </script>
