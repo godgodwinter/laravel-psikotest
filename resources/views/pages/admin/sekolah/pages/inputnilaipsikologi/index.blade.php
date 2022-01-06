@@ -106,20 +106,30 @@ Detail Sekolah
                     <td class="babeng-td">
                         {{$data->nama}}
                     </td>
-                    {{-- @foreach ($master as $m) --}}
                     @php
                         $hasil='';
-                        $getData=\App\Models\apiprobk_sertifikat::select('isi')
-                        // ->where('kunci',$m->nama)
+                        $getData=\App\Models\apiprobk_sertifikat::select('*')
+
                         ->where('apiprobk_id',$data->apiprobk_id)
                         ->get();
-                        // $hasil=$getData->isi;
                         // dd($getData);
                     @endphp
-                    <td>
-                        {{$hasil}}
+                    @foreach ($master as $m)
+                    <td id="{{$data->id}}-{{$m->nama}}">
+                        {{-- {{$m->nama}} --}}
                     </td>
-                    {{-- @endforeach --}}
+                    @endforeach
+                <script>
+                    $(function () {
+                        @foreach ($getData as $d)
+                        (async () => {
+                            await console.log('{{$data->id}}-{{$d->kunci}}');
+                            await console.log('{{$d->isi}}');
+            document.getElementById('{{$data->id}}-{{$d->kunci}}').innerText = '{{$d->isi}}';
+                        })();
+                        @endforeach
+                    });
+                </script>
                     {{-- {{dd($hasil)}} --}}
                 </tr>
                 @empty
