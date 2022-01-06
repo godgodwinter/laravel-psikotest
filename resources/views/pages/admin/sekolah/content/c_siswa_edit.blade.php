@@ -859,6 +859,44 @@
 
             <!-- ---------- -->
             <div class="tab-pane fade" id="lainlain" role="tabpanel" aria-labelledby="lainlain-tab">
+              <script type="text/javascript">
+                $(document).ready(function() {
+
+                    // In your Javascript (external .js resource or <script> tag)
+                        $(document).ready(function() {
+                            $('.js-example-basic-single').select2({
+                                // theme: "classic",
+                                // allowClear: true,
+                                width: "resolve"
+                            });
+                        });
+                });
+               </script>
+
+
+                <div class="form-group row align-items-center">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Pilih Sekolah</label>
+                    <div class="col-sm-6 col-md-9">
+
+                        <select class="js-example-basic-single form-control-sm @error('sekolah_id')
+                            is-invalid
+                        @enderror" name="sekolah_id"  style="width: 100%" required>
+                        @if($data->sekolah_id)
+                        <option  selected value="{{$data->sekolah_id}}">{{$data->sekolah->nama}}</option>
+                        @else
+                             <option disabled selected value=""> Pilih Sekolah</option>
+                        @endif
+                            @foreach ($datasekolah as $t)
+                                <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                            @endforeach
+                          </select>
+
+                      @error('sekolah_id')<div class="invalid-feedback"> {{$message}}</div>
+                      @enderror
+
+                    </div>
+                  </div>
+
                 <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Hobi</label>
                     <div class="col-sm-6 col-md-9">

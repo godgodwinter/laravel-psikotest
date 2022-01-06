@@ -156,15 +156,16 @@ class adminsiswacontroller extends Controller
     {
         $pages='siswa';
 
-        $data = siswa::with('kelas')->where('id',$data->id)->first();
+        $data = siswa::with('kelas')->with('sekolah')->where('id',$data->id)->first();
         // dd($data->kelas->nama);
 
         $kelas=DB::table('kelas')
         ->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->get();
+        $datasekolah=sekolah::get();
 
-        return view('pages.admin.sekolah.pages.siswa_edit',compact('pages','id','data','kelas'));
+        return view('pages.admin.sekolah.pages.siswa_edit',compact('pages','id','data','kelas','datasekolah'));
     }
     public function update(sekolah $id,siswa $data,Request $request)
     {
@@ -193,7 +194,7 @@ class adminsiswacontroller extends Controller
         ->update([
             'nama'     =>   $request->nama,
             'nomerinduk'     =>   $request->nomerinduk,
-            'sekolah_id'     =>   $id->id,
+            'sekolah_id'     =>   $request->sekolah_id,
            'updated_at'=>date("Y-m-d H:i:s"),
            'jeniskelamin'   =>   $request->jeniskelamin,
                    'tempatlahir'    =>   $request->tempatlahir,

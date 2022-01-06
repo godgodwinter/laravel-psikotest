@@ -7,6 +7,7 @@ use App\Helpers\Fungsi;
 use App\Imports\importhasilpsikologi;
 use App\Models\apiprobk_deteksi;
 use App\Models\apiprobk_deteksi_list;
+use App\Models\apiprobk_sertifikat;
 use App\Models\hasilpsikologi;
 use App\Models\kelas;
 use App\Models\masterdeteksi;
@@ -304,9 +305,13 @@ class adminhasilpsikologicontroller extends Controller
     {
         dd('cetak deteksi');
     }
-    public function sertifikat_lihat(Request $request)
+    public function sertifikat_lihat(sekolah $id,siswa $siswa,Request $request)
     {
-        dd('lihat Sertifikat');
+        $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+
+        $pages='sekolah';
+            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
     }
     public function sertifikat_cetak(Request $request)
     {
