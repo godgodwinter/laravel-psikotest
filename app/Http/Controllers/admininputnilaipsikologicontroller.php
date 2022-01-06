@@ -42,8 +42,8 @@ class admininputnilaipsikologicontroller extends Controller
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         // ->paginate(3);
-        ->paginate(Fungsi::paginationjml());
-        // ->get();
+        // ->paginate(Fungsi::paginationjml());
+        ->get();
         // dd($datas);
 
         // $dataakhir = collect();
