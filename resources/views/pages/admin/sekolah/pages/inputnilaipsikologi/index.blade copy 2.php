@@ -53,8 +53,6 @@ Detail Sekolah
                 @push('before-script')
                 <script type="text/javascript">
                     $(document).ready(function() {
-                        let testData='';
-                        let item='';
 
                         // In your Javascript (external .js resource or <script> tag)
                             $(document).ready(function() {
@@ -80,53 +78,8 @@ Detail Sekolah
 <div class="card" id="settings-card">
     <div class="card-header">
         <h4>Master Nilai Psikologi kelas :  {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }} </h4>
-        @csrf
     </div>
     <div class="card-body babengcontainer">
-
-        @push('before-script')
-<script>
-    function getData(link='#',id=null){
-        // console.log(link);
-
-        (async()=>{
-        const requestOptions = {
-        method: 'POST',
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRF-Token": $('input[name="_token"]').val()
-        },
-        };
-        const response = await fetch(link, requestOptions);
-        let data = await response.json();
-        if (response.ok){
-        // console.log(data);
-        // document.getElementById('sukses').innerText = sukses;
-        setData(data,id);
-        }else{
-        console.log('error!');
-        }
-        })();
-    }
-    function setData(datas=null,id=null){
-        // console.log(datas);
-        datas.data.forEach(element => {
-
-            testData = !!document.getElementById(id+'-'+element.kunci);
-                            if (testData===true){
-                                // console.log(id+'-'+element.kunci);
-                        (async () => {
-                             item = element.isi;
-                          document.getElementById(id+'-'+element.kunci).innerText = await item;
-                        })();
-                            }
-            // console.log(element.isi);
-        });
-    }
-</script>
-@endpush
 
 
         <table id="example" class="table table-striped table-bordered mt-0 table-sm" >
@@ -153,10 +106,36 @@ Detail Sekolah
                     <td class="babeng-td">
                         {{$data->nama}}
                     </td>
-                    @foreach ($master as $m)<td id="{{$data->id}}-{{$m->nama}}"></td>@endforeach
-@push('before-script')
-<script> getData('{{route('api.apiprobk_sertifikat',$data->apiprobk_id)}}',{{$data->id}}); </script>
-@endpush
+                    @php
+                        $hasil='';
+                        $getData=\App\Models\apiprobk_sertifikat::select('*')
+
+                        ->where('apiprobk_id',$data->apiprobk_id)
+                        ->get();
+                        // dd($getData);
+                    @endphp
+                    @foreach ($master as $m)
+                    <td id="{{$data->id}}-{{$m->nama}}">
+                        {{-- {{$m->nama}} --}}
+                    </td>
+                    @endforeach
+                <script>
+                    $(function () {
+                        let testData='';
+                        let item='';
+                        @foreach ($getData as $d)
+                             testData = !!document.getElementById("{{$data->id}}-{{$d->kunci}}");
+                            if (testData===true){
+
+                        (async () => {
+                             item = '{{$d->isi}}';
+                          document.getElementById('{{$data->id}}-{{$d->kunci}}').innerText = await item;
+                        })();
+                            }
+                        @endforeach
+                    });
+                </script>
+                    {{-- {{dd($hasil)}} --}}
                 </tr>
                 @empty
                 <tr>
