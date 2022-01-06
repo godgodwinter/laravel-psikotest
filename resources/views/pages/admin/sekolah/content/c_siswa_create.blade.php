@@ -136,7 +136,7 @@
                                 <option>WNI</option>
                                 <option>WNA</option>
                             </select>
-                            @error('warnanegara')<div class="invalid-feedback"> {{$message}}</div>
+                            @error('warganegara')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
 
                         </div>

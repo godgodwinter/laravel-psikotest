@@ -133,10 +133,15 @@ Catatan Kasus Siswa
                             <label for="site-title" class="form-control-label col-sm-3 text-md-right">Golongan Kasus </label>
                             <div class="col-sm-6 col-md-9">
 
-                              <input type="text" class="form-control  @error('golkasus') is-invalid @enderror" name="golkasus" required  value="{{old('golkasus')}}">
-
-                              @error('golkasus')<div class="invalid-feedback"> {{$message}}</div>
-                              @enderror
+                                <select name="golkasus" class="form-control @error('golkasus')
+                                is_invalid
+                            @enderror">
+                                      <option>Ringan</option>
+                                      <option>Sedang</option>
+                                      <option>Berat</option>
+                                  </select>
+                                  @error('golkasus')<div class="invalid-feedback"> {{$message}}</div>
+                                  @enderror
 
                             </div>
                           </div>
