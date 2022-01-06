@@ -1079,22 +1079,6 @@ class adminseedercontroller extends Controller
                 'nama' => 'TRAUMA',
                 'singkatan' => 'TRAUMA',
             ],
-            [
-                'nama' => 'TOTAL',
-                'singkatan' => 'RATA - RATA NILAI NEGATIF',
-            ],
-            [
-                'nama' => 'TOTAL EQ',
-                'singkatan' => 'EQ (Emotional Quotient)',
-            ],
-            [
-                'nama' => 'TOTAL SCQ',
-                'singkatan' => 'SCQ (Social Quotient)',
-            ],
-            [
-                'nama' => 'TOTAL',
-                'singkatan' => 'Saat ini Anda memiliki Gangguan Karakter',
-            ],
         ]);
 
 
