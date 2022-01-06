@@ -238,7 +238,6 @@ class admincatatankasuscontroller extends Controller
         }
 
         $request->validate(
-            [],
             [
                 'nama.nama' => 'Nama harus diisi',
             ]

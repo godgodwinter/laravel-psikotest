@@ -137,6 +137,9 @@
                         <select name="warganegara" class="form-control @error('warganegara')
                           is_invalid
                       @enderror">
+                            @if($data->warganegara!=null)
+                            <option>{{$data->warganegara}}</option>
+                            @endif
                             <option>WNI</option>
                             <option>WNA</option>
                         </select>

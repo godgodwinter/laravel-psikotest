@@ -168,7 +168,6 @@ class adminsiswacontroller extends Controller
     }
     public function update(sekolah $id,siswa $data,Request $request)
     {
-
         if($request->nomerinduk!==$data->nomerinduk){
 
             $request->validate([

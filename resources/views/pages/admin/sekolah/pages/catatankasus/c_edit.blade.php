@@ -114,6 +114,9 @@
                         <select name="golkasus" class="form-control @error('golkasus')
                         is_invalid
                     @enderror">
+                    @if($datas->golkasus)
+                    <option>{{$datas->golkasus}}</option>
+                    @endif
                               <option>Ringan</option>
                               <option>Sedang</option>
                               <option>Berat</option>
