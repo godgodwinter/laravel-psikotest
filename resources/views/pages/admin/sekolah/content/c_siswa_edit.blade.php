@@ -62,7 +62,7 @@
 
                             <select class="form-control @error('kelas_id')
                                 is-invalid
-                            @enderror" name="kelas_id"  style="width: 75%" required>
+                            @enderror" name="kelas_id"  style="width: 100%" required>
 
 
                                 <option value="{{old('kelas_id') ? old('kelas_id') : $data->kelas_id}}"> {{$data->kelas!=null ?$data->kelas->nama : $data->kelas_id}}</option>
