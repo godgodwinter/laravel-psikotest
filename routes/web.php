@@ -537,4 +537,13 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         Route::get('admin/datasekolah/resetalldata', 'App\Http\Controllers\prosescontroller@resetalldata')->name('resetalldata');
         Route::get('admin/datasekolah/resetsinkrondata', 'App\Http\Controllers\prosescontroller@resetsinkrondata')->name('resetsinkrondata');
+
+
+        Route::post('/admin/api/apiprobk_sertifikat/{apiprobk_id}', [admininputnilaipsikologicontroller::class, 'apiprobk_sertifikat'])->name('api.apiprobk_sertifikat');
+        Route::post('/admin/api/apiprobk_sertifikat/isi/{apiprobk_id}/{kunci}', [admininputnilaipsikologicontroller::class, 'apiprobk_sertifikat_isi'])->name('api.apiprobk_sertifikat_isi');
+
+        Route::get('/token', function () {
+            return csrf_token();
+        });
+
 });
