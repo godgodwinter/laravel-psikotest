@@ -96,7 +96,7 @@ Catatan Kasus Siswa
 
                                             <select class="form-control @error('kelas_id')
                                                 is-invalid
-                                            @enderror" name="kelas_id"  style="width: 75%" required>
+                                            @enderror" name="kelas_id"  style="width: 100%" required>
                                                 <option disabled selected value=""> Pilih kelas</option>
                                                 @foreach ($kelas as $t)
                                                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\apiprobk;
+use App\Models\apiprobk_sertifikat;
+use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
 use App\Models\sekolah;
 use Illuminate\Http\Request;
@@ -33,73 +36,21 @@ class admininputnilaipsikologicontroller extends Controller
             $kelas_id=0;
         }
         $datas=DB::table('siswa')
+        // ->select('id','apiprobk_id')
         ->where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
+        // ->paginate(3);
+        // ->paginate(Fungsi::paginationjml());
         ->get();
         // dd($datas);
-
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
-
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-
-
-
-            // $collection = new Collection();
-            //     $collection->push((object)['prod_id' => '99',
-            //                                'desc'=>'xyz',
-            //                                'price'=>'99',
-            //                                'discount'=>'7.35',
-
-            //     ]);
-            // dd($collection);
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('inputnilaipsikologi')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('masternilaipsikologi_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'singkatan'=>$m->singkatan,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
-
         $kelas=kelas::where('sekolah_id',$id->id)->get();
-        // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputnilaipsikologi.index',compact('pages','request','datas','id','collectionpenilaian','kelas','kelaspertama'));
+        // dd($datas);
+        return view('pages.admin.sekolah.pages.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
     }
     public function cari(Request $request,sekolah $id)
     {
@@ -112,72 +63,63 @@ class admininputnilaipsikologicontroller extends Controller
             $kelas_id=0;
         }
         $datas=DB::table('siswa')
+        // ->select('id','apiprobk_id')
         ->where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
+        // ->paginate(3);
+        // ->paginate(Fungsi::paginationjml());
         ->get();
         // dd($datas);
-
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-
-
-
-            // $collection = new Collection();
-            //     $collection->push((object)['prod_id' => '99',
-            //                                'desc'=>'xyz',
-            //                                'price'=>'99',
-            //                                'discount'=>'7.35',
-
-            //     ]);
-            // dd($collection);
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('inputnilaipsikologi')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('masternilaipsikologi_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-                $kelas=kelas::where('sekolah_id',$id->id)->get();
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'singkatan'=>$m->singkatan,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputnilaipsikologi.index',compact('pages','request','datas','id','collectionpenilaian','kelas','kelaspertama'));
+        return view('pages.admin.sekolah.pages.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
     }
+    public function apiprobk_sertifikat(Request $request,$apiprobk_id){
+        $datas=null;
+        $status=false;
+        $msg="Data gagal di muat!";
+
+        $datas=apiprobk_sertifikat::select('*')
+        ->where('apiprobk_id',$apiprobk_id)
+        ->get();
+        if($datas!=null){
+            $status=true;
+            $msg="Ambil data berhasil";
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg,
+            'data' => $datas,
+        ], 200);
+
+    }
+public function apiprobk_sertifikat_isi(Request $request,$apiprobk_id,$kunci){
+    $datas=null;
+    $status=false;
+    $msg="Data gagal di muat!";
+
+    $getdatas=apiprobk_sertifikat::select('*')
+    ->where('apiprobk_id',$apiprobk_id)
+    ->where('kunci',$kunci)
+    ->first();
+    if($getdatas!=null){
+        $status=true;
+        $msg="Ambil data berhasil";
+        $datas=$getdatas->isi;
+    }
+
+    return response()->json([
+        'success' => $status,
+        'message' => $msg,
+        'data' => $datas,
+    ], 200);
+
+}
 }

@@ -7,6 +7,7 @@ use App\Models\catatanpengembangandirisiswa;
 use App\Models\catatanprestasisiswa;
 use App\Models\inputnilaipsikologi;
 use App\Models\kelas;
+use App\Models\masterdeteksi;
 use App\Models\masternilaibidangstudi;
 use App\Models\masternilaipsikologi;
 use App\Models\minatbakat;
@@ -181,384 +182,384 @@ class adminseedercontroller extends Controller
         masternilaipsikologi::truncate();
         $dataku = collect([
             [
-                'nama' => 'KBH%',
-                'singkatan' => 'KBH%',
+                'nama' => 'kb_persen',
+                'singkatan' => 'KB%',
             ],
             [
-                'nama' => 'KBH',
-                'singkatan' => 'KBH',
+                'nama' => 'kbh',
+                'singkatan' => 'KB Ket',
             ],
             [
-                'nama' => 'LMH%',
-                'singkatan' => 'LMH%',
+                'nama' => 'lm_persen',
+                'singkatan' => 'LM%',
             ],
             [
-                'nama' => 'LMH',
-                'singkatan' => 'LMH',
+                'nama' => 'lmh',
+                'singkatan' => 'LM Ket',
             ],
             [
-                'nama' => 'KSH%',
-                'singkatan' => 'KSH%',
+                'nama' => 'ks_persen',
+                'singkatan' => 'KS%',
             ],
             [
-                'nama' => 'KSH',
-                'singkatan' => 'KSH',
+                'nama' => 'ksh',
+                'singkatan' => 'KS Ket',
             ],
             [
-                'nama' => 'KMH%',
-                'singkatan' => 'KMH%',
+                'nama' => 'km_persen',
+                'singkatan' => 'KM%',
             ],
             [
-                'nama' => 'KMH',
-                'singkatan' => 'KMH',
+                'nama' => 'kmh',
+                'singkatan' => 'KM Ket',
             ],
             [
-                'nama' => 'KKH%',
-                'singkatan' => 'KKH%',
+                'nama' => 'kk_persen',
+                'singkatan' => 'KK%',
             ],
             [
-                'nama' => 'KKH',
-                'singkatan' => 'KKH',
+                'nama' => 'kkh',
+                'singkatan' => 'KK Ket',
             ],
             [
-                'nama' => 'KIH%',
-                'singkatan' => 'KIH%',
+                'nama' => 'ki_persen',
+                'singkatan' => 'KI%',
             ],
             [
-                'nama' => 'KIH',
-                'singkatan' => 'KIH',
+                'nama' => 'kih',
+                'singkatan' => 'KI Ket',
             ],
             [
-                'nama' => 'KAH%',
-                'singkatan' => 'KAH%',
+                'nama' => 'ka_persen',
+                'singkatan' => 'KA%',
             ],
             [
-                'nama' => 'KAH',
-                'singkatan' => 'KAH',
+                'nama' => 'kah',
+                'singkatan' => 'KA Ket',
             ],
             [
-                'nama' => 'KNH%',
-                'singkatan' => 'KNH%',
+                'nama' => 'kn_persen',
+                'singkatan' => 'KN%',
             ],
             [
-                'nama' => 'KNH',
-                'singkatan' => 'KNH',
+                'nama' => 'knh',
+                'singkatan' => 'KN Ket',
             ],
             [
-                'nama' => 'IQ',
+                'nama' => 'iq',
                 'singkatan' => 'IQ',
             ],
             [
-                'nama' => 'IQ.%',
-                'singkatan' => 'IQ.%',
+                'nama' => 'iq_persen',
+                'singkatan' => 'IQ%',
             ],
             [
-                'nama' => 'IQH',
-                'singkatan' => 'IQH',
+                'nama' => 'iqh',
+                'singkatan' => 'IQ Ket',
             ],
             [
-                'nama' => 'EQ%',
+                'nama' => 'eq_persen',
                 'singkatan' => 'EQ%',
             ],
             [
-                'nama' => 'EQ.KET',
-                'singkatan' => 'EQ.KET',
+                'nama' => 'eq_persen_keterangan',
+                'singkatan' => 'EQ% Ket',
             ],
             [
-                'nama' => 'SQ%',
+                'nama' => 'sq_persen',
                 'singkatan' => 'SQ%',
             ],
             [
-                'nama' => 'SQ.KET',
-                'singkatan' => 'SQ.KET',
+                'nama' => 'sq_persen_keterangan',
+                'singkatan' => 'SQ% Ket',
             ],
             [
-                'nama' => 'SC.Q%',
-                'singkatan' => 'SC.Q%',
+                'nama' => 'scq_persen',
+                'singkatan' => 'SCQ%',
             ],
             [
-                'nama' => 'SC.Q.KET',
-                'singkatan' => 'SC.Q.KET',
+                'nama' => 'scq_persen_keterangan',
+                'singkatan' => 'SCQ% Ket',
             ],
             [
-                'nama' => 'APLUS%',
-                'singkatan' => 'APLUS%',
+                'nama' => 'hspq_a_kn_persen',
+                'singkatan' => 'A+%',
             ],
             [
-                'nama' => 'APLUSKET',
-                'singkatan' => 'APLUSKET',
+                'nama' => 'hspq_a_kn_keterangan',
+                'singkatan' => 'A+% Ket',
             ],
             [
-                'nama' => 'AMINUS%',
-                'singkatan' => 'AMINUS%',
+                'nama' => 'hspq_a_kr_persen',
+                'singkatan' => 'A-%',
             ],
             [
-                'nama' => 'AMINUSKET',
-                'singkatan' => 'AMINUSKET',
+                'nama' => 'hspq_a_kr_keterangan',
+                'singkatan' => 'A-% Ket',
             ],
             [
-                'nama' => 'CPLUS%',
-                'singkatan' => 'CPLUS%',
+                'nama' => 'hspq_c_kn_persen',
+                'singkatan' => 'C+%',
             ],
             [
-                'nama' => 'CPLUSKET',
-                'singkatan' => 'CPLUSKET',
+                'nama' => 'hspq_c_kn_keterangan',
+                'singkatan' => 'C+% Ket',
             ],
             [
-                'nama' => 'CMINUS%',
-                'singkatan' => 'CMINUS%',
+                'nama' => 'hspq_c_kr_persen',
+                'singkatan' => 'C-%',
             ],
             [
-                'nama' => 'CMINUSKET',
-                'singkatan' => 'CMINUSKET',
+                'nama' => 'hspq_c_kr_keterangan',
+                'singkatan' => 'C-% Ket',
             ],
             [
-                'nama' => 'DPLUS%',
-                'singkatan' => 'DPLUS%',
+                'nama' => 'hspq_d_kn_persen',
+                'singkatan' => 'D+%',
             ],
             [
-                'nama' => 'DPLUSKET',
-                'singkatan' => 'DPLUSKET',
+                'nama' => 'hspq_d_kn_keterangan',
+                'singkatan' => 'D+& Ket',
             ],
             [
-                'nama' => 'DMINUS%',
-                'singkatan' => 'DMINUS%',
+                'nama' => 'hspq_d_kr_persen',
+                'singkatan' => 'D-%',
             ],
             [
-                'nama' => 'DMINUSKET',
-                'singkatan' => 'DMINUSKET',
+                'nama' => 'hspq_d_kr_keterangan',
+                'singkatan' => 'D-% Ket',
             ],
             [
-                'nama' => 'EPLUS%',
-                'singkatan' => 'EPLUS%',
+                'nama' => 'hspq_e_kn_persen',
+                'singkatan' => 'E+%',
             ],
             [
-                'nama' => 'EPLUSKET',
-                'singkatan' => 'EPLUSKET',
+                'nama' => 'hspq_e_kn_keterangan',
+                'singkatan' => 'E+% Ket',
             ],
             [
-                'nama' => 'EMINUS%',
-                'singkatan' => 'EMINUS%',
+                'nama' => 'hspq_e_kr_persen',
+                'singkatan' => 'E-%',
             ],
             [
-                'nama' => 'EMINUSKET',
-                'singkatan' => 'EMINUSKET',
+                'nama' => 'hspq_e_kr_keterangan',
+                'singkatan' => 'E-% Ket',
             ],
             [
-                'nama' => 'FPLUS%',
-                'singkatan' => 'FPLUS%',
+                'nama' => 'hspq_f_kn_persen',
+                'singkatan' => 'F+%',
             ],
             [
-                'nama' => 'FPLUSKET',
-                'singkatan' => 'FPLUSKET',
+                'nama' => 'hspq_f_kn_keterangan',
+                'singkatan' => 'F+% Ket',
             ],
             [
-                'nama' => 'FMINUS%',
-                'singkatan' => 'FMINUS%',
+                'nama' => 'hspq_f_kr_persen',
+                'singkatan' => 'F-%',
             ],
             [
-                'nama' => 'FMINUSKET',
-                'singkatan' => 'FMINUSKET',
+                'nama' => 'hspq_f_kr_keterangan',
+                'singkatan' => 'F-% Ket',
             ],
             [
-                'nama' => 'GPLUS%',
-                'singkatan' => 'GPLUS%',
+                'nama' => 'hspq_g_kn_persen',
+                'singkatan' => 'G+%',
             ],
             [
-                'nama' => 'GPLUSKET',
-                'singkatan' => 'GPLUSKET',
+                'nama' => 'hspq_g_kn_keterangan',
+                'singkatan' => 'G+% Ket',
             ],
             [
-                'nama' => 'GMINUS%',
-                'singkatan' => 'GMINUS%',
+                'nama' => 'hspq_g_kr_persen',
+                'singkatan' => 'G-%',
             ],
             [
-                'nama' => 'GMINUSKET',
-                'singkatan' => 'GMINUSKET',
+                'nama' => 'hspq_g_kr_keterangan',
+                'singkatan' => 'G-% Ket',
             ],
             [
-                'nama' => 'HPLUS%',
-                'singkatan' => 'HPLUS%',
+                'nama' => 'hspq_h_kn_persen',
+                'singkatan' => 'H+%',
             ],
             [
-                'nama' => 'HPLUSKET',
-                'singkatan' => 'HPLUSKET',
+                'nama' => 'hspq_h_kn_keterangan',
+                'singkatan' => 'H+% Ket',
             ],
             [
-                'nama' => 'HMINUS%',
-                'singkatan' => 'HMINUS%',
+                'nama' => 'hspq_h_kr_persen',
+                'singkatan' => 'H-%',
             ],
             [
-                'nama' => 'HMINUSKET',
-                'singkatan' => 'HMINUSKET',
+                'nama' => 'hspq_h_kr_keterangan',
+                'singkatan' => 'H-% Ket',
             ],
             [
-                'nama' => 'IPLUS%',
-                'singkatan' => 'IPLUS%',
+                'nama' => 'hspq_i_kn_persen',
+                'singkatan' => 'I+%',
             ],
             [
-                'nama' => 'IPLUSKET',
-                'singkatan' => 'IPLUSKET',
+                'nama' => 'hspq_i_kn_keterangan',
+                'singkatan' => 'I-% Ket',
             ],
             [
-                'nama' => 'IMINUS%',
-                'singkatan' => 'IMINUS%',
+                'nama' => 'hspq_i_kr_persen',
+                'singkatan' => 'I-%',
             ],
             [
-                'nama' => 'IMINUSKET',
-                'singkatan' => 'IMINUSKET',
+                'nama' => 'hspq_i_kr_keterangan',
+                'singkatan' => 'I-% Ket',
             ],
             [
-                'nama' => 'JPLUS%',
-                'singkatan' => 'JPLUS%',
+                'nama' => 'hspq_j_kn_persen',
+                'singkatan' => 'J+%',
             ],
             [
-                'nama' => 'JPLUSKET',
-                'singkatan' => 'JPLUSKET',
+                'nama' => 'hspq_j_kn_keterangan',
+                'singkatan' => 'J+% Ket',
             ],
             [
-                'nama' => 'JMINUS%',
-                'singkatan' => 'JMINUS%',
+                'nama' => 'hspq_j_kr_persen',
+                'singkatan' => 'J-%',
             ],
             [
-                'nama' => 'JMINUSKET',
-                'singkatan' => 'JMINUSKET',
+                'nama' => 'hspq_j_kr_keterangan',
+                'singkatan' => 'J-% Ket',
             ],
             [
-                'nama' => 'OPLUS%',
-                'singkatan' => 'OPLUS%',
+                'nama' => 'hspq_o_kn_persen',
+                'singkatan' => 'O+%',
             ],
             [
-                'nama' => 'OPLUSKET',
-                'singkatan' => 'OPLUSKET',
+                'nama' => 'hspq_o_kn_keterangan',
+                'singkatan' => 'O+% Ket',
             ],
             [
-                'nama' => 'OMINUS%',
-                'singkatan' => 'OMINUS%',
+                'nama' => 'hspq_o_kr_persen',
+                'singkatan' => 'O-%',
             ],
             [
-                'nama' => 'OMINUSKET',
-                'singkatan' => 'OMINUSKET',
+                'nama' => 'hspq_o_kr_keterangan',
+                'singkatan' => 'O-% Ket',
             ],
             [
-                'nama' => 'Q2PLUS%',
-                'singkatan' => 'Q2PLUS%',
+                'nama' => 'hspq_q2_kn_persen',
+                'singkatan' => 'Q2+%',
             ],
             [
-                'nama' => 'Q2PLUSKET',
-                'singkatan' => 'Q2PLUSKET',
+                'nama' => 'hspq_q2_kn_keterangan',
+                'singkatan' => 'Q2+% Ket',
             ],
             [
-                'nama' => 'Q2MINUS%',
-                'singkatan' => 'Q2MINUS%',
+                'nama' => 'hspq_q2_kr_persen',
+                'singkatan' => 'Q2-%',
             ],
             [
-                'nama' => 'Q2MINUSKET',
-                'singkatan' => 'Q2MINUSKET',
+                'nama' => 'hspq_q2_kr_keterangan',
+                'singkatan' => 'Q2-% Ket',
             ],
             [
-                'nama' => 'Q3PLUS%',
-                'singkatan' => 'Q3PLUS%',
+                'nama' => 'hspq_q3_kn_persen',
+                'singkatan' => 'Q3+%',
             ],
             [
-                'nama' => 'Q3PLUSKET',
-                'singkatan' => 'Q3PLUSKET',
+                'nama' => 'hspq_q3_kn_keterangan',
+                'singkatan' => 'Q3+% Ket',
             ],
             [
-                'nama' => 'Q3MINUS%',
-                'singkatan' => 'Q3MINUS%',
+                'nama' => 'hspq_q3_kr_persen',
+                'singkatan' => 'Q3-%',
             ],
             [
-                'nama' => 'Q3MINUSKET',
-                'singkatan' => 'Q3MINUSKET',
+                'nama' => 'hspq_q3_kr_keterangan',
+                'singkatan' => 'Q3-% Ket',
             ],
             [
-                'nama' => 'Q4PLUS%',
-                'singkatan' => 'Q4PLUS%',
+                'nama' => 'hspq_q4_kn_persen',
+                'singkatan' => 'Q4+%',
             ],
             [
-                'nama' => 'Q4PLUSKET',
-                'singkatan' => 'Q4PLUSKET',
+                'nama' => 'hspq_q4_kn_keterangan',
+                'singkatan' => 'Q4+% Ket',
             ],
             [
-                'nama' => 'Q4MINUS%',
-                'singkatan' => 'Q4MINUS%',
+                'nama' => 'hspq_q4_kr_persen',
+                'singkatan' => 'Q4-%',
             ],
             [
-                'nama' => 'Q4MINUSKET',
-                'singkatan' => 'Q4MINUSKET',
+                'nama' => 'hspq_q4_kr_keterangan',
+                'singkatan' => 'Q4-% Ket',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.1',
-                'singkatan' => 'A.Kepri.Terkuat.1',
+                'nama' => 'hspq_rank_1',
+                'singkatan' => 'RANK 1',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.2',
-                'singkatan' => 'A.Kepri.Terkuat.2',
+                'nama' => 'hspq_rank_2',
+                'singkatan' => 'RANK 2',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.3',
-                'singkatan' => 'A.Kepri.Terkuat.3',
+                'nama' => 'hspq_rank_3',
+                'singkatan' => 'RANK 3',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.4',
-                'singkatan' => 'A.Kepri.Terkuat.4',
+                'nama' => 'hspq_rank_4',
+                'singkatan' => 'RANK 4',
             ],
             [
-                'nama' => 'A.Kepri.Terkuat.5',
-                'singkatan' => 'A.Kepri.Terkuat.5',
+                'nama' => 'hspq_rank_5',
+                'singkatan' => 'RANK 5',
             ],
             [
-                'nama' => 'Positif.rank.1',
-                'singkatan' => 'Positif.rank.1',
+                'nama' => 'hspq_rank_1_positif',
+                'singkatan' => 'RANK 1+',
             ],
             [
-                'nama' => 'Positif.rank.2',
-                'singkatan' => 'Positif.rank.2',
+                'nama' => 'hspq_rank_2_positif',
+                'singkatan' => 'RANK 2+',
             ],
             [
-                'nama' => 'Positif.rank.3',
-                'singkatan' => 'Positif.rank.3',
+                'nama' => 'hspq_rank_3_positif',
+                'singkatan' => 'RANK 3+',
             ],
             [
-                'nama' => 'Positif.rank.4',
-                'singkatan' => 'Positif.rank.4',
+                'nama' => 'hspq_rank_4_positif',
+                'singkatan' => 'RANK 4+',
             ],
             [
-                'nama' => 'Positif.rank.5',
-                'singkatan' => 'Positif.rank.5',
+                'nama' => 'hspq_rank_5_positif',
+                'singkatan' => 'RANK 5+',
             ],
             [
-                'nama' => 'Negatif.rank.1',
-                'singkatan' => 'Negatif.rank.1',
+                'nama' => 'hspq_rank_1_negatif',
+                'singkatan' => 'RANK 1-',
             ],
             [
-                'nama' => 'Negatif.rank.2',
-                'singkatan' => 'Negatif.rank.2',
+                'nama' => 'hspq_rank_2_negatif',
+                'singkatan' => 'RANK 2-',
             ],
             [
-                'nama' => 'Negatif.rank.3',
-                'singkatan' => 'Negatif.rank.3',
+                'nama' => 'hspq_rank_3_negatif',
+                'singkatan' => 'RANK 3-',
             ],
             [
-                'nama' => 'Negatif.rank.4',
-                'singkatan' => 'Negatif.rank.4',
+                'nama' => 'hspq_rank_4_negatif',
+                'singkatan' => 'RANK 4-',
             ],
             [
-                'nama' => 'Negatif.rank.5',
-                'singkatan' => 'Negatif.rank.5',
+                'nama' => 'hspq_rank_5_negatif',
+                'singkatan' => 'RANK 5-',
             ],
             [
-                'nama' => 'M1%',
-                'singkatan' => 'M1%',
+                'nama' => 'minat_pekerjaan_1_persen',
+                'singkatan' => 'Minat Pekerjaan 1',
             ],
             [
-                'nama' => 'M2%',
-                'singkatan' => 'M2%',
+                'nama' => 'minat_pekerjaan_2_persen',
+                'singkatan' => 'Minat Pekerjaan 2',
             ],
             [
-                'nama' => 'M3%',
-                'singkatan' => 'M3%',
+                'nama' => 'minat_pekerjaan_3_persen',
+                'singkatan' => 'Minat Pekerjaan 3',
             ],
         ]);
 
@@ -578,27 +579,33 @@ class adminseedercontroller extends Controller
         minatbakat::truncate();
         $dataku = collect([
             [
-                'nama' => 'CITA.1/Minat.1',
+                'nama' => 'minat_pekerjaan_1',
+                'singkatan' => 'Minat Pekerjaan 1',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'CITA.2/Minat.2',
+                'nama' => 'minat_pekerjaan_2',
+                'singkatan' => 'Minat Pekerjaan 2',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'CITA.3/Minat.3',
+                'nama' => 'minat_pekerjaan_3',
+                'singkatan' => 'Minat Pekerjaan 3',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'Tambahan CITA_CITA_1',
+                'nama' => 'mnt_cita2_1',
+                'singkatan' => 'Cita-cita 1',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'Tambahan CITA_CITA_2',
+                'nama' => 'mnt_cita2_2',
+                'singkatan' => 'Cita-cita 2',
                 'kategori' => 'Minat dan Bakat',
             ],
             [
-                'nama' => 'Tambahan CITA_CITA_3',
+                'nama' => 'mnt_cita2_3',
+                'singkatan' => 'Cita-cita 3',
                 'kategori' => 'Minat dan Bakat',
             ],
             //diisi bk
@@ -628,91 +635,98 @@ class adminseedercontroller extends Controller
                 'menukhusus' => 'bk',
             ],
             [
-                'nama' => 'Tipe Bakat.1',
+                'nama' => 'tipe_bakat_1',
+                'singkatan' => 'Bakat 1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Tipe Bakat.2',
+                'nama' => 'tipe_bakat_2',
+                'singkatan' => 'Bakat 2',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Tipe Bakat.3',
+                'nama' => 'tipe_bakat_3',
+                'singkatan' => 'Bakat 3',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMP',
+                'nama' => 'mnt_studi_lanjut_smp',
+                'singkatan' => 'Lanjut SMP',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_1_FAKULTAS',
+                'nama' => 'mnt_studi_lanjut_sma_smk_1_fakultas',
+                'singkatan' => 'Lanjut SMA/SMK 1 Fakultas',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_1_PRODI',
+                'nama' => 'mnt_studi_lanjut_sma_smk_1_prodi',
+                'singkatan' => 'Lanjut SMA/SMK 1 Prodi',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_2_FAKULTAS',
+                'nama' => 'mnt_studi_lanjut_sma_smk_2_fakultas',
+                'singkatan' => 'Lanjut SMA/SMK 2 Fakultas',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_2_PRODI',
+                'nama' => 'mnt_studi_lanjut_sma_smk_2_prodi',
+                'singkatan' => 'Lanjut SMA/SMK 2 Prodi',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'STUDI_LANJUT_SMA_SMK_KEDINASAN',
+                'nama' => 'mnt_studi_lanjut_sma_smk_kedinasan',
+                'singkatan' => 'Lanjut SMA/SMK Kedinasan',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMA/MA',
+                'nama' => 'mnt_jurusan_lanjut_sma',
+                'singkatan' => 'Lanjut SMA',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMK1',
+                'nama' => 'mnt_jurusan_lanjut_smk_1',
+                'singkatan' => 'Lanjut SMK 1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMK2',
+                'nama' => 'mnt_jurusan_lanjut_smk_2',
+                'singkatan' => 'Lanjut SMK 2',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'JURUSAN_LANJUT_SMK3',
+                'nama' => 'mnt_jurusan_lanjut_smk_3',
+                'singkatan' => 'Lanjut SMK 3',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Disarankan studi SMA/MA/SMK',
+                'nama' => 'sekolah_lanjutan',
+                'singkatan' => 'Sekolah Lanjutan',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Jurusan SMA/MA',
+                'nama' => 'sekolah_jurusan',
+                'singkatan' => 'Jurusan Sekolah',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Jur SMK(BK/Bidg keahlian)',
+                'nama' => 'saran_fakultas_1',
+                'singkatan' => 'Saran Fakultas 1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'SMK (PK/Program keahlian)',
+                'nama' => 'saran_fakultas_1_prodi',
+                'singkatan' => 'Saran Prodi 1',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Jur.Disarankan SMA/MA',
+                'nama' => 'saran_fakultas_2',
+                'singkatan' => 'Saran Fakultas 2',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
-                'nama' => 'Jur.Dipertimbangkan SMA/MA',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'Jur.Tdk.Disarankan SMA/MA',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'D / S.1 Disarankan Fakultas',
-                'kategori' => 'Bakat dan Penjurusan',
-            ],
-            [
-                'nama' => 'D / S.1 Disarankan Prodi',
+                'nama' => 'saran_fakultas_2_prodi',
+                'singkatan' => 'Saran Prodi 2',
                 'kategori' => 'Bakat dan Penjurusan',
             ],
             [
@@ -734,6 +748,345 @@ class adminseedercontroller extends Controller
                 'nama' => $data['nama'],
                 'kategori' => $data['kategori'],
                 'menukhusus' => $menukhusus,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
+
+
+
+
+
+        return redirect()->back()->with('status','Seeder berhasil dimuat!')->with('tipe','success')->with('icon','fas fa-edit');
+
+    }
+    public function masterdeteksi(Request $request){
+        masterdeteksi::truncate();
+        $dataku = collect([
+            [
+                'nama' => 'AGRESIF',
+                'singkatan' => 'AGRESIF',
+            ],
+            [
+                'nama' => 'MELAMUN',
+                'singkatan' => 'MELAMUN',
+            ],
+            [
+                'nama' => 'MALAS',
+                'singkatan' => 'MALAS',
+            ],
+            [
+                'nama' => 'MEMBANGKANG',
+                'singkatan' => 'MEMBANGKANG',
+            ],
+            [
+                'nama' => 'DEPRESI',
+                'singkatan' => 'DEPRESI',
+            ],
+            [
+                'nama' => 'FOBIA',
+                'singkatan' => 'FOBIA',
+            ],
+            [
+                'nama' => 'INDIVIDUALIS',
+                'singkatan' => 'INDIVIDUALIS',
+            ],
+            [
+                'nama' => 'KAKU',
+                'singkatan' => 'KAKU',
+            ],
+            [
+                'nama' => 'KECEMASAN',
+                'singkatan' => 'KECEMASAN',
+            ],
+            [
+                'nama' => 'KERAS KEPALA',
+                'singkatan' => 'KERAS KEPALA',
+            ],
+            [
+                'nama' => 'KERJA KURANG SERIUS',
+                'singkatan' => 'KERJA KURANG SERIUS',
+            ],
+            [
+                'nama' => 'KURANG DIANDALKAN DALAM BEKERJA',
+                'singkatan' => 'KURANG DIANDALKAN DALAM BEKERJA',
+            ],
+            [
+                'nama' => 'KURANG DISIPLIN ',
+                'singkatan' => 'KURANG DISIPLIN ',
+            ],
+            [
+                'nama' => 'KURANG ENERGIK',
+                'singkatan' => 'KURANG ENERGIK',
+            ],
+            [
+                'nama' => 'KURANG KOMUNIKASI',
+                'singkatan' => 'KURANG KOMUNIKASI',
+            ],
+            [
+                'nama' => 'KURANG PENGENDALIAN DIRI',
+                'singkatan' => 'KURANG PENGENDALIAN DIRI',
+            ],
+            [
+                'nama' => 'KURANG PUNYA IDE',
+                'singkatan' => 'KURANG PUNYA IDE',
+            ],
+            [
+                'nama' => 'KURANG RAPI',
+                'singkatan' => 'KURANG RAPI',
+            ],
+            [
+                'nama' => 'KURANG TERATUR',
+                'singkatan' => 'KURANG TERATUR',
+            ],
+            [
+                'nama' => 'LAMBAT ATAU LAMBAN',
+                'singkatan' => 'LAMBAT ATAU LAMBAN',
+            ],
+            [
+                'nama' => 'MENUNTUT DAN MEMAKSA',
+                'singkatan' => 'MENUNTUT DAN MEMAKSA',
+            ],
+            [
+                'nama' => 'MINAT KURANG DAN LEMAH',
+                'singkatan' => 'MINAT KURANG DAN LEMAH',
+            ],
+            [
+                'nama' => 'MUDAH BOSAN DAN JENUH',
+                'singkatan' => 'MUDAH BOSAN DAN JENUH',
+            ],
+            [
+                'nama' => 'MOTIVASI DAN DORONGAN LEMAH',
+                'singkatan' => 'MOTIVASI DAN DORONGAN LEMAH',
+            ],
+            [
+                'nama' => 'MUDAH MENGELUH',
+                'singkatan' => 'MUDAH MENGELUH',
+            ],
+            [
+                'nama' => 'SEDIKIT TEMAN',
+                'singkatan' => 'SEDIKIT TEMAN',
+            ],
+            [
+                'nama' => 'SIKAP ACUH TAK ACUH',
+                'singkatan' => 'SIKAP ACUH TAK ACUH',
+            ],
+            [
+                'nama' => 'SIKAP ANTI SOSIAL ATAU KURANG SOSIALISASI',
+                'singkatan' => 'SIKAP ANTI SOSIAL ATAU KURANG SOSIALISASI',
+            ],
+            [
+                'nama' => 'SIKAP CEMBERUT',
+                'singkatan' => 'SIKAP CEMBERUT',
+            ],
+            [
+                'nama' => 'SIKAP CEMBURU',
+                'singkatan' => 'SIKAP CEMBURU',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG DINGIN',
+                'singkatan' => 'SIKAP CENDERUNG DINGIN',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG KASAR',
+                'singkatan' => 'SIKAP CENDERUNG KASAR',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG KURANG RAMAH',
+                'singkatan' => 'SIKAP CENDERUNG KURANG RAMAH',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG MEMUSUHI',
+                'singkatan' => 'SIKAP CENDERUNG MEMUSUHI',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG SINIS',
+                'singkatan' => 'SIKAP CENDERUNG SINIS',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG SOMBONG',
+                'singkatan' => 'SIKAP CENDERUNG SOMBONG',
+            ],
+            [
+                'nama' => 'SIKAP CENDERUNG TEGANG',
+                'singkatan' => 'SIKAP CENDERUNG TEGANG',
+            ],
+            [
+                'nama' => 'SIKAP CEROBOH DAN SEMBRONO',
+                'singkatan' => 'SIKAP CEROBOH DAN SEMBRONO',
+            ],
+            [
+                'nama' => 'SIKAP DENDAM',
+                'singkatan' => 'SIKAP DENDAM',
+            ],
+            [
+                'nama' => 'SIKAP EGOIS',
+                'singkatan' => 'SIKAP EGOIS',
+            ],
+            [
+                'nama' => 'SIKAP FRUSTASI DAN PUTUS ASA',
+                'singkatan' => 'SIKAP FRUSTASI DAN PUTUS ASA',
+            ],
+            [
+                'nama' => 'SIKAP IRI HATI',
+                'singkatan' => 'SIKAP IRI HATI',
+            ],
+            [
+                'nama' => 'SIKAP JENGKEL',
+                'singkatan' => 'SIKAP JENGKEL',
+            ],
+            [
+                'nama' => 'SIKAP KHAWATIR',
+                'singkatan' => 'SIKAP KHAWATIR',
+            ],
+            [
+                'nama' => 'SIKAP KERAS',
+                'singkatan' => 'SIKAP KERAS',
+            ],
+            [
+                'nama' => 'SIKAP KERJA KURANG KONSENTRASI',
+                'singkatan' => 'SIKAP KERJA KURANG KONSENTRASI',
+            ],
+            [
+                'nama' => 'SIKAP KERJA KURANG TELITI',
+                'singkatan' => 'SIKAP KERJA KURANG TELITI',
+            ],
+            [
+                'nama' => 'SIKAP SEENAKNYA',
+                'singkatan' => 'SIKAP SEENAKNYA',
+            ],
+            [
+                'nama' => 'SIKAP KETAKUTAN',
+                'singkatan' => 'SIKAP KETAKUTAN',
+            ],
+            [
+                'nama' => 'SIKAP KURANG BERANI',
+                'singkatan' => 'SIKAP KURANG BERANI',
+            ],
+            [
+                'nama' => 'SIKAP KURANG MANDIRI ATAU BERGANTUNG',
+                'singkatan' => 'SIKAP KURANG MANDIRI ATAU BERGANTUNG',
+            ],
+            [
+                'nama' => 'SIKAP KURANG PERCAYA DIRI',
+                'singkatan' => 'SIKAP KURANG PERCAYA DIRI',
+            ],
+            [
+                'nama' => 'SIKAP KURANG TANGGUNG JAWAB',
+                'singkatan' => 'SIKAP KURANG TANGGUNG JAWAB',
+            ],
+            [
+                'nama' => 'SIKAP KURANG TEGAS',
+                'singkatan' => 'SIKAP KURANG TEGAS',
+            ],
+            [
+                'nama' => 'SIKAP KURANG TERBUKA',
+                'singkatan' => 'SIKAP KURANG TERBUKA',
+            ],
+            [
+                'nama' => 'SIKAP KURANG ATAU TIDAK SETIA',
+                'singkatan' => 'SIKAP KURANG ATAU TIDAK SETIA',
+            ],
+            [
+                'nama' => 'SIKAP MARAH',
+                'singkatan' => 'SIKAP MARAH',
+            ],
+            [
+                'nama' => 'SIKAP MEMBATASI TUGAS',
+                'singkatan' => 'SIKAP MEMBATASI TUGAS',
+            ],
+            [
+                'nama' => 'SIKAP MENYALAHKAN DIRI SENDIRI',
+                'singkatan' => 'SIKAP MENYALAHKAN DIRI SENDIRI',
+            ],
+            [
+                'nama' => 'SIKAP MERASA KESEPIAN',
+                'singkatan' => 'SIKAP MERASA KESEPIAN',
+            ],
+            [
+                'nama' => 'SIKAP MINDER DAN MENARIK DIRI',
+                'singkatan' => 'SIKAP MINDER DAN MENARIK DIRI',
+            ],
+            [
+                'nama' => 'SIKAP MUDAH BIMBANG DAN RAGU-RAGU',
+                'singkatan' => 'SIKAP MUDAH BIMBANG DAN RAGU-RAGU',
+            ],
+            [
+                'nama' => 'SIKAP MUDAH BINGUNG',
+                'singkatan' => 'SIKAP MUDAH BINGUNG',
+            ],
+            [
+                'nama' => 'SIKAP MUDAH GUGUP DAN TERGESA-GESA',
+                'singkatan' => 'SIKAP MUDAH GUGUP DAN TERGESA-GESA',
+            ],
+            [
+                'nama' => 'SIKAP MUDAH SEDIH',
+                'singkatan' => 'SIKAP MUDAH SEDIH',
+            ],
+            [
+                'nama' => 'SIKAP MUDAH TERHARU',
+                'singkatan' => 'SIKAP MUDAH TERHARU',
+            ],
+            [
+                'nama' => 'SIKAP PEMALU',
+                'singkatan' => 'SIKAP PEMALU',
+            ],
+            [
+                'nama' => 'SIKAP PENDIAM',
+                'singkatan' => 'SIKAP PENDIAM',
+            ],
+            [
+                'nama' => 'SIKAP PESIMIS',
+                'singkatan' => 'SIKAP PESIMIS',
+            ],
+            [
+                'nama' => 'SIKAP SOK BERKUASA',
+                'singkatan' => 'SIKAP SOK BERKUASA',
+            ],
+            [
+                'nama' => 'SIKAP SUKA BERONTAK',
+                'singkatan' => 'SIKAP SUKA BERONTAK',
+            ],
+            [
+                'nama' => 'SIKAP BERSAING DAN PAMER',
+                'singkatan' => 'SIKAP BERSAING DAN PAMER',
+            ],
+            [
+                'nama' => 'SIKAP SUKA MENYENDIRI',
+                'singkatan' => 'SIKAP SUKA MENYENDIRI',
+            ],
+            [
+                'nama' => 'SIKAP SULIT ADAPTASI',
+                'singkatan' => 'SIKAP SULIT ADAPTASI',
+            ],
+            [
+                'nama' => 'SIKAP TIDAK SABAR',
+                'singkatan' => 'SIKAP TIDAK SABAR',
+            ],
+            [
+                'nama' => 'SIKAP LUNAK DAN TERUS MENGALAH',
+                'singkatan' => 'SIKAP LUNAK DAN TERUS MENGALAH',
+            ],
+            [
+                'nama' => 'TERLALU DILINDUNGI ATAU TIDAK MANDIRI',
+                'singkatan' => 'TERLALU DILINDUNGI ATAU TIDAK MANDIRI',
+            ],
+            [
+                'nama' => 'TIDAK AKTIF DAN MUDAH LELAH',
+                'singkatan' => 'TIDAK AKTIF DAN MUDAH LELAH',
+            ],
+            [
+                'nama' => 'TRAUMA',
+                'singkatan' => 'TRAUMA',
+            ],
+        ]);
+
+
+        foreach($dataku as $data){
+            // dd($data['nama']);
+            DB::table('masterdeteksi')->insert([
+                'nama' => $data['nama'],
+                'singkatan' => $data['singkatan'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);

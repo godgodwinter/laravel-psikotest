@@ -3,15 +3,55 @@ namespace App\Helpers;
 
 use App\Models\inputnilaipsikologi;
 use App\Models\minatbakatdetail;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class Fungsi {
     // public static function get_username($user_id) {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+    public static function randomuserssiswa($item=0,$siswaid=0){
+        $hasil='default';
+        $faker = Faker::create('id_ID');
+            $hasil=substr(strtolower(str_replace(' ', '', $item)),0,6).$faker->numberBetween(0,999).$siswaid;
+            $periksausername=User::where('username',$hasil)->count();
+            // dd($periksausername,$hasil);
+            if($periksausername>0){
+                Fungsi::randomuserssiswa($item);
+            }
+            // dd($hasil);
+        return $hasil;
+    }
+    public static function iqket($item=0){
+        $hasil="Moron";
+        if($item>139){
+            $hasil="Genius";
+        }elseif((140<$item) && ($item>=130)){
+            $hasil="Berbakat";
+        }elseif((130<$item) && ($item>=120)){
+            $hasil="Superior";
+        }elseif((120<$item) && ($item>=110)){
+            $hasil="Di Atas Rata - Rata";
+        }elseif((110<$item) && ($item>=105)){
+            $hasil="Rata - Rata Atas";
+        }elseif((105<$item) && ($item>=100)){
+            $hasil="Rata - Rata";
+        }elseif((100<$item) && ($item>=90)){
+            $hasil="Rata - Rata Bawah";
+        }elseif((90<$item) && ($item>=80)){
+            $hasil="Lambat Belajar";
+        }elseif((80<$item) && ($item>=60)){
+            $hasil="Borderline";
+        }else{
+            $hasil="Moron";
+        }
+        return $hasil;
+
+    }
 
     public static function inputnilaipsikologis($sekolah_id,$masternilaipsikologi_singkatan,$siswa_nomerinduk,$nilai=0){
 

@@ -82,10 +82,11 @@
                         {{$data->siswa!=null ? $data->siswa->nama : 'Data tidak ditemukan'}}
                     </td>
                     <td class="text-center">
-                        {{$data->nilai?$data->nilai:'Data tidak ditemukan'}}
+                        <a class="btn btn-sm btn-info" href="{{route('sekolah.hasilpsikologi.deteksi_lihat',[$id->id,$data->id])}}"> Lihat Deteksi</a>
                     </td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-info"> Lihat </button>
+                        <a class="btn btn-sm btn-info" href="{{route('sekolah.hasilpsikologi.sertifikat_lihat',[$id->id,$data->id])}}"> Lihat Sertifikat</a>
+
 
                     </td>
                     <td class="text-center babeng-min-row">

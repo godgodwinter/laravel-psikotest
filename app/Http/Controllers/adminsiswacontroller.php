@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Helpers\Fungsi;
 use App\Models\sekolah;
 use App\Models\siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class adminsiswacontroller extends Controller
 {
@@ -48,7 +51,7 @@ class adminsiswacontroller extends Controller
     public function store(sekolah $id,Request $request)
     {
         // dd($id,$request);
-        $cek=DB::table('siswa')->whereNull('deleted_at')->where('nomerinduk',$request->nomerinduk)
+        $cek=siswa::with('users')->where('nomerinduk',$request->nomerinduk)
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->count();
@@ -153,19 +156,19 @@ class adminsiswacontroller extends Controller
     {
         $pages='siswa';
 
-        $data = siswa::with('kelas')->where('id',$data->id)->first();
+        $data = siswa::with('kelas')->with('sekolah')->where('id',$data->id)->first();
         // dd($data->kelas->nama);
 
         $kelas=DB::table('kelas')
         ->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->get();
+        $datasekolah=sekolah::get();
 
-        return view('pages.admin.sekolah.pages.siswa_edit',compact('pages','id','data','kelas'));
+        return view('pages.admin.sekolah.pages.siswa_edit',compact('pages','id','data','kelas','datasekolah'));
     }
     public function update(sekolah $id,siswa $data,Request $request)
     {
-
         if($request->nomerinduk!==$data->nomerinduk){
 
             $request->validate([
@@ -187,11 +190,12 @@ class adminsiswacontroller extends Controller
             //'nomerinduk.required'=>'nomerinduk harus diisi',
         ]);
 
+
         siswa::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
             'nomerinduk'     =>   $request->nomerinduk,
-            'sekolah_id'     =>   $id->id,
+            'sekolah_id'     =>   $request->sekolah_id,
            'updated_at'=>date("Y-m-d H:i:s"),
            'jeniskelamin'   =>   $request->jeniskelamin,
                    'tempatlahir'    =>   $request->tempatlahir,
@@ -301,5 +305,59 @@ class adminsiswacontroller extends Controller
 
 
         return view('pages.admin.sekolah.pages.siswa_index',compact('pages','id','request','datas'));
+    }
+    public function generate(sekolah $id,Request $request)
+    {
+        $faker = Faker::create('id_ID');
+        $getsiswa=siswa::where('sekolah_id',$id->id)->get();
+        foreach($getsiswa as $siswa){
+            $siswa_id=$siswa->id;
+            //periksa apakah user where siswa_id sudah ada?
+            if($siswa->users_id==null){
+            $periksa=User::where('id',$siswa->users_id)->count();
+            if($periksa<1){
+                //insert users dan update siswa
+            // $username=$faker->unique()->username;
+            // $username = substr(strtolower(str_replace(' ', '', $siswa->nama)),0,6).$faker->numberBetween(0,999);
+            $username = Fungsi::randomuserssiswa($siswa->nama,$siswa_id);
+            $password=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 6);
+            // $password=$faker->password(8, 8);
+            // if($)
+            // if($periksausername>0){
+
+            // }
+            // dd($username,$password);
+           $users_id=DB::table('users')->insertGetId(
+                array(
+                       'name'     =>   $siswa->nama,
+                       'email'     =>   null,
+                       'username'     =>   $username,
+                       'nomerinduk'     => null,
+                       'password' => Hash::make($password),
+                       'tipeuser' => 'siswa',
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+
+                // update
+                // 1 users_id
+                // 2 passworddefault
+        siswa::where('id',$siswa->id)
+        ->update([
+            'users_id'     =>   $users_id,
+            'passworddefault'     =>   $password,
+           'updated_at'=>date("Y-m-d H:i:s"),
+
+        ]);
+
+            }else{
+                //update users
+                dd('update');
+            }
+
+        }
+    }
+        // dd('prosesgenerateakun',$getsiswa);
+        return redirect()->route('sekolah.siswa',$id->id)->with('status','Generate Akun berhasil!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 }

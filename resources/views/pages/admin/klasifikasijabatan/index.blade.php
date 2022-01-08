@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Klasifikasi Jabatan
+Klasifikasi Akademis & Profesi
 @endsection
 
 @push('before-script')

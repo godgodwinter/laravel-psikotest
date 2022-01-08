@@ -52,6 +52,55 @@ Sekolah
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
 
+            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+            data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+            Import Data ProBK
+        </button>
+
+    {{-- <button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
+        data-toggle="modal" data-target="#sinkron"><i class="fas fa-upload"></i>
+        Sinkron
+    </button> --}}
+
+    <button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
+    data-toggle="modal" data-target="#backupfe"><i class="fas fa-upload"></i>
+    Backup API
+</button>
+<button type="button" class="btn btn-icon btn-success btn-sm ml-0 ml-sm-0"
+data-toggle="modal" data-target="#sinkronfe"><i class="fas fa-upload"></i>
+Sinkron Data
+</button>
+    {{-- <h2 id="testing">
+asdasd
+    </h2> --}}
+    {{-- @push('before-script')
+    <script>
+        (async () => {
+    // POST request using fetch with async/await
+    const element = document.getElementById('testing');
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: '1VU6X-8WNPR-0B3MA' })
+    };
+    const response = await fetch('http://161.97.84.91:9001/api/probk/DataSertifikat_Get', requestOptions);
+    const data = await response.json();
+    element.innerHTML = data;
+})();
+    // element.innerHTML = 'tees';
+    </script>
+
+    @endpush --}}
+        {{-- <a href="{{ route('apitesting') }}" type="submit" value="Import"
+            class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
+                    class="fas fa-download"></i> Testing </span></a> --}}
+
+                    <a href="{{route('resetalldata')}}" type="submit" value="Import"
+                    class="btn btn-icon btn-danger btn-sm ml-2"><span class="pcoded-micon"> <i
+                            class="fas fa-download"></i> Reset </span></a>
+                            <a href="{{route('resetsinkrondata')}}" type="submit" value="Import"
+                            class="btn btn-icon btn-danger btn-sm ml-2"><span class="pcoded-micon"> <i
+                                    class="fas fa-download"></i> Reset Sinkron Only</span></a>
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
@@ -149,7 +198,7 @@ Sekolah
 @section('containermodal')
 
               <!-- Import Excel -->
-              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              {{-- <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <form method="post" action="{{ route('sekolah.import') }}" enctype="multipart/form-data">
                     <div class="modal-content">
@@ -173,6 +222,186 @@ Sekolah
                     </div>
                   </form>
                 </div>
+              </div> --}}
+
+
+              <!-- Import Excel -->
+              <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('detailsekolah.importusername') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Data ProBK</h5>
+                      </div>
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+                        <label>Pilih file excel(.xlsx)</label>
+                        <div class="form-group">
+                          <input type="file" name="file" required="required">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
 
+
+              <!-- Sinkron -->
+              <div class="modal fade" id="sinkron" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="post" action="{{ route('detailsekolah.backuptemp') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sinkron API ProBK</h5>
+                      </div>
+                      {{-- <div class="modal-header">
+                        <label >Proses perubahan dari backup apiprobk ke dalam data masing-masing sekolah</label>
+                      </div> --}}
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="replace" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Update data sudah ada (yang sudah pernah disinkron)</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsekolah" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data sekolah yang belum ada</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsiswa" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data Siswa yang belum ada</span>
+                          </label>
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="refreshall" value="1" class="custom-switch-input" >
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Refresh semua data API (yang sudah dan belum disinkron)</span>
+                          </label>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Simpan dan Sinkron data</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+
+              <!-- Sinkron -->
+              <div class="modal fade" id="sinkronfe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="get" action="{{ route('detailsekolah.sinkronfe') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sinkron dari backup ke Data Siswa</h5>
+
+                      </div>
+                      {{-- <div class="modal-header">
+                        <label >Proses perubahan dari backup apiprobk ke dalam data masing-masing sekolah</label>
+                      </div> --}}
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsekolah" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data sekolah yang belum ada</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsiswa" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data Siswa yang belum ada</span>
+                          </label>
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="refreshall" value="1" class="custom-switch-input" >
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Refresh semua data API (yang sudah dan belum disinkron)</span>
+                          </label>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        @if($cekseedermastering<1)
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">Seeder Master Psikologi belum di tambahkan</h5>
+                        @else
+                        <button type="submit" class="btn btn-success ">Simpan dan Sinkron data</button>
+                        @endif
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- Sinkron -->
+              <div class="modal fade" id="backupfe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form method="get" action="{{ route('detailsekolah.backuptempfe') }}" enctype="multipart/form-data">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Backup from API ProBK</h5>
+                      </div>
+                      {{-- <div class="modal-header">
+                        <label >Proses perubahan dari backup apiprobk ke dalam data masing-masing sekolah</label>
+                      </div> --}}
+                      <div class="modal-body">
+
+                        {{ csrf_field() }}
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="replace" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Update data sudah ada (yang sudah pernah disinkron)</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsekolah" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data sekolah yang belum ada</span>
+                          </label>
+
+
+                        <label class="custom-switch">
+                            <input type="checkbox" name="insertsiswa" value="1" class="custom-switch-input" checked>
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Tambahkan data Siswa yang belum ada</span>
+                          </label>
+
+
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Simpan dan Backup data</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
 @endsection

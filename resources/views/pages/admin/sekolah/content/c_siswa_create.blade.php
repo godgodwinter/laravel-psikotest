@@ -61,7 +61,7 @@
 
                             <select class="form-control @error('kelas_id')
                                 is-invalid
-                            @enderror" name="kelas_id"  style="width: 75%" required>
+                            @enderror" name="kelas_id"  style="width: 100%" required>
                                 <option disabled selected value=""> Pilih kelas</option>
                                 @foreach ($kelas as $t)
                                     <option value="{{ $t->id }}"> {{ $t->nama }}</option>
@@ -136,7 +136,7 @@
                                 <option>WNI</option>
                                 <option>WNA</option>
                             </select>
-                            @error('warnanegara')<div class="invalid-feedback"> {{$message}}</div>
+                            @error('warganegara')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
 
                         </div>

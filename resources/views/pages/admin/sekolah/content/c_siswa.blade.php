@@ -17,7 +17,7 @@
                                 </span>
                             </div>
                         <div class="ml-auto p-2 bd-highlight">
-
+                                <a href="{{route('sekolah.siswa.generate',$id->id)}}" class="btn btn-warning btn-sm">Generate Akun</a>
                                  <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
@@ -42,6 +42,8 @@
                         <th  class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                         <th>Nama siswa</th>
                         <th>Kelas</th>
+                        <th>Username</th>
+                        <th>PasswordDefault</th>
                         <th  class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -55,6 +57,12 @@
                                 </td>
                                 <td>
                                     {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
+                                </td>
+                                <td>
+                                    {{ $data->users_id!=null ? $data->users->username : 'Data tidak ditemukan' }}
+                                </td>
+                                <td>
+                                    {{ $data->users_id!=null ? $data->passworddefault : 'Data tidak ditemukan' }}
                                 </td>
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
@@ -92,6 +100,13 @@
             </div>
 
                         </div>
+
+                        <div class="container">
+                            <h5>Catatan : </h5>
+                            {{-- <p>PasswordDefault hanya bisa digunakan jika belum diganti user.</p> --}}
+                            <p>Jika PasswordDefault sudah di ganti maka tidak akan bisa dilihat admin. Karena sudah di enkripsi</p>
+                        </div>
+
                     </div>
                   </div>
                 </div>

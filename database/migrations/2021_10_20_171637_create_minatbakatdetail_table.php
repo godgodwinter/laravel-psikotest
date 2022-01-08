@@ -17,7 +17,7 @@ class CreateMinatbakatdetailTable extends Migration
             $table->bigIncrements('id');
             $table->string('minatbakat_id');
             $table->string('siswa_id');
-            $table->string('nilai')->nullable();
+            $table->longText('nilai')->nullable();
             $table->string('sekolah_id');
             $table->softDeletes();
             $table->timestamps();

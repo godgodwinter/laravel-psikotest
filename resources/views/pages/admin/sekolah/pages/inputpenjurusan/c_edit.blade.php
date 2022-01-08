@@ -1,7 +1,7 @@
 
 
 
-           <form id="setting-form" method="POST" action="{{route('sekolah.inputminatbakat.update',[$id->id,$data->id])}}">
+           <form id="setting-form" method="POST" action="{{route('sekolah.penjurusan.update',[$id->id,$data->id])}}">
             @method('put')
                 @csrf
                 <div class="card" id="settings-card">
@@ -33,13 +33,17 @@
                         <div class="col-sm-6 col-md-9">
                             @php
                                 $isi='';
+                                $readonly='';
                                 $periksadata=\App\Models\minatbakatdetail::where('siswa_id',$data->id)->where('sekolah_id',$id->id)->where('minatbakat_id',$m->id)->first();
                                 // dd($periksadata);
                                 if($periksadata!=null){
                                     $isi=$periksadata->nilai;
                                 }
+                                if($m->menukhusus!='bk'){
+                                    $readonly='readonly';
+                                }
                             @endphp
-                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="{{ $m->id }}" value="{{ $isi }}">
+                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="{{ $m->id }}" value="{{ $isi }}" {{$readonly}}>
 
                           @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror

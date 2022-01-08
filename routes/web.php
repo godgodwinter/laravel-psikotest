@@ -129,6 +129,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/sekolah/{id}/siswa/{data}', [adminsiswacontroller::class, 'destroy'])->name('sekolah.siswa.destroy');
     Route::delete('/admin/sekolah/siswa/multidel/{id}', [adminsiswacontroller::class, 'multidel'])->name('sekolah.siswa.multidel');
 
+    Route::get('/admin/sekolah/{id}/datasiswa/generate', [adminsiswacontroller::class, 'generate'])->name('sekolah.siswa.generate');
+
 
     //walikelas
     Route::get('/admin/sekolah/{id}/walikelas', [adminwalikelascontroller::class, 'index'])->name('sekolah.walikelas');
@@ -191,6 +193,13 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'edit'])->name('sekolah.hasilpsikologi.edit');
     Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
     Route::delete('/admin/sekolah/{id}/hasilpsikologi/{siswa}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
+
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [adminhasilpsikologicontroller::class, 'deteksi_lihat'])->name('sekolah.hasilpsikologi.deteksi_lihat');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [adminhasilpsikologicontroller::class, 'deteksi_cetak'])->name('sekolah.hasilpsikologi.deteksi_cetak');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihat', [adminhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('sekolah.hasilpsikologi.sertifikat_lihat');
+    Route::post('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihatapi', [adminhasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('sekolah.hasilpsikologi.sertifikat_lihatapi');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_cetak', [adminhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('sekolah.hasilpsikologi.sertifikat_cetak');
+
     //export
     Route::get('/admin/datahasilpsikologi/{id}/export', [adminhasilpsikologicontroller::class, 'export'])->name('sekolah.hasilpsikologi.export');
     //import
@@ -350,10 +359,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
   //import
       Route::post('admin/datasekolah/importdetailsekolah/{id}', 'App\Http\Controllers\prosescontroller@importdetailsekolah')->name('detailsekolah.import');
+      Route::post('admin/datasekolah/importusername', 'App\Http\Controllers\prosescontroller@importusername')->name('detailsekolah.importusername');
+    //sinkron api probk
+      Route::post('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontroller@backuptemp')->name('detailsekolah.backuptemp');
+      Route::get('admin/datasekolah/sinkronapiprobk', 'App\Http\Controllers\prosescontroller@sinkronapiprobk')->name('detailsekolah.sinkronapiprobk');
+      Route::get('admin/datasekolah/apitesting', 'App\Http\Controllers\prosescontroller@apitesting')->name('apitesting');
 
 
 
         Route::post('admin/cleartemp', 'App\Http\Controllers\prosescontroller@cleartemp')->name('cleartemp');
+        Route::post('admin/sinkronujian', 'App\Http\Controllers\prosescontroller@sinkronujian')->name('sinkronujian');
 
         // API
         Route::get('/admin/api/inputnilaipsikologi', [adminapicontroller::class, 'inputnilaipsikologi'])->name('api.inputnilaipsikologi');
@@ -363,6 +378,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //Seeder
         Route::post('/admin/seeder/sekolah', [adminseedercontroller::class, 'sekolah'])->name('seeder.sekolah');
         Route::post('/admin/seeder/masternilaipsikologi', [adminseedercontroller::class, 'masternilaipsikologi'])->name('seeder.masternilaipsikologi');
+        Route::post('/admin/seeder/masterdeteksi', [adminseedercontroller::class, 'masterdeteksi'])->name('seeder.masterdeteksi');
         Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
 
         //Example
@@ -509,5 +525,27 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/yayasan/sekolah/{id}/catatanprestasi', [yayasansekolahcontroller::class, 'catatanprestasi'])->name('yayasan.sekolah.catatanprestasi');
         Route::get('/yayasan/sekolah/{id}/catatanprestasicari', [yayasansekolahcontroller::class, 'catatanprestasicari'])->name('yayasan.sekolah.catatanprestasicari');
         Route::get('/yayasan/sekolah/{id}/catatanprestasidetail/{data}', [yayasansekolahcontroller::class, 'catatanprestasidetail'])->name('yayasan.sekolah.catatanprestasidetail');
+
+        Route::get('admin/datasekolah/backuptemp', 'App\Http\Controllers\prosescontroller@backuptemp')->name('detailsekolah.backuptemp2');
+        Route::get('admin/datasekolah/backuptempfe', 'App\Http\Controllers\prosescontroller@backuptempfe')->name('detailsekolah.backuptempfe');
+        Route::post('admin/datasekolah/backuptempfe/store', 'App\Http\Controllers\prosescontroller@backuptempfestore')->name('detailsekolah.backuptempfe.store');
+        Route::get('admin/datasekolah/sinkronfromfe', 'App\Http\Controllers\prosescontroller@sinkronfromfe')->name('detailsekolah.sinkronfromfe');
+        Route::post('admin/api/datasekolah/apibackupdatafromfedeteksi', 'App\Http\Controllers\prosescontroller@apibackupdatafromfedeteksi')->name('api.apibackupdatafromfedeteksi');
+        Route::post('admin/api/datasekolah/apibackupdatafromfe', 'App\Http\Controllers\prosescontroller@apibackupdatafromfe')->name('api.apibackupdatafromfe');
+
+
+        Route::get('admin/datasekolah/sinkronfe', 'App\Http\Controllers\prosescontroller@sinkronfe')->name('detailsekolah.sinkronfe');
+        Route::get('admin/datasekolah/sinkronfestore', 'App\Http\Controllers\prosescontroller@sinkronfestore')->name('api.sinkronfestore');
+
+        Route::get('admin/datasekolah/resetalldata', 'App\Http\Controllers\prosescontroller@resetalldata')->name('resetalldata');
+        Route::get('admin/datasekolah/resetsinkrondata', 'App\Http\Controllers\prosescontroller@resetsinkrondata')->name('resetsinkrondata');
+
+
+        Route::post('/admin/api/apiprobk_sertifikat/{apiprobk_id}', [admininputnilaipsikologicontroller::class, 'apiprobk_sertifikat'])->name('api.apiprobk_sertifikat');
+        Route::post('/admin/api/apiprobk_sertifikat/isi/{apiprobk_id}/{kunci}', [admininputnilaipsikologicontroller::class, 'apiprobk_sertifikat_isi'])->name('api.apiprobk_sertifikat_isi');
+
+        Route::get('/token', function () {
+            return csrf_token();
+        });
 
 });
