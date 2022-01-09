@@ -435,7 +435,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::delete('/bk/pengguna/multidel', [bkpenggunacontroller::class, 'multidel'])->name('bk.pengguna.multidel');
         //menu inputnilaipsikologi
         Route::get('/bk/inputnilaipsikologi', [bkinputnilaipsikologicontroller::class, 'index'])->name('bk.inputnilaipsikologi');
-        
+
         Route::get('/bk/inputnilaipsikologi/create', [bkinputnilaipsikologicontroller::class, 'create'])->name('bk.inputnilaipsikologi.create');
         Route::post('/bk/inputnilaipsikologi/create', [bkinputnilaipsikologicontroller::class, 'store'])->name('bk.inputnilaipsikologi.store');
         Route::get('/bk/inputnilaipsikologi/cari', [bkinputnilaipsikologicontroller::class, 'cari'])->name('bk.inputnilaipsikologi.cari');

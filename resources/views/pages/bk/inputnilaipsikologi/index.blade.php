@@ -23,8 +23,8 @@ Data Nilai Psikologi Siswa
         </div>
     </div>
 
-    
-    
+
+
     <div class="card-body">
 
         <form action="{{route('bk.inputnilaipsikologi.cari')}}" method="GET" class="babeng-form">
@@ -78,7 +78,7 @@ Data Nilai Psikologi Siswa
         @push('before-script')
 <script>
     function getData(link='#',id=null){
-         console.log(link);
+        //  console.log(link);
 
         (async()=>{
         const requestOptions = {
@@ -93,7 +93,7 @@ Data Nilai Psikologi Siswa
         const response = await fetch(link, requestOptions);
         let data = await response.json();
         if (response.ok){
-        console.log(data);
+        // console.log(data);
         // document.getElementById('sukses').innerText = sukses;
         setData(data,id);
         }else{
