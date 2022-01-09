@@ -101,7 +101,8 @@
                     href="{{$id->status=='Aktif' ?  route('bk.pengguna') : '#'}}"><i class="fas fa-school"></i>
                     <span>Pengguna</span></a></li>
 
-            <li class="menu-header">Menu Utama</li>
+            
+`       <li class="menu-header">Menu Utama</li>
             <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.referensi') : '#'}}"><i class="fas fa-school"></i>
                     <span>Referensi Psikologis</span></a></li>
@@ -110,13 +111,15 @@
                         class="fas fa-school"></i> <span>Informasi Psikologis</span></a></li>
             <li {{$pages=='bk-inputnilaipsikologi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.inputnilaipsikologi') : '#'}}"><i
-                        class="fas fa-school"></i> <span>Nilai Psikologi</span></a></li>
+                        class="fas fa-school"></i> <span>Input Nilai Siswa</span></a></li>
+           
             <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.inputminatbakat') : '#'}}"><i class="fas fa-school"></i>
                     <span>Minat dan Bakat
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-school"></i>
                     <span>Penjurusan</span></a></li></span></a></li>
+
 
             <li class="menu-header">Catatan Siswa</li>
             <li {{$pages=='bk-catatankasussiswa' ? 'class=active' : ''}}><a class="nav-link"

@@ -435,6 +435,13 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::delete('/bk/pengguna/multidel', [bkpenggunacontroller::class, 'multidel'])->name('bk.pengguna.multidel');
         //menu inputnilaipsikologi
         Route::get('/bk/inputnilaipsikologi', [bkinputnilaipsikologicontroller::class, 'index'])->name('bk.inputnilaipsikologi');
+        
+        Route::get('/bk/inputnilaipsikologi/create', [bkinputnilaipsikologicontroller::class, 'create'])->name('bk.inputnilaipsikologi.create');
+        Route::post('/bk/inputnilaipsikologi/create', [bkinputnilaipsikologicontroller::class, 'store'])->name('bk.inputnilaipsikologi.store');
+        Route::get('/bk/inputnilaipsikologi/cari', [bkinputnilaipsikologicontroller::class, 'cari'])->name('bk.inputnilaipsikologi.cari');
+        Route::get('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'edit'])->name('bk.inputnilaipsikologi.edit');
+        Route::put('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'update'])->name('bk.inputnilaipsikologi.update');
+        Route::delete('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'destroy'])->name('bk.inputnilaipsikologi.destroy');
         //penjurusan
         Route::get('/bk/penjurusan', [bkpenggunacontroller::class, 'index'])->name('bk.penjurusan');
         //inputminatbakat
