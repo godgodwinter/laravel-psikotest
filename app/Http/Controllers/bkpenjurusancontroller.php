@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\apiprobk_sertifikat;
 use App\Models\kelas;
 use App\Models\minatbakat;
 use App\Models\minatbakatdetail;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class bkpenjurusancontroller extends Controller
 {
@@ -31,7 +33,6 @@ class bkpenjurusancontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
         $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
@@ -65,15 +66,12 @@ class bkpenjurusancontroller extends Controller
             foreach($master as $m){
 
 
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('minatbakat_id',$m->id)
-                ->get();
 
+                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
+                ->where('apiprobk_id',$d->apiprobk_id)->get();
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
+                    $nilai=$periksadata->first()->isi;
                 }else{
                     $nilai=null;
                 }
@@ -93,17 +91,15 @@ class bkpenjurusancontroller extends Controller
                 'master'=>$collectionmaster
             ]);
         }
-        // dd($collectionpenilaian);
-        return view('pages.bk.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+        // dd($collectionpenilaian,$periksadata,$d->id);
+        return view('pages.bk.inputpenjurusan.index',compact('pages','request','datas','collectionpenilaian','master','kelaspertama','kelas'));
     }
-    public function cari(Request $request,sekolah $id)
+    public function cari(Request $request)
     {
         $pages='bk-penjurusan';
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
-
         $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
@@ -137,15 +133,12 @@ class bkpenjurusancontroller extends Controller
             foreach($master as $m){
 
 
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('minatbakat_id',$m->id)
-                ->get();
 
+                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
+                ->where('apiprobk_id',$d->apiprobk_id)->get();
                 if($periksadata->count()>0){
                     $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
+                    $nilai=$periksadata->first()->isi;
                 }else{
                     $nilai=null;
                 }
@@ -166,34 +159,29 @@ class bkpenjurusancontroller extends Controller
             ]);
         }
         // dd($collectionpenilaian);
-        return view('pages.bk.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+        return view('pages.bk.inputpenjurusan.index',compact('pages','request','datas','collectionpenilaian','master','kelaspertama','kelas'));
     }
 
-    public function edit(Request $request,siswa $siswa){
+    public function edit(Request $request,$siswa){
         // dd('edit');
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+        $data=siswa::where('sekolah_id',$sekolah_id)->where('id',$siswa)->first();
 
-        $data=siswa::where('sekolah_id',$id->id)->where('nomerinduk',$siswa->nomerinduk)->first();
-
-        $master=minatbakat::where('kategori','Bakat dan Penjurusan')->where('menukhusus','bk')
+        $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
         // dd($data,$siswa);
         $pages='bk-penjurusan';
-        return view('pages.bk.inputpenjurusan.edit',compact('pages','request','siswa','id','data','master'));
+        return view('pages.bk.inputpenjurusan.edit',compact('pages','request','siswa','data','master'));
 
     }
     public function update(Request $request,siswa $siswa){
-
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
-
-        $master=minatbakat::where('kategori','Bakat dan Penjurusan')->where('menukhusus','bk')
+        $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
 
@@ -233,7 +221,73 @@ class bkpenjurusancontroller extends Controller
             // dd($request[$m->id]);
         }
         // dd($request);
-        return redirect()->route('bk.penjurusan',$m->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+        return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
 
+}
+
+public function cetakpersiswa(siswa $siswa,Request $request){
+
+    // dd($siswa);
+    $users_id=Auth::user()->id;
+    $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+    $sekolah_id=$pengguna->sekolah_id;
+    $periksadetail=minatbakatdetail::
+    where('sekolah_id',$sekolah_id)
+    ->where('siswa_id',$siswa->id)
+    ->count();
+    // dd($periksadetail,$id,$siswa);
+    if($periksadetail<1){
+        return redirect()->back()->with('status','Data tidak ditemukan atau belum diisi!')->with('tipe','error')->with('icon','fas fa-feather');
+    }
+
+
+    $master=minatbakat::where('kategori','Bakat dan Penjurusan')
+    ->orderBy('id','asc')
+    ->get();
+
+        $collectionpenilaian = new Collection();
+
+
+
+        $collectionmaster = new Collection();
+    $arr=[
+        'id'=>$siswa->id,
+        'nomerinduk'=>$siswa->nomerinduk,
+        'nama'=>$siswa->nama,
+    ];
+    $nomer=1;
+        foreach($master as $m){
+
+
+            $periksadata=DB::table('minatbakatdetail')
+            ->where('siswa_id',$siswa->id)
+            // ->where('id','2')
+            ->where('minatbakat_id',$m->id)
+            ->get();
+
+            if($periksadata->count()>0){
+                $ambildata=$periksadata->first();
+                $nilai=$periksadata->first()->nilai;
+            }else{
+                $nilai=null;
+            }
+            $arr2= ['nilai'.$nomer => $nilai];
+            // $arr2= [$m->nama => $nilai];
+            $arr=array_merge($arr,$arr2);
+            $nomer++;
+// dd($arr);
+        // $collectionmaster->push((object)$arr);
+
+        }
+
+        $collectionpenilaian->push((object)$arr);
+
+        $datas=$collectionpenilaian[0];
+    // dd($collectionpenilaian[0]->nama,$datas);
+
+    // $datas=$data;
+    $tgl=date("YmdHis");
+    $pdf = PDF::loadview('pages.bk.inputpenjurusan.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+    return $pdf->stream('minatbakat'.$tgl.'.pdf');
 }
 }

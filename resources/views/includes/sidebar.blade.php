@@ -115,10 +115,10 @@
            
             <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.inputminatbakat') : '#'}}"><i class="fas fa-quidditch"></i>
-                    <span>Minat dan Bakat
+                    <span>Input Minat dan Bakat
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
-                    <span>Penjurusan</span></a></li></span></a></li>
+                    <span>Input Penjurusan</span></a></li></span></a></li>
 
 
             <li class="menu-header">Catatan Siswa</li>
