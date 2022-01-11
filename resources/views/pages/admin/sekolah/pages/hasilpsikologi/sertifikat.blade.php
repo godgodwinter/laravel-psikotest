@@ -278,7 +278,7 @@ let aspekkepribadian=[
          silang=`<td> </td><td> </td><td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td><td> </td>
           <td> </td><td>  </td><td>  </td>`;
         }else if(item==='K'){
-         silang=`<td> </td><td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td><td> </td><td> </td><td> </td>
+         silang=`<td> </td><td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td><td> </td><td> </td>
           <td> </td><td>  </td><td>  </td>`;
         }else if(item==='KS'){
             silang=`<td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td><td> </td><td> </td><td> </td><td> </td>
