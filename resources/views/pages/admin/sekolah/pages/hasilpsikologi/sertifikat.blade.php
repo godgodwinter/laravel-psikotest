@@ -59,7 +59,6 @@ Hasil Deteksi Psikologi
                     }
                     })();
 
-
     function setData(datas=null){
         // console.log(datas);
         datas.data.forEach(element => {
@@ -68,19 +67,21 @@ Hasil Deteksi Psikologi
             dataSertifikat[element.kunci]=element.isi;
             // console.log(dataSertifikat[element.kunci]);
             // if (testData===true){
-                // console.log(element.kunci);
-                // (async () => {
-                        // item = element.isi;
-                    // document.getElementById(element.kunci).innerText = await item;
-                    // if(element.kunci==='iq'){
-                        // itemket = iqket(element.isi);
-                    // document.getElementById('iqket').innerText = await itemket;
-                    // }
+            //     console.log(element.kunci);
+            //     (async () => {
+            //             item = element.isi;
+            //         document.getElementById(element.kunci).innerText = await item;
+            //         if(element.kunci==='iq'){
+            //             itemket = iqket(element.isi);
+            //         document.getElementById('iqket').innerText = await itemket;
+            //         }
 
-                // })();
+            //     })();
 
             // }
         });
+
+
 
                     document.getElementById('iq').innerText = dataSertifikat.iq+ ' %';
                     document.getElementById('iqket').innerText =iqket(dataSertifikat.iq);
@@ -92,10 +93,61 @@ Hasil Deteksi Psikologi
 
 
                     //kepribadian
-                    document.getElementById('hspq_a_kr_persen').innerText = dataSertifikat.hspq_a_kr_persen;
-                    document.getElementById('hspq_a_kr_keterangan').innerText = dataSertifikat.hspq_a_kr_keterangan;
-                    document.getElementById('hspq_a_kr_rank').innerText = dataSertifikat.hspq_a_kr_rank;
-                    document.getElementById('hspq_rank_1').innerText = dataSertifikat.hspq_rank_1;
+let aspekkepribadian=[
+            'hspq_a_kr_persen','hspq_a_kr_keterangan','hspq_a_kr_rank',
+            'hspq_c_kr_persen','hspq_c_kr_keterangan','hspq_c_kr_rank',
+            'hspq_d_kr_persen','hspq_d_kr_keterangan','hspq_d_kr_rank',
+            'hspq_e_kr_persen','hspq_e_kr_keterangan','hspq_e_kr_rank',
+            'hspq_f_kr_persen','hspq_f_kr_keterangan','hspq_f_kr_rank',
+            'hspq_g_kr_persen','hspq_g_kr_keterangan','hspq_g_kr_rank',
+            'hspq_h_kr_persen','hspq_h_kr_keterangan','hspq_h_kr_rank',
+            'hspq_i_kr_persen','hspq_i_kr_keterangan','hspq_i_kr_rank',
+            'hspq_j_kr_persen','hspq_j_kr_keterangan','hspq_j_kr_rank',
+            'hspq_o_kr_persen','hspq_o_kr_keterangan','hspq_o_kr_rank',
+            'hspq_q2_kr_persen','hspq_q2_kr_keterangan','hspq_q2_kr_rank',
+            'hspq_q3_kr_persen','hspq_q3_kr_keterangan','hspq_q3_kr_rank',
+            'hspq_q4_kr_persen','hspq_q4_kr_keterangan','hspq_q4_kr_rank',
+            'hspq_a_kn_persen','hspq_a_kn_keterangan','hspq_a_kn_rank',
+            'hspq_c_kn_persen','hspq_c_kn_keterangan','hspq_c_kn_rank',
+            'hspq_d_kn_persen','hspq_d_kn_keterangan','hspq_d_kn_rank',
+            'hspq_e_kn_persen','hspq_e_kn_keterangan','hspq_e_kn_rank',
+            'hspq_f_kn_persen','hspq_f_kn_keterangan','hspq_f_kn_rank',
+            'hspq_g_kn_persen','hspq_g_kn_keterangan','hspq_g_kn_rank',
+            'hspq_h_kn_persen','hspq_h_kn_keterangan','hspq_h_kn_rank',
+            'hspq_i_kn_persen','hspq_i_kn_keterangan','hspq_i_kn_rank',
+            'hspq_j_kn_persen','hspq_j_kn_keterangan','hspq_j_kn_rank',
+            'hspq_o_kn_persen','hspq_o_kn_keterangan','hspq_o_kn_rank',
+            'hspq_q2_kn_persen','hspq_q2_kn_keterangan','hspq_q2_kn_rank',
+            'hspq_q3_kn_persen','hspq_q3_kn_keterangan','hspq_q3_kn_rank',
+            'hspq_q4_kn_persen','hspq_q4_kn_keterangan','hspq_q4_kn_rank',
+        ];
+        for(let i=0;i<aspekkepribadian.length;i++){
+                    document.getElementById(aspekkepribadian[i]).innerText = dataSertifikat[aspekkepribadian[i]];
+        }
+
+                    document.getElementById('hspq_rank_1').innerText += ' '+dataSertifikat.hspq_rank_1;
+                    document.getElementById('hspq_rank_2').innerText += ' '+dataSertifikat.hspq_rank_2;
+                    document.getElementById('hspq_rank_3').innerText += ' '+dataSertifikat.hspq_rank_3;
+                    document.getElementById('hspq_rank_4').innerText += ' '+dataSertifikat.hspq_rank_4;
+                    document.getElementById('hspq_rank_5').innerText += ' '+dataSertifikat.hspq_rank_5;
+
+                    document.getElementById('hspq_rank_1_positif').innerText += ' 1. '+dataSertifikat.hspq_rank_1_positif;
+                    document.getElementById('hspq_rank_2_positif').innerText += ' 2. '+dataSertifikat.hspq_rank_2_positif;
+                    document.getElementById('hspq_rank_3_positif').innerText += ' 3. '+dataSertifikat.hspq_rank_3_positif;
+                    document.getElementById('hspq_rank_4_positif').innerText += ' 4. '+dataSertifikat.hspq_rank_4_positif;
+                    document.getElementById('hspq_rank_5_positif').innerText += ' 5. '+dataSertifikat.hspq_rank_5_positif;
+
+                    document.getElementById('hspq_rank_1_negatif').innerText += ' 1. '+dataSertifikat.hspq_rank_1_negatif;
+                    document.getElementById('hspq_rank_2_negatif').innerText += ' 2. '+dataSertifikat.hspq_rank_2_negatif;
+                    document.getElementById('hspq_rank_3_negatif').innerText += ' 3. '+dataSertifikat.hspq_rank_3_negatif;
+                    document.getElementById('hspq_rank_4_negatif').innerText += ' 4. '+dataSertifikat.hspq_rank_4_negatif;
+                    document.getElementById('hspq_rank_5_negatif').innerText += ' 5. '+dataSertifikat.hspq_rank_5_negatif;
+
+                    // document.getElementById('hspq_a_kr_persen').innerText = dataSertifikat.hspq_a_kr_persen;
+                    // document.getElementById('hspq_a_kr_keterangan').innerText = dataSertifikat.hspq_a_kr_keterangan;
+                    // document.getElementById('hspq_a_kr_rank').innerText = dataSertifikat.hspq_a_kr_rank;
+                    // document.getElementById('hspq_rank_1').innerText = dataSertifikat.hspq_rank_1;
+
         let kecerdasan=[
             {
             nama:"Kecerdasan Linguistik",
@@ -219,10 +271,10 @@ Hasil Deteksi Psikologi
         }else if(item==='KB'){
          silang=`<td> </td><td> </td><td> </td><td> </td><td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td>
           <td> </td><td>  </td>`;
-        }else if(item==='C'){
+        }else if(item==='C' || item==='CB'){
          silang=`<td> </td><td> </td><td> </td><td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td><td> </td>
           <td> </td><td>  </td>`;
-        }else if(item==='HC'){
+        }else if(item==='HC' ){
          silang=`<td> </td><td> </td><td> </td><td class="text-center align-middle"><i class="fas fa-times"></i></td><td> </td><td> </td>
           <td> </td><td>  </td><td>  </td>`;
         }else if(item==='K'){
@@ -283,14 +335,164 @@ Hasil Deteksi Psikologi
 
     <table border="1" width="100%" id="kepribadianTable"  class="mt-2">
         <tr>
-            <td >VIII. ASPEK KEPRIBADIAN </td>
-            <td class="text-center">%</td><td>Keterangan</td><td>Rank</td><td>Analisa Kepribadian Terkuat</td>
+            <td>VIII. ASPEK KEPRIBADIAN </td>
+            <td class="text-center babeng-min-row">&nbsp; % &nbsp;</td><td class="babeng-min-row">Keterangan</td><td class="babeng-min-row">Rank</td><td width="50%"><strong>Analisa Kepribadian Terkuat</strong></td>
         </tr>
         <tr>
             <td >- Faktor Sikap Dingin </td>
-            <td class="text-center" id="hspq_a_kr_persen">44 </td>
-            <td class="text-center" id="hspq_a_kr_keterangan">45%</td><td id="hspq_a_kr_rank">43</td>
-            <td id="hspq_rank_1">230</td>
+            <td class="text-center" id="hspq_a_kr_persen"> 0 </td>
+            <td class="text-center babeng-min-row" id="hspq_a_kr_keterangan"> 0 % </td><td id="hspq_a_kr_rank"> 0 </td>
+            <td id="hspq_rank_1"> 1. Faktor Sikap  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Emosi Labil </td>
+            <td class="text-center" id="hspq_c_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_c_kr_keterangan"> 0 % </td><td id="hspq_c_kr_rank"> 0 </td>
+            <td id="hspq_rank_2"> 2. Faktor Sikap   </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Sulit Bergairah </td>
+            <td class="text-center" id="hspq_d_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_d_kr_keterangan"> 0 % </td><td id="hspq_d_kr_rank"> 0 </td>
+            <td id="hspq_rank_3"> 3. Faktor Sikap </td>
+        </tr>
+        <tr>
+            <td >- Faktor Patuh atau Tunduk </td>
+            <td class="text-center" id="hspq_e_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_e_kr_keterangan"> 0 % </td><td id="hspq_e_kr_rank"> 0 </td>
+            <td id="hspq_rank_4"> 4. Faktor Sikap </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sungguh-sungguh </td>
+            <td class="text-center" id="hspq_f_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_f_kr_keterangan"> 0 % </td><td id="hspq_f_kr_rank"> 0 </td>
+            <td id="hspq_rank_5"> 5. Faktor Sikap </td>
+        </tr>
+        <tr>
+            <td >- Faktor Menolak Peraturan </td>
+            <td class="text-center" id="hspq_g_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_g_kr_keterangan"> 0 % </td><td id="hspq_g_kr_rank"> 0 </td>
+            <td > <strong>Faktor Kepribadian Subyek Terkuat Positif (+)</strong>  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Keras Hati </td>
+            <td class="text-center" id="hspq_h_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_h_kr_keterangan"> 0 % </td><td id="hspq_h_kr_rank"> 0 </td>
+            <td id="hspq_rank_1_positif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Pemalu </td>
+            <td class="text-center" id="hspq_i_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_i_kr_keterangan"> 0 % </td><td id="hspq_i_kr_rank"> 0 </td>
+            <td id="hspq_rank_2_positif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Bersemangat </td>
+            <td class="text-center" id="hspq_j_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_j_kr_keterangan"> 0 % </td><td id="hspq_j_kr_rank"> 0 </td>
+            <td id="hspq_rank_3_positif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Percaya Diri </td>
+            <td class="text-center" id="hspq_o_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_o_kr_keterangan"> 0 % </td><td id="hspq_o_kr_rank"> 0 </td>
+            <td id="hspq_rank_4_positif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Kurang Mandiri </td>
+            <td class="text-center" id="hspq_q2_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_q2_kr_keterangan"> 0 % </td><td id="hspq_q2_kr_rank"> 0 </td>
+            <td id="hspq_rank_5_positif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Kurang Disiplin </td>
+            <td class="text-center" id="hspq_q3_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_q3_kr_keterangan"> 0 % </td><td id="hspq_q3_kr_rank"> 0 </td>
+            <td > <strong>Faktor Kepribadian Subyek Terkuat Negatif (-)</strong>  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Rileks atau santai </td>
+            <td class="text-center" id="hspq_q4_kr_persen"> 0 </td>
+            <td class="text-center" id="hspq_q4_kr_keterangan"> 0 % </td><td id="hspq_q4_kr_rank"> 0 </td>
+            <td id="hspq_rank_1_negatif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Hangat   </td>
+            <td class="text-center" id="hspq_a_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_a_kn_keterangan"> 0 % </td><td id="hspq_a_kn_rank"> 0 </td>
+            <td id="hspq_rank_2_negatif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Emosi Stabil   </td>
+            <td class="text-center" id="hspq_c_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_c_kn_keterangan"> 0 % </td><td id="hspq_c_kn_rank"> 0 </td>
+            <td id="hspq_rank_3_negatif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Bergairah   </td>
+            <td class="text-center" id="hspq_d_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_d_kn_keterangan"> 0 % </td><td id="hspq_d_kn_rank"> 0 </td>
+            <td id="hspq_rank_4_negatif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Dominasi   </td>
+            <td class="text-center" id="hspq_e_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_e_kn_keterangan"> 0 % </td><td id="hspq_e_kn_rank"> 0 </td>
+            <td id="hspq_rank_5_negatif">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Keceriaan   </td>
+            <td class="text-center" id="hspq_f_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_f_kn_keterangan"> 0 % </td><td id="hspq_f_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Taat Peraturan   </td>
+            <td class="text-center" id="hspq_g_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_g_kn_keterangan"> 0 % </td><td id="hspq_g_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Lembut Hati / Peka   </td>
+            <td class="text-center" id="hspq_h_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_h_kn_keterangan"> 0 % </td><td id="hspq_h_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Pemberani   </td>
+            <td class="text-center" id="hspq_i_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_i_kn_keterangan"> 0 % </td><td id="hspq_i_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Menarik Diri   </td>
+            <td class="text-center" id="hspq_j_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_j_kn_keterangan"> 0 % </td><td id="hspq_j_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Ketakutan   </td>
+            <td class="text-center" id="hspq_o_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_o_kn_keterangan"> 0 % </td><td id="hspq_o_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Mandiri    </td>
+            <td class="text-center" id="hspq_q2_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_q2_kn_keterangan"> 0 % </td><td id="hspq_q2_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Disiplin   </td>
+            <td class="text-center" id="hspq_q3_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_q3_kn_keterangan"> 0 % </td><td id="hspq_q3_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
+        </tr>
+        <tr>
+            <td >- Faktor Sikap Tegang   </td>
+            <td class="text-center" id="hspq_q4_kn_persen"> 0 </td>
+            <td class="text-center" id="hspq_q4_kn_keterangan"> 0 % </td><td id="hspq_q4_kn_rank"> 0 </td>
+            <td id="hspq_rank_1">  </td>
         </tr>
     </table>
 
