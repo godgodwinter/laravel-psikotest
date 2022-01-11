@@ -45,17 +45,53 @@ class admininputminatbakatcontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
+        $dataakhir = collect();
 
+        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
+            $collectionpenilaian = new Collection();
 
+        foreach($datas as $d){
+
+            $collectionmaster = new Collection();
+
+            foreach($master as $m){
+
+
+
+                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
+                ->where('apiprobk_id',$d->apiprobk_id)->get();
+
+                if($periksadata->count()>0){
+                    $ambildata=$periksadata->first();
+                    $nilai=$periksadata->first()->isi;
+                }else{
+                    $nilai=null;
+                }
+
+            $collectionmaster->push((object)[
+                'id'=>$m->id,
+                'kategori'=>$m->kategori,
+                'nilai'=>$nilai
+            ]);
+
+            }
+
+            $collectionpenilaian->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'master'=>$collectionmaster
+            ]);
+        }
 
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','master','kelas','kelaspertama'));
+        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
     }
     public function cari(Request $request,sekolah $id)
     {
@@ -70,17 +106,59 @@ class admininputminatbakatcontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
+        $dataakhir = collect();
+
+        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
+            $collectionpenilaian = new Collection();
 
+        foreach($datas as $d){
+
+            $collectionmaster = new Collection();
+
+            foreach($master as $m){
+
+
+                // $periksadata=DB::table('minatbakatdetail')
+                // ->where('siswa_id',$d->id)
+                // // ->where('id','2')
+                // ->where('minatbakat_id',$m->id)
+                // ->get();
+
+                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
+                ->where('apiprobk_id',$d->apiprobk_id)->get();
+
+                if($periksadata->count()>0){
+                    $ambildata=$periksadata->first();
+                    $nilai=$periksadata->first()->isi;
+                }else{
+                    $nilai=null;
+                }
+
+            $collectionmaster->push((object)[
+                'id'=>$m->id,
+                'kategori'=>$m->kategori,
+                'nilai'=>$nilai
+            ]);
+
+            }
+
+            $collectionpenilaian->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'master'=>$collectionmaster
+            ]);
+        }
 
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','master','kelas','kelaspertama'));
-   }
+        return view('pages.admin.sekolah.pages.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
+    }
     public function edit(Request $request,sekolah $id,$siswa){
         // dd('edit');
         $data=siswa::where('sekolah_id',$id->id)->where('id',$siswa)->first();

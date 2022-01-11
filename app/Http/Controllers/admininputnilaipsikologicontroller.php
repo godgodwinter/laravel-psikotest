@@ -17,7 +17,7 @@ class admininputnilaipsikologicontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='bk'){
+            if(Auth::user()->tipeuser!='admin' ){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
@@ -80,46 +80,4 @@ class admininputnilaipsikologicontroller extends Controller
         // dd($collectionpenilaian);
         return view('pages.admin.sekolah.pages.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
     }
-    public function apiprobk_sertifikat(Request $request,$apiprobk_id){
-        $datas=null;
-        $status=false;
-        $msg="Data gagal di muat!";
-
-        $datas=apiprobk_sertifikat::select('*')
-        ->where('apiprobk_id',$apiprobk_id)
-        ->get();
-        if($datas!=null){
-            $status=true;
-            $msg="Ambil data berhasil";
-        }
-
-        return response()->json([
-            'success' => $status,
-            'message' => $msg,
-            'data' => $datas,
-        ], 200);
-
-    }
-public function apiprobk_sertifikat_isi(Request $request,$apiprobk_id,$kunci){
-    $datas=null;
-    $status=false;
-    $msg="Data gagal di muat!";
-
-    $getdatas=apiprobk_sertifikat::select('*')
-    ->where('apiprobk_id',$apiprobk_id)
-    ->where('kunci',$kunci)
-    ->first();
-    if($getdatas!=null){
-        $status=true;
-        $msg="Ambil data berhasil";
-        $datas=$getdatas->isi;
-    }
-
-    return response()->json([
-        'success' => $status,
-        'message' => $msg,
-        'data' => $datas,
-    ], 200);
-
-}
 }
