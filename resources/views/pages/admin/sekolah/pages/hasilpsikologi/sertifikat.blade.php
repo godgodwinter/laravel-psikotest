@@ -36,6 +36,7 @@ Hasil Deteksi Psikologi
                 <script>
                 let dataSertifikat={};
                 let testData=null;
+                // console.log(iqket(113));
                 // console.log(iqket(111));
                 (async()=>{
                     const requestOptions = {
@@ -234,21 +235,21 @@ let aspekkepribadian=[
         hasil="Moron";
         if(item>139){
             hasil="Genius";
-        }else if((140<item) && (item>=130)){
+        }else if((140>item) && (item>=130)){
             hasil="Berbakat";
-        }else if((130<item) && (item>=120)){
+        }else if((130>item) && (item>=120)){
             hasil="Superior";
-        }else if((120<item) && (item>=110)){
+        }else if((120>item) && (item>=110)){
             hasil="Di Atas Rata - Rata";
-        }else if((110<item) && (item>=105)){
+        }else if((110>item) && (item>=105)){
             hasil="Rata - Rata Atas";
-        }else if((105<item) && (item>=100)){
+        }else if((105>item) && (item>=100)){
             hasil="Rata - Rata";
-        }else if((100<item) && (item>=90)){
+        }else if((100>item) && (item>=90)){
             hasil="Rata - Rata Bawah";
-        }else if((90<item) && (item>=80)){
+        }else if((90>item) && (item>=80)){
             hasil="Lambat Belajar";
-        }else if((80<item) && (item>=60)){
+        }else if((80>item) && (item>=60)){
             hasil="Borderline";
         }else{
             hasil="Moron";
