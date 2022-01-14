@@ -46,6 +46,7 @@ use App\Http\Controllers\bkinputminatbakatcontroller;
 use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
+use App\Http\Controllers\profilecontroller;
 use App\Http\Controllers\prosescontroller;
 use App\Http\Controllers\siswahasilpsikologicontroller;
 use App\Http\Controllers\yayasansekolahcontroller;
@@ -73,9 +74,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
     Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
-    Route::get('/admin/profile', [adminsettingscontroller::class, 'profile'])->name('profile');
     Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
-    Route::put('/admin/profile/{id}', [adminsettingscontroller::class, 'updateprofile'])->name('profile.update');
+    Route::get('/profile', [profilecontroller::class, 'profile'])->name('profile');
+    Route::put('/admin/profile/{id}', [profilecontroller::class, 'updateprofile'])->name('profile.update');
+    Route::put('/profile/siswa', [profilecontroller::class, 'updateprofilesiswa'])->name('profile.siswa.update');
 
     //sekolah
     Route::get('/admin/sekolah', [adminsekolahcontroller::class, 'index'])->name('sekolah');
