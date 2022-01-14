@@ -248,7 +248,7 @@ class yayasansekolahcontroller extends Controller
         $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
-        return view('pages.yayasan.sekolah.pages.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
+        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
     }
     public function penjurusancari(Request $request,sekolah $id)
     {
@@ -275,7 +275,7 @@ class yayasansekolahcontroller extends Controller
         $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
-        return view('pages.yayasan.sekolah.pages.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
+        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
     }
 
     public function hasilpsikologi(sekolah $id,Request $request)
