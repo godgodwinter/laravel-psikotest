@@ -95,12 +95,12 @@ asdasd
             class="btn btn-icon btn-danger btn-sm mr-0"><span class="pcoded-micon"> <i
                     class="fas fa-download"></i> Testing </span></a> --}}
 
-                    <a href="{{route('resetalldata')}}" type="submit" value="Import"
+                    {{-- <a href="{{route('resetalldata')}}" type="submit" value="Import"
                     class="btn btn-icon btn-danger btn-sm ml-2"><span class="pcoded-micon"> <i
                             class="fas fa-download"></i> Reset </span></a>
                             <a href="{{route('resetsinkrondata')}}" type="submit" value="Import"
                             class="btn btn-icon btn-danger btn-sm ml-2"><span class="pcoded-micon"> <i
-                                    class="fas fa-download"></i> Reset Sinkron Only</span></a>
+                                    class="fas fa-download"></i> Reset Sinkron Only</span></a> --}}
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
