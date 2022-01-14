@@ -71,50 +71,11 @@ class adminpenjurusancontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
-
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
-        // dd($collectionpenilaian);
-        return view('pages.admin.sekolah.pages.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+        return view('pages.admin.sekolah.pages.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
     }
 
     public function edit(Request $request,sekolah $id,$siswa){
