@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\apiprobk_deteksi;
+use App\Models\apiprobk_deteksi_list;
+use App\Models\apiprobk_sertifikat;
 use App\Models\catatankasussiswa;
 use App\Models\catatanpengembangandirisiswa;
 use App\Models\catatanprestasisiswa;
 use App\Models\hasilpsikologi;
 use App\Models\kelas;
+use App\Models\masterdeteksi;
 use App\Models\minatbakat;
 use App\Models\sekolah;
 use App\Models\siswa;
@@ -299,43 +303,14 @@ class yayasansekolahcontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
+        $datas=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-            $dataakhir = new Collection();
-
-        foreach($datasiswa as $d){
-
-
-
-
-                $periksadata=hasilpsikologi::where('siswa_id',$d->id)
-                ->count();
-
-                if($periksadata>0){
-                    $ambil=hasilpsikologi::where('siswa_id',$d->id)
-                    ->first();
-                    $nilai=$ambil->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'nilai'=>$nilai,
-            ]);
-        }
-
-        $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$id->id)->get();
-
         return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
     }
 
@@ -361,47 +336,64 @@ class yayasansekolahcontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
+        $datas=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-            $dataakhir = new Collection();
-
-        foreach($datasiswa as $d){
-
-
-
-
-                $periksadata=DB::table('hasilpsikologi')
-                ->where('siswa_id',$d->id)
-                ->count();
-
-                if($periksadata>0){
-                    $ambil=DB::table('hasilpsikologi')
-                    ->where('siswa_id',$d->id)
-                    ->first();
-                    $nilai=$ambil->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'nilai'=>$nilai,
-            ]);
-        }
-
-        $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($datas);
 
         return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
+    }
+
+    public function deteksi_lihat(sekolah $id,siswa $siswa,Request $request)
+    {
+        $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        foreach($getdatadeteksi as $item){
+            $datas[$item->kunci]=$item->isi;
+        }
+        $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='sekolah';
+            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+            $masterdeteksi=masterdeteksi::get();
+        return view('pages.yayasan.sekolah.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
+    }
+    public function deteksi_cetak(Request $request)
+    {
+        dd('cetak deteksi');
+    }
+    public function sertifikat_lihat(sekolah $id,siswa $siswa,Request $request)
+    {
+        $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='sekolah';
+        $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+        return view('pages.yayasan.sekolah.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+    }
+    public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
+    {
+        $datas=null;
+        $status=false;
+        $msg="Data gagal di muat!";
+
+        $datas=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        if($datas!=null){
+            $status=true;
+            $msg="Ambil data berhasil";
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg,
+            'data' => $datas,
+        ], 200);
+
+    }
+    public function sertifikat_cetak(Request $request)
+    {
+        dd('cetak Sertifikat');
     }
     // public function hasilpsikologi(sekolah $id,Request $request)
     // {
