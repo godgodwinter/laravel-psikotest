@@ -33,57 +33,103 @@ Detail Sekolah
           </div>
           <div class="col-md-9">
 
+
     <div class="card-body">
+
         <form action="{{route('yayasan.sekolah.inputnilaipsikologi.cari',$id->id)}}" method="GET" class="babeng-form">
-        <div class="row">
+            <div class="row mb-2">
 
-            <div class="col-12 col-md-3 col-sm-5">
-                {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
-                <select class="js-example-basic-single  form-control @error('kelas_id')
-                is-invalid
-            @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
-                <option disabled selected value=""> Pilih kelas</option>
-                @foreach ($kelas as $t)
-                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
-                @endforeach
-              </select>
-            </div>
-            @push('before-script')
-            <script type="text/javascript">
-                $(document).ready(function() {
+                <div class="col-12 col-md-3 col-sm-5">
+                    {{-- <input type="text" class="babeng babeng-select  ml-0" name="cari"> --}}
+                    <select class="js-example-basic-single  form-control @error('kelas_id')
+                    is-invalid
+                @enderror" name="kelas_id"  style="width: 75%"  style="width: 100%" required>
+                    <option disabled selected value=""> Pilih kelas</option>
+                    @foreach ($kelas as $t)
+                        <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                @push('before-script')
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        let testData='';
+                        let item='';
 
-                    // In your Javascript (external .js resource or <script> tag)
-                        $(document).ready(function() {
-                            $('.js-example-basic-single').select2({
-                                // theme: "classic",
-                                // allowClear: true,
-                                width: "resolve"
+                        // In your Javascript (external .js resource or <script> tag)
+                            $(document).ready(function() {
+                                $('.js-example-basic-single').select2({
+                                    // theme: "classic",
+                                    // allowClear: true,
+                                    width: "resolve"
+                                });
                             });
-                        });
-                });
-               </script>
-            @endpush
-            <div class="col-12 col-md-3 col-sm-5">
-                <span>
-                    <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
-                </span>
+                    });
+                   </script>
+                @endpush
+                <div class="col-12 col-md-3 col-sm-5">
+                    <span>
+                        <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit" value="Pilih">
+                    </span>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
     </div>
 
 <div class="card" id="settings-card">
     <div class="card-header">
-        <h4>Master Nilai Psikologi  kelas : {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }}</h4>
+        <h4>Master Nilai Psikologi kelas :  {{ $kelaspertama!=null?$kelaspertama->nama:'Kelas tidak ditemukan' }} </h4>
+        @csrf
     </div>
     <div class="card-body babengcontainer">
-        <div id="babeng-bar" class="text-right mt-2">
 
-        </div>
+        @push('before-script')
+<script>
+    function getData(link='#',id=null){
+        // console.log(link);
+
+        (async()=>{
+        const requestOptions = {
+        method: 'POST',
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-Token": $('input[name="_token"]').val()
+        },
+        };
+        const response = await fetch(link, requestOptions);
+        let data = await response.json();
+        if (response.ok){
+        // console.log(data);
+        // document.getElementById('sukses').innerText = sukses;
+        setData(data,id);
+        }else{
+        console.log('error!');
+        }
+        })();
+    }
+    function setData(datas=null,id=null){
+        // console.log(datas);
+        datas.data.forEach(element => {
+
+            testData = !!document.getElementById(id+'-'+element.kunci);
+                            if (testData===true){
+                                // console.log(id+'-'+element.kunci);
+                        (async () => {
+                             item = element.isi;
+                          document.getElementById(id+'-'+element.kunci).innerText = await item;
+                        })();
+                            }
+            // console.log(element.isi);
+        });
+    }
+</script>
+@endpush
 
 
-        <table id="example" class="table table-striped table-bordered mt-1 table-sm" >
+        <table id="example" class="table table-striped table-bordered mt-0 table-sm" >
             <thead>
                 <tr>
                     <th class="text-center babeng-min-row"> No</th>
@@ -99,7 +145,7 @@ Detail Sekolah
                 </tr>
             </thead>
             <tbody>
-                @forelse ($collectionpenilaian as $data)
+                @forelse ($datas as $data)
                 <tr id="sid{{ $loop->index+1 }}">
                     <td class="text-center">
                         {{$loop->index+1}}
@@ -107,17 +153,10 @@ Detail Sekolah
                     <td class="babeng-td">
                         {{$data->nama}}
                     </td>
-                    @foreach ($data->master as $m)
-                    <td class="text-center">
-                        <input class="babenginputnilai text-center text-info " id="inputnilai{{$data->id}}_{{$m->id}}" value="{{$m->nilai}}"
-                        readonly type="text">
-                        <input class="babenginputnilai text-center text-info " id="siswa{{$data->id}}_{{$m->id}}" value="{{$data->id}}"
-                        readonly type="hidden">
-                        <input class="babenginputnilai text-center text-info " id="master{{$data->id}}_{{$m->id}}" value="{{$m->id}}"
-                            readonly type="hidden">
-
-                    </td>
-                    @endforeach
+                    @foreach ($master as $m)<td id="{{$data->id}}-{{$m->nama}}"></td>@endforeach
+@push('before-script')
+<script> getData('{{route('api.apiprobk_sertifikat',$data->apiprobk_id)}}',{{$data->id}}); </script>
+@endpush
                 </tr>
                 @empty
                 <tr>
