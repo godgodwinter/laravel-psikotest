@@ -102,7 +102,6 @@
                     <span>Pengguna</span></a></li> --}}
 
 
-
 `       <li class="menu-header">Menu Utama</li>
             <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.referensi') : '#'}}"><i class="far fa-file-alt"></i>
@@ -121,8 +120,8 @@
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
                     <span>Input Penjurusan</span></a></li></span></a></li>
             <li {{$pages=='bk-hasilpsikologi' ? 'class=active' : ''}}><a class="nav-link"
-                    href="{{$id->status=='Aktif' ?  route('bk.hasilpsikologi') : '#'}}"><i class="fas fa-users-cog"></i>
-                    <span>Hasil Psikologi</span></a></li>
+                        href="{{$id->status=='Aktif' ?  route('bk.hasilpsikologi') : '#'}}"><i class="fas fa-users-cog"></i>
+                        <span>Hasil Psikologi</span></a></li>
 
 
             <li class="menu-header">Catatan Siswa</li>

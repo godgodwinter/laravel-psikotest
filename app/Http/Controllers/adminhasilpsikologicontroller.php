@@ -54,41 +54,13 @@ class adminhasilpsikologicontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
+        $datas=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-            $dataakhir = new Collection();
-
-        foreach($datasiswa as $d){
-
-
-
-
-                $periksadata=hasilpsikologi::where('siswa_id',$d->id)
-                ->count();
-
-                if($periksadata>0){
-                    $ambil=hasilpsikologi::where('siswa_id',$d->id)
-                    ->first();
-                    $nilai=$ambil->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'nilai'=>$nilai,
-            ]);
-        }
-
-        $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$id->id)->get();
 
         return view('pages.admin.sekolah.pages.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
@@ -116,43 +88,13 @@ class adminhasilpsikologicontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
+        $datas=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-            $dataakhir = new Collection();
-
-        foreach($datasiswa as $d){
-
-
-
-
-                $periksadata=DB::table('hasilpsikologi')
-                ->where('siswa_id',$d->id)
-                ->count();
-
-                if($periksadata>0){
-                    $ambil=DB::table('hasilpsikologi')
-                    ->where('siswa_id',$d->id)
-                    ->first();
-                    $nilai=$ambil->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'nilai'=>$nilai,
-            ]);
-        }
-
-        $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($datas);
 
@@ -277,25 +219,10 @@ class adminhasilpsikologicontroller extends Controller
     public function deteksi_lihat(sekolah $id,siswa $siswa,Request $request)
     {
         $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
-        // $datas=[];
         foreach($getdatadeteksi as $item){
-            // array_push($datas,
-            //     (object)[$item->kunci => $item->isi]
-            // );
             $datas[$item->kunci]=$item->isi;
         }
         $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
-        // foreach($deteksi_list as $dl){
-        //     dd($dl->nama);
-        // }
-        // foreach($datas as $data){
-        // //     // $deteksi_eq_total_persen=$data;
-        // //     // dd($data->no_induk);
-        //     dd($data['no_induk']);
-        // }
-        // dd($datas['no_induk']);
-
-        // dd($datas,$deteksi_list,'lihat deteksi',$siswa);
         $pages='sekolah';
             $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
             $masterdeteksi=masterdeteksi::get();

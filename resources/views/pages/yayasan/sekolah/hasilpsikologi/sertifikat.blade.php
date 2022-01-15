@@ -29,7 +29,7 @@ Hasil Deteksi Psikologi
         <div id="output-status"></div>
         <div class="row">
           <div class="col-md-3">
-              @include('pages.admin.sekolah.component.sidebarsekolah')
+              @include('pages.yayasan.sekolah.component.sidebarsekolah')
           </div>
           <div class="col-md-9">
             @push('before-script')
@@ -48,7 +48,7 @@ Hasil Deteksi Psikologi
                     "X-CSRF-Token": $('input[name="_token"]').val()
                     },
                     };
-                    const response = await fetch("{{route('sekolah.hasilpsikologi.sertifikat_lihatapi',[$datasiswa->sekolah_id,$datasiswa->id])}}", requestOptions);
+                    const response = await fetch("{{route('yayasan.hasilpsikologi.sertifikat_lihatapi',[$datasiswa->sekolah_id,$datasiswa->id])}}", requestOptions);
                     let data = await response.json();
                     if (response.ok){
                     // console.log(data);

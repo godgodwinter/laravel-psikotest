@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\apiprobk_deteksi;
+use App\Models\apiprobk_deteksi_list;
+use App\Models\apiprobk_sertifikat;
 use App\Models\catatankasussiswa;
 use App\Models\catatanpengembangandirisiswa;
 use App\Models\catatanprestasisiswa;
 use App\Models\hasilpsikologi;
 use App\Models\kelas;
+use App\Models\masterdeteksi;
 use App\Models\minatbakat;
 use App\Models\sekolah;
 use App\Models\siswa;
@@ -115,73 +119,21 @@ class yayasansekolahcontroller extends Controller
             $kelas_id=0;
         }
         $datas=DB::table('siswa')
+        // ->select('id','apiprobk_id')
         ->where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
+        // ->paginate(3);
+        // ->paginate(Fungsi::paginationjml());
         ->get();
         // dd($datas);
-
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
-
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-
-
-
-            // $collection = new Collection();
-            //     $collection->push((object)['prod_id' => '99',
-            //                                'desc'=>'xyz',
-            //                                'price'=>'99',
-            //                                'discount'=>'7.35',
-
-            //     ]);
-            // dd($collection);
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('inputnilaipsikologi')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('masternilaipsikologi_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'singkatan'=>$m->singkatan,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
-
         $kelas=kelas::where('sekolah_id',$id->id)->get();
-        // dd($collectionpenilaian);
-        return view('pages.yayasan.sekolah.inputnilaipsikologi.index',compact('pages','request','datas','id','collectionpenilaian','kelas','kelaspertama'));
+        // dd($datas);
+        return view('pages.yayasan.sekolah.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
     }
     public function inputnilaipsikologicari(sekolah $id,Request $request)
     {
@@ -199,73 +151,21 @@ class yayasansekolahcontroller extends Controller
             $kelas_id=0;
         }
         $datas=DB::table('siswa')
+        // ->select('id','apiprobk_id')
         ->where('sekolah_id',$id->id)
-        ->where('kelas_id',$this->cari)
+        ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
+        // ->paginate(3);
+        // ->paginate(Fungsi::paginationjml());
         ->get();
         // dd($datas);
-
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
-
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-
-
-
-            // $collection = new Collection();
-            //     $collection->push((object)['prod_id' => '99',
-            //                                'desc'=>'xyz',
-            //                                'price'=>'99',
-            //                                'discount'=>'7.35',
-
-            //     ]);
-            // dd($collection);
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('inputnilaipsikologi')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('masternilaipsikologi_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'singkatan'=>$m->singkatan,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
-
         $kelas=kelas::where('sekolah_id',$id->id)->get();
-
-        return view('pages.yayasan.sekolah.inputnilaipsikologi.index',compact('pages','request','datas','id','collectionpenilaian','kelas','kelaspertama'));
+        // dd($datas);
+        return view('pages.yayasan.sekolah.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
 
     }
 
@@ -285,55 +185,17 @@ class yayasansekolahcontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
-        $dataakhir = collect();
 
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
-            $collectionpenilaian = new Collection();
 
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('minatbakat_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
 
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
-        return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
+        return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','master','kelas','kelaspertama'));
     }
 
     public function inputminatbakatcari(Request $request,sekolah $id)
@@ -350,60 +212,22 @@ class yayasansekolahcontroller extends Controller
         }
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
-        ->where('kelas_id',$this->cari)
+        ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
-        $dataakhir = collect();
 
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
-            $collectionpenilaian = new Collection();
 
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                // ->where('id','2')
-                ->where('minatbakat_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
 
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($collectionpenilaian);
-        return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','collectionpenilaian','master','kelas','kelaspertama'));
+        return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','master','kelas','kelaspertama'));
     }
     public function penjurusan(Request $request,sekolah $id)
     {
@@ -424,53 +248,11 @@ class yayasansekolahcontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
-
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                ->where('sekolah_id',$id->id)
-                ->where('minatbakat_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
-        // dd($collectionpenilaian,$periksadata,$d->id);
-        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
     }
     public function penjurusancari(Request $request,sekolah $id)
     {
@@ -484,63 +266,20 @@ class yayasansekolahcontroller extends Controller
         }else{
             $kelas_id=0;
         }
+        $kelas=kelas::where('sekolah_id',$id->id)->get();
+
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
-        ->where('kelas_id',$this->cari)
+        ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
-
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
-
         $master=minatbakat::where('kategori','Bakat dan Penjurusan')
         ->orderBy('id','asc')
         ->get();
-
-            $collectionpenilaian = new Collection();
-
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                $periksadata=DB::table('minatbakatdetail')
-                ->where('siswa_id',$d->id)
-                ->where('sekolah_id',$id->id)
-                ->where('minatbakat_id',$m->id)
-                ->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
-        // dd($collectionpenilaian,$periksadata,$d->id);
-        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','collectionpenilaian','master','kelaspertama','kelas'));
+        return view('pages.yayasan.sekolah.inputpenjurusan.index',compact('pages','request','datas','id','master','kelaspertama','kelas'));
     }
 
     public function hasilpsikologi(sekolah $id,Request $request)
@@ -564,43 +303,14 @@ class yayasansekolahcontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
+        $datas=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-            $dataakhir = new Collection();
-
-        foreach($datasiswa as $d){
-
-
-
-
-                $periksadata=hasilpsikologi::where('siswa_id',$d->id)
-                ->count();
-
-                if($periksadata>0){
-                    $ambil=hasilpsikologi::where('siswa_id',$d->id)
-                    ->first();
-                    $nilai=$ambil->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'nilai'=>$nilai,
-            ]);
-        }
-
-        $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$id->id)->get();
-
         return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
     }
 
@@ -626,47 +336,64 @@ class yayasansekolahcontroller extends Controller
             $kelas_id=0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
+        $datas=siswa::where('sekolah_id',$id->id)
         ->where('kelas_id',$kelas_id)
         ->whereNull('deleted_at')->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->get();
 
 
-            $dataakhir = new Collection();
-
-        foreach($datasiswa as $d){
-
-
-
-
-                $periksadata=DB::table('hasilpsikologi')
-                ->where('siswa_id',$d->id)
-                ->count();
-
-                if($periksadata>0){
-                    $ambil=DB::table('hasilpsikologi')
-                    ->where('siswa_id',$d->id)
-                    ->first();
-                    $nilai=$ambil->nilai;
-                }else{
-                    $nilai=null;
-                }
-
-            $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'nilai'=>$nilai,
-            ]);
-        }
-
-        $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$id->id)->get();
         // dd($datas);
 
         return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
+    }
+
+    public function deteksi_lihat(sekolah $id,siswa $siswa,Request $request)
+    {
+        $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        foreach($getdatadeteksi as $item){
+            $datas[$item->kunci]=$item->isi;
+        }
+        $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='sekolah';
+            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+            $masterdeteksi=masterdeteksi::get();
+        return view('pages.yayasan.sekolah.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
+    }
+    public function deteksi_cetak(Request $request)
+    {
+        dd('cetak deteksi');
+    }
+    public function sertifikat_lihat(sekolah $id,siswa $siswa,Request $request)
+    {
+        $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='sekolah';
+        $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+        return view('pages.yayasan.sekolah.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+    }
+    public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
+    {
+        $datas=null;
+        $status=false;
+        $msg="Data gagal di muat!";
+
+        $datas=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        if($datas!=null){
+            $status=true;
+            $msg="Ambil data berhasil";
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg,
+            'data' => $datas,
+        ], 200);
+
+    }
+    public function sertifikat_cetak(Request $request)
+    {
+        dd('cetak Sertifikat');
     }
     // public function hasilpsikologi(sekolah $id,Request $request)
     // {

@@ -79,7 +79,7 @@
                         {{$loop->index+1}}
                     </td>
                     <td >
-                        {{$data->siswa!=null ? $data->siswa->nama : 'Data tidak ditemukan'}}
+                        {{ $data->nama }}
                     </td>
                     <td class="text-center">
                         <a class="btn btn-sm btn-info" href="{{route('sekolah.hasilpsikologi.deteksi_lihat',[$id->id,$data->id])}}"> Lihat Deteksi</a>

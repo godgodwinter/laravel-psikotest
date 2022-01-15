@@ -18,7 +18,7 @@ Hasil Deteksi Psikologi
         <h1>@yield('title')</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="{{route('sekolah')}}">Sekolah</a></div>
+            {{-- <div class="breadcrumb-item"><a href="{{route('sekolah')}}">Sekolah</a></div> --}}
             <div class="breadcrumb-item">{{ $id->nama }}</div>
         </div>
     </div>
@@ -28,10 +28,7 @@ Hasil Deteksi Psikologi
 
         <div id="output-status"></div>
         <div class="row">
-          <div class="col-md-3">
-              @include('pages.admin.sekolah.component.sidebarsekolah')
-          </div>
-          <div class="col-md-9">
+          <div class="col-md-12">
             @push('before-script')
                 <script>
                 let dataSertifikat={};
@@ -48,7 +45,7 @@ Hasil Deteksi Psikologi
                     "X-CSRF-Token": $('input[name="_token"]').val()
                     },
                     };
-                    const response = await fetch("{{route('sekolah.hasilpsikologi.sertifikat_lihatapi',[$datasiswa->sekolah_id,$datasiswa->id])}}", requestOptions);
+                    const response = await fetch("{{route('siswa.hasilpsikologi.sertifikat_lihatapi')}}", requestOptions);
                     let data = await response.json();
                     if (response.ok){
                     // console.log(data);
