@@ -30,6 +30,7 @@ class bkinputnilaipsikologicontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
+
         $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
@@ -60,6 +61,7 @@ class bkinputnilaipsikologicontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
+
         $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
@@ -84,46 +86,4 @@ class bkinputnilaipsikologicontroller extends Controller
         // dd($collectionpenilaian);
         return view('pages.bk.inputnilaipsikologi.index',compact('pages','request','datas','kelas','kelaspertama','master'));
     }
-    public function apiprobk_sertifikat(Request $request,$apiprobk_id){
-        $datas=null;
-        $status=false;
-        $msg="Data gagal di muat!";
-
-        $datas=apiprobk_sertifikat::select('*')
-        ->where('apiprobk_id',$apiprobk_id)
-        ->get();
-        if($datas!=null){
-            $status=true;
-            $msg="Ambil data berhasil";
-        }
-
-        return response()->json([
-            'success' => $status,
-            'message' => $msg,
-            'data' => $datas,
-        ], 200);
-
-    }
-public function apiprobk_sertifikat_isi(Request $request,$apiprobk_id,$kunci){
-    $datas=null;
-    $status=false;
-    $msg="Data gagal di muat!";
-
-    $getdatas=apiprobk_sertifikat::select('*')
-    ->where('apiprobk_id',$apiprobk_id)
-    ->where('kunci',$kunci)
-    ->first();
-    if($getdatas!=null){
-        $status=true;
-        $msg="Ambil data berhasil";
-        $datas=$getdatas->isi;
-    }
-
-    return response()->json([
-        'success' => $status,
-        'message' => $msg,
-        'data' => $datas,
-    ], 200);
-
-}
 }

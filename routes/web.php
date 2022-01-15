@@ -42,6 +42,7 @@ use App\Http\Controllers\bkwalikelascontroller;
 use App\Http\Controllers\bkcatatankasussiswacontroller;
 use App\Http\Controllers\bkcatatanpengembangandirisiswacontroller;
 use App\Http\Controllers\bkcatatanprestasisiswacontroller;
+use App\Http\Controllers\bkhasilpsikologicontroller;
 use App\Http\Controllers\bkinputminatbakatcontroller;
 use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
@@ -435,6 +436,23 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::delete('/bk/pengguna/{data}', [bkpenggunacontroller::class, 'destroy'])->name('bk.pengguna.destroy');
         Route::delete('/bk/pengguna/multidel', [bkpenggunacontroller::class, 'multidel'])->name('bk.pengguna.multidel');
 
+         //hasilpsikologi
+        Route::get('/bk/hasilpsikologi', [bkhasilpsikologicontroller::class, 'index'])->name('bk.hasilpsikologi');
+        Route::get('/bk/hasilpsikologi/create', [bkhasilpsikologicontroller::class, 'create'])->name('bk.hasilpsikologi.create');
+        Route::post('/bk/hasilpsikologi/create', [bkhasilpsikologicontroller::class, 'store'])->name('bk.hasilpsikologi.store');
+        Route::get('/bk/hasilpsikologi/cari', [bkhasilpsikologicontroller::class, 'cari'])->name('bk.hasilpsikologi.cari');
+        Route::get('/bk/hasilpsikologi/{data}', [bkhasilpsikologicontroller::class, 'edit'])->name('bk.hasilpsikologi.edit');
+        Route::put('/bk/hasilpsikologi/{data}', [bkhasilpsikologicontroller::class, 'update'])->name('bk.hasilpsikologi.update');
+        Route::delete('/bk/hasilpsikologi/{siswa}', [bkhasilpsikologicontroller::class, 'destroy'])->name('bk.hasilpsikologi.destroy');
+        //cetak lihat hasil psikologi
+        Route::get('/bk/hasilpsikologi/{siswa}/deteksi_lihat', [bkhasilpsikologicontroller::class, 'deteksi_lihat'])->name('bk.hasilpsikologi.deteksi_lihat');
+        Route::get('/bk/hasilpsikologi/{siswa}/deteksi_cetak', [bkhasilpsikologicontroller::class, 'deteksi_cetak'])->name('bk.hasilpsikologi.deteksi_cetak');
+        Route::get('/bk/hasilpsikologi/{siswa}/sertifikat_lihat', [bkhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('bk.hasilpsikologi.sertifikat_lihat');
+        Route::post('/bk/hasilpsikologi/{siswa}/sertifikat_lihatapi', [bkhasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('bk.hasilpsikologi.sertifikat_lihatapi');
+        Route::get('/bk/hasilpsikologi/{siswa}/sertifikat_cetak', [bkhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('bk.hasilpsikologi.sertifikat_cetak');
+
+
+
         //menu inputnilaipsikologi
         Route::get('/bk/inputnilaipsikologi', [bkinputnilaipsikologicontroller::class, 'index'])->name('bk.inputnilaipsikologi');
         Route::get('/bk/inputnilaipsikologi/create', [bkinputnilaipsikologicontroller::class, 'create'])->name('bk.inputnilaipsikologi.create');
@@ -445,10 +463,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::delete('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'destroy'])->name('bk.inputnilaipsikologi.destroy');
 
         //penjurusan
-        Route::get('/bk/penjurusan', [bkpenggunacontroller::class, 'index'])->name('bk.penjurusan');
+        Route::get('/bk/penjurusan', [bkpenjurusancontroller::class, 'index'])->name('bk.penjurusan');
+        Route::get('/bk/penjurusan/cari', [bkpenjurusancontroller::class, 'cari'])->name('bk.penjurusan.cari');
+        Route::get('/bk/penjurusan/{siswa}', [bkpenjurusancontroller::class, 'edit'])->name('bk.penjurusan.edit');
+        Route::put('/bk/penjurusan/{siswa}', [bkpenjurusancontroller::class, 'update'])->name('bk.penjurusan.update');
+        Route::get('/bk/penjurusan/cetak/{siswa}', [bkpenjurusancontroller::class, 'cetakpersiswa'])->name('bk.penjurusan.cetakpersiswa');
 
         //inputminatbakat
-        Route::get('/bk/inputminatbakat', [bkpenggunacontroller::class, 'index'])->name('bk.inputminatbakat');
+        Route::get('/bk/inputminatbakat', [bkinputminatbakatcontroller::class, 'index'])->name('bk.inputminatbakat');
         Route::get('/bk/inputminatbakat/create', [bkinputminatbakatcontroller::class, 'create'])->name('bk.inputminatbakat.create');
         Route::post('/bk/inputminatbakat/create', [bkinputminatbakatcontroller::class, 'store'])->name('bk.inputminatbakat.store');
         Route::get('/bk/inputminatbakat/cari', [bkinputminatbakatcontroller::class, 'cari'])->name('bk.inputminatbakat.cari');
@@ -486,22 +508,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::post('/bk/datacatatanprestasisiswa', [bkcatatanprestasisiswacontroller::class, 'store'])->name('bk.catatanprestasisiswa.store');
         Route::delete('/bk/datacatatanprestasisiswa/multidel', [bkcatatanprestasisiswacontroller::class, 'multidel'])->name('bk.catatanprestasisiswa.multidel');
 
-        //bkminatbakat
-        Route::get('/bk/inputminatbakat/', [bkinputminatbakatcontroller::class, 'index'])->name('bk.inputminatbakat');
-        Route::get('/bk/inputminatbakat/cari', [bkinputminatbakatcontroller::class, 'cari'])->name('bk.inputminatbakat.cari');
-        Route::get('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'edit'])->name('bk.inputminatbakat.edit');
-        Route::put('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'update'])->name('bk.inputminatbakat.update');
-        Route::delete('/bk/inputminatbakat/{id}', [bkinputminatbakatcontroller::class, 'destroy'])->name('bk.inputminatbakat.destroy');
-        Route::get('/bk/datainputminatbakat/create', [bkinputminatbakatcontroller::class, 'create'])->name('bk.inputminatbakat.create');
-        Route::post('/bk/datainputminatbakat', [bkinputminatbakatcontroller::class, 'store'])->name('bk.inputminatbakat.store');
-        Route::delete('/bk/datainputminatbakat/multidel', [bkinputminatbakatcontroller::class, 'multidel'])->name('bk.inputminatbakat.multidel');
 
-        //penjurusan
-        Route::get('/bk/penjurusan', [bkpenjurusancontroller::class, 'index'])->name('bk.penjurusan');
-        Route::get('/bk/penjurusan/cari', [bkpenjurusancontroller::class, 'cari'])->name('bk.penjurusan.cari');
-        Route::get('/bk/penjurusan/{siswa}', [bkpenjurusancontroller::class, 'edit'])->name('bk.penjurusan.edit');
-        Route::put('/bk/penjurusan/{siswa}', [bkpenjurusancontroller::class, 'update'])->name('bk.penjurusan.update');
-        Route::get('/bk/penjurusan/cetak/{siswa}', [bkpenjurusancontroller::class, 'cetakpersiswa'])->name('bk.penjurusan.cetakpersiswa');
 
         //setting pengguna bk
         //Route::get('/bk/settingpengguna', [bksettingpenggunacontroller::class, 'index'])->name('bk.settingpengguna');

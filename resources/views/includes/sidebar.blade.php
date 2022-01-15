@@ -97,11 +97,12 @@
             <li {{$pages=='bk-kelas' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.kelas') : '#'}}"><i class="fas fa-chalkboard"></i>
                     <span>Kelas</span></a></li>
-            <li {{$pages=='bk-pengguna' ? 'class=active' : ''}}><a class="nav-link"
+            {{-- <li {{$pages=='bk-pengguna' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.pengguna') : '#'}}"><i class="fas fa-users-cog"></i>
-                    <span>Pengguna</span></a></li>
+                    <span>Pengguna</span></a></li> --}}
 
-            
+
+
 `       <li class="menu-header">Menu Utama</li>
             <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.referensi') : '#'}}"><i class="far fa-file-alt"></i>
@@ -112,13 +113,16 @@
             <li {{$pages=='bk-inputnilaipsikologi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.inputnilaipsikologi') : '#'}}"><i class="fas fa-graduation-cap"></i>
                      <span>Input Nilai Siswa</span></a></li>
-           
+
             <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.inputminatbakat') : '#'}}"><i class="fas fa-quidditch"></i>
                     <span>Input Minat dan Bakat
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
                     <span>Input Penjurusan</span></a></li></span></a></li>
+            <li {{$pages=='bk-hasilpsikologi' ? 'class=active' : ''}}><a class="nav-link"
+                    href="{{$id->status=='Aktif' ?  route('bk.hasilpsikologi') : '#'}}"><i class="fas fa-users-cog"></i>
+                    <span>Hasil Psikologi</span></a></li>
 
 
             <li class="menu-header">Catatan Siswa</li>

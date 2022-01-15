@@ -49,58 +49,23 @@ class bkinputminatbakatcontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
-        $dataakhir = collect();
 
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
-            $collectionpenilaian = new Collection();
 
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
 
         $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
         // dd($collectionpenilaian);
-        return view('pages.bk.inputminatbakat.index',compact('pages','request','datas','collectionpenilaian','master','kelas','kelaspertama'));
+        return view('pages.bk.inputminatbakat.index',compact('pages','request','datas','master','kelas','kelaspertama'));
     }
     public function cari(Request $request)
     {
         // dd('cari',$request);
         $pages='bk-inputminatbakat';
+
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
@@ -113,65 +78,22 @@ class bkinputminatbakatcontroller extends Controller
         ->orderBy('nama','asc')
         ->get();
 
-        $dataakhir = collect();
-
-        $dataakhir_array = $dataakhir->toArray();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
 
-            $collectionpenilaian = new Collection();
 
-        foreach($datas as $d){
-
-            $collectionmaster = new Collection();
-
-            foreach($master as $m){
-
-
-                // $periksadata=DB::table('minatbakatdetail')
-                // ->where('siswa_id',$d->id)
-                // // ->where('id','2')
-                // ->where('minatbakat_id',$m->id)
-                // ->get();
-
-                $periksadata=apiprobk_sertifikat::where('kunci',$m->nama)
-                ->where('apiprobk_id',$d->apiprobk_id)->get();
-
-                if($periksadata->count()>0){
-                    $ambildata=$periksadata->first();
-                    $nilai=$periksadata->first()->isi;
-                }else{
-                    $nilai=null;
-                }
-
-            $collectionmaster->push((object)[
-                'id'=>$m->id,
-                'kategori'=>$m->kategori,
-                'nilai'=>$nilai
-            ]);
-
-            }
-
-            $collectionpenilaian->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'master'=>$collectionmaster
-            ]);
-        }
 
         $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
         // dd($collectionpenilaian);
-        return view('pages.bk.inputminatbakat.index',compact('pages','request','datas','collectionpenilaian','master','kelas','kelaspertama'));
-    }
+        return view('pages.bk.inputminatbakat.index',compact('pages','request','datas','master','kelas','kelaspertama'));
+   }
     public function edit(Request $request,$siswa){
         // dd('edit');
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        
         $data=siswa::where('sekolah_id',$sekolah_id)->where('id',$siswa)->first();
 
         $master=minatbakat::where('kategori','Minat dan Bakat')
@@ -187,7 +109,6 @@ class bkinputminatbakatcontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-
         $master=minatbakat::where('kategori','Minat dan Bakat')
         ->orderBy('id','asc')
         ->get();
@@ -235,7 +156,6 @@ class bkinputminatbakatcontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        
         $tgl=date("YmdHis");
 		return Excel::download(new exportminatbakat($sekolah_id), 'psikotest-minatbakat-'.$sekolah_id.'-'.$tgl.'.xlsx');
     }
@@ -246,7 +166,6 @@ class bkinputminatbakatcontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        
         $periksadetail=minatbakatdetail::
         where('sekolah_id',$sekolah_id)
         ->where('siswa_id',$siswa->id)
