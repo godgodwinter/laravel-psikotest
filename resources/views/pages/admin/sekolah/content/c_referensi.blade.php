@@ -1,7 +1,7 @@
 
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>Referensi Psikologis </h4>
+                    <h4>Referensi Studi dan Kerja </h4>
                   </div>
                   <div class="card-body">
                     <div id="babeng-bar" class="text-right mt-2">
