@@ -277,7 +277,7 @@ class bkcatatanprestasisiswacontroller extends Controller
                 'updated_at'=>date("Y-m-d H:i:s"),
             ));
 
-        return redirect()->route('bk.catatanprestasisiswa.cari', [$sekolah_id,'kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
+        return redirect()->route('bk.catatanprestasisiswa.cari', ['kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
 
     public function edit( catatanprestasisiswa $data)
@@ -341,13 +341,13 @@ class bkcatatanprestasisiswacontroller extends Controller
             'updated_at'=>date("Y-m-d H:i:s"),
         ]);
 
-        return redirect()->route('bk.catatanprestasisiswa', $sekolah_id)->with('status', 'Data berhasil diubah!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
+        return redirect()->route('bk.catatanprestasisiswa')->with('status', 'Data berhasil diubah!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
     public function destroy( catatanprestasisiswa $data)
     {
 
         catatanprestasisiswa::destroy($data->id);
-        return redirect()->route('bk.catatanprestasisiswa', $sekolah_id)->with('status', 'Data berhasil dihapus!')->with('tipe', 'warning')->with('icon', 'fas fa-feather');
+        return redirect()->route('bk.catatanprestasisiswa')->with('status', 'Data berhasil dihapus!')->with('tipe', 'warning')->with('icon', 'fas fa-feather');
     }
 
 

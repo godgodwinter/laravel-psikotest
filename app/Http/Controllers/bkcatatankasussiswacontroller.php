@@ -282,12 +282,12 @@ class bkcatatankasussiswacontroller extends Controller
             )
         );
 
-        return redirect()->route('sekolah.catatankasus.cari', [$sekolah_id,'kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
+        return redirect()->route('bk.catatankasussiswa.cari', [$sekolah_id,'kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
 
     public function edit( catatankasussiswa $data)
     {
-        $pages = 'catatankasussiswa';
+        $pages = 'bk-catatankasussiswa';
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
@@ -344,13 +344,13 @@ class bkcatatankasussiswacontroller extends Controller
                 'updated_at' => date("Y-m-d H:i:s"),
             ]);
 
-        return redirect()->route('sekolah.catatankasus')->with('status', 'Data berhasil diubah!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
+        return redirect()->route('bk.catatankasussiswa')->with('status', 'Data berhasil diubah!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
     public function destroy( catatankasussiswa $data)
     {
 
         catatankasussiswa::destroy($data->id);
-        return redirect()->route('sekolah.catatankasus')->with('status', 'Data berhasil dihapus!')->with('tipe', 'warning')->with('icon', 'fas fa-feather');
+        return redirect()->route('bk.catatankasussiswa')->with('status', 'Data berhasil dihapus!')->with('tipe', 'warning')->with('icon', 'fas fa-feather');
     }
 
 
