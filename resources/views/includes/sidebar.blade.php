@@ -97,15 +97,15 @@
             <li {{$pages=='bk-kelas' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.kelas') : '#'}}"><i class="fas fa-chalkboard"></i>
                     <span>Kelas</span></a></li>
-            {{-- <li {{$pages=='bk-pengguna' ? 'class=active' : ''}}><a class="nav-link"
+            <li {{$pages=='bk-pengguna' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.pengguna') : '#'}}"><i class="fas fa-users-cog"></i>
-                    <span>Pengguna</span></a></li> --}}
+                    <span>Pengguna</span></a></li>
 
 
 `       <li class="menu-header">Menu Utama</li>
             <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.referensi') : '#'}}"><i class="far fa-file-alt"></i>
-                    <span>Referensi Studi dan Keja</span></a></li>
+                    <span>Referensi Studi dan Kerja</span></a></li>
             <li {{$pages=='bk-informasipsikologi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.informasipsikologi') : '#'}}"><i class="fas fa-info-circle"></i>
                      <span>Buletin Psikologi</span></a></li>
@@ -119,9 +119,6 @@
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
                     <span>Analisa Penjurusan</span></a></li></span></a></li>
-            <li {{$pages=='bk-hasilpsikologi' ? 'class=active' : ''}}><a class="nav-link"
-                        href="{{$id->status=='Aktif' ?  route('bk.hasilpsikologi') : '#'}}"><i class="fas fa-users-cog"></i>
-                        <span>Hasil Psikologi</span></a></li>
 
 
             <li class="menu-header">Catatan Siswa</li>
@@ -141,6 +138,10 @@
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('yayasan.sekolah')}}"><i
                         class="fas fa-home"></i> <span>Sekolah</span></a></li>
 
+                        @elseif((Auth::user()->tipeuser)=='siswa')
+                        <li class="menu-header">Menu</li>
+                        <li {{$pages=='deteksi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('siswa.hasilpsikologi.deteksi_lihat')}}"><i class="fas fa-diagnoses"></i> <span>Hasil Deteksi</span></a></li>
+                        <li {{$pages=='sertifikat' ? 'class=active' : ''}}><a class="nav-link" href="{{route('siswa.hasilpsikologi.sertifikat_lihat')}}"><i class="fas fa-stamp"></i> <span>Sertifikat</span></a></li>
                     @else
 
             @endif
