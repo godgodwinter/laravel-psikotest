@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Referensi Psikologi
+Referensi Studi dan Kerja
 @endsection
 
 @push('before-script')
