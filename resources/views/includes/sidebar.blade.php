@@ -115,10 +115,10 @@
 
             <li {{$pages=='bk-inputminatbakat' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.inputminatbakat') : '#'}}"><i class="fas fa-quidditch"></i>
-                    <span>Input Minat dan Bakat
+                    <span>Analisa Minat dan Bakat
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
-                    <span>Input Penjurusan</span></a></li></span></a></li>
+                    <span>Analisa Penjurusan</span></a></li></span></a></li>
             <li {{$pages=='bk-hasilpsikologi' ? 'class=active' : ''}}><a class="nav-link"
                         href="{{$id->status=='Aktif' ?  route('bk.hasilpsikologi') : '#'}}"><i class="fas fa-users-cog"></i>
                         <span>Hasil Psikologi</span></a></li>

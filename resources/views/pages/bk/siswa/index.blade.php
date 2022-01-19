@@ -80,6 +80,8 @@ Siswa
                             <th width="8%" class="text-center babeng-min-row"><input type="checkbox" id="chkCheckAll">No</th>
                             <th>Nama siswa</th>
                             <th>Kelas</th>
+                            <th>Username</th>
+                            <th>PasswordDefault</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -93,6 +95,12 @@ Siswa
                                     </td>
                                     <td>
                                       {{ $data->kelas!=null ? $data->kelas->nama : 'Data tidak ditemukan' }}
+                                    </td>
+                                    <td>
+                                        {{ $data->users_id!=null ? $data->users->username : 'Data tidak ditemukan' }}
+                                    </td>
+                                    <td>
+                                        {{ $data->users_id!=null ? $data->passworddefault : 'Data tidak ditemukan' }}
                                     </td>
 
                                     <td class="text-center babeng-min-row">

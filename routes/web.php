@@ -480,36 +480,46 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'edit'])->name('bk.inputminatbakat.edit');
         Route::put('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'update'])->name('bk.inputminatbakat.update');
         Route::delete('/bk/inputminatbakat/{data}', [bkinputminatbakatcontroller::class, 'destroy'])->name('bk.inputminatbakat.destroy');
+
         //catatankasussiswa
         Route::get('/bk/catatankasussiswa', [bkcatatankasussiswacontroller::class, 'index'])->name('bk.catatankasussiswa');
+        Route::get('/bk/catatankasussiswa/create', [bkcatatankasussiswacontroller::class, 'create'])->name('bk.catatankasussiswa.create');
+        Route::post('/bk/catatankasussiswa/create', [bkcatatankasussiswacontroller::class, 'store'])->name('bk.catatankasussiswa.store');
         Route::get('/bk/catatankasussiswa/cari', [bkcatatankasussiswacontroller::class, 'cari'])->name('bk.catatankasussiswa.cari');
-        Route::get('/bk/catatankasussiswa/{datasa}', [bkcatatankasussiswacontroller::class, 'edit'])->name('bk.catatankasussiswa.edit');
-        Route::put('/bk/catatankasussiswa/{datasa}', [bkcatatankasussiswacontroller::class, 'update'])->name('bk.catatankasussiswa.update');
-        Route::delete('/bk/catatankasussiswa/{id}', [bkcatatankasussiswacontroller::class, 'destroy'])->name('bk.catatankasussiswa.destroy');
-        Route::get('/bk/datacatatankasussiswa/create', [bkcatatankasussiswacontroller::class, 'create'])->name('bk.catatankasussiswa.create');
-        Route::post('/bk/datacatatankasussiswa', [bkcatatankasussiswacontroller::class, 'store'])->name('bk.catatankasussiswa.store');
-        Route::delete('/bk/datacatatankasussiswa/multidel', [bkcatatankasussiswacontroller::class, 'multidel'])->name('bk.catatankasussiswa.multidel');
+        Route::get('/bk/catatankasussiswa/{data}', [bkcatatankasussiswacontroller::class, 'edit'])->name('bk.catatankasussiswa.edit');
+        Route::put('/bk/catatankasussiswa/{data}', [bkcatatankasussiswacontroller::class, 'update'])->name('bk.catatankasussiswa.update');
+        Route::delete('/bk/catatankasussiswa/{data}', [bkcatatankasussiswacontroller::class, 'destroy'])->name('bk.catatankasussiswa.destroy');
+        Route::delete('/bk/catatankasussiswa/multidel/{id}', [bkcatatankasussiswacontroller::class, 'multidel'])->name('bk.catatankasussiswa.multidel');
+        Route::get('/bk/catatankasussiswa/cetak/{data}', [bkcatatankasussiswacontroller::class, 'cetakpersiswa'])->name('bk.catatankasussiswa.cetakpersiswa');
+        Route::get('/bk/catatankasussiswa/detail/{data}', [bkcatatankasussiswacontroller::class, 'detail'])->name('bk.catatankasussiswa.detail');
+        Route::get('/bk/catatankasussiswa/preview/{data}', [bkcatatankasussiswacontroller::class, 'preview'])->name('bk.catatankasussiswa.preview');
       //  Route::get('/bk/datacatatankasussiswa/autocomplete', [bkcatatankasussiswacontroller::class, 'autocomplete'])->name('bk.catatankasussiswa.autocomplete');
 
         //catatanpengembangandirisiswa
         Route::get('/bk/catatanpengembangandirisiswa', [bkcatatanpengembangandirisiswacontroller::class, 'index'])->name('bk.catatanpengembangandirisiswa');
+        Route::get('/bk/catatanpengembangandirisiswa/create', [bkcatatanpengembangandirisiswacontroller::class, 'create'])->name('bk.catatanpengembangandirisiswa.create');
+        Route::post('/bk/catatanpengembangandirisiswa/create', [bkcatatanpengembangandirisiswacontroller::class, 'store'])->name('bk.catatanpengembangandirisiswa.store');
         Route::get('/bk/catatanpengembangandirisiswa/cari', [bkcatatanpengembangandirisiswacontroller::class, 'cari'])->name('bk.catatanpengembangandirisiswa.cari');
         Route::get('/bk/catatanpengembangandirisiswa/{data}', [bkcatatanpengembangandirisiswacontroller::class, 'edit'])->name('bk.catatanpengembangandirisiswa.edit');
         Route::put('/bk/catatanpengembangandirisiswa/{data}', [bkcatatanpengembangandirisiswacontroller::class, 'update'])->name('bk.catatanpengembangandirisiswa.update');
-        Route::delete('/bk/catatanpengembangandirisiswa/{id}', [bkcatatanpengembangandirisiswacontroller::class, 'destroy'])->name('bk.catatanpengembangandirisiswa.destroy');
-        Route::get('/bk/datacatatanpengembangandirisiswa/create', [bkcatatanpengembangandirisiswacontroller::class, 'create'])->name('bk.catatanpengembangandirisiswa.create');
-        Route::post('/bk/datacatatanpengembangandirisiswa', [bkcatatanpengembangandirisiswacontroller::class, 'store'])->name('bk.catatanpengembangandirisiswa.store');
-        Route::delete('/bk/datacatatanpengembangandirisiswa/multidel', [bkcatatanpengembangandirisiswacontroller::class, 'multidel'])->name('bk.catatanpengembangandirisiswa.multidel');
+        Route::delete('/bk/catatanpengembangandirisiswa/{data}', [bkcatatanpengembangandirisiswacontroller::class, 'destroy'])->name('bk.catatanpengembangandirisiswa.destroy');
+        Route::delete('/bk/catatanpengembangandirisiswa/multidel/{id}', [bkcatatanpengembangandirisiswacontroller::class, 'multidel'])->name('bk.catatanpengembangandirisiswa.multidel');
+        Route::get('/bk/catatanpengembangandirisiswa/cetak/{data}', [bkcatatanpengembangandirisiswacontroller::class, 'cetakpersiswa'])->name('bk.catatanpengembangandirisiswa.cetakpersiswa');
+        Route::get('/bk/catatanpengembangandirisiswa/detail/{data}', [bkcatatanpengembangandirisiswacontroller::class, 'detail'])->name('bk.catatanpengembangandirisiswa.detail');
+        Route::get('/bk/catatanpengembangandirisiswa/preview/{data}', [bkcatatanpengembangandirisiswacontroller::class, 'preview'])->name('bk.catatanpengembangandirisiswa.preview');
 
         //catatanprestasisiswa
         Route::get('/bk/catatanprestasisiswa', [bkcatatanprestasisiswacontroller::class, 'index'])->name('bk.catatanprestasisiswa');
+        Route::get('/bk/catatanprestasisiswa/create', [bkcatatanprestasisiswacontroller::class, 'create'])->name('bk.catatanprestasisiswa.create');
+        Route::post('/bk/catatanprestasisiswa/create', [bkcatatanprestasisiswacontroller::class, 'store'])->name('bk.catatanprestasisiswa.store');
         Route::get('/bk/catatanprestasisiswa/cari', [bkcatatanprestasisiswacontroller::class, 'cari'])->name('bk.catatanprestasisiswa.cari');
         Route::get('/bk/catatanprestasisiswa/{data}', [bkcatatanprestasisiswacontroller::class, 'edit'])->name('bk.catatanprestasisiswa.edit');
         Route::put('/bk/catatanprestasisiswa/{data}', [bkcatatanprestasisiswacontroller::class, 'update'])->name('bk.catatanprestasisiswa.update');
-        Route::delete('/bk/catatanprestasisiswa/{id}', [bkcatatanprestasisiswacontroller::class, 'destroy'])->name('bk.catatanprestasisiswa.destroy');
-        Route::get('/bk/datacatatanprestasisiswa/create', [bkcatatanprestasisiswacontroller::class, 'create'])->name('bk.catatanprestasisiswa.create');
-        Route::post('/bk/datacatatanprestasisiswa', [bkcatatanprestasisiswacontroller::class, 'store'])->name('bk.catatanprestasisiswa.store');
-        Route::delete('/bk/datacatatanprestasisiswa/multidel', [bkcatatanprestasisiswacontroller::class, 'multidel'])->name('bk.catatanprestasisiswa.multidel');
+        Route::delete('/bk/catatanprestasisiswa/{data}', [bkcatatanprestasisiswacontroller::class, 'destroy'])->name('bk.catatanprestasisiswa.destroy');
+        Route::delete('/bk/catatanprestasisiswa/multidel/{id}', [bkcatatanprestasisiswacontroller::class, 'multidel'])->name('bk.catatanprestasisiswa.multidel');
+        Route::get('/bk/catatanprestasisiswa/cetak/{data}', [bkcatatanprestasisiswacontroller::class, 'cetakpersiswa'])->name('bk.catatanprestasisiswa.cetakpersiswa');
+        Route::get('/bk/catatanprestasisiswa/detail/{data}', [bkcatatanprestasisiswacontroller::class, 'detail'])->name('bk.catatanprestasisiswa.detail');
+        Route::get('/bk/catatanprestasisiswa/preview/{data}', [bkcatatanprestasisiswacontroller::class, 'preview'])->name('bk.catatanprestasisiswa.preview');
 
 
 

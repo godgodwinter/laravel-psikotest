@@ -8,227 +8,388 @@ use App\Models\kelas;
 use App\Models\sekolah;
 use App\Models\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
+use PDF;
 
 class bkcatatankasussiswacontroller extends Controller
 {
-
-    protected $projects;
-
+    protected $cari;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='bk'){
-                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            if (Auth::user()->tipeuser != 'bk') {
+                return redirect()->route('dashboard')->with('status', 'Halaman tidak ditemukan!')->with('tipe', 'danger');
             }
-        return $next($request);
+
+            return $next($request);
         });
     }
-        public function index(Request $request){
-                $pages='bk-catatankasussiswa';
-                $users_id=Auth::user()->id;
-                $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
-                $sekolah_id=$pengguna->sekolah_id;
-                $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-                $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
-                ->where('sekolah_id',$id->id)
-                ->orderBy('siswa_id','asc')
-                ->paginate(Fungsi::paginationjml());
+    public function index( Request $request)
+    {
+        $pages = 'bk-catatankasussiswa';
 
-                return view('pages.bk.catatankasussiswa.index',compact('pages','id','request','datas'));
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+        ->where('id',$cari)
+        ->first();
         }
-        public function cari(Request $request)
-        {
-             $cari=$request->cari;
-            #WAJIB
-            $pages='bk-catatankasussiswa';
-            $users_id=Auth::user()->id;
-            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
-            $sekolah_id=$pengguna->sekolah_id;
-            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-            $datas=catatankasussiswa::with('siswa')->with('kelas')
-            ->where('sekolah_id',$sekolah_id)
-            ->whereHas('siswa',function($query){
-            global $request;
-                $query->where('siswa.nama','like',"%".$request->cari."%");
-            })
-            ->orWhereHas('kelas',function($query){
-            global $request;
-                $query->where('kelas.nama','like',"%".$request->cari."%");
-            })
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$sekolah_id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$sekolah_id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatankasussiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatankasussiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama'));
+    }
+
+    public function cari( Request $request)
+    {
+        $this->cari=$request->kelas_id;
+        $pages = 'bk-catatankasus';
+
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $cari=null;
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+                        ->first();
+        if($this->cari!=null){
+            $cari=$this->cari;
+
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+        ->where('id',$cari)
+        ->first();
+        }
+
+        if($kelaspertama!=null){
+            $kelas_id=$kelaspertama->id;
+        }else{
+            $kelas_id=0;
+        }
+        // dd($this->cari,$cari,$kelaspertama);
+        $datasiswa=siswa::where('sekolah_id',$sekolah_id)
+        ->where('kelas_id',$kelas_id)
+        ->where('sekolah_id',$sekolah_id)
+        ->orderBy('nama','asc')
+        ->get();
+
+
+            $dataakhir = new Collection();
+
+        foreach($datasiswa as $d){
+
+
+
+
+                $periksadata=catatankasussiswa::where('siswa_id',$d->id)
+                ->count();
+
+
+                // if($periksadata>0){
+                //     $ambil=catatankasussiswa::where('siswa_id',$d->id)
+                //     ->first();
+                //     $nilai=$ambil->nilai;
+                // }else{
+                //     $nilai=null;
+                // }
+
+            $dataakhir->push((object)[
+                'id'=>$d->id,
+                'nomerinduk'=>$d->nomerinduk,
+                'nama'=>$d->nama,
+                'siswa'=>$d,
+                'jmldata'=>$periksadata,
+            ]);
+        }
+
+        $datas=$dataakhir;
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama'));
+    }
+    public function indexbackup( Request $request)
+    {
+        $pages = 'bk-catatankasus';
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
+            ->where('sekolah_id', $sekolah_id)
+            ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
-            // dd($datas,$cari);
-            return view('pages.bk.catatankasussiswa.index',compact('pages','id','request','datas'));
-        }
 
-        public function create(sekolah $id)
-        {
-            $pages='bk-catatankasussiswa';
-            $users_id=Auth::user()->id;
+            $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+    return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas'));
+    }
+    public function detail(siswa $data, Request $request)
+    {
+        $pages = 'bk-catatankasussiswa';
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
+            ->where('sekolah_id', $sekolah_id)
+            ->where('siswa_id', $data->id)
+            ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
+
+            $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+    return view('pages.bk.catatankasussiswa.detail', compact('pages', 'request', 'datas','kelas','data'));
+    }
+    public function caribackup( Request $request)
+    {
+        $cari = $request->cari;
+        #WAJIB
+        $pages = 'catatankasussiswa';
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $datas = catatankasussiswa::with('siswa')
+            ->where('sekolah_id', $sekolah_id)
+            ->whereHas('siswa', function ($query) {
+                global $request;
+                $query->where('siswa.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->orWhereHas('kelas', function ($query) {
+                global $request;
+                $query->where('kelas.nama', 'like', "%" . $request->cari . "%");
+            })
+            ->where('sekolah_id', $sekolah_id)
+            ->orWhere('kasus', 'like', "%" . $request->cari . "%")
+            ->where('sekolah_id', $sekolah_id)
+            ->paginate(Fungsi::paginationjml());
+            $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        // dd($datas,$cari);
+        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas'));
+    }
+
+    public function create( Request $request)
+    {
+        $pages = 'catatankasussiswa';
+        $users_id=Auth::user()->id;
             $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
             $sekolah_id=$pengguna->sekolah_id;
-            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
-            $kelas=DB::table('kelas')->where('sekolah_id',$sekolah_id)->get();
-            $siswa=DB::table('siswa')->whereNull('deleted_at')
-            ->where('sekolah_id',$id->id)
-            ->orderBy('nama','asc')->get();
+        $kelas = DB::table('kelas')->where('id', $sekolah_id)->get();
+        $siswa = DB::table('siswa')->whereNull('deleted_at')
+            ->where('sekolah_id', $sekolah_id)
+            ->orderBy('nama', 'asc')->get();
 
-            return view('pages.bk.catatankasussiswa.create',compact('pages','id','siswa','kelas'));
-        }
+            $ambildata=siswa::where('id',$request->siswa_id)->first();
+
+        return view('pages.bk.catatankasussiswa.create', compact('pages', 'siswa', 'kelas','request','ambildata'));
+    }
 
 
-        public function store(sekolah $id,Request $request)
+    public function store( Request $request)
     {
         // dd($id,$request);
         $users_id=Auth::user()->id;
             $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
             $sekolah_id=$pengguna->sekolah_id;
-        $cek=DB::table('catatankasussiswa')->whereNull('deleted_at')->where('id',$request->id)
-        ->where('sekolah_id',$sekolah_id)
-        ->orderBy('nama','asc')
-        ->count();
+        $cek = DB::table('catatankasussiswa')->whereNull('deleted_at')->where('id', $request->id)
+            ->where('sekolah_id', $sekolah_id)
+            ->orderBy('nama', 'asc')
+            ->count();
+
+        $ambilsiswa = siswa::where('id', $request->siswa_id)
+        ->first();
         // dd($cek);
-            if($cek>0){
-                    $request->validate([
+        if ($cek > 0) {
+            $request->validate(
+                [
                     // 'nama'=>'required|unique:siswa,nama',
                     // 'nomerinduk'=>'required|unique:siswa,nomerinduk',
 
-                    ],
-                    [
-                        // 'nomerinduk.unique'=>'Nomer Induk sudah digunakan',
-                    ]);
+                ],
+                [
+                    // 'nomerinduk.unique'=>'Nomer Induk sudah digunakan',
+                ]
+            );
+        }
 
-            }
-
-            $request->validate([
-
-
-            ],
+        $request->validate(
             [
-                'nama.nama'=>'Nama harus diisi',
-            ]);
+                'nama.nama' => 'Nama harus diisi',
+            ]
+        );
 
 
         //inser siswa
         DB::table('catatankasussiswa')->insert(
             array(
-                'siswa_id'  =>$request->siswa_id,
-                'kelas_id'  =>$request->kelas_id,
-                'kasus' =>$request->kasus,
-                'tanggal'   =>$request->tanggal,
-                'pengambilandata'   =>$request->pengambilandata,
-                'sumberkasus'   =>$request->sumberkasus,
-                'golkasus'  =>$request->golkasus,
-                'penyebabtimbulkasus'   =>$request->penyebabtimbulkasus,
-                'teknikkonseling'   =>$request->teknikkonseling,
-                'keberhasilanpenanganankasus'   =>$request->keberhasilanpenanganankasus,
-                'keterangan'    =>$request->keterangan,
-                'sekolah_id'    =>$sekolah_id,
-                'created_at'=>date("Y-m-d H:i:s"),
-                'updated_at'=>date("Y-m-d H:i:s"),
-            ));
+                'siswa_id'  => $request->siswa_id,
+                // 'kelas_id'  => $request->kelas_id,
+                'kasus' => $request->kasus,
+                'tanggal'   => $request->tanggal,
+                'pengambilandata'   => $request->pengambilandata,
+                'sumberkasus'   => $request->sumberkasus,
+                'golkasus'  => $request->golkasus,
+                'penyebabtimbulkasus'   => $request->penyebabtimbulkasus,
+                'teknikkonseling'   => $request->teknikkonseling,
+                'keberhasilanpenanganankasus'   => $request->keberhasilanpenanganankasus,
+                'keterangan'    => $request->keterangan,
+                'sekolah_id'    => $sekolah_id,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            )
+        );
 
-            return redirect()->route('bk.catatankasussiswa',$id->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
-
-
+        return redirect()->route('sekolah.catatankasus.cari', [$sekolah_id,'kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
 
-    public function edit(catatankasussiswa $datasa)
+    public function edit( catatankasussiswa $data)
     {
-        $pages='bk-catatankasussiswa';
-
+        $pages = 'catatankasussiswa';
         $users_id=Auth::user()->id;
-                $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
-                $sekolah_id=$pengguna->sekolah_id;
-                $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
+            ->where('id', $data->id)
+            ->where('sekolah_id', $sekolah_id)
+            ->orderBy('siswa_id', 'asc')
+            ->first();
 
-                $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
-                ->where('id',$datasa->id)
-                ->where('sekolah_id',$id->id)
-                ->orderBy('siswa_id','asc')
-                ->first();
+        $kelas = DB::table('kelas')->where('id', $sekolah_id)->get();
+        $siswa = DB::table('siswa')->whereNull('deleted_at')
+            ->where('sekolah_id', $sekolah_id)
+            ->orderBy('nama', 'asc')->get();
 
-              $kelas=DB::table('kelas')->where('id',$sekolah_id)->get();
-              $siswa=DB::table('siswa')->whereNull('deleted_at')
-              ->where('sekolah_id',$id->id)
-              ->orderBy('nama','asc')->get();
-
-        return view('pages.bk.catatankasussiswa.edit',compact('pages','datas','siswa','kelas','datasa'));
+        return view('pages.bk.catatankasussiswa.edit', compact('pages', 'datas', 'siswa', 'kelas', 'data'));
     }
-    public function update(catatankasussiswa $datasa,Request $request)
+    public function update( catatankasussiswa $data, Request $request)
     {
 
-        // dd($request);
-        if($request->id!==$datasa->id){
+        // dd($request,$data);
+        if ($request->id !== $data->id) {
 
-            $request->validate([
-
-            ],
-            [
-
-            ]);
+            $request->validate(
+                [],
+                []
+            );
         }
 
 
-        $request->validate([
-            // 'nama'=>'required',
-            //'nomerinduk'=>'required',
-        ],
-        [
-            // 'nama.required'=>'nama harus diisi',
-            //'nomerinduk.required'=>'nomerinduk harus diisi',
-        ]);
+        $request->validate(
+            [
+                // 'nama'=>'required',
+                //'nomerinduk'=>'required',
+            ],
+            [
+                // 'nama.required'=>'nama harus diisi',
+                //'nomerinduk.required'=>'nomerinduk harus diisi',
+            ]
+        );
 
-        catatankasussiswa::where('id',$datasa->id)
-        ->update([
-            'siswa_id'  =>$request->siswa_id,
-            'kelas_id'  =>$request->kelas_id,
-            'kasus' =>$request->kasus,
-            'tanggal' => $request->tanggal,
-            'pengambilandata'   =>$request->pengambilandata,
-            'sumberkasus'   =>$request->sumberkasus,
-            'golkasus'  =>$request->golkasus,
-            'penyebabtimbulkasus'   =>$request->penyebabtimbulkasus,
-            'teknikkonseling'   =>$request->teknikkonseling,
-            'keberhasilanpenanganankasus'   =>$request->keberhasilanpenanganankasus,
-            'keterangan'    =>$request->keterangan,
-            'updated_at'=>date("Y-m-d H:i:s"),
-        ]);
-        return redirect()->route('bk.catatankasussiswa',$datasa->id)->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+        catatankasussiswa::where('id', $data->id)
+            ->update([
+                'siswa_id'  => $request->siswa_id,
+                // 'kelas_id'  => $request->kelas_id,
+                'kasus' => $request->kasus,
+                'tanggal' => $request->tanggal,
+                'pengambilandata'   => $request->pengambilandata,
+                'sumberkasus'   => $request->sumberkasus,
+                'golkasus'  => $request->golkasus,
+                'penyebabtimbulkasus'   => $request->penyebabtimbulkasus,
+                'teknikkonseling'   => $request->teknikkonseling,
+                'keberhasilanpenanganankasus'   => $request->keberhasilanpenanganankasus,
+                'keterangan'    => $request->keterangan,
+                'updated_at' => date("Y-m-d H:i:s"),
+            ]);
+
+        return redirect()->route('sekolah.catatankasus')->with('status', 'Data berhasil diubah!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
-    public function destroy(catatankasussiswa $id){
-
-        catatankasussiswa::destroy($id->id);
-        return redirect()->route('bk.catatankasussiswa',$id->id)->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
-    }
-
-
-    public function multidel(Request $request)
+    public function destroy( catatankasussiswa $data)
     {
 
-        $ids=$request->ids;
-        catatankasussiswa::whereIn('id',$ids)->delete();
+        catatankasussiswa::destroy($data->id);
+        return redirect()->route('sekolah.catatankasus')->with('status', 'Data berhasil dihapus!')->with('tipe', 'warning')->with('icon', 'fas fa-feather');
+    }
+
+
+    public function multidel( Request $request)
+    {
+
+        $ids = $request->ids;
+        catatankasussiswa::whereIn('id', $ids)->delete();
 
         // load ulang
         #WAJIB
-        $pages='bk-catatankasussiswa';
-                $users_id=Auth::user()->id;
-                $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
-                $sekolah_id=$pengguna->sekolah_id;
-                $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+        $pages = 'bk-catatankasus';
+        $users_id=Auth::user()->id;
+            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+            $sekolah_id=$pengguna->sekolah_id;
+        $datas = catatankasussiswa::with('siswa')->whereNull('deleted_at')
+            ->where('sekolah_id', $sekolah_id)
+            ->orderBy('siswa_id', 'asc')
+            ->paginate(Fungsi::paginationjml());
 
-                $datas = catatankasussiswa::with('siswa')->with('kelas')->whereNull('deleted_at')
-                ->where('sekolah_id',$id->id)
-                ->orderBy('siswa_id','asc')
-                ->paginate(Fungsi::paginationjml());
-
-                return view('pages.bk.catatankasussiswa.index',compact('pages','id','request','datas'));
+        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas'));
     }
-    
-}
+    public function cetakpersiswa(catatankasussiswa $data,Request $request){
 
+        // $datas = catatanpengembangandirisiswa::with('siswa')->where('id',$data->id)
+        // ->where('sekolah_id',$sekolah_id)
+        // ->orderBy('siswa_id','asc')
+        // ->get();
+        $datas=$data;
+        // dd($datas);
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.bk.catatankasussiswa.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        return $pdf->stream('catatan'.$tgl.'.pdf');
+    }
+    public function preview(catatankasussiswa $data,Request $request){
+
+        $datas=$data;
+        $pages = 'bk-catatankasus';
+        return view('pages.bk.catatankasussiswa.preview', compact('pages', 'request', 'datas'));
+
+    }
+}

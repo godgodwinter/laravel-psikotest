@@ -8,6 +8,7 @@ use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class bksiswacontroller extends Controller
 {
@@ -50,22 +51,27 @@ public function __construct()
     }
     public function cari(Request $request)
     {
+        if($this->checkauth('bk')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+        //dd($request);
         $cari=$request->cari;
         #WAJIB
-        $pages='bk-siswa';
         $users_id=Auth::user()->id;
-        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
-        $sekolah_id=$pengguna->sekolah_id;
-        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
-
+            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+            $sekolah_id=$pengguna->sekolah_id;
+            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+        $pages='siswa';
         $datas = siswa::with('kelas')
-        ->where('sekolah_id',$id->id)
+        ->whereNull('deleted_at')
+        ->where('sekolah_id',$sekolah_id)
         ->where('nama','like',"%".$cari."%")
         ->orWhere('nomerinduk','like',"%".$cari."%")
-        ->where('sekolah_id',$id->id)
+        ->where('sekolah_id',$sekolah_id)
         ->paginate(Fungsi::paginationjml());
 
-        return view('pages.bk.siswa.index',compact('pages','id','request','datas'));
+
+        return view('pages.bk.siswa_index',compact('pages','request','datas'));
     }
 
     public function create()
@@ -322,7 +328,7 @@ public function __construct()
 
         $ids=$request->ids;
         siswa::whereIn('id',$ids)->delete();
-        echo"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
 
         // load ulang
         #WAJIB
