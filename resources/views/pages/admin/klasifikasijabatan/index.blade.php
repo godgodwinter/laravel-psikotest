@@ -77,11 +77,13 @@ Klasifikasi Akademis & Profesi
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Bidang</th>
-                            <th >Pekerjaan</th>
+                            <th >Akademis</th>
+                            <th >Profesi</th>
                             <th >Nilai Standart</th>
                             <th >IQ Standart</th>
                             <th >Jurusan</th>
                             <th >Bidang Studi yang ditekuni</th>
+                            <th >Link</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>

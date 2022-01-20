@@ -53,6 +53,7 @@ class adminklasifikasijabatancontroller extends Controller
         DB::table('klasifikasijabatan')->insert(
             array(
                    'bidang'     =>   $request->bidang,
+                   'akademis'     =>   $request->akademis,
                    'pekerjaan'     =>   $request->pekerjaan,
                    'nilaistandart'     =>   $request->nilaistandart,
                    'iqstandart'     =>   $request->iqstandart,
@@ -89,6 +90,7 @@ class adminklasifikasijabatancontroller extends Controller
         klasifikasijabatan::where('id',$data->id)
         ->update([
             'bidang'     =>   $request->bidang,
+            'akademis'     =>   $request->akademis,
             'pekerjaan'     =>   $request->pekerjaan,
             'nilaistandart'     =>   $request->nilaistandart,
             'iqstandart'     =>   $request->iqstandart,

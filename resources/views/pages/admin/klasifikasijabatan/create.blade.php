@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Klasifikasi Jabatan
+Klasifikasi Akademis & Profesi
 @endsection
 
 @push('before-script')
@@ -51,7 +51,18 @@ Klasifikasi Jabatan
                             </div>
                         </div>
                         <div class="form-group row align-items-center">
-                            <label for="pekerjaan" class="form-control-label col-sm-3 text-md-right">Pekerjaan </label>
+                            <label for="pekerjaan" class="form-control-label col-sm-3 text-md-right">Akademis </label>
+                            <div class="col-sm-6 col-md-9">
+
+                              <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" name="pekerjaan" required  value="{{old('pekerjaan')}}">
+
+                              @error('pekerjaan')<div class="invalid-feedback"> {{$message}}</div>
+                              @enderror
+
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <label for="pekerjaan" class="form-control-label col-sm-3 text-md-right">Profesi </label>
                             <div class="col-sm-6 col-md-9">
 
                               <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" name="pekerjaan" required  value="{{old('pekerjaan')}}">
@@ -100,7 +111,7 @@ Klasifikasi Jabatan
 
 
                         <div class="form-group row align-items-center">
-                            <label for="bidangstudi" class="form-control-label col-sm-3 text-md-right">Bidang Studi </label>
+                            <label for="bidangstudi" class="form-control-label col-sm-3 text-md-right">Bidang Studi yang ditekuni </label>
                             <div class="col-sm-6 col-md-9">
 
                               <input type="text" class="form-control  @error('bidangstudi') is-invalid @enderror" name="bidangstudi" required  value="{{old('bidangstudi')}}">
@@ -113,7 +124,7 @@ Klasifikasi Jabatan
 
 
                         <div class="form-group row align-items-center">
-                            <label for="ket" class="form-control-label col-sm-3 text-md-right">Keterangan </label>
+                            <label for="ket" class="form-control-label col-sm-3 text-md-right">Link </label>
                             <div class="col-sm-6 col-md-9">
 
                               <input type="text" class="form-control  @error('ket') is-invalid @enderror" name="ket" required  value="{{old('ket')}}">

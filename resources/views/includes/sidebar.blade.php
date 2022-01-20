@@ -26,7 +26,7 @@
                     class="nav-link "> <i class="far fa-address-card"></i> <span>Klasifikasi Akademis & Profesi</span> </a></li>
 
             <li {{$pages=='referensi' ? 'class=active' : ''}}><a href="{{route('referensi')}}" class="nav-link "> <i
-                        class="fas fa-greater-than-equal"></i> <span>Referensi Studi dan Kerja</span> </a></li>
+                        class="fas fa-greater-than-equal"></i> <span>Referensi Studi & Kerja</span> </a></li>
 
             <li {{$pages=='informasipsikologi' ? 'class=active' : ''}}><a href="{{route('informasipsikologi')}}"
                     class="nav-link "> <i class="fas fa-info-circle"></i> <span>Buletin Psikologi</span> </a></li>
@@ -97,15 +97,15 @@
             <li {{$pages=='bk-kelas' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.kelas') : '#'}}"><i class="fas fa-chalkboard"></i>
                     <span>Kelas</span></a></li>
-            <li {{$pages=='bk-pengguna' ? 'class=active' : ''}}><a class="nav-link"
+            {{-- <li {{$pages=='bk-pengguna' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.pengguna') : '#'}}"><i class="fas fa-users-cog"></i>
-                    <span>Pengguna</span></a></li>
+                    <span>Pengguna</span></a></li> --}}
 
 
 `       <li class="menu-header">Menu Utama</li>
             <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.referensi') : '#'}}"><i class="far fa-file-alt"></i>
-                    <span>Referensi Studi dan Kerja</span></a></li>
+                    <span>Referensi Studi & Kerja</span></a></li>
             <li {{$pages=='bk-informasipsikologi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.informasipsikologi') : '#'}}"><i class="fas fa-info-circle"></i>
                      <span>Buletin Psikologi</span></a></li>

@@ -98,6 +98,7 @@ class adminreferensicontroller extends Controller
         DB::table('referensi')->insert(
             array(
                    'nama'     =>   $request->nama,
+                   'jenis'     =>   $request->jenis,
                    'tipe'     =>   $request->tipe,
                    'link'     =>   $request->link,
                     'file' => $namafileku,
@@ -175,6 +176,7 @@ class adminreferensicontroller extends Controller
         referensi::where('id',$data->id)
         ->update([
             'nama'     =>   $request->nama,
+            'jenis'     =>   $request->jenis,
             'tipe'     =>   $request->tipe,
             'link'     =>   $request->link,
              'file' => $namafileku,

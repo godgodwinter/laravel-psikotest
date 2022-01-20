@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Referensi Studi dan Kerja
+Referensi Studi & Kerja
 @endsection
 
 @push('before-script')
@@ -78,6 +78,7 @@ Referensi Studi dan Kerja
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
+                            <th >Jenis</th>
                             <th class="text-center">File</th>
                             <th class="text-center">Aksi</th>
                         </tr>

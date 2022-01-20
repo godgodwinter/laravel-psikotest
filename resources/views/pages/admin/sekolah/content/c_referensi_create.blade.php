@@ -22,6 +22,32 @@
                         </div>
                       </div>
                       <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis </label>
+                        <div class="col-sm-6 col-md-9">
+
+
+
+
+                            <select class="form-control @error('file') is-invalid @enderror @error('link') is-invalid @enderror" name="tipe"  required id="tipeselect">
+                                <option disabled selected value=""> Pilih Jenis</option>
+                                @if (old('tipe'))
+                                     <option selected>{{old('tipe')}}</option>
+                                @else
+                                    <option selected>{{$data->tipe}}</option>
+                                @endif
+                                <option>Studi</option>
+                                <option>Kerja</option>
+
+                              </select>
+
+                              @error('link')<div class="invalid-feedback"> {{$message}}</div>
+                              @enderror
+                              @error('file')<div class="invalid-feedback"> {{$message}}</div>
+                              @enderror
+
+                        </div>
+                      </div>
+                      <div class="form-group row align-items-center">
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tipe </label>
                         <div class="col-sm-6 col-md-9">
 

@@ -1,7 +1,7 @@
 
                 <div class="card" id="settings-card">
                   <div class="card-header">
-                    <h4>Referensi Studi dan Kerja </h4>
+                    <h4>Referensi Studi & Kerja </h4>
                   </div>
                   <div class="card-body">
                     <div id="babeng-bar" class="text-right mt-2">
@@ -37,6 +37,7 @@
                         <th width="8%" class="text-center"> <input type="checkbox" id="chkCheckAll"> All</th>
                         <th>Judul </th>
                         <th class="text-center">File</th>
+                        <th class="text-center">Jenis</th>
                         <th width="150px" class="text-center">Aksi</th>
                     </tr>
                 </thead>
