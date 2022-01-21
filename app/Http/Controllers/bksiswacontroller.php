@@ -71,7 +71,7 @@ public function __construct()
         ->paginate(Fungsi::paginationjml());
 
 
-        return view('pages.bk.siswa_index',compact('pages','request','datas'));
+        return view('pages.bk.siswa.index',compact('pages','request','datas'));
     }
 
     public function create()

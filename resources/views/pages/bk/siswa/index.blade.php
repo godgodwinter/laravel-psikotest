@@ -55,7 +55,7 @@ Siswa
                     </div>
                     <div class="ml-auto p-2 bd-highlight">
 
-                        <a href="{{route('bk.siswa.create',$id->id)}}" type="submit" value="Import"
+                        <a href="{{route('bk.siswa.create')}}" type="submit" value="Import"
                            class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                    class="fas fa-download"></i> Tambah </span></a>
                        {{--            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
@@ -78,11 +78,12 @@ Siswa
                     <thead>
                         <tr>
                             <th width="8%" class="text-center babeng-min-row"><input type="checkbox" id="chkCheckAll">No</th>
+                            <th>Aksi</th>
                             <th>Nama siswa</th>
                             <th>Kelas</th>
                             <th>Username</th>
                             <th>PasswordDefault</th>
-                            <th>Aksi</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -91,6 +92,11 @@ Siswa
                         <td class="text-center">
                             <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                             {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+                            <td class="text-center babeng-min-row">
+                                {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
+                                <x-button-edit link="{{ route('bk.siswa.edit',[$data->id])}}" />
+                                <x-button-delete link="{{ route('bk.siswa.destroy',[$data->id])}}" />
+                            </td>
                                     <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                     </td>
                                     <td>
@@ -103,11 +109,7 @@ Siswa
                                         {{ $data->users_id!=null ? $data->passworddefault : 'Data tidak ditemukan' }}
                                     </td>
 
-                                    <td class="text-center babeng-min-row">
-                                        {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                        <x-button-edit link="{{ route('bk.siswa.edit',[$data->id])}}" />
-                                        <x-button-delete link="{{ route('bk.siswa.destroy',[$data->id])}}" />
-                                    </td>
+
 
                                 </tr>
                     @empty
