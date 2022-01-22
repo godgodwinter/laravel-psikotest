@@ -140,6 +140,7 @@
 
                         @elseif((Auth::user()->tipeuser)=='siswa')
                         <li class="menu-header">Menu</li>
+                        <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-diagnoses"></i> <span>Beranda</span></a></li>
                         <li {{$pages=='deteksi' ? 'class=active' : ''}}><a class="nav-link" href="{{route('siswa.hasilpsikologi.deteksi_lihat')}}"><i class="fas fa-diagnoses"></i> <span>Hasil Deteksi</span></a></li>
                         <li {{$pages=='sertifikat' ? 'class=active' : ''}}><a class="nav-link" href="{{route('siswa.hasilpsikologi.sertifikat_lihat')}}"><i class="fas fa-stamp"></i> <span>Sertifikat</span></a></li>
                     @else
