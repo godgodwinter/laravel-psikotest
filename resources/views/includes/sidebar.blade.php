@@ -135,6 +135,7 @@
 
                 @elseif((Auth::user()->tipeuser)=='yayasan')
             <li class="menu-header">Menu</li>
+            <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-diagnoses"></i> <span>Beranda</span></a></li>
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('yayasan.sekolah')}}"><i
                         class="fas fa-home"></i> <span>Sekolah</span></a></li>
 

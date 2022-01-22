@@ -6,9 +6,11 @@ use App\Models\kelas;
 use App\Models\pengguna;
 use App\Models\sekolah;
 use App\Models\siswa;
+use App\Models\User;
 use App\Models\yayasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class admindashboardcontroller extends Controller
 {
@@ -135,5 +137,112 @@ class admindashboardcontroller extends Controller
         ]);
     return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
 
+    }
+    public function yayasan(){
+        // dd("re");
+        $pages='dashboard';
+        $data=yayasan::where('users_id',Auth::user()->id)->first();
+        return view('pages.admin.dashboard.yayasan',compact('pages','data'));
+    }
+    public function yayasanstore(Request $request)
+    {
+
+
+        $data=yayasan::where('users_id',Auth::user()->id)->first();
+        $request->validate([
+            'nama'=>'required',
+            'email'=>'required',
+            // 'username'=>'required',
+        ],
+        [
+            'nama.required'=>'nama harus diisi',
+        ]);
+
+
+        if($request->password!=null OR $request->password!=''){
+
+        $request->validate([
+            'password' => 'min:6|required_with:password2|same:password2',
+            'password2' => 'min:6',
+        ],
+        [
+            'nama.required'=>'nama harus diisi',
+        ]);
+            User::where('id',$data->users_id)
+            ->update([
+                'name'     =>   $request->nama,
+                'email'     =>   $request->email,
+                'password' => Hash::make($request->password),
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+        }else{
+            User::where('id',$data->users_id)
+            ->update([
+                'name'     =>   $request->nama,
+                'email'     =>   $request->email,
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+        yayasan::where('id',$data->id)
+        ->update([
+            'nama'     =>   $request->nama,
+            'kepala'     =>   $request->kepala,
+            'telp'     =>   $request->telp,
+            'alamat'     =>   $request->alamat,
+            // 'status'     =>   $request->status,
+           'updated_at'=>date("Y-m-d H:i:s")
+        ]);
+
+
+        $id=$data;
+        $imagesDir=public_path().'/storage';
+
+        $yayasan_id=$data->id;
+        $files = $request->file('yayasan_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->yayasan_photo)AND($id->yayasan_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->yayasan_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->yayasan_photo);
+            $file = $request->file('yayasan_photo');
+            $tujuan_upload = 'storage/yayasan';
+            // upload file
+            $file->move($tujuan_upload,$yayasan_id.".jpg");
+            yayasan::where('id',$yayasan_id)
+            ->update([
+                'yayasan_photo' => "yayasan/".$yayasan_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+
+        $files = $request->file('kepala_photo');
+        if($files!=null){
+
+            if (file_exists( public_path().'/storage'.'/'.$id->kepala_photo)AND($id->kepala_photo!=null)){
+                chmod($imagesDir, 0777);
+                $image_path = public_path().'/storage'.'/'.$id->kepala_photo;
+                unlink($image_path);
+            }
+            // dd('storage'.'/'.$id->kepala_photo);
+            $file = $request->file('kepala_photo');
+            $tujuan_upload = 'storage/kepalayayasan';
+            // upload file
+            $file->move($tujuan_upload,$yayasan_id.".jpg");
+            yayasan::where('id',$yayasan_id)
+            ->update([
+                'kepala_photo' => "kepalayayasan/".$yayasan_id.".jpg",
+            'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        }
+
+    return redirect()->back()->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 }

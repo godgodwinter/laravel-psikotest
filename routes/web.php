@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/dashboard/siswastore', [admindashboardcontroller::class, 'siswastore'])->name('dashboard.siswa.store');
 
     Route::get('/dashboard/yayasan', [admindashboardcontroller::class, 'yayasan'])->name('dashboard.yayasan');
+    Route::put('/dashboard/yayasanstore', [admindashboardcontroller::class, 'yayasanstore'])->name('dashboard.yayasan.store');
+
     Route::get('/admin/settings', [adminsettingscontroller::class, 'index'])->name('settings');
     Route::put('/admin/settings/{id}', [adminsettingscontroller::class, 'update'])->name('settings.update');
     Route::get('/profile', [profilecontroller::class, 'profile'])->name('profile');
