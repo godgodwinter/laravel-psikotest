@@ -57,17 +57,16 @@ Referensi Studi & Kerja
 
 
 
-                                <select class="form-control @error('file') is-invalid @enderror @error('link') is-invalid @enderror" name="tipe"  required id="tipeselect">
+                                <select class="form-control @error('jenis') is-invalid @enderror" name="jenis"  required id="jenisselect">
                                     <option disabled selected value=""> Pilih Jenis</option>
                                     <option>Studi</option>
                                     <option>Kerja</option>
 
                                   </select>
 
-                                  @error('link')<div class="invalid-feedback"> {{$message}}</div>
+                                  @error('jenis')<div class="invalid-feedback"> {{$message}}</div>
                                   @enderror
-                                  @error('file')<div class="invalid-feedback"> {{$message}}</div>
-                                  @enderror
+
 
                             </div>
                           </div>

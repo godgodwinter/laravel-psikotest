@@ -16,6 +16,7 @@ class CreateKlasifikasijabatanTable extends Migration
         Schema::create('klasifikasijabatan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('bidang')->nullable();
+            $table->string('akademis')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('nilaistandart')->nullable();
             $table->string('iqstandart')->nullable();

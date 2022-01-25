@@ -18,6 +18,7 @@ class CreateReferensiTable extends Migration
             $table->string('nama');
             $table->string('tipe');
             $table->string('link')->nullable();
+            $table->string('jenis')->nullable();
             $table->string('file')->nullable();
             // $table->string('sekolah_id');
             $table->softDeletes();
