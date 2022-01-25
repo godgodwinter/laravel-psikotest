@@ -91,6 +91,7 @@ Referensi Studi & Kerja
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                 <td> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
+                                <td class="text-center">{{$data->jenis}}</td>
                                 <td class="text-center">
                                     @php
                                         if($data->link!=null){
