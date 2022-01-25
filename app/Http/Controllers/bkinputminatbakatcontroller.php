@@ -101,7 +101,7 @@ class bkinputminatbakatcontroller extends Controller
         ->get();
         // dd($data,$siswa);
         $pages='bk-inputminatbakat';
-        return view('pages.bk.inputminatbakat.edit',compact('pages','request','siswa','data','master'));
+        return view('pages.bk.inputminatbakat.edit',compact('pages','request','sekolah_id','siswa','data','master'));
 
     }
     public function update(Request $request,siswa $siswa){

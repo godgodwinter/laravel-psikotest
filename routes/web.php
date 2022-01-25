@@ -486,6 +486,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'edit'])->name('bk.inputminatbakat.edit');
         Route::put('/bk/inputminatbakat/{siswa}', [bkinputminatbakatcontroller::class, 'update'])->name('bk.inputminatbakat.update');
         Route::delete('/bk/inputminatbakat/{data}', [bkinputminatbakatcontroller::class, 'destroy'])->name('bk.inputminatbakat.destroy');
+        Route::get('/bk/datainputminatbakat/cetak/{siswa}', [bkinputminatbakatcontroller::class, 'cetakpersiswa'])->name('bk.inputminatbakat.cetakpersiswa');
 
         //catatankasussiswa
         Route::get('/bk/catatankasussiswa', [bkcatatankasussiswacontroller::class, 'index'])->name('bk.catatankasussiswa');

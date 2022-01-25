@@ -121,8 +121,8 @@ Detail Minat Bakat
                 <tr>
                     <th class="text-center babeng-min-row">
                         No</th>
-                    {{-- <th class="text-center">
-                        Aksi</th> --}}
+                    <th class="text-center">
+                        Aksi</th>
                     <th class="th-table" >Nama </th>
 
                     @foreach ($master as $m)
@@ -138,10 +138,10 @@ Detail Minat Bakat
                     <td class="text-center">
                         {{$loop->index+1}}
                     </td>
-                    {{-- <td class="text-center babeng-min-row">
-                        <a class="btn btn-sm btn-info" href="{{ route('bk.inputminatbakat.cetakpersiswa',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
-                        <x-button-edit link="{{ route('bk.inputminatbakat.edit',[$id->id,$data->id]) }}" />
-                    </td> --}}
+                    <td class="text-center babeng-min-row">
+                        <a class="btn btn-sm btn-info" href="{{ route('bk.inputminatbakat.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a>
+                        <x-button-edit link="{{ route('bk.inputminatbakat.edit',[$data->id]) }}" />
+                    </td>
                     <td class="babeng-td">
                         {{$data->nama}}
                     </td>

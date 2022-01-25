@@ -55,14 +55,18 @@ Detail Penjurusan
                         <label for="site-title" class="form-control-label col-sm-3 text-md-right">{{ $m->nama }}</label>
                         <div class="col-sm-6 col-md-9">
                             @php
+                                $readonly='';
                                 $isi='';
-                                $periksadata=\App\Models\minatbakatdetail::where('siswa_id',$data->id)->where('sekolah_id',$id->id)->where('minatbakat_id',$m->id)->first();
+                                $periksadata=\App\Models\minatbakatdetail::where('siswa_id',$data->id)->where('sekolah_id',$sekolah_id)->where('minatbakat_id',$m->id)->first();
                                 // dd($periksadata);
                                 if($periksadata!=null){
                                     $isi=$periksadata->nilai;
                                 }
+                                if($m->menukhusus!='bk'){
+                                    $readonly='readonly';
+                                }
                             @endphp
-                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="{{ $m->id }}" value="{{ $isi }}">
+                          <input type="text" class="form-control  @error('nomerinduk') is-invalid @enderror" name="{{ $m->id }}" value="{{ $isi }}" {{$readonly}}>
 
                           @error('nomerinduk')<div class="invalid-feedback"> {{$message}}</div>
                           @enderror

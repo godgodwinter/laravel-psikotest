@@ -118,7 +118,7 @@ Detail Penjurusan
             <thead>
                 <tr>
                     <th class="text-center babeng-min-row"> No</th>
-                    {{-- <th class="text-center"> Aksi</th> --}}
+                    <th class="text-center"> Aksi</th>
                     <th class="th-table" >Nama </th>
 
                     @foreach ($master as $m)
@@ -134,10 +134,10 @@ Detail Penjurusan
                     <td class="text-center">
                         {{$loop->index+1}}
                     </td>
-                    {{-- <td class="text-center babeng-min-row">
+                    <td class="text-center babeng-min-row">
                         <a class="btn btn-sm btn-info" href="{{ route('bk.penjurusan.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a>
                         <x-button-edit link="{{ route('bk.penjurusan.edit',[$data->id]) }}" />
-                    </td> --}}
+                    </td>
                     <td class="babeng-td">
                         {{$data->nama}}
                     </td>

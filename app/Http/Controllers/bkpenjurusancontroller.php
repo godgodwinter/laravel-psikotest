@@ -98,7 +98,7 @@ class bkpenjurusancontroller extends Controller
         ->get();
         // dd($data,$siswa);
         $pages='bk-penjurusan';
-        return view('pages.bk.inputpenjurusan.edit',compact('pages','request','siswa','data','master'));
+        return view('pages.bk.inputpenjurusan.edit',compact('pages','request','sekolah_id','siswa','data','master'));
 
     }
     public function update(Request $request,siswa $siswa){
