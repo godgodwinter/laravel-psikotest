@@ -103,6 +103,9 @@
 
 
 `       <li class="menu-header">Menu Utama</li>
+            <li {{$pages=='bk-klasifikasijabatan' ? 'class=active' : ''}}><a class="nav-link"
+                    href="{{$id->status=='Aktif' ?  route('bk.klasifikasijabatan') : '#'}}"><i class="fas fa-sort-alpha-up"></i>
+                    <span>Klasifikasi Akademis dan Profesi</span></a></li></span></a></li>
             <li {{$pages=='bk-referensi' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.referensi') : '#'}}"><i class="far fa-file-alt"></i>
                     <span>Referensi Studi & Kerja</span></a></li>
@@ -119,6 +122,7 @@
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
                     <span>Analisa Penjurusan</span></a></li></span></a></li>
+
 
 
             <li class="menu-header">Catatan Siswa</li>

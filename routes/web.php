@@ -44,6 +44,7 @@ use App\Http\Controllers\bkcatatanpengembangandirisiswacontroller;
 use App\Http\Controllers\bkcatatanprestasisiswacontroller;
 use App\Http\Controllers\bkhasilpsikologicontroller;
 use App\Http\Controllers\bkinputminatbakatcontroller;
+use App\Http\Controllers\bkklasifikasijabatancontroller;
 use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
@@ -470,6 +471,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'edit'])->name('bk.inputnilaipsikologi.edit');
         Route::put('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'update'])->name('bk.inputnilaipsikologi.update');
         Route::delete('/bk/inputnilaipsikologi/{data}', [bkinputnilaipsikologicontroller::class, 'destroy'])->name('bk.inputnilaipsikologi.destroy');
+
+        //klasifikasijabatan
+      Route::get('/bk/klasifikasijabatan', [bkklasifikasijabatancontroller::class, 'index'])->name('bk.klasifikasijabatan');
+      Route::get('/bk/klasifikasijabatan/create', [bkklasifikasijabatancontroller::class, 'create'])->name('bk.klasifikasijabatan.create');
+      Route::post('/bk/klasifikasijabatan/create', [bkklasifikasijabatancontroller::class, 'store'])->name('bk.klasifikasijabatan.store');
+      Route::get('/bk/klasifikasijabatan/cari', [bkklasifikasijabatancontroller::class, 'cari'])->name('bk.klasifikasijabatan.cari');
+      Route::get('/bk/klasifikasijabatan/edit/{data}', [bkklasifikasijabatancontroller::class, 'edit'])->name('bk.klasifikasijabatan.edit');
+      Route::put('/bk/klasifikasijabatan/update/{data}', [bkklasifikasijabatancontroller::class, 'update'])->name('bk.klasifikasijabatan.update');
+      Route::delete('/bk/klasifikasijabatan/delete/{data}', [bkklasifikasijabatancontroller::class, 'destroy'])->name('bk.klasifikasijabatan.destroy');
+      Route::delete('/bk/dataklasifikasijabatan/multidel', [bkklasifikasijabatancontroller::class, 'multidel'])->name('bk.klasifikasijabatan.multidel');
+
 
         //penjurusan
         Route::get('/bk/penjurusan', [bkpenjurusancontroller::class, 'index'])->name('bk.penjurusan');

@@ -27,10 +27,9 @@ Referensi Studi dan Kerja
         <div class="card">
             <div class="card-body">
 
-                    <div id="babeng-row ">
-                        <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
-                            <div id="p-2 bd-highlight ">
+                <div class="d-flex bd-highlight mb-0 align-items-center">
 
+                    <div class="p-2 bd-highlight">
 
                         <form action="{{ route('bk.referensi.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
@@ -44,40 +43,55 @@ Referensi Studi dan Kerja
                             </select> --}}
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
-                        </div>
-                            <div id="p-2 bd-highlight ">
 
+                        </div>
+                        <div class="p-2 bd-highlight">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
 
-
+                        </div>
+                        <div class="ml-auto p-2 bd-highlight">
+                            {{-- <a href="{{route('bk.referensi.create')}}" type="submit" value="Import"
+                                class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Tambah </span></a> --}}
+                            {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                                data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
+                                Import
+                            </button>
+                            <a href="/admin/referensi/export" type="submit" value="Import"
+                                class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Export </span></a> --}}
                         </form>
 
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('referensi.multidel')}}" />
+                {{-- <x-jsmultidel link="{{route('bk.referensi.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
-                @endif
+                @endif --}}
 
-                <table id="example" class="table table-striped table-bordered table-sm mt-1" style="width:100%">
+                <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="8%" class="text-center babeng-min-row"> No</th>
-                            <th >Nama</th>
+                            <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Jenis</th>
                             <th class="text-center">File</th>
+                            {{-- <th class="text-center">Aksi</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($datas as $data)
                         <tr id="sid{{ $data->id }}">
-                            <td class="text-center">
-                                {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->nama,25,' ...')}}
+                                <td class="text-center">
+                                    <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
+                                    {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
+                                <td class="text-center"> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
+                                <td class="text-center">{{$data->jenis}}</td>
                                 <td class="text-center">
                                     @php
                                         if($data->link!=null){
@@ -90,7 +104,11 @@ Referensi Studi dan Kerja
 
                                 </td>
 
-
+                                {{-- <td class="text-center babeng-min-row">
+                                     <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
+                                    <x-button-edit link="{{ route('bk.referensi.edit',$data->id)}}" />
+                                    <x-button-delete link="{{ route('bk.referensi.destroy',$data->id)}}" />
+                                </td> --}}
                             </tr>
                 @empty
                             <tr>
@@ -100,20 +118,7 @@ Referensi Studi dan Kerja
                     </tbody>
                 </table>
 
-                <div class="d-flex justify-content-between flex-row-reverse mt-3">
-                    <div >
-@php
-$cari=$request->cari;
-$tapel_nama=$request->tapel_nama;
-$kelas_nama=$request->kelas_nama;
-@endphp
-{{-- {{ $datas->appends(['cari'=>$request->cari,'yearmonth'=>$request->yearmonth,'kategori_nama'=>$request->kategori_nama])->links() }} --}}
-{{ $datas->onEachSide(1)
-
-  ->links() }}
-                    </div>
-
-                </div>
+   
             </div>
         </div>
     </div>

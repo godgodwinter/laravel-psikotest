@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Buletin Psikologi
+Klasifikasi Akademis dan Profesi
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Buletin Psikologi
 
                     <div class="p-2 bd-highlight">
 
-                        <form action="{{ route('bk.informasipsikologi.cari') }}" method="GET">
+                        <form action="{{ route('bk.klasifikasijabatan.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -45,7 +45,6 @@ Buletin Psikologi
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
                         </div>
                     <div class="p-2 bd-highlight">
-
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
@@ -53,14 +52,14 @@ Buletin Psikologi
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
 
-                            {{-- <a href="{{route('bk.informasipsikologi.create')}}" type="submit" value="Import"
+                            {{-- <a href="{{route('bk.klasifikasijabatan.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a> --}}
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
                             </button>
-                            <a href="/admin/bk.informasipsikologi/export" type="submit" value="Import"
+                            <a href="/admin/klasifikasijabatan/export" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Export </span></a> --}}
                         </form>
@@ -68,7 +67,7 @@ Buletin Psikologi
                     </div>
                 </div>
 
-                {{-- <x-jsmultidel link="{{route('bk.informasipsikologi.multidel')}}" />
+                {{-- <x-jsmultidel link="{{route('bk.klasifikasijabatan.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif --}}
@@ -77,8 +76,14 @@ Buletin Psikologi
                     <thead>
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Nama</th>
-                            <th class="text-center">File</th>
+                            <th >Bidang</th>
+                            <th >Akademis</th>
+                            <th >Profesi</th>
+                            <th >Nilai Standart</th>
+                            <th >IQ Standart</th>
+                            <th >Jurusan</th>
+                            <th >Bidang Studi yang ditekuni</th>
+                            <th >Link</th>
                             {{-- <th class="text-center">Aksi</th> --}}
                         </tr>
                     </thead>
@@ -88,29 +93,39 @@ Buletin Psikologi
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->nama,25,' ...')}}
+                                <td> {{Str::limit($data->bidang,25,' ...')}}
                                 </td>
                                 <td class="text-center">
-                                    @php
-                                        if($data->link!=null){
-                                            $alamat=$data->link;
-                                        }else{
-                                            $alamat=url('/'.$data->file);
-                                        }
-                                    @endphp
-<a href="{{ $alamat }}" class="btn btn-icon btn-dark btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="File!" target="_blank" ><i class="fas fa-atlas"></i></a>
-
+                                    {{Str::limit($data->akademis,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->pekerjaan,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->nilaistandart,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->iqstandart,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->jurusan,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->bidangstudi,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{-- {{Str::limit($data->pekerjaan,25,' ...')}} --}}
                                 </td>
 
                                 {{-- <td class="text-center babeng-min-row">
                                     <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
-                                    <x-button-edit link="{{ route('bk.informasipsikologi.edit',$data->id)}}" />
-                                    <x-button-delete link="{{ route('bk.informasipsikologi.destroy',$data->id)}}" />
+                                    <x-button-edit link="{{ route('bk.klasifikasijabatan.edit',$data->id)}}" />
+                                    <x-button-delete link="{{ route('bk.klasifikasijabatan.destroy',$data->id)}}" />
                                 </td> --}}
                             </tr>
                 @empty
                             <tr>
-                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                                <td colspan="8" class="text-center">Data tidak ditemukan</td>
                             </tr>
                 @endforelse
                     </tbody>
@@ -128,15 +143,15 @@ $kelas_nama=$request->kelas_nama;
 
   ->links() }}
                     </div>
-                    <div>
-
+{
+<div>
 <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
             onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
             <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
         </a>
-    </div>
-</div> --}}
             </div>
+            </div>
+            </div> --}}
         </div>
     </div>
 </section>
