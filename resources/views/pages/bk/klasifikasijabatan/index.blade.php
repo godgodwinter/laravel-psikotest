@@ -114,7 +114,7 @@ Klasifikasi Akademis dan Profesi
                                     {{Str::limit($data->bidangstudi,25,' ...')}}
                                 </td>
                                 <td class="text-center">
-                                    {{-- {{Str::limit($data->pekerjaan,25,' ...')}} --}}
+                                    {{Str::limit($data->ket,25,' ...')}}
                                 </td>
 
                                 {{-- <td class="text-center babeng-min-row">
