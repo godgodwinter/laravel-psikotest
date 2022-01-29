@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Edit Profile
+Lihat Profile
 @endsection
 
 @push('before-script')
@@ -49,15 +49,15 @@ Edit Profile
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        {{-- <div class="form-group col-md-5 col-5 mt-0 ml-5">
                             <label for="email">Email <code>*)</code></label>
                             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{$datas->email}}"   readonly min="3" max="100" >
                             @error('email')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
 
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                    {{-- <div class="form-group col-md-5 col-5 mt-0 ml-5">
                         <label for="alamat">Password<code></code></label>
 
 
@@ -75,14 +75,14 @@ Edit Profile
 
                         @error('password2')<div class="invalid-feedback"> {{$message}}</div>
                         @enderror
-                    </div>
+                    </div> --}}
 
 
                         </div>
 
-                        <div class="card-footer text-right mr-5">
+                        {{-- <div class="card-footer text-right mr-5">
                             <button class="btn btn-primary">Simpan</button>
-                        </div>
+                        </div> --}}
                     </form>
 
                 </div>
