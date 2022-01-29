@@ -38,9 +38,9 @@
 
             <li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('users')}}"><i
                         class="fas fa-user-shield"></i> <span>Administrator</span></a></li>
-            {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li> --}}
+            {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li>
             <li {{$pages=='example' ? 'class=active' : ''}}><a class="nav-link" href="{{route('testing.grafik')}}"><i
-                        class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li>
+                        class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li>--}}
             {{-- <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-school"></i>
                     <span>Sekolah</span></a>
@@ -142,6 +142,16 @@
             <li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-diagnoses"></i> <span>Beranda</span></a></li>
             <li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('yayasan.sekolah')}}"><i
                         class="fas fa-home"></i> <span>Sekolah</span></a></li>
+            <li {{$pages=='yayasan-klasifikasijabatan' ? 'class=active' : ''}}><a class="nav-link"
+                        href="{{route('yayasan.klasifikasijabatan')}}"><i class="fas fa-sort-alpha-up"></i>
+                        <span>Klasifikasi Akademis dan Profesi</span></a></li></span></a></li>
+            <li {{$pages=='yayasan-referensi' ? 'class=active' : ''}}><a class="nav-link"
+                        href="{{route('yayasan.referensi')}}"><i class="far fa-file-alt"></i>
+                        <span>Referensi Studi & Kerja</span></a></li>
+            <li {{$pages=='yayasan-informasipsikologi' ? 'class=active' : ''}}><a class="nav-link"
+                        href="{{route('yayasan.informasipsikologi')}}"><i class="fas fa-info-circle"></i>
+                        <span>Buletin Psikologi</span></a></li>
+
 
                         @elseif((Auth::user()->tipeuser)=='siswa')
                         <li class="menu-header">Menu</li>

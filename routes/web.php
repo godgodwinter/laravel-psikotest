@@ -608,6 +608,18 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::post('/admin/api/apiprobk_sertifikat/{apiprobk_id}', [adminapicontroller::class, 'apiprobk_sertifikat'])->name('api.apiprobk_sertifikat');
         Route::post('/admin/api/apiprobk_sertifikat/isi/{apiprobk_id}/{kunci}', [adminapicontroller::class, 'apiprobk_sertifikat_isi'])->name('api.apiprobk_sertifikat_isi');
 
+        //klasifikasijabatan
+        Route::get('/yayasan/klasifikasijabatan', [yayasansekolahcontroller::class, 'klasifikasijabatan'])->name('yayasan.klasifikasijabatan');
+        Route::get('/yayasan/klasifikasijabatan/cari', [yayasansekolahcontroller::class, 'klasifikasijabatancari'])->name('yayasan.klasifikasijabatan.cari');
+
+        //referensi
+        Route::get('/yayasan/referensi', [yayasansekolahcontroller::class, 'referensi'])->name('yayasan.referensi');
+        Route::get('/yayasan/referensi/cari', [yayasansekolahcontroller::class, 'referensicari'])->name('yayasan.referensi.cari');
+
+        //informasipsikologi
+        Route::get('/yayasan/informasipsikologi', [yayasansekolahcontroller::class, 'informasipsikologi'])->name('yayasan.informasipsikologi');
+        Route::get('/yayasan/informasipsikologi/cari', [yayasansekolahcontroller::class, 'informasipsikologicari'])->name('yayasan.informasipsikologi.cari');
+
         // Route::get('/token', function () {
         //     return csrf_token();
         // });

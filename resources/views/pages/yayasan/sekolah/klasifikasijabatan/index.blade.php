@@ -52,7 +52,7 @@ Klasifikasi Akademis dan Profesi
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
 
-                            {{-- <a href="{{route('yayasan.klasifikasijabatan.create')}}" type="submit" value="Import"
+                            {{-- <a href="{{route('bk.klasifikasijabatan.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a> --}}
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
@@ -67,7 +67,7 @@ Klasifikasi Akademis dan Profesi
                     </div>
                 </div>
 
-                {{-- <x-jsmultidel link="{{route('yayasan.klasifikasijabatan.multidel')}}" />
+                {{-- <x-jsmultidel link="{{route('bk.klasifikasijabatan.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif --}}
@@ -119,7 +119,7 @@ Klasifikasi Akademis dan Profesi
 
                                 {{-- <td class="text-center babeng-min-row">
                                     <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
-                                    <x-button-edit link="{{ route('yayasan.klasifikasijabatan.edit',$data->id)}}" />
+                                    <x-button-edit link="{{ route('bk.klasifikasijabatan.edit',$data->id)}}" />
                                     <x-button-delete link="{{ route('bk.klasifikasijabatan.destroy',$data->id)}}" />
                                 </td> --}}
                             </tr>
