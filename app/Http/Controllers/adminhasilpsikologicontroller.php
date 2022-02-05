@@ -253,7 +253,7 @@ class adminhasilpsikologicontroller extends Controller
     }
     public function deteksi_cetak(Request $request)
     {
-        dd('cetak deteksi');
+        dd('cetak deteksi',json_decode($request->data),$request);
     }
     public function sertifikat_lihat(sekolah $id,siswa $siswa,Request $request)
     {

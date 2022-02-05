@@ -39,9 +39,11 @@ Hasil Deteksi Psikologi
         <h4>Laporan Deteksi Psikologis   </h4>
         <form action="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" method="get" class="d-inline">
             @csrf
-            <button class="btn btn-icon btn-primary btn-sm"
-                 data-toggle="tooltip" data-placement="top" title="Cetak Deteksi!" ><span
-                    class="pcoded-micon"> Cetak</span></button>
+            <input type="hidden" value="0" name="data" id="dataCetak">
+            <button class="btn btn-icon btn-warning btn-sm"
+                 data-toggle="tooltip" data-placement="top" title="Sedang memuat, Tunggu!"  id="btnCetak" disabled><span
+                    class="pcoded-micon"> Menyiapkan Data Cetak</span></button>
+                    <label for="loadLabel" id="loadLabel"> 0/{{count($masterdeteksi)}}</label>
         </form>
         {{-- <a href="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" class="btn btn-primary"> Cetak </a> --}}
     </div>
@@ -78,6 +80,9 @@ Hasil Deteksi Psikologi
                 @push('before-script')
                     <script>
                         //deklar var
+                            var formCetak=[];
+                            var jmlData={{count($masterdeteksi)}};
+                            var jmlLoadData=0;
                         //getdata
 
                         //fungsi/metod
@@ -103,8 +108,20 @@ Hasil Deteksi Psikologi
                     setGraph(id+"_grap",data.data.score)
                     // document.getElementById('sukses').innerText = sukses;
 
+                    pushData(id,nama,data.data.rank,data.data.score,data.data.keterangan)
+
+                    $("#dataCetak").val(JSON.stringify(formCetak));
                     }else{
                     console.log('error!');
+                    }
+                    jmlLoadData++;
+                    document.getElementById('loadLabel').innerText = jmlLoadData+"/"+jmlData;
+                    if(jmlLoadData==jmlData){
+                     $("#btnCetak").prop('disabled', false);
+                     $("#btnCetak").text('Cetak');
+                     $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
+                     $("#btnCetak").title('Cetak');
+
                     }
                     })();
                 }
@@ -114,6 +131,21 @@ Hasil Deteksi Psikologi
                 function setGraph(id=null,isi=null){
                      $("#"+id).width(isi+"%");
                   }
+                //create function to push data to array formCetak
+                function pushData(id=null,nama=null,rank=null,persen=null,ket=null){
+                    formCetak.push({
+                        id:id,
+                        nama:nama,
+                        rank:rank,
+                        persen:persen,
+                        ket:ket,
+                    });
+                }
+                // function cetak(){
+                    // console.log(formCetak);
+                    // console.log(formCetak[0].id);
+                    // console.log(formCetak[0].nama);
+                    //
                     </script>
 
 <script>
