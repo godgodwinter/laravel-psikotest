@@ -75,86 +75,22 @@ Hasil Deteksi Psikologi
                 </tr>
             </thead>
             <tbody>
-                @push('before-script')
-                    <script>
-                        //deklar var
-                        //getdata
-
-                        //fungsi/metod
-                function gettData(nama=null,id=null){
-                (async()=>{
-                    const requestOptions = {
-                    method: 'POST',
-                    headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "X-Requested-With": "XMLHttpRequest",
-                    "X-CSRF-Token": $('input[name="_token"]').val()
-                    },
-                    body: JSON.stringify({nama:nama,})
-                    };
-                    const response = await fetch("{{route('api.deteksi_lihat_api',[$datasiswa->id])}}", requestOptions);
-                    let data = await response.json();
-                    if (response.ok){
-                    // console.log(data.data);
-                    setData(id+"_rank",data.data.rank)
-                    setData(id+"_persen",data.data.score)
-                    setData(id+"_ket",data.data.keterangan)
-                    setGraph(id+"_grap",data.data.score)
-                    // document.getElementById('sukses').innerText = sukses;
-
-                    }else{
-                    console.log('error!');
-                    }
-                    })();
-                }
-                function setData(id=null,isi=null){
-                    document.getElementById(id).innerText = isi;
-                }
-                function setGraph(id=null,isi=null){
-                     $("#"+id).width(isi+"%");
-                  }
-                    </script>
-
-<script>
-    $(function () {
-
-@forelse ($masterdeteksi as $master)
-        gettData("{{$master->nama}}",{{$master->id}});
-
-    @empty
-
-@endforelse
-
-});
-                    </script>
-
-                @endpush
                 @forelse ($masterdeteksi as $master)
                 <tr>
                     <td>{{$loop->index+1}}</td>
                     <td>{{$master->nama}}</td>
-
-                    <td class="text-center" id="{{$master->id}}_rank">0</td>
-                    <td class="text-center" id="{{$master->id}}_persen">0</td>
-                    <td class="text-center" id="{{$master->id}}_ket">0</td>
+                    @php
+                    $getdeteksi_list_count=\App\Models\apiprobk_deteksi_list::where('nama',$master->nama)->where('apiprobk_id',$datasiswa->apiprobk_id)->count();
+                        $getdeteksi_list=\App\Models\apiprobk_deteksi_list::where('nama',$master->nama)->where('apiprobk_id',$datasiswa->apiprobk_id)->first();
+                    @endphp
+                    <td class="text-center">{{$getdeteksi_list_count!=0?$getdeteksi_list->rank:"Data tidak ditemukan"}}</td>
+                    <td class="text-center">{{$getdeteksi_list_count!=0?$getdeteksi_list->score:"Data tidak ditemukan"}}</td>
+                    <td class="text-center">{{$getdeteksi_list_count!=0?$getdeteksi_list->keterangan:"Data tidak ditemukan"}}</td>
                     <td >
-                        <div class="grey_bg" style="width:0%;background-color: #00FFFF"  id="{{$master->id}}_grap">
+                        <div class="grey_bg" style="width:{{$getdeteksi_list_count!=0?$getdeteksi_list->score:0}}%;background-color: #00FFFF">
                             &nbsp;
                         </div>
                     </td>
-
-                    {{-- @php
-                        $getdeteksi_list=\App\Models\apiprobk_deteksi_list::where('nama',$master->nama)->where('apiprobk_id',$datasiswa->apiprobk_id)->first();
-                    @endphp
-                    <td class="text-center">{{$getdeteksi_list->rank}}</td>
-                    <td class="text-center">{{$getdeteksi_list->score}}</td>
-                    <td class="text-center">{{$getdeteksi_list->keterangan}}</td>
-                    <td >
-                        <div class="grey_bg" style="width:{{$getdeteksi_list->score}}%;background-color: #00FFFF">
-                            &nbsp;
-                        </div>
-                    </td> --}}
                 </tr>
                 @empty
 

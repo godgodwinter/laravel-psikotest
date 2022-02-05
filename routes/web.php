@@ -205,6 +205,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
     Route::delete('/admin/sekolah/{id}/hasilpsikologi/{siswa}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
 
+    Route::post('/admin/api/deteksi_lihat_api/{siswa}', [adminhasilpsikologicontroller::class, 'deteksi_lihat_api'])->name('api.deteksi_lihat_api');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [adminhasilpsikologicontroller::class, 'deteksi_lihat'])->name('sekolah.hasilpsikologi.deteksi_lihat');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [adminhasilpsikologicontroller::class, 'deteksi_cetak'])->name('sekolah.hasilpsikologi.deteksi_cetak');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihat', [adminhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('sekolah.hasilpsikologi.sertifikat_lihat');
