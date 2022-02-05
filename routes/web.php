@@ -633,6 +633,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/siswa/sekolah/hasilpsikologi/sertifikat_cetak', [siswahasilpsikologicontroller::class, 'sertifikat_cetak'])->name('siswa.hasilpsikologi.sertifikat_cetak');
 
         //klasifikasijabatan
+        Route::get('/siswa/catatankasus', [siswacatatankasuscontroller::class, 'index'])->name('siswa.catatankasus');
+        Route::get('/siswa/catatankasusdetail', [siswacatatankasuscontroller::class, 'detail'])->name('siswa.catatankasus.detail');
+        Route::get('/siswa/catatankasuscetak', [siswacatatankasuscontroller::class, 'cetak'])->name('siswa.catatankasus.cetak');
+        Route::get('/siswa/catatanpengembangandiri', [siswacatatanpengembangandiricontroller::class, 'index'])->name('siswa.catatanpengembangandiri');
+        Route::get('/siswa/catatanpengembangandiridetail', [siswacatatanpengembangandiricontroller::class, 'detail'])->name('siswa.catatanpengembangandiri.detail');
+        Route::get('/siswa/catatanpengembangandiricetak', [siswacatatanpengembangandiricontroller::class, 'cetak'])->name('siswa.catatanpengembangandiri.cetak');
+        Route::get('/siswa/catatanprestasi', [siswacatatanprestasicontroller::class, 'index'])->name('siswa.catatanprestasi');
+        Route::get('/siswa/catatanprestasidetail', [siswacatatanprestasicontroller::class, 'detail'])->name('siswa.catatanprestasi.detail');
+        Route::get('/siswa/catatanprestasicetak', [siswacatatanprestasicontroller::class, 'cetak'])->name('siswa.catatanprestasi.cetak');
+
+        //klasifikasijabatan
         Route::get('/siswa/klasifikasijabatan', [siswahasilpsikologicontroller::class, 'klasifikasijabatan'])->name('siswa.klasifikasijabatan');
         Route::get('/siswa/klasifikasijabatan/cari', [siswahasilpsikologicontroller::class, 'klasifikasijabatancari'])->name('siswa.klasifikasijabatan.cari');
 
