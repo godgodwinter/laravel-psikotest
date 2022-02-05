@@ -302,7 +302,7 @@ let aspekkepribadian=[
 <div class="card" id="settings-card">
     <div class="card-header">
         <h4>Laporan Sertifikat Psikologis   </h4>
-        <button class="btn btn-primary"> Cetak </button>
+        {{-- <button class="btn btn-primary"> Cetak </button> --}}
     </div>
     <div class="card-header">
         <h4>Identitas </h4>
