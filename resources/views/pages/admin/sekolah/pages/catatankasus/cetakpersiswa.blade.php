@@ -42,9 +42,7 @@
             <td>{{$data->keterangan}}</td>
         </tr>
         @empty
-        <tr>
-            <td>Data tidak ditemukan</td>
-        </tr>
+
         @endforelse
     </table>
 
