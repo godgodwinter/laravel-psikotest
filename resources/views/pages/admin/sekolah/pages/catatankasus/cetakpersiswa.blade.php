@@ -3,7 +3,7 @@
 <x-cetak-kop-png></x-cetak-kop-png>
 
     <div style="margin-bottom: 0;text-align:center" id="judul">
-        <h2>CATATAN KASUS SISWA</h2>
+        CATATAN KASUS SISWA
         <p for=""></p>
     </div>
 
