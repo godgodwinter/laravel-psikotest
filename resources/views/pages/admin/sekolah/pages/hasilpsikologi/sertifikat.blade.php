@@ -152,10 +152,6 @@ let aspekkepribadian=[
                     document.getElementById('minat_pekerjaan_2').innerText = '- '+dataSertifikat.minat_pekerjaan_2 +' '+dataSertifikat.minat_pekerjaan_2_persen;
                     document.getElementById('minat_pekerjaan_3').innerText = '- '+dataSertifikat.minat_pekerjaan_3 +' '+dataSertifikat.minat_pekerjaan_3_persen;
 
-                    kesimpulandansaran=`<label>
-                        Potensi kecerdasan subyek yang dapat digunakan saat ini ${iqket(dataSertifikat.iq)},(IQ=${dataSertifikat.iq})
-                    </label>`;
-                    $( "#kesimpulandansaran" ).append(kesimpulandansaran);
                     // document.getElementById('hspq_a_kr_persen').innerText = dataSertifikat.hspq_a_kr_persen;
                     // document.getElementById('hspq_a_kr_keterangan').innerText = dataSertifikat.hspq_a_kr_keterangan;
                     // document.getElementById('hspq_a_kr_rank').innerText = dataSertifikat.hspq_a_kr_rank;
@@ -203,7 +199,7 @@ let aspekkepribadian=[
             ket:dataSertifikat.knh
             },
     ];
-    let temp = kecerdasan.slice(0);
+    var temp = kecerdasan.slice(0);
     temp.sort(function (a,b) {
         return b.persen - a.persen;
      })
@@ -240,6 +236,10 @@ let aspekkepribadian=[
            ${silang}
         </tr>`);
 
+        kesimpulandansaran=`<label>
+                        Potensi kecerdasan subyek yang dapat digunakan saat ini ${iqket(dataSertifikat.iq)},(IQ=${dataSertifikat.iq}, IST KM=${dataSertifikat.km_persen}%) artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong ${dataSertifikat.kmh}. Dalam belajar subyek disarankan menggunakan  ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}, sedangkan yang perlu dilatih dan dibiasakan yaitu kecerdasan ${temp[6].nama} dam ${temp[7].nama}. Kecerdasan Emosi nya ${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%). Kecerdasan Sosialnya ${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%). Dalam kelanjutan studi Sangat Lancar Sekali tapi perlu ditunjang oleh EQ dan SQ Seimbang dan Lebih Tinggi dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Kelanjutan studi disarankan masuk fakultas dengan Prodi , Fakultas ,  Prodi .
+                    </label>`;
+                    $( "#kesimpulandansaran" ).append(kesimpulandansaran);
 
     }
 
