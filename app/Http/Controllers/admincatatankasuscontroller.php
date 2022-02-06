@@ -350,13 +350,13 @@ class admincatatankasuscontroller extends Controller
 
         return view('pages.admin.sekolah.pages.catatankasus.index', compact('pages', 'id', 'request', 'datas'));
     }
-    public function cetakpersiswa(sekolah $id,catatankasussiswa $data,Request $request){
+    public function cetakpersiswa(sekolah $id,siswa $data,Request $request){
 
         // $datas = catatanpengembangandirisiswa::with('siswa')->where('id',$data->id)
         // ->where('sekolah_id',$id->id)
         // ->orderBy('siswa_id','asc')
         // ->get();
-        $datas=$data;
+        $datas=catatankasussiswa::with('siswa')->where('siswa_id',$data->id)->orderBy('tanggal','desc')->get();
         // dd($datas);
         $tgl=date("YmdHis");
         $pdf = PDF::loadview('pages.admin.sekolah.pages.catatankasus.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
