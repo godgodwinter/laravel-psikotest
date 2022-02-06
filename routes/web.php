@@ -50,6 +50,9 @@ use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\profilecontroller;
 use App\Http\Controllers\prosescontroller;
+use App\Http\Controllers\siswacatatankasuscontroller;
+use App\Http\Controllers\siswacatatanpengembangandiricontroller;
+use App\Http\Controllers\siswacatatanprestasicontroller;
 use App\Http\Controllers\siswahasilpsikologicontroller;
 use App\Http\Controllers\yayasansekolahcontroller;
 use Illuminate\Support\Facades\DB;
@@ -634,13 +637,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         //klasifikasijabatan
         Route::get('/siswa/catatankasus', [siswacatatankasuscontroller::class, 'index'])->name('siswa.catatankasus');
-        Route::get('/siswa/catatankasusdetail', [siswacatatankasuscontroller::class, 'detail'])->name('siswa.catatankasus.detail');
         Route::get('/siswa/catatankasuscetak', [siswacatatankasuscontroller::class, 'cetak'])->name('siswa.catatankasus.cetak');
         Route::get('/siswa/catatanpengembangandiri', [siswacatatanpengembangandiricontroller::class, 'index'])->name('siswa.catatanpengembangandiri');
-        Route::get('/siswa/catatanpengembangandiridetail', [siswacatatanpengembangandiricontroller::class, 'detail'])->name('siswa.catatanpengembangandiri.detail');
         Route::get('/siswa/catatanpengembangandiricetak', [siswacatatanpengembangandiricontroller::class, 'cetak'])->name('siswa.catatanpengembangandiri.cetak');
         Route::get('/siswa/catatanprestasi', [siswacatatanprestasicontroller::class, 'index'])->name('siswa.catatanprestasi');
-        Route::get('/siswa/catatanprestasidetail', [siswacatatanprestasicontroller::class, 'detail'])->name('siswa.catatanprestasi.detail');
         Route::get('/siswa/catatanprestasicetak', [siswacatatanprestasicontroller::class, 'cetak'])->name('siswa.catatanprestasi.cetak');
 
         //klasifikasijabatan
