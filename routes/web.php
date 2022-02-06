@@ -165,6 +165,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'update'])->name('sekolah.kelas.update');
       Route::delete('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'destroy'])->name('sekolah.kelas.destroy');
       Route::delete('/admin/sekolah/kelas/multidel/{id}', [adminkelascontroller::class, 'multidel'])->name('sekolah.kelas.multidel');
+      Route::get('/admin/sekolah/{id}/kelas/{data}/cetak', [adminkelascontroller::class, 'cetak'])->name('sekolah.kelas.cetak');
 
 
     //inputnilaipsikologi

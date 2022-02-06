@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportkelas;
 use App\Helpers\Fungsi;
 use App\Http\Resources\kelasindexresource;
 use App\Models\kelas;
@@ -11,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+
 class adminkelascontroller extends Controller
 {
     public function __construct()
@@ -172,5 +175,11 @@ class adminkelascontroller extends Controller
         // dd($datas);
 
         return view('pages.admin.sekolah.pages.kelas_index',compact('pages','id','request','datas'));
+    }
+    public function cetak(sekolah $id,kelas $data,Request $request)
+    {
+        // dd($id,$data);
+        $tgl=date("YmdHis");
+		return Excel::download(new exportkelas($id,$data), 'psikotest-kelas-'.$data->nama.'-'.$tgl.'.xlsx');
     }
 }
