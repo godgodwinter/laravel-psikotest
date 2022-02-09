@@ -50,6 +50,9 @@ use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\profilecontroller;
 use App\Http\Controllers\prosescontroller;
+use App\Http\Controllers\siswacatatankasuscontroller;
+use App\Http\Controllers\siswacatatanpengembangandiricontroller;
+use App\Http\Controllers\siswacatatanprestasicontroller;
 use App\Http\Controllers\siswahasilpsikologicontroller;
 use App\Http\Controllers\yayasansekolahcontroller;
 use Illuminate\Support\Facades\DB;
@@ -162,6 +165,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'update'])->name('sekolah.kelas.update');
       Route::delete('/admin/sekolah/{id}/kelas/{data}', [adminkelascontroller::class, 'destroy'])->name('sekolah.kelas.destroy');
       Route::delete('/admin/sekolah/kelas/multidel/{id}', [adminkelascontroller::class, 'multidel'])->name('sekolah.kelas.multidel');
+      Route::get('/admin/sekolah/{id}/kelas/{data}/cetak', [adminkelascontroller::class, 'cetak'])->name('sekolah.kelas.cetak');
 
 
     //inputnilaipsikologi
@@ -205,6 +209,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/admin/sekolah/{id}/hasilpsikologi/{data}', [adminhasilpsikologicontroller::class, 'update'])->name('sekolah.hasilpsikologi.update');
     Route::delete('/admin/sekolah/{id}/hasilpsikologi/{siswa}', [adminhasilpsikologicontroller::class, 'destroy'])->name('sekolah.hasilpsikologi.destroy');
 
+    Route::post('/admin/api/deteksi_lihat_api/{siswa}', [adminhasilpsikologicontroller::class, 'deteksi_lihat_api'])->name('api.deteksi_lihat_api');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [adminhasilpsikologicontroller::class, 'deteksi_lihat'])->name('sekolah.hasilpsikologi.deteksi_lihat');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [adminhasilpsikologicontroller::class, 'deteksi_cetak'])->name('sekolah.hasilpsikologi.deteksi_cetak');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihat', [adminhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('sekolah.hasilpsikologi.sertifikat_lihat');
@@ -608,6 +613,18 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::post('/admin/api/apiprobk_sertifikat/{apiprobk_id}', [adminapicontroller::class, 'apiprobk_sertifikat'])->name('api.apiprobk_sertifikat');
         Route::post('/admin/api/apiprobk_sertifikat/isi/{apiprobk_id}/{kunci}', [adminapicontroller::class, 'apiprobk_sertifikat_isi'])->name('api.apiprobk_sertifikat_isi');
 
+        //klasifikasijabatan
+        Route::get('/yayasan/klasifikasijabatan', [yayasansekolahcontroller::class, 'klasifikasijabatan'])->name('yayasan.klasifikasijabatan');
+        Route::get('/yayasan/klasifikasijabatan/cari', [yayasansekolahcontroller::class, 'klasifikasijabatancari'])->name('yayasan.klasifikasijabatan.cari');
+
+        //referensi
+        Route::get('/yayasan/referensi', [yayasansekolahcontroller::class, 'referensi'])->name('yayasan.referensi');
+        Route::get('/yayasan/referensi/cari', [yayasansekolahcontroller::class, 'referensicari'])->name('yayasan.referensi.cari');
+
+        //informasipsikologi
+        Route::get('/yayasan/informasipsikologi', [yayasansekolahcontroller::class, 'informasipsikologi'])->name('yayasan.informasipsikologi');
+        Route::get('/yayasan/informasipsikologi/cari', [yayasansekolahcontroller::class, 'informasipsikologicari'])->name('yayasan.informasipsikologi.cari');
+
         // Route::get('/token', function () {
         //     return csrf_token();
         // });
@@ -617,6 +634,26 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/siswa/sekolah/hasilpsikologi/deteksi_cetak', [siswahasilpsikologicontroller::class, 'deteksi_cetak'])->name('siswa.hasilpsikologi.deteksi_cetak');
         Route::get('/siswa/sekolah/hasilpsikologi/sertifikat_lihat', [siswahasilpsikologicontroller::class, 'sertifikat_lihat'])->name('siswa.hasilpsikologi.sertifikat_lihat');
         Route::post('/siswa/sekolah/hasilpsikologi/sertifikat_lihatapi', [siswahasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('siswa.hasilpsikologi.sertifikat_lihatapi');
-        Route::get('/siswa/sekolah/hasilpsikologi/sertifikat_cetak', [siswahasilpsikologicontroller::class, 'sertifikat_cetak'])->name('yayasan.hasilpsikologi.sertifikat_cetak');
+        Route::get('/siswa/sekolah/hasilpsikologi/sertifikat_cetak', [siswahasilpsikologicontroller::class, 'sertifikat_cetak'])->name('siswa.hasilpsikologi.sertifikat_cetak');
+
+        //klasifikasijabatan
+        Route::get('/siswa/catatankasus', [siswacatatankasuscontroller::class, 'index'])->name('siswa.catatankasus');
+        Route::get('/siswa/catatankasuscetak', [siswacatatankasuscontroller::class, 'cetak'])->name('siswa.catatankasus.cetak');
+        Route::get('/siswa/catatanpengembangandiri', [siswacatatanpengembangandiricontroller::class, 'index'])->name('siswa.catatanpengembangandiri');
+        Route::get('/siswa/catatanpengembangandiricetak', [siswacatatanpengembangandiricontroller::class, 'cetak'])->name('siswa.catatanpengembangandiri.cetak');
+        Route::get('/siswa/catatanprestasi', [siswacatatanprestasicontroller::class, 'index'])->name('siswa.catatanprestasi');
+        Route::get('/siswa/catatanprestasicetak', [siswacatatanprestasicontroller::class, 'cetak'])->name('siswa.catatanprestasi.cetak');
+
+        //klasifikasijabatan
+        Route::get('/siswa/klasifikasijabatan', [siswahasilpsikologicontroller::class, 'klasifikasijabatan'])->name('siswa.klasifikasijabatan');
+        Route::get('/siswa/klasifikasijabatan/cari', [siswahasilpsikologicontroller::class, 'klasifikasijabatancari'])->name('siswa.klasifikasijabatan.cari');
+
+        //referensi
+        Route::get('/siswa/referensi', [siswahasilpsikologicontroller::class, 'referensi'])->name('siswa.referensi');
+        Route::get('/siswa/referensi/cari', [siswahasilpsikologicontroller::class, 'referensicari'])->name('siswa.referensi.cari');
+
+        //informasipsikologi
+        Route::get('/siswa/informasipsikologi', [siswahasilpsikologicontroller::class, 'informasipsikologi'])->name('siswa.informasipsikologi');
+        Route::get('/siswa/informasipsikologi/cari', [siswahasilpsikologicontroller::class, 'informasipsikologicari'])->name('siswa.informasipsikologi.cari');
 
 });

@@ -102,11 +102,26 @@
             margin-top: 0px;
         }
 
+
+        table#tableBiasa2,
+        tr,
+        th {
+            border: 1px black solid;
+            border-collapse: collapse;
+            margin-top: 0px;
+            height: 30px;
+        }
+        table#tableBiasa2 tr td{
+            border: 1px black solid;
+            border-collapse: collapse;
+            margin-top: 0px;
+        }
         div#judul,
         h2,
         p {
             padding: 0;
             margin: 0;
+            font-weight: 500;
         }
 
         div#judul2,

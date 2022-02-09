@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Klasifikasi Akademis dan Profesi
+Referensi Studi dan Kerja
 @endsection
 
 @push('before-script')
@@ -31,7 +31,7 @@ Klasifikasi Akademis dan Profesi
 
                     <div class="p-2 bd-highlight">
 
-                        <form action="{{ route('yayasan.klasifikasijabatan.cari') }}" method="GET">
+                        <form action="{{ route('siswa.referensi.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -43,23 +43,24 @@ Klasifikasi Akademis dan Profesi
                             </select> --}}
 
                             <input type="text" class="babeng babeng-select  ml-0" name="cari">
+
                         </div>
-                    <div class="p-2 bd-highlight">
+                        <div class="p-2 bd-highlight">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
                             </span>
-                        </div>
-                    <div class="ml-auto p-2 bd-highlight">
 
-                            {{-- <a href="{{route('yayasan.klasifikasijabatan.create')}}" type="submit" value="Import"
+                        </div>
+                        <div class="ml-auto p-2 bd-highlight">
+                            {{-- <a href="{{route('siswa.referensi.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a> --}}
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
                             </button>
-                            <a href="/admin/klasifikasijabatan/export" type="submit" value="Import"
+                            <a href="/admin/referensi/export" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Export </span></a> --}}
                         </form>
@@ -67,7 +68,7 @@ Klasifikasi Akademis dan Profesi
                     </div>
                 </div>
 
-                {{-- <x-jsmultidel link="{{route('yayasan.klasifikasijabatan.multidel')}}" />
+                {{-- <x-jsmultidel link="{{route('siswa.referensi.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif --}}
@@ -76,14 +77,9 @@ Klasifikasi Akademis dan Profesi
                     <thead>
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Bidang</th>
-                            <th >Akademis</th>
-                            <th >Profesi</th>
-                            <th >Nilai Standart</th>
-                            <th >IQ Standart</th>
-                            <th >Jurusan</th>
-                            <th >Bidang Studi yang ditekuni</th>
-                            <th >Link</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Jenis</th>
+                            <th class="text-center">File</th>
                             {{-- <th class="text-center">Aksi</th> --}}
                         </tr>
                     </thead>
@@ -93,65 +89,37 @@ Klasifikasi Akademis dan Profesi
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->bidang,25,' ...')}}
+                                <td class="text-center"> {{Str::limit($data->nama,25,' ...')}}
                                 </td>
+                                <td class="text-center">{{$data->jenis}}</td>
                                 <td class="text-center">
-                                    {{Str::limit($data->akademis,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->pekerjaan,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->nilaistandart,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->iqstandart,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->jurusan,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->bidangstudi,25,' ...')}}
-                                </td>
-                                <td class="text-center">
-                                    {{Str::limit($data->ket,25,' ...')}}
+                                    @php
+                                        if($data->link!=null){
+                                            $alamat=$data->link;
+                                        }else{
+                                            $alamat=url('/'.$data->file);
+                                        }
+                                    @endphp
+<a href="{{ $alamat }}" class="btn btn-icon btn-dark btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="File!" target="_blank" ><i class="fas fa-atlas"></i></a>
+
                                 </td>
 
                                 {{-- <td class="text-center babeng-min-row">
-                                    <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
-                                    <x-button-edit link="{{ route('yayasan.klasifikasijabatan.edit',$data->id)}}" />
-                                    <x-button-delete link="{{ route('bk.klasifikasijabatan.destroy',$data->id)}}" />
+                                     <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" />
+                                    <x-button-edit link="{{ route('siswa.referensi.edit',$data->id)}}" />
+                                    <x-button-delete link="{{ route('siswa.referensi.destroy',$data->id)}}" />
                                 </td> --}}
                             </tr>
                 @empty
                             <tr>
-                                <td colspan="8" class="text-center">Data tidak ditemukan</td>
+                                <td colspan="5" class="text-center">Data tidak ditemukan</td>
                             </tr>
                 @endforelse
                     </tbody>
                 </table>
 
-                {{-- <div class="d-flex justify-content-between flex-row-reverse mt-3">
-                    <div >
-@php
-$cari=$request->cari;
-$tapel_nama=$request->tapel_nama;
-$kelas_nama=$request->kelas_nama;
-@endphp
 
-{{ $datas->onEachSide(1)
-
-  ->links() }}
-                    </div>
-{
-<div>
-<a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
-            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
-            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-        </a>
             </div>
-            </div>
-            </div> --}}
         </div>
     </div>
 </section>

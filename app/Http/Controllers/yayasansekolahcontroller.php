@@ -11,6 +11,7 @@ use App\Models\catatanpengembangandirisiswa;
 use App\Models\catatanprestasisiswa;
 use App\Models\hasilpsikologi;
 use App\Models\kelas;
+use App\Models\klasifikasijabatan;
 use App\Models\masterdeteksi;
 use App\Models\minatbakat;
 use App\Models\sekolah;
@@ -21,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class yayasansekolahcontroller extends Controller
 {
@@ -817,7 +819,91 @@ class yayasansekolahcontroller extends Controller
             $kelas=kelas::where('sekolah_id',$id->id)->get();
     return view('pages.yayasan.sekolah.catatanprestasi.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
     }
+<<<<<<< HEAD
     
+=======
+    public function klasifikasijabatan(Request $request)
+    {
+        $pages='yayasan-klasifikasijabatan';
+        $datas = klasifikasijabatan::orderBy('id','asc')
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.klasifikasijabatan.index',compact('pages','request','datas'));
+    }
+    public function klasifikasijabatancari(Request $request)
+    {
+        if($this->checkauth('admin')==='404'){
+            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        }
+
+        $cari=$request->cari;
+        #WAJIB
+        $pages='yayasan-klasifikasijabatan';
+        $datas=klasifikasijabatan::where('bidang','like',"%".$cari."%")
+        ->orwhere('pekerjaan','like',"%".$cari."%")
+        ->orwhere('nilaistandart','like',"%".$cari."%")
+        ->orwhere('iqstandart','like',"%".$cari."%")
+        ->orwhere('jurusan','like',"%".$cari."%")
+        ->orwhere('bidangstudi','like',"%".$cari."%")
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.klasifikasijabatan.index',compact('pages','request','datas'));
+    }
+    public function referensi(Request $request)
+    {
+        $pages='yayasan-referensi';
+        $datas = DB::table('referensi')
+        ->whereNull('deleted_at')
+        ->orderBy('nama','asc')
+        ->paginate(Fungsi::paginationjml());
+
+        return view('pages.yayasan.sekolah.referensi.index',compact('pages','request','datas'));
+    }
+    public function referensicari(Request $request)
+        {
+            $cari=$request->cari;
+            #WAJIB
+            $pages='yayasan_referensi';
+            $users_id=Auth::user()->id;
+            $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+            $sekolah_id=$pengguna->sekolah_id;
+            $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+            $datas = DB::table('referensi')
+
+            ->where('nama','like',"%".$cari."%")
+            ->paginate(Fungsi::paginationjml());
+
+            return view('pages.yayasan.sekolah.referensi.index',compact('pages','request','datas'));
+        }
+        public function informasipsikologi(Request $request)
+        {
+            $pages='yayasan-informasipsikologi';
+            $datas = DB::table('informasipsikologi')
+            ->whereNull('deleted_at')
+            ->orderBy('nama','asc')
+            ->paginate(Fungsi::paginationjml());
+
+            return view('pages.yayasan.sekolah.informasipsikologi.index',compact('pages','request','datas'));
+        }
+        public function informasipsikologicari(Request $request)
+            {
+                $cari=$request->cari;
+                #WAJIB
+                $pages='yayasan_informasipsikologi';
+                $users_id=Auth::user()->id;
+                $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+                $sekolah_id=$pengguna->sekolah_id;
+                $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
+
+                $datas = DB::table('referensi')
+
+                ->where('nama','like',"%".$cari."%")
+                ->paginate(Fungsi::paginationjml());
+
+                return view('pages.yayasan.sekolah.informasipsikologi.index',compact('pages','request','datas'));
+            }
+>>>>>>> b55f276ce82f438441179b986bee9204997ad935
     // public function catatanprestasi(sekolah $id, Request $request)
     // {
     //     $pages = 'catatanprestasi';

@@ -144,6 +144,14 @@ let aspekkepribadian=[
                     document.getElementById('hspq_rank_4_negatif').innerText += ' 4. '+dataSertifikat.hspq_rank_4_negatif;
                     document.getElementById('hspq_rank_5_negatif').innerText += ' 5. '+dataSertifikat.hspq_rank_5_negatif;
 
+                    document.getElementById('tipe_bakat_1').innerText = '- '+dataSertifikat.tipe_bakat_1;
+                    document.getElementById('tipe_bakat_2').innerText = '- '+dataSertifikat.tipe_bakat_2;
+                    document.getElementById('tipe_bakat_3').innerText = '- '+dataSertifikat.tipe_bakat_3;
+
+                    document.getElementById('minat_pekerjaan_1').innerText = '- '+dataSertifikat.minat_pekerjaan_1 +' '+dataSertifikat.minat_pekerjaan_1_persen;
+                    document.getElementById('minat_pekerjaan_2').innerText = '- '+dataSertifikat.minat_pekerjaan_2 +' '+dataSertifikat.minat_pekerjaan_2_persen;
+                    document.getElementById('minat_pekerjaan_3').innerText = '- '+dataSertifikat.minat_pekerjaan_3 +' '+dataSertifikat.minat_pekerjaan_3_persen;
+
                     // document.getElementById('hspq_a_kr_persen').innerText = dataSertifikat.hspq_a_kr_persen;
                     // document.getElementById('hspq_a_kr_keterangan').innerText = dataSertifikat.hspq_a_kr_keterangan;
                     // document.getElementById('hspq_a_kr_rank').innerText = dataSertifikat.hspq_a_kr_rank;
@@ -191,7 +199,7 @@ let aspekkepribadian=[
             ket:dataSertifikat.knh
             },
     ];
-    let temp = kecerdasan.slice(0);
+    var temp = kecerdasan.slice(0);
     temp.sort(function (a,b) {
         return b.persen - a.persen;
      })
@@ -228,6 +236,10 @@ let aspekkepribadian=[
            ${silang}
         </tr>`);
 
+        kesimpulandansaran=`<label>
+                        Potensi kecerdasan subyek yang dapat digunakan saat ini ${iqket(dataSertifikat.iq)},(IQ=${dataSertifikat.iq}, IST KM=${dataSertifikat.km_persen}%) artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong ${dataSertifikat.kmh}. Dalam belajar subyek disarankan menggunakan  ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}, sedangkan yang perlu dilatih dan dibiasakan yaitu kecerdasan ${temp[6].nama} dam ${temp[7].nama}. Kecerdasan Emosi nya ${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%). Kecerdasan Sosialnya ${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%). Dalam kelanjutan studi Sangat Lancar Sekali tapi perlu ditunjang oleh EQ dan SQ Seimbang dan Lebih Tinggi dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Kelanjutan studi disarankan masuk fakultas dengan Prodi , Fakultas ,  Prodi .
+                    </label>`;
+                    $( "#kesimpulandansaran" ).append(kesimpulandansaran);
 
     }
 
@@ -302,7 +314,7 @@ let aspekkepribadian=[
 <div class="card" id="settings-card">
     <div class="card-header">
         <h4>Laporan Sertifikat Psikologis   </h4>
-        <button class="btn btn-primary"> Cetak </button>
+        {{-- <button class="btn btn-primary"> Cetak </button> --}}
     </div>
     <div class="card-header">
         <h4>Identitas </h4>
@@ -497,6 +509,29 @@ let aspekkepribadian=[
         </tr>
     </table>
 
+    <table border="1" width="100%" id="kepribadianTable"  class="mt-2">
+        <tr>
+            <td><strong>IX. Tipe Bakat yang disukai</strong> </td>
+        </tr>
+        <tr><td id="tipe_bakat_1">-</td></tr>
+        <tr><td id="tipe_bakat_2">-</td></tr>
+        <tr><td id="tipe_bakat_3">-</td></tr>
+    </table>
+
+    <table border="1" width="100%" id="kepribadianTable"  class="mt-2">
+        <tr>
+            <td><strong>X. Minat Pekerjaan Terkuat</strong> </td>
+        </tr>
+        <tr><td id="minat_pekerjaan_1">-</td></tr>
+        <tr><td id="minat_pekerjaan_2">-</td></tr>
+        <tr><td id="minat_pekerjaan_3">-</td></tr>
+    </table>
+
+
+    <div class=" babengcontainer mt-2">
+        <h5>X. Kesimpulan dan Saran </h5>
+        <div id="kesimpulandansaran"></div>
+    </div>
 
     </div>
 

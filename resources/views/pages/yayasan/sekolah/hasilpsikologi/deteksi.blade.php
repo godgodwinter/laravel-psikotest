@@ -154,7 +154,10 @@ Hasil Deteksi Psikologi
 
 
     <div class="card-body babengcontainer">
-        <h5>Saat ini anda memiliki Gangguan Karakter :  {{$datas['deteksi_total_persen']}} {{$datas['deteksi_total_keterangan']}} </h5>
+        <h5>Saat ini anda memiliki Gangguan Karakter :  {{$datas['deteksi_total_persen']}} {{$datas['deteksi_total_keterangan']}} yang dapat menimbulkan masalah dan mengganggu aktivitas
+            usaha anda dalam mencapai keberhasilan. Sedangkan karakter negatif yang perlu anda kendalikan dan bersifat merugikan di antaranya yaitu dalam
+            Posisi Nilai Cukup Tinggi ke atas sampai nilai Sangat Tinggi Sekali, nilai Cukup perlu diperhatikan dikhawatirkan suatu saat akan mengalami
+            perubahan meningkat. </h5>
     </div>
 
 </div>

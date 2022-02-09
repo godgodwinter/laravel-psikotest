@@ -37,14 +37,17 @@ Hasil Deteksi Psikologi
 <div class="card" id="settings-card">
     <div class="card-header">
         <h4>Laporan Deteksi Psikologis   </h4>
-        {{-- <form action="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" method="get" class="d-inline"> --}}
-            {{-- @csrf --}}
-            <div id="inputanCetak"></div>
+        <form action="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" method="get" class="d-inline">
+            @csrf
+            {{-- <input type="hidden" value="0" name="data" id="dataCetak"> --}}
+            <div id="inputanCetak">
+
+            </div>
             <button class="btn btn-icon btn-warning btn-sm"
                  data-toggle="tooltip" data-placement="top" title="Sedang memuat, Tunggu!"  id="btnCetak" disabled><span
-                    class="pcoded-micon"> Menyiapkan Data</span></button>
+                    class="pcoded-micon"> Menyiapkan Data Cetak</span></button>
                     <label for="loadLabel" id="loadLabel"> 0/{{count($masterdeteksi)}}</label>
-        {{-- </form> --}}
+        </form>
         {{-- <a href="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" class="btn btn-primary"> Cetak </a> --}}
     </div>
     <div class="card-header">
@@ -107,7 +110,19 @@ Hasil Deteksi Psikologi
                     setData(id+"_persen",data.data.score)
                     setData(id+"_ket",data.data.keterangan)
                     setGraph(id+"_grap",data.data.score)
+                    // document.getElementById('sukses').innerText = sukses;
 
+                    pushData(id,nama,data.data.rank,data.data.score,data.data.keterangan)
+
+                    tempData={
+                        id:id,
+                        nama:nama,
+                        rank:rank,
+                        persen:persen,
+                        ket:ket,
+                    };
+
+                    $("#inputanCetak").append(`<input type="hidden" value="${id,nama,data.data.rank,data.data.score,data.data.keterangan}" name="data[id]" id="dataCetak">`);
 
                     $("#dataCetak").val(JSON.stringify(formCetak));
                     }else{
@@ -116,10 +131,11 @@ Hasil Deteksi Psikologi
                     jmlLoadData++;
                     document.getElementById('loadLabel').innerText = jmlLoadData+"/"+jmlData;
                     if(jmlLoadData==jmlData){
-                    //  $("#btnCetak").prop('disabled', false);
-                     $("#btnCetak").text('Data Berhasil dimuat');
+                     $("#btnCetak").prop('disabled', false);
+                     $("#btnCetak").text('Cetak');
                      $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
-                     $("#btnCetak").title('Data Berhasil dimuat');
+                     $("#btnCetak").title('Cetak');
+
                     }
                     })();
                 }
@@ -130,15 +146,15 @@ Hasil Deteksi Psikologi
                      $("#"+id).width(isi+"%");
                   }
                 //create function to push data to array formCetak
-                // function pushData(id=null,nama=null,rank=null,persen=null,ket=null){
-                //     formCetak.push({
-                //         id:id,
-                //         nama:nama,
-                //         rank:rank,
-                //         persen:persen,
-                //         ket:ket,
-                //     });
-                // }
+                function pushData(id=null,nama=null,rank=null,persen=null,ket=null){
+                    formCetak.push({
+                        id:id,
+                        nama:nama,
+                        rank:rank,
+                        persen:persen,
+                        ket:ket,
+                    });
+                }
                 // function cetak(){
                     // console.log(formCetak);
                     // console.log(formCetak[0].id);
