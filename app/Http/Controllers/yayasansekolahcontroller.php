@@ -817,6 +817,7 @@ class yayasansekolahcontroller extends Controller
             $kelas=kelas::where('sekolah_id',$id->id)->get();
     return view('pages.yayasan.sekolah.catatanprestasi.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
     }
+    
     // public function catatanprestasi(sekolah $id, Request $request)
     // {
     //     $pages = 'catatanprestasi';
