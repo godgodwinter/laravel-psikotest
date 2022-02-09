@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Detail Minat Bakat
+Hasil Psikologi
 @endsection
 
 @push('before-script')
