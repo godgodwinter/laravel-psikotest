@@ -139,7 +139,7 @@ Detail Minat Bakat
                         {{$loop->index+1}}
                     </td>
                     <td class="text-center babeng-min-row">
-                        <a class="btn btn-sm btn-info" href="{{ route('bk.inputminatbakat.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a>
+                        {{-- <a class="btn btn-sm btn-info" href="{{ route('bk.inputminatbakat.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a> --}}
                         <x-button-edit link="{{ route('bk.inputminatbakat.edit',[$data->id]) }}" />
                     </td>
                     <td class="babeng-td">

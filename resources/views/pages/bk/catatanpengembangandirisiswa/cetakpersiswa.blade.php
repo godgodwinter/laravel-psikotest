@@ -3,7 +3,7 @@
 <x-cetak-kop-png></x-cetak-kop-png>
 
     <div style="margin-bottom: 0;text-align:center" id="judul">
-        CATATAN PRESTASI SISWA
+        CATATAN PENGEMBANGANDIRI SISWA
         <p for=""></p>
     </div>
 
@@ -13,35 +13,42 @@
 
     {{-- <center><h2>@yield('title')</h2></center> --}}
 
-
     <br>
     @foreach ($datas as $data)
         Nama Siswa : {{$data->siswa->nama }}
     @endforeach
 
     <br>
-    {{$kelas}}
+    Kelas : {{$kelas}}
     <br>
     <br>
     <table width="100%" id="tableBiasa2" border="1">
         <tr>
             <th>No</th>
             <th>Tanggal</th>
-            <th>Prestasi</th>
-            <th>Teknik Belajar</th>
-            <th>Sarana Belajar</th>
-            <th>Penunjang Belajar</th>
-            <th>Kesimpulan dan Saran</th>
+            <th>Ide dan Imajinasi</th>
+            <th>Ketrampilan</th>
+            <th>Kreatif</th>
+            <th>Organisasi</th>
+            <th>Kelanjutan Studi</th>
+            <th>Hobi</th>
+            <th>Cita - cita</th>
+            <th>Kemampuan Khusus</th>
+            <th>Keterangan</th>
         </tr>
         @forelse($datas as $data)
         <tr>
             <td>{{$loop->index+1}}</td>
             <td>{{Fungsi::tanggalindo($data->tanggal)}}</td>
-            <td>{{$data->prestasi}}</td>
-            <td>{{$data->teknikbelajar}}</td>
-            <td>{{$data->saranabelajar}}</td>
-            <td>{{$data->penunjangbelajar}}</td>
-            <td>{{$data->kesimpulandansaran}}</td>
+            <td>{{$data->idedanimajinasi}}</td>
+            <td>{{$data->ketrampilan}}</td>
+            <td>{{$data->kreatif}}</td>
+            <td>{{$data->organisasi}}</td>
+            <td>{{$data->kelanjutanstudi}}</td>
+            <td>{{$data->hobi}}</td>
+            <td>{{$data->citacita}}</td>
+            <td>{{$data->kemampuankhusus}}</td>
+            <td>{{$data->keterangan}}</td>
         </tr>
         @empty
 

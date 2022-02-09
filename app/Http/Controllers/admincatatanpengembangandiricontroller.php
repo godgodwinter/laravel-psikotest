@@ -339,8 +339,10 @@ class admincatatanpengembangandiricontroller extends Controller
     }
     public function cetakpersiswa(sekolah $id,siswa $data,Request $request){
         $datas=catatanpengembangandirisiswa::with('siswa')->where('siswa_id',$data->id)->orderBy('tanggal','desc')->get();
+        $d=siswa::with('kelas')->where('id',$data->id)->first();
+        $kelas=$d->kelas->nama;
         $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatanpengembangandiri.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatanpengembangandiri.cetakpersiswa',compact('datas','kelas'))->setPaper('a4', 'potrait');
         return $pdf->stream('catatan'.$tgl.'.pdf');
     }
 

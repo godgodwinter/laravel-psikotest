@@ -360,16 +360,12 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
 
         return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas'));
     }
-    public function cetakpersiswa(catatanpengembangandirisiswa $data,Request $request){
-
-        // $datas = catatanpengembangandirisiswa::with('siswa')->where('id',$data->id)
-        // ->where('sekolah_id',$sekolah_id)
-        // ->orderBy('siswa_id','asc')
-        // ->get();
-        $datas=$data;
-        // dd($datas);
+    public function cetakpersiswa(siswa $data,Request $request){
+        $datas=catatanpengembangandirisiswa::with('siswa')->where('siswa_id',$data->id)->orderBy('tanggal','desc')->get();
+        $d=siswa::with('kelas')->where('id',$data->id)->first();
+        $kelas=$d->kelas->nama;
         $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.bk.catatanpengembangandirisiswa.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        $pdf = PDF::loadview('pages.bk.catatanpengembangandirisiswa.cetakpersiswa',compact('datas','kelas'))->setPaper('a4', 'potrait');
         return $pdf->stream('catatan'.$tgl.'.pdf');
     }
 

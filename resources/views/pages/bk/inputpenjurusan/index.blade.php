@@ -135,7 +135,7 @@ Detail Penjurusan
                         {{$loop->index+1}}
                     </td>
                     <td class="text-center babeng-min-row">
-                        <a class="btn btn-sm btn-info" href="{{ route('bk.penjurusan.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a>
+                        {{-- <a class="btn btn-sm btn-info" href="{{ route('bk.penjurusan.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a> --}}
                         <x-button-edit link="{{ route('bk.penjurusan.edit',[$data->id]) }}" />
                     </td>
                     <td class="babeng-td">

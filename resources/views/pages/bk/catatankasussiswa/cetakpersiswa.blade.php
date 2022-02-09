@@ -3,7 +3,7 @@
 <x-cetak-kop-png></x-cetak-kop-png>
 
     <div style="margin-bottom: 0;text-align:center" id="judul">
-        CATATAN PRESTASI SISWA
+        CATATAN KASUS SISWA
         <p for=""></p>
     </div>
 
@@ -20,28 +20,34 @@
     @endforeach
 
     <br>
-    {{$kelas}}
+        Kelas : {{$kelas}}
     <br>
     <br>
     <table width="100%" id="tableBiasa2" border="1">
         <tr>
             <th>No</th>
             <th>Tanggal</th>
-            <th>Prestasi</th>
-            <th>Teknik Belajar</th>
-            <th>Sarana Belajar</th>
-            <th>Penunjang Belajar</th>
-            <th>Kesimpulan dan Saran</th>
+            <th>Kasus</th>
+            <th>Pengambilan Data</th>
+            <th>Sumber Kasus</th>
+            <th>Golongan Kasus</th>
+            <th>Penyebab</th>
+            <th>Teknik Konseling</th>
+            <th>Keberhasilan Penanganan</th>
+            <th>Keterangan</th>
         </tr>
         @forelse($datas as $data)
         <tr>
             <td>{{$loop->index+1}}</td>
             <td>{{Fungsi::tanggalindo($data->tanggal)}}</td>
-            <td>{{$data->prestasi}}</td>
-            <td>{{$data->teknikbelajar}}</td>
-            <td>{{$data->saranabelajar}}</td>
-            <td>{{$data->penunjangbelajar}}</td>
-            <td>{{$data->kesimpulandansaran}}</td>
+            <td>{{$data->kasus}}</td>
+            <td>{{$data->pengambilandata}}</td>
+            <td>{{$data->sumberkasus}}</td>
+            <td>{{$data->golkasus}}</td>
+            <td>{{$data->penyebabtimbulkasus}}</td>
+            <td>{{$data->teknikkonseling}}</td>
+            <td>{{$data->keberhasilanpenanganankasus}}</td>
+            <td>{{$data->keterangan}}</td>
         </tr>
         @empty
 

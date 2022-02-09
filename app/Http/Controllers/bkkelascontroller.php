@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportkelas;
 use App\Helpers\Fungsi;
 use App\Models\kelas;
 use App\Models\pengguna;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Maatwebsite\Excel\Facades\Excel;
 
 class bkkelascontroller extends Controller
 {
@@ -199,6 +201,16 @@ class bkkelascontroller extends Controller
         return view('pages.bk.kelas.index',compact('pages','id','request','datas'));
     }
 
+    public function cetak(kelas $data,Request $request)
+    {
+        // dd($id,$data);
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
+        $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
+        $tgl=date("YmdHis");
+		return Excel::download(new exportkelas($id,$data), 'psikotest-kelas-'.$data->nama.'-'.$tgl.'.xlsx');
+    }
     }
 

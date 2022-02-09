@@ -13,14 +13,14 @@
 
     {{-- <center><h2>@yield('title')</h2></center> --}}
 
-
     <br>
     @foreach ($datas as $data)
         Nama Siswa : {{$data->siswa->nama }}
     @endforeach
 
     <br>
-    {{$kelas}}
+    Kelas : {{$kelas}}
+
     <br>
     <br>
     <table width="100%" id="tableBiasa2" border="1">

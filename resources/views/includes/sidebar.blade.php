@@ -122,6 +122,9 @@
             <li {{$pages=='bk-penjurusan' ? 'class=active' : ''}}><a class="nav-link"
                     href="{{$id->status=='Aktif' ?  route('bk.penjurusan') : '#'}}"><i class="fas fa-sitemap"></i>
                     <span>Analisa Penjurusan</span></a></li></span></a></li>
+            <li {{$pages=='bk-hasilpsikologi' ? 'class=active' : ''}}><a class="nav-link"
+                    href="{{$id->status=='Aktif' ?  route('bk.hasilpsikologi') : '#'}}"><i class="fas fa-sitemap"></i>
+                    <span>Hasil Psikologi</span></a></li></span></a></li>
 
 
 

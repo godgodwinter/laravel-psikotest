@@ -15,6 +15,15 @@
 
 
     <br>
+    @foreach ($datas as $data)
+        Nama Siswa : {{$data->siswa->nama }}
+    @endforeach
+
+    <br>
+    {{$kelas}}
+    <br>
+
+    <br>
     <table width="100%" id="tableBiasa2" border="1">
         <tr>
             <th>No</th>
