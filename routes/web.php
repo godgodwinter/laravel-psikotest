@@ -457,7 +457,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/hasilpsikologi/cari', [bkhasilpsikologicontroller::class, 'cari'])->name('bk.hasilpsikologi.cari');
 
         //cetak lihat hasil psikologi
-        Route::post('/admin/api/deteksi_lihat_api/{siswa}', [bkhasilpsikologicontroller::class, 'deteksi_lihat_api'])->name('api.deteksi_lihat_api');
+        // Route::post('/admin/api/deteksi_lihat_api/{siswa}', [bkhasilpsikologicontroller::class, 'deteksi_lihat_api'])->name('api.deteksi_lihat_api');
         Route::get('/bk/hasilpsikologi/{siswa}/deteksi_lihat', [bkhasilpsikologicontroller::class, 'deteksi_lihat'])->name('bk.hasilpsikologi.deteksi_lihat');
         Route::get('/bk/hasilpsikologi/{siswa}/deteksi_cetak', [bkhasilpsikologicontroller::class, 'deteksi_cetak'])->name('bk.hasilpsikologi.deteksi_cetak');
         Route::get('/bk/hasilpsikologi/{siswa}/sertifikat_lihat', [bkhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('bk.hasilpsikologi.sertifikat_lihat');
