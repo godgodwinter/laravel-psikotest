@@ -25,7 +25,7 @@ class adminhasilpsikologicontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='bk' && Auth::user()->tipeuser!='yayasan'){
+            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='bk' && Auth::user()->tipeuser!='yayasan' && Auth::user()->tipeuser!='siswa'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 

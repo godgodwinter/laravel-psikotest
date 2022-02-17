@@ -44,7 +44,8 @@ class siswahasilpsikologicontroller extends Controller
         $pages='deteksi';
             $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
             $masterdeteksi=masterdeteksi::get();
-        return view('pages.siswa.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
+        // return view('pages.siswa.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
+        return view('pages.admin.sekolah.pages.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
     }
     public function deteksi_cetak(Request $request)
     {
@@ -57,7 +58,8 @@ class siswahasilpsikologicontroller extends Controller
         $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
         $pages='sertifikat';
         $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
-        return view('pages.siswa.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+        // return view('pages.siswa.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
     }
     public function sertifikat_lihatapi(Request $request)
     {

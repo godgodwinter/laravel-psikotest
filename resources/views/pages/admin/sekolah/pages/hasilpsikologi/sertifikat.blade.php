@@ -28,10 +28,14 @@ Hasil Deteksi Psikologi
 
         <div id="output-status"></div>
         <div class="row">
+            @if (Auth::user()->tipeuser=='admin')
           <div class="col-md-3">
-              @include('pages.admin.sekolah.component.sidebarsekolah')
-          </div>
-          <div class="col-md-9">
+            @include('pages.admin.sekolah.component.sidebarsekolah')
+        </div>
+        <div class="col-md-9">
+            @else
+        <div class="col-md-12">
+            @endif
             @push('before-script')
                 <script>
                 let dataSertifikat={};
@@ -181,7 +185,7 @@ let aspekkepribadian=[
         aspekKepribadianRank.sort(function (a,b) {
         return a.rank - b.rank;
      })
-     console.log(aspekKepribadianRank);
+    //  console.log(aspekKepribadianRank);
 
         for(let i=0;i<aspekkepribadian.length;i++){
                     document.getElementById(aspekkepribadian[i]).innerText = dataSertifikat[aspekkepribadian[i]];
