@@ -28,10 +28,19 @@ Hasil Deteksi Psikologi
 
         <div id="output-status"></div>
         <div class="row">
+            @if (Auth::user()->tipeuser=='admin')
           <div class="col-md-3">
-              @include('pages.admin.sekolah.component.sidebarsekolah')
+            @include('pages.admin.sekolah.component.sidebarsekolah')
+        </div>
+        <div class="col-md-9">
+            @elseif (Auth::user()->tipeuser=='yayasan')
+            <div class="col-md-3">
+                @include('pages.yayasan.sekolah.component.sidebarsekolah')
           </div>
           <div class="col-md-9">
+            @else
+        <div class="col-md-12">
+            @endif
 
 
 <div class="card" id="settings-card">

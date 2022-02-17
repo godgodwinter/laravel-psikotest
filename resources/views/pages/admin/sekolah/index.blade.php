@@ -104,13 +104,13 @@ asdasd
                             <a href="{{route('sekolah.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
-                            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                            {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                 Import
-                            </button>
-                            <a href="{{route('sekolah.export')}}" type="submit" value="Export"
+                            </button> --}}
+                            {{-- <a href="{{route('sekolah.export')}}" type="submit" value="Export"
                                 class="btn btn-icon btn-primary btn-sm mr-2"><span class="pcoded-micon"> <i
-                                        class="fas fa-download"></i> Export </span></a>
+                                        class="fas fa-download"></i> Export </span></a> --}}
                         </form>
 
                     </div>

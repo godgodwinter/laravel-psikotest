@@ -819,9 +819,6 @@ class yayasansekolahcontroller extends Controller
             $kelas=kelas::where('sekolah_id',$id->id)->get();
     return view('pages.yayasan.sekolah.catatanprestasi.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
     }
-<<<<<<< HEAD
-    
-=======
     public function klasifikasijabatan(Request $request)
     {
         $pages='yayasan-klasifikasijabatan';
@@ -903,7 +900,6 @@ class yayasansekolahcontroller extends Controller
 
                 return view('pages.yayasan.sekolah.informasipsikologi.index',compact('pages','request','datas'));
             }
->>>>>>> b55f276ce82f438441179b986bee9204997ad935
     // public function catatanprestasi(sekolah $id, Request $request)
     // {
     //     $pages = 'catatanprestasi';

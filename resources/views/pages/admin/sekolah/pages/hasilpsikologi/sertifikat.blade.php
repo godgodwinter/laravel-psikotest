@@ -33,6 +33,11 @@ Hasil Deteksi Psikologi
             @include('pages.admin.sekolah.component.sidebarsekolah')
         </div>
         <div class="col-md-9">
+            @elseif (Auth::user()->tipeuser=='yayasan')
+            <div class="col-md-3">
+                @include('pages.yayasan.sekolah.component.sidebarsekolah')
+          </div>
+          <div class="col-md-9">
             @else
         <div class="col-md-12">
             @endif

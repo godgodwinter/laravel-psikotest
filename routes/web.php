@@ -54,6 +54,7 @@ use App\Http\Controllers\siswacatatankasuscontroller;
 use App\Http\Controllers\siswacatatanpengembangandiricontroller;
 use App\Http\Controllers\siswacatatanprestasicontroller;
 use App\Http\Controllers\siswahasilpsikologicontroller;
+use App\Http\Controllers\yayasanhasilpsikologicontroller;
 use App\Http\Controllers\yayasansekolahcontroller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -563,11 +564,11 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/yayasan/sekolah/{id}/hasilpsikologi', [yayasansekolahcontroller::class, 'hasilpsikologi'])->name('yayasan.sekolah.hasilpsikologi');
         Route::get('/yayasan/sekolah/{id}/hasilpsikologicari', [yayasansekolahcontroller::class, 'hasilpsikologicari'])->name('yayasan.sekolah.hasilpsikologicari');
 
-        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [yayasansekolahcontroller::class, 'deteksi_lihat'])->name('yayasan.hasilpsikologi.deteksi_lihat');
-        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [yayasansekolahcontroller::class, 'deteksi_cetak'])->name('yayasan.hasilpsikologi.deteksi_cetak');
-        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihat', [yayasansekolahcontroller::class, 'sertifikat_lihat'])->name('yayasan.hasilpsikologi.sertifikat_lihat');
-        Route::post('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihatapi', [yayasansekolahcontroller::class, 'sertifikat_lihatapi'])->name('yayasan.hasilpsikologi.sertifikat_lihatapi');
-        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_cetak', [yayasansekolahcontroller::class, 'sertifikat_cetak'])->name('yayasan.hasilpsikologi.sertifikat_cetak');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [yayasanhasilpsikologicontroller::class, 'deteksi_lihat'])->name('yayasan.hasilpsikologi.deteksi_lihat');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [yayasanhasilpsikologicontroller::class, 'deteksi_cetak'])->name('yayasan.hasilpsikologi.deteksi_cetak');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihat', [yayasanhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('yayasan.hasilpsikologi.sertifikat_lihat');
+        Route::post('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihatapi', [yayasanhasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('yayasan.hasilpsikologi.sertifikat_lihatapi');
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_cetak', [yayasanhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('yayasan.hasilpsikologi.sertifikat_cetak');
 
 
         Route::get('/yayasan/sekolah/{id}/catatankasus', [yayasansekolahcontroller::class, 'catatankasus'])->name('yayasan.sekolah.catatankasus');
