@@ -88,7 +88,7 @@ class bkcatatankasussiswacontroller extends Controller
 
         $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
-        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama'));
+        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama','sekolah_id'));
     }
 
     public function cari( Request $request)
@@ -153,7 +153,7 @@ class bkcatatankasussiswacontroller extends Controller
 
         $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
-        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama'));
+        return view('pages.bk.catatankasussiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama','sekolah_id'));
     }
     public function indexbackup( Request $request)
     {

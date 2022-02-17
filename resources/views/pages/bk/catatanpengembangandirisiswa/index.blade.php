@@ -107,7 +107,7 @@ Catatan Pengembangan Diri Siswa
                          </td>
 
                         <td class="text-center babeng-min-row">
-                            <a class="btn btn-sm btn-info" href="{{ route('bk.catatanpengembangandirisiswa.cetakpersiswa',[$data->id])}}"><i class="fas fa-print"></i></a>
+                            <a class="btn btn-sm btn-info" href="{{ route('sekolah.catatanpengembangandiri.cetakpersiswa',[$sekolah_id,$data->id])}}"><i class="fas fa-print"></i></a>
 
                         <a href="{{route('bk.catatanpengembangandirisiswa.create',['siswa_id'=>$data->id])}}" type="submit" value="Import"
                             class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i

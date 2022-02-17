@@ -89,7 +89,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
 
         $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
-        return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama'));
+        return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama','sekolah_id'));
     }
     public function detail(siswa $data, Request $request)
     {
@@ -101,7 +101,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
             ->paginate(Fungsi::paginationjml());
             // dd($datas);
 
-        return view('pages.bk.catatanpengembangandirisiswa.detail', compact('pages', 'request', 'datas','data'));
+    return view('pages.bk.catatanpengembangandirisiswa.detail', compact('pages', 'request', 'datas','data','sekolah_id'));
     }
 
     public function cari( Request $request)
