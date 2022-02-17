@@ -10,19 +10,15 @@
     <div id="judul2">
         <h4></h4>
     </div>
-
     {{-- <center><h2>@yield('title')</h2></center> --}}
-
-
-    <br>
-    @foreach ($datas as $data)
-        Nama Siswa : {{$data->siswa->nama }}
-    @endforeach
-
-    <br>
-    {{$kelas}}
-    <br>
-
+    <table>
+        <tr>
+            <td>Nama </td> <td>:</td> <td>{{$data->nama}}</td>
+        </tr>
+        <tr>
+            <td>Kelas </td> <td>:</td> <td>{{$data->kelas?$data->kelas->nama:'Data Kelas tidak ditemukan'}}</td>
+        </tr>
+    </table>
     <br>
     <table width="100%" id="tableBiasa2" border="1">
         <tr>

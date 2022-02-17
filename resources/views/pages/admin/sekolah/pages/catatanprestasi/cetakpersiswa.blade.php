@@ -15,14 +15,14 @@
 
 
     <br>
-    @foreach ($datas as $data)
-        Nama Siswa : {{$data->siswa->nama }}
-    @endforeach
-
-    <br>
-    {{$kelas}}
-    <br>
-    <br>
+    <table>
+        <tr>
+            <td>Nama </td> <td>:</td> <td>{{$data->nama}}</td>
+        </tr>
+        <tr>
+            <td>Kelas </td> <td>:</td> <td>{{$data->kelas?$data->kelas->nama:'Data Kelas tidak ditemukan'}}</td>
+        </tr>
+    </table>
     <table width="100%" id="tableBiasa2" border="1">
         <tr>
             <th>No</th>
