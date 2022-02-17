@@ -92,7 +92,7 @@ Yayasan > Sekolah
                                 </td>
 
                                 <td class="text-center babeng-min-row">
-                                    <x-button-edit link="{{ route('yayasandetail.edit',[$yayasan->id,$data->id])}}" />
+                                    {{-- <x-button-edit link="{{ route('yayasandetail.edit',[$yayasan->id,$data->id])}}" /> --}}
                                     <x-button-delete link="{{ route('yayasandetail.destroy',[$yayasan->id,$data->id])}}" />
                                 </td>
                             </tr>

@@ -43,7 +43,7 @@ class adminyayasandetailcontroller extends Controller
         $pages='yayasan';
         $sekolah=sekolah::whereNotIn('id',function($query){
             $query->select('sekolah_id')->from('yayasandetail')
-            // ->where('yayasan_id',$this->yayasanid)
+            ->where('yayasan_id',$this->yayasanid)
             ->where('deleted_at',null);
         })->get();
 
@@ -54,7 +54,7 @@ class adminyayasandetailcontroller extends Controller
     {
         // dd($request);
         $cek=yayasandetail::where('sekolah_id',$request->sekolah_id)
-        // ->where('yayasan_id',$yayasan->id)
+        ->where('yayasan_id',$yayasan->id)
         ->count();
         // dd($cek);
             if($cek>0){

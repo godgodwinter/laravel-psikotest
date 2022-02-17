@@ -122,6 +122,67 @@ let aspekkepribadian=[
             'hspq_q3_kn_persen','hspq_q3_kn_keterangan','hspq_q3_kn_rank',
             'hspq_q4_kn_persen','hspq_q4_kn_keterangan','hspq_q4_kn_rank',
         ];
+
+
+    var aspekKepribadianRank =[
+        {nama:'Faktor Sikap Dingin',rank:dataSertifikat.hspq_a_kr_rank
+        },
+        {nama:'Faktor Sikap Emosi Labil',rank:dataSertifikat.hspq_c_kr_rank
+        },
+        {nama:'Faktor Sikap Sulit Bergairah',rank:dataSertifikat.hspq_d_kr_rank
+        },
+        {nama:'Faktor Patuh atau Tunduk',rank:dataSertifikat.hspq_e_kr_rank
+        },
+        {nama:'Faktor Sungguh-sungguh',rank:dataSertifikat.hspq_f_kr_rank
+        },
+        {nama:'Faktor Menolak Peraturan',rank:dataSertifikat.hspq_g_kr_rank
+        },
+        {nama:'Faktor Sikap Keras Hati',rank:dataSertifikat.hspq_h_kr_rank
+        },
+        {nama:'Faktor Sikap Pemalu',rank:dataSertifikat.hspq_i_kr_rank
+        },
+        {nama:'Faktor Sikap Bersemangat',rank:dataSertifikat.hspq_j_kr_rank
+        },
+        {nama:'Faktor Sikap Percaya Diri',rank:dataSertifikat.hspq_o_kr_rank
+        },
+        {nama:'Faktor Sikap Kurang Mandiri',rank:dataSertifikat.hspq_q2_kr_rank
+        },
+        {nama:'Faktor Sikap Kurang Disiplin',rank:dataSertifikat.hspq_q3_kr_rank
+        },
+        {nama:'Faktor Sikap Rileks atau santai',rank:dataSertifikat.hspq_q4_kr_rank
+        },
+        {nama:'Faktor Sikap Hangat',rank:dataSertifikat.hspq_a_kn_rank
+        },
+        {nama:'Faktor Sikap Emosi Stabil',rank:dataSertifikat.hspq_c_kn_rank
+        },
+        {nama:'Faktor Sikap Bergairah',rank:dataSertifikat.hspq_d_kn_rank
+        },
+        {nama:'Faktor Sikap Dominasi',rank:dataSertifikat.hspq_e_kn_rank
+        },
+        {nama:'Faktor Sikap Keceriaan',rank:dataSertifikat.hspq_f_kn_rank
+        },
+        {nama:'Faktor Sikap Taat Peraturan',rank:dataSertifikat.hspq_g_kn_rank
+        },
+        {nama:'Faktor Sikap Lembut Hati / Peka',rank:dataSertifikat.hspq_h_kn_rank
+        },
+        {nama:'Faktor Sikap Pemberani',rank:dataSertifikat.hspq_i_kn_rank
+        },
+        {nama:'Faktor Sikap Menarik Diri',rank:dataSertifikat.hspq_j_kn_rank
+        },
+        {nama:'Faktor Sikap Ketakutan',rank:dataSertifikat.hspq_o_kn_rank
+        },
+        {nama:'Faktor Sikap Mandiri',rank:dataSertifikat.hspq_q2_kn_rank
+        },
+        {nama:'Faktor Sikap Disiplin',rank:dataSertifikat.hspq_q3_kn_rank
+        },
+        {nama:'Faktor Sikap Tegang',rank:dataSertifikat.hspq_q4_kn_rank
+        },
+        ];
+        aspekKepribadianRank.sort(function (a,b) {
+        return a.rank - b.rank;
+     })
+     console.log(aspekKepribadianRank);
+
         for(let i=0;i<aspekkepribadian.length;i++){
                     document.getElementById(aspekkepribadian[i]).innerText = dataSertifikat[aspekkepribadian[i]];
         }
@@ -237,7 +298,7 @@ let aspekkepribadian=[
         </tr>`);
 
         kesimpulandansaran=`<label>
-                        Potensi kecerdasan subyek yang dapat digunakan saat ini ${iqket(dataSertifikat.iq)},(IQ=${dataSertifikat.iq}, IST KM=${dataSertifikat.km_persen}%) artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong ${dataSertifikat.kmh}. Dalam belajar subyek disarankan menggunakan  ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}, sedangkan yang perlu dilatih dan dibiasakan yaitu kecerdasan ${temp[6].nama} dam ${temp[7].nama}. Kecerdasan Emosi nya ${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%). Kecerdasan Sosialnya ${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%). Dalam kelanjutan studi Sangat Lancar Sekali tapi perlu ditunjang oleh EQ dan SQ Seimbang dan Lebih Tinggi dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Kelanjutan studi disarankan masuk fakultas dengan Prodi , Fakultas ,  Prodi .
+                        Potensi kecerdasan subyek yang dapat digunakan saat ini ${iqket(dataSertifikat.iq)},(IQ=${dataSertifikat.iq}, IST KM=${dataSertifikat.km_persen}%) artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong ${dataSertifikat.kmh}. Dalam belajar subyek disarankan menggunakan  <b> ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}  </b>, sedangkan yang perlu dilatih dan dibiasakan yaitu  <b> kecerdasan ${temp[6].nama} dam ${temp[7].nama}. Kecerdasan Emosi nya ${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%)  </b>. Kecerdasan Sosialnya ${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%). Dalam kelanjutan studi Sangat Lancar Sekali tapi perlu ditunjang oleh EQ dan SQ Seimbang dan Lebih Tinggi dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Karakter kepribadian subyek yang terkuat dan mempengaruhi aktivitas sehari-hari yaitu <b> ${aspekKepribadianRank[0].nama}, ${aspekKepribadianRank[1].nama}, ${aspekKepribadianRank[2].nama}, ${aspekKepribadianRank[3].nama}, dan ${aspekKepribadianRank[4].nama}  </b>.Kelanjutan studi disarankan masuk fakultas dengan Prodi , Fakultas ,  Prodi .
                     </label>`;
                     $( "#kesimpulandansaran" ).append(kesimpulandansaran);
 
