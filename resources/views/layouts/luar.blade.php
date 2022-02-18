@@ -82,7 +82,7 @@
             </div>
 
             <div class="simple-footer">
-              Copyright &copy; BaemonTeam 2021
+              Copyright &copy; Pelita Multi Talenta 2021
             </div>
           </div>
         </div>
