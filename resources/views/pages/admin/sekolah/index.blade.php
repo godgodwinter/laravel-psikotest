@@ -51,7 +51,7 @@ Sekolah
                             </span>
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
-@if(Auth::user()->tipeuser == 'admin')
+{{-- @if(Auth::user()->tipeuser == 'admin') --}}
             <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
             data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
             Import Data ProBK
@@ -70,7 +70,7 @@ Sekolah
 data-toggle="modal" data-target="#sinkronfe"><i class="fas fa-upload"></i>
 Sinkron Data
 </button>
-@endif
+{{-- @endif --}}
     {{-- <h2 id="testing">
 asdasd
     </h2> --}}
