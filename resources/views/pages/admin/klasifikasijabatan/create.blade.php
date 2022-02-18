@@ -54,7 +54,7 @@ Klasifikasi Akademis & Profesi
                             <label for="akademis" class="form-control-label col-sm-3 text-md-right">Akademis </label>
                             <div class="col-sm-6 col-md-9">
 
-                              <input type="text" class="form-control  @error('akademis') is-invalid @enderror" name="akademis" required  value="{{old('akademis')}}">
+                              <input type="text" class="form-control  @error('akademis') is-invalid @enderror" name="akademis"   value="{{old('akademis')}}">
 
                               @error('akademis')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
@@ -65,7 +65,7 @@ Klasifikasi Akademis & Profesi
                             <label for="pekerjaan" class="form-control-label col-sm-3 text-md-right">Profesi </label>
                             <div class="col-sm-6 col-md-9">
 
-                              <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" name="pekerjaan" required  value="{{old('pekerjaan')}}">
+                              <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" name="pekerjaan"   value="{{old('pekerjaan')}}">
 
                               @error('pekerjaan')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror

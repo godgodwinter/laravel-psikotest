@@ -96,6 +96,9 @@ Klasifikasi Akademis & Profesi
                                 <td> {{Str::limit($data->bidang,25,' ...')}}
                                 </td>
                                 <td class="text-center">
+                                    {{Str::limit($data->akademis,25,' ...')}}
+                                </td>
+                                <td class="text-center">
                                     {{Str::limit($data->pekerjaan,25,' ...')}}
                                 </td>
                                 <td class="text-center">
@@ -109,6 +112,9 @@ Klasifikasi Akademis & Profesi
                                 </td>
                                 <td class="text-center">
                                     {{Str::limit($data->bidangstudi,25,' ...')}}
+                                </td>
+                                <td class="text-center">
+                                    {{Str::limit($data->ket,25,' ...')}}
                                 </td>
 
                                 <td class="text-center babeng-min-row">

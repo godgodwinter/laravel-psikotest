@@ -43,7 +43,7 @@ class adminklasifikasijabatancontroller extends Controller
         // dd('tambah');
         $request->validate([
             'bidang'=>'required',
-            'pekerjaan'=>'required',
+
         ],
         [
             'bidang.required'=>'Bidang Harus diisi',
@@ -78,7 +78,7 @@ class adminklasifikasijabatancontroller extends Controller
         // dd('update');
             $request->validate([
                 'bidang'=>'required',
-                'pekerjaan'=>'required',
+
             ],
             [
                 'bidang.required'=>'bidang Harus diisi',

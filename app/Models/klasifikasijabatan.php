@@ -17,6 +17,7 @@ class klasifikasijabatan extends Model
 
         protected $fillable = [
             'bidang',
+            'akademis',
             'pekerjaan',
             'nilaistandart',
             'iqstandart',
