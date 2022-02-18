@@ -17,7 +17,9 @@
                                 </span>
                             </div>
                         <div class="ml-auto p-2 bd-highlight">
-                                <a href="{{route('sekolah.siswa.generate',$id->id)}}" class="btn btn-warning btn-sm">Generate Akun</a>
+                            @if (Auth::user()->tipeuser == 'admin')
+                            <a href="{{route('sekolah.siswa.generate',$id->id)}}" class="btn btn-warning btn-sm">Generate Akun</a>
+                            @endif
                                  <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
@@ -67,7 +69,7 @@
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="{{ route('sekolah.siswa.edit',[$id->id,$data->id])}}" />
-                                    <x-button-delete link="{{ route('sekolah.siswa.edit',[$id->id,$data->id])}}" />
+                                    {{-- <x-button-delete link="{{ route('sekolah.siswa.edit',[$id->id,$data->id])}}" /> --}}
                                 </td>
                             </tr>
                 @empty
@@ -92,10 +94,10 @@
                 </div>
                 <div>
 
-            <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+            {{-- <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
                         onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
                         <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
 
