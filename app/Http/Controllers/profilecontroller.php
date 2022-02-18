@@ -12,7 +12,7 @@ class profilecontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='yayasan' && Auth::user()->tipeuser!='bk'  && Auth::user()->tipeuser!='siswa'){
+            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='yayasan' && Auth::user()->tipeuser!='bk'  && Auth::user()->tipeuser!='siswa'  && Auth::user()->tipeuser!='owner'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
