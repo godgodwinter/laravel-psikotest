@@ -31,7 +31,9 @@ class adminuserscontroller extends Controller
 
         #WAJIB
         $pages='users';
-        $datas=DB::table('users')->where('tipeuser','admin')
+        $datas=DB::table('users')
+        ->where('tipeuser','admin')
+        ->orWhere('tipeuser','owner')
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.users.index',compact('datas','request','pages'));
@@ -51,8 +53,13 @@ class adminuserscontroller extends Controller
         ->orWhere('email','like',"%".$cari."%")
         ->where('tipeuser','=','admin')
         ->orWhere('username','like',"%".$cari."% ")
+        ->orWhere('tipeuser','owner')
+        ->where('name','like',"%".$cari."%")
+        ->orWhere('tipeuser','owner')
+        ->orWhere('username','like',"%".$cari."% ")
+        ->orWhere('tipeuser','owner')
+        ->orWhere('email','like',"%".$cari."%")
         ->where('tipeuser','=','admin')
-
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.users.index',compact('datas','request','pages'));
@@ -105,7 +112,7 @@ class adminuserscontroller extends Controller
                        'username'     =>   $request->username,
                        'nomerinduk'     => date('YmdHis'),
                        'password' => Hash::make($request->password),
-                       'tipeuser' => 'admin',
+                       'tipeuser' => $request->tipeuser,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
@@ -160,6 +167,7 @@ class adminuserscontroller extends Controller
                 'username'     =>   $request->username,
                 'email'     =>   $request->email,
                 'password' => Hash::make($request->password),
+                'tipeuser' => $request->tipeuser,
                'updated_at'=>date("Y-m-d H:i:s")
             ]);
         }else{
@@ -168,6 +176,7 @@ class adminuserscontroller extends Controller
                 'name'     =>   $request->name,
                 'username'     =>   $request->username,
                 'email'     =>   $request->email,
+                'tipeuser' => $request->tipeuser,
                'updated_at'=>date("Y-m-d H:i:s")
             ]);
 

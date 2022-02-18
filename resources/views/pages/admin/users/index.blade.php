@@ -79,6 +79,8 @@ Administrator
                             <th  class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
                             <th >Nama</th>
                             <th>Email</th>
+                            <th>Username</th>
+                            <th>Tipe User</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -92,6 +94,8 @@ Administrator
                                     {{Str::limit($data->name,25,' ...')}}
                                 </td>
                                 <td>{{Str::limit($data->email,25,' ...')}}</td>
+                                <td>{{$data->username}}</td>
+                                <td>{{ucfirst($data->tipeuser)}}</td>
 
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}

@@ -61,6 +61,17 @@ Administrator
                     </div>
 
                     <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        <label for="tipeuser">Tipe User <code>*)</code></label>
+
+                        <select class="form-control  @error('tipeuser') is-invalid @enderror" name="tipeuser" required>
+                            <option value="admin">Admin</option>
+                            <option value="owner">Owner</option>
+                        </select>
+                        @error('tipeuser')<div class="invalid-feedback"> {{$message}}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
                         <label for="alamat">Password<code></code></label>
 
 
