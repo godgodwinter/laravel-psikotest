@@ -17,6 +17,8 @@
                 @include('includes.sidebar_yayasan')
             @elseif((Auth::user()->tipeuser)=='siswa')
                 @include('includes.sidebar_siswa')
+            @elseif((Auth::user()->tipeuser)=='owner')
+                @include('includes.sidebar_owner')
             @else
             @endif
             @endif

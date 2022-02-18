@@ -21,7 +21,7 @@ class admininputminatbakatcontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='bk'){
+            if(Auth::user()->tipeuser!='admin' && Auth::user()->tipeuser!='bk'   && Auth::user()->tipeuser!='owner'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 

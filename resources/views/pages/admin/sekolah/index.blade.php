@@ -51,7 +51,7 @@ Sekolah
                             </span>
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
-
+@if(Auth::user()->tipeuser == 'admin')
             <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
             data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
             Import Data ProBK
@@ -70,6 +70,7 @@ Sekolah
 data-toggle="modal" data-target="#sinkronfe"><i class="fas fa-upload"></i>
 Sinkron Data
 </button>
+@endif
     {{-- <h2 id="testing">
 asdasd
     </h2> --}}
@@ -161,7 +162,7 @@ asdasd
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
-                                    <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
+                                    {{-- <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" /> --}}
                                 </td>
                             </tr>
                         @empty
@@ -183,9 +184,9 @@ asdasd
                     ->links() }}
         </div>
         <div>
-            <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+            {{-- <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
                         onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
-                        <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i></a>
+                        <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i></a> --}}
         </div>
     </div>
             </div>

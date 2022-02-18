@@ -17,7 +17,7 @@ class admininputnilaipsikologicontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin' ){
+            if(Auth::user()->tipeuser!='admin'  && Auth::user()->tipeuser!='owner'){
                 return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
             }
 
