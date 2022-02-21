@@ -34,7 +34,7 @@ class bkkelascontroller extends Controller
                 $sekolah_id=$pengguna->sekolah_id;
                 $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 
-                $datas = kelas::whereNull('deleted_at')
+                $datas = kelas::with('walikelas')->with('gurubk')
                 ->where('sekolah_id',$id->id)
                 ->orderBy('nama','asc')
                 ->paginate(Fungsi::paginationjml());
@@ -70,8 +70,11 @@ class bkkelascontroller extends Controller
         $walikelas=DB::table('walikelas')->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')->get();
+        $gurubk=DB::table('gurubk')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')->get();
 
-        return view('pages.bk.kelas.create',compact('pages','id','walikelas'));
+        return view('pages.bk.kelas.create',compact('pages','id','walikelas','gurubk'));
     }
 
     public function store(Request $request)
@@ -112,6 +115,7 @@ class bkkelascontroller extends Controller
                    'nama'     =>   $request->nama,
                 //    'tipe'     =>   $request->tipe,
                    'walikelas_id'     =>   $request->walikelas_id,
+                   'gurubk_id'     =>   $request->gurubk_id,
                    'sekolah_id'     =>   $id->id,
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
@@ -132,8 +136,11 @@ class bkkelascontroller extends Controller
         $walikelas=DB::table('walikelas')->whereNull('deleted_at')
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')->get();
+        $gurubk=DB::table('gurubk')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')->get();
 
-        return view('pages.bk.kelas.edit',compact('pages','id','data','walikelas'));
+        return view('pages.bk.kelas.edit',compact('pages','id','data','walikelas','gurubk'));
     }
     public function update(kelas $data,Request $request)
     {
@@ -166,6 +173,7 @@ class bkkelascontroller extends Controller
             'nama'     =>   $request->nama,
             // 'tipe'     =>   $request->tipe,
             'walikelas_id'     =>   $request->walikelas_id,
+            'gurubk_id'     =>   $request->gurubk_id,
             'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);

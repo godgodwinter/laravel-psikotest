@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Kelas
+Guru BK
 @endsection
 
 @push('before-script')
@@ -30,7 +30,7 @@ Kelas
                     <div id="babeng-bar" class="d-flex bd-highlight mb-0 align-items-center">
                         <div id="p-2 bd-highlight ">
 
-                        <form action="{{ route('bk.kelas.cari') }}" method="GET">
+                        <form action="{{ route('bk.gurubk.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
@@ -40,10 +40,10 @@ Kelas
                                 <option>A - Z</option>
                                 <option>Z - A</option>
                             </select> --}}
-                        </div>
-                        <div id="p-2 bd-highlight">
-                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
 
+                            <input type="text" class="babeng babeng-select  ml-0" name="cari">
+                        </div>
+                        <div id="p-2 bd-highlight ">
                             <span>
                                 <input class="btn btn-info ml-1 mt-2 mt-sm-0" type="submit" id="babeng-submit"
                                     value="Cari">
@@ -52,9 +52,10 @@ Kelas
                         </form>
 
                     </div>
+
                     <div class="ml-auto p-2 bd-highlight">
 
-                        <a href="{{route('bk.kelas.create',$id->id)}}" type="submit" value="Import"
+                        <a href="{{route('bk.gurubk.create',$id->id)}}" type="submit" value="Import"
                            class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                    class="fas fa-download"></i> Tambah </span></a>
                        {{--            <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
@@ -66,10 +67,9 @@ Kelas
                                                class="fas fa-download"></i> Export </span></a> --}}
                    </form>
                </div>
-
                 </div>
 
-                <x-jsmultidel link="{{route('bk.kelas.multidel')}}" />
+                <x-jsmultidel link="{{route('bk.gurubk.multidel')}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
@@ -78,9 +78,7 @@ Kelas
                     <thead>
                         <tr>
                             <th width="8%" class="text-center babeng-min-row"><input type="checkbox" id="chkCheckAll">No</th>
-                            <th>Nama Kelas</th>
-                            <th>Walikelas</th>
-                            <th>Guru BK</th>
+                            <th>Nama</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -92,17 +90,10 @@ Kelas
                                         {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
                                     <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                     </td>
-                                    <td>
-                                      {{ $data->walikelas ? $data->walikelas->nama : 'Data tidak ditemukan' }}
-                                    </td>
-                                    <td>
-                                        {{ $data->gurubk ? $data->gurubk->nama : 'Data tidak ditemukan' }}
-                                      </td>
                                     <td class="text-center babeng-min-row">
                                         {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                                        <a class="btn btn-sm btn-info" href="{{route('bk.kelas.cetak',[$data->id])}}"><i class="fas fa-print"></i></a>
-                                        <x-button-edit link="{{ route('bk.kelas.edit',[$data->id])}}" />
-                                        <x-button-delete link="{{ route('bk.kelas.destroy',[$data->id])}}" />
+                                        <x-button-edit link="{{ route('bk.gurubk.edit',[$data->id])}}" />
+                                        <x-button-delete link="{{ route('bk.gurubk.destroy',[$data->id])}}" />
                                     </td>
 
                                 </tr>
@@ -128,9 +119,9 @@ Kelas
                     </div>
                     <div>
 
-                {{-- <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord" --}}
-                            {{-- onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih"> --}}
-                            {{-- <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i> --}}
+                <a href="#" class="btn btn-sm  btn-danger mb-2" id="deleteAllSelectedRecord"
+                            onclick="return  confirm('Anda yakin menghapus data ini? Y/N')"  data-toggle="tooltip" data-placement="top" title="Hapus Terpilih">
+                            <i class="fas fa-trash-alt mr-2"></i> Hapus Terpilih</i>
                         </a>
                     </div>
                 </div>
@@ -139,4 +130,3 @@ Kelas
     </div>
 </section>
 @endsection
-

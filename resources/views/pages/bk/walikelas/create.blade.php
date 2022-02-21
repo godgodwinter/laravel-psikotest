@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Catatan Kasus Siswa
+Walikelas
 @endsection
 
 @push('before-script')
