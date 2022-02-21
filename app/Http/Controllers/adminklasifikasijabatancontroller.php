@@ -139,6 +139,8 @@ class adminklasifikasijabatancontroller extends Controller
         ->orwhere('iqstandart','like',"%".$cari."%")
         ->orwhere('jurusan','like',"%".$cari."%")
         ->orwhere('bidangstudi','like',"%".$cari."%")
+        ->orwhere('ket','like',"%".$cari."%")
+        ->orwhere('akademis','like',"%".$cari."%")
         ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.klasifikasijabatan.index',compact('pages','request','datas'));
