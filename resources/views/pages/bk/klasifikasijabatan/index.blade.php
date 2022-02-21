@@ -31,7 +31,7 @@ Klasifikasi Akademis dan Profesi
 
                     <div class="p-2 bd-highlight">
 
-                        <form action="{{ route('yayasan.klasifikasijabatan.cari') }}" method="GET">
+                        <form action="{{ route('bk.klasifikasijabatan.cari') }}" method="GET">
                             {{-- <label for="">Urutkan </label>
                             <select class="babeng babeng-select  ml-2" name="pelajaran_nama">
 
