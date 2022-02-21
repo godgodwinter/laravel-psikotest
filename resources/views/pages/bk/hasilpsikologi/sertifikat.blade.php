@@ -178,11 +178,11 @@ let aspekkepribadian=[
                     document.getElementById(aspekkepribadian[i]).innerText = dataSertifikat[aspekkepribadian[i]];
         }
 
-                    document.getElementById('hspq_rank_1').innerText += ' '+aspekKepribadianRank[0].nama;
-                    document.getElementById('hspq_rank_2').innerText += ' '+aspekKepribadianRank[1].nama;
-                    document.getElementById('hspq_rank_3').innerText += ' '+aspekKepribadianRank[2].nama;
-                    document.getElementById('hspq_rank_4').innerText += ' '+aspekKepribadianRank[3].nama;
-                    document.getElementById('hspq_rank_5').innerText += ' '+aspekKepribadianRank[4].nama;
+                    document.getElementById('hspq_rank_1').innerText = '1 '+aspekKepribadianRank[0].nama;
+                    document.getElementById('hspq_rank_2').innerText = '2 '+aspekKepribadianRank[1].nama;
+                    document.getElementById('hspq_rank_3').innerText = '3 '+aspekKepribadianRank[2].nama;
+                    document.getElementById('hspq_rank_4').innerText = '4 '+aspekKepribadianRank[3].nama;
+                    document.getElementById('hspq_rank_5').innerText = '5 '+aspekKepribadianRank[4].nama;
 
                     document.getElementById('hspq_rank_1_positif').innerText += ' 1. '+aspekKepribadianRank[0].positif_diungkap;
                     document.getElementById('hspq_rank_2_positif').innerText += ' 2. '+aspekKepribadianRank[1].positif_diungkap;
