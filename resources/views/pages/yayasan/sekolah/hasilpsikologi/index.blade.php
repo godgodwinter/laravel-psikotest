@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Detail Sekolah2
+Detail Sekolah
 @endsection
 
 @push('before-script')
@@ -69,7 +69,7 @@ Detail Sekolah2
                         </span>
                     </div>
 
-                    <div class="col-12 col-md-6 col-sm-4  text-right">
+                    {{-- <div class="col-12 col-md-6 col-sm-4  text-right">
                         <a href="{{route('sekolah.hasilpsikologi.create',$id->id)}}" type="submit" value="Import"
                             class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                     class="fas fa-download"></i> Tambah </span></a>
@@ -80,7 +80,7 @@ Detail Sekolah2
                     <a href="{{ route('sekolah.hasilpsikologi.export',$id->id) }}" type="submit" value="Import"
                         class="btn btn-icon btn-primary btn-sm mr-0"><span class="pcoded-micon"> <i
                                 class="fas fa-download"></i> Export </span></a>
-                    </div>
+                    {</div> --}}
                 </div>
             </form>
 
@@ -103,7 +103,7 @@ Detail Sekolah2
                                 <th class="text-center" > Nama </th>
                                 <th class="text-center" > Hasil Deteksi </th>
                                 <th class="text-center" > Sertifikat </th>
-                                <th class="text-center" > Aksi </th>
+                                {{-- <th class="text-center" > Aksi </th> --}}
 
                             </tr>
                         </thead>
@@ -124,13 +124,13 @@ Detail Sekolah2
 
 
                                 </td>
-                                <td class="text-center babeng-min-row">
+                                {{-- <td class="text-center babeng-min-row">
                                     <x-button-edit link="{{route('sekolah.hasilpsikologi.create',$id->id)}}?siswa_id={{$data->id}}" />
                                     <x-button-delete link="{{ route('sekolah.hasilpsikologi.destroy',[$id,$data->id]) }}" />
 
 
 
-                                </td>
+                                </td> --}}
                             </tr>
                             @empty
                             <tr>
