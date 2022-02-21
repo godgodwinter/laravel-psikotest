@@ -41,6 +41,7 @@ use App\Http\Controllers\bkkelascontroller;
 use App\Http\Controllers\bkpenggunacontroller;
 use App\Http\Controllers\bksiswacontroller;
 use App\Http\Controllers\bkwalikelascontroller;
+use App\Http\Controllers\bkgurubkcontroller;
 use App\Http\Controllers\bkcatatankasussiswacontroller;
 use App\Http\Controllers\bkcatatanpengembangandirisiswacontroller;
 use App\Http\Controllers\bkcatatanprestasisiswacontroller;
@@ -449,6 +450,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::put('/bk/walikelas/{data}', [bkwalikelascontroller::class, 'update'])->name('bk.walikelas.update');
         Route::delete('/bk/walikelas/{data}', [bkwalikelascontroller::class, 'destroy'])->name('bk.walikelas.destroy');
         Route::delete('/bk/walikelas/multidel', [bkwalikelascontroller::class, 'multidel'])->name('bk.walikelas.multidel');
+        //gurubk
+        Route::get('/bk/gurubk', [bkgurubkcontroller::class, 'index'])->name('bk.gurubk');
+        Route::get('/bk/gurubk/cari', [bkgurubkcontroller::class, 'cari'])->name('bk.gurubk.cari');
+        Route::get('/bk/gurubk/create', [bkgurubkcontroller::class, 'create'])->name('bk.gurubk.create');
+        Route::post('/bk/gurubk/create', [bkgurubkcontroller::class, 'store'])->name('bk.gurubk.store');
+        Route::get('/bk/gurubk/{data}', [bkgurubkcontroller::class, 'edit'])->name('bk.gurubk.edit');
+        Route::put('/bk/gurubk/{data}', [bkgurubkcontroller::class, 'update'])->name('bk.gurubk.update');
+        Route::delete('/bk/gurubk/{data}', [bkgurubkcontroller::class, 'destroy'])->name('bk.gurubk.destroy');
+        Route::delete('/bk/gurubk/multidel', [bkgurubkcontroller::class, 'multidel'])->name('bk.gurubk.multidel');
         //kelas
         Route::get('/bk/kelas', [bkkelascontroller::class, 'index'])->name('bk.kelas');
         Route::get('/bk/kelas/cari', [bkkelascontroller::class, 'cari'])->name('bk.kelas.cari');

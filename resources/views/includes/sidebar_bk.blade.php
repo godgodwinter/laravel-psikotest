@@ -20,6 +20,9 @@ $id=DB::table('sekolah')->where('id',$sekolah_id)->first();
 <li {{$pages=='bk-walikelas' ? 'class=active' : ''}}><a class="nav-link"
         href="{{$id->status=='Aktif' ?  route('bk.walikelas') : '#'}}"><i class="fas fa-chalkboard-teacher"></i>
         <span>Wali Kelas</span></a></li>
+<li {{$pages=='bk-gurubk' ? 'class=active' : ''}}><a class="nav-link"
+         href="{{$id->status=='Aktif' ?  route('bk.gurubk') : '#'}}"><i class="fas fa-chalkboard-teacher"></i>
+        <span>Guru BK</span></a></li>
 <li {{$pages=='bk-kelas' ? 'class=active' : ''}}><a class="nav-link"
         href="{{$id->status=='Aktif' ?  route('bk.kelas') : '#'}}"><i class="fas fa-chalkboard"></i>
         <span>Kelas</span></a></li>

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Walikelas
+Guru BK
 @endsection
 
 @push('before-script')
@@ -31,12 +31,12 @@ Walikelas
             <div class="card-body">
 
 
-                <form id="setting-form" method="POST" action="{{route('bk.walikelas.update',[$data->id])}}">
+                <form id="setting-form" method="POST" action="{{route('bk.gurubk.update',[$data->id])}}">
                     @method('put')
                     @csrf
                     <div class="card" id="settings-card">
                       <div class="card-header">
-                        <h4>Walikelas </h4>
+                        <h4>Guru BK </h4>
                       </div>
                       <div class="card-body">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">

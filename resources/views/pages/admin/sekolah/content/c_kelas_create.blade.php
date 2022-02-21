@@ -62,7 +62,7 @@
                       </div>
 
                       <div class="form-group row align-items-center">
-                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Guru BK</label>
                         <div class="col-sm-6 col-md-9">
 
                             <select class="js-example-basic-single form-control-sm @error('gurubk_id')
