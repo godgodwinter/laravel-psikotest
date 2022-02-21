@@ -126,9 +126,9 @@ class bkklasifikasijabatancontroller extends Controller
     }
     public function cari(Request $request)
     {
-        if($this->checkauth('admin')==='404'){
-            return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
-        }
+        // if($this->checkauth('admin')==='404'){
+            // return redirect(URL::to('/').'/404')->with('status','Halaman tidak ditemukan!')->with('tipe','danger')->with('icon','fas fa-trash');
+        // }
 
         $cari=$request->cari;
         #WAJIB
