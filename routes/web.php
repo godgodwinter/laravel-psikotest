@@ -298,6 +298,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/klasifikasijabatan/update/{data}', [adminklasifikasijabatancontroller::class, 'update'])->name('klasifikasijabatan.update');
       Route::delete('/admin/klasifikasijabatan/delete/{data}', [adminklasifikasijabatancontroller::class, 'destroy'])->name('klasifikasijabatan.destroy');
       Route::delete('/admin/dataklasifikasijabatan/multidel', [adminklasifikasijabatancontroller::class, 'multidel'])->name('klasifikasijabatan.multidel');
+      Route::get('/admin/klasifikasijabatan/detail/{data}', [adminklasifikasijabatancontroller::class, 'detail'])->name('klasifikasijabatan.detail');
 
 
       //referensi

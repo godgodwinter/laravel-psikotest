@@ -119,6 +119,7 @@ Klasifikasi Akademis & Profesi
 
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
+                                        <a href="{{ route('klasifikasijabatan.detail',$data->id)}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Lihat data!"><i class="fas fa-angle-double-right"></i></a>
                                     <x-button-edit link="{{ route('klasifikasijabatan.edit',$data->id)}}" />
                                     <x-button-delete link="{{ route('klasifikasijabatan.destroy',$data->id)}}" />
                                 </td>

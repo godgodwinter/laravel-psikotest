@@ -73,6 +73,13 @@ class adminklasifikasijabatancontroller extends Controller
 
         return view('pages.admin.klasifikasijabatan.edit',compact('pages','data'));
     }
+
+    public function detail(klasifikasijabatan $data)
+    {
+        $pages='klasifikasijabatan';
+
+        return view('pages.admin.klasifikasijabatan.detail',compact('pages','data'));
+    }
     public function update(klasifikasijabatan $data,Request $request)
     {
         // dd('update');
