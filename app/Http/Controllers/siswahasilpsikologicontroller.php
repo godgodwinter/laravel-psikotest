@@ -115,6 +115,12 @@ class siswahasilpsikologicontroller extends Controller
 
         return view('pages.siswa.klasifikasijabatan.index',compact('pages','request','datas'));
     }
+    public function klasifikasijabatandetail(klasifikasijabatan $data)
+    {
+        $pages='klasifikasijabatan';
+
+        return view('pages.admin.klasifikasijabatan.detail',compact('pages','data'));
+    }
     public function referensi(Request $request)
     {
         $pages='siswa-referensi';

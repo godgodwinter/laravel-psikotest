@@ -84,6 +84,7 @@ Klasifikasi Akademis dan Profesi
                             <th >Jurusan & Bidang Studi yang ditekuni</th>
                             <th >Pekerjaan & Keterangan</th>
                             <th >Link</th>
+                            <th >Detail</th>
                             {{-- <th class="text-center">Aksi</th> --}}
                         </tr>
                     </thead>
@@ -115,6 +116,9 @@ Klasifikasi Akademis dan Profesi
                                 </td>
                                 <td class="text-center">
                                     {{Str::limit($data->ket,25,' ...')}}
+                                </td>
+                                <td>
+                                    <a href="{{ route('siswa.klasifikasijabatan.detail',$data->id)}}" class="btn btn-icon btn-info btn-sm ml-1"  data-toggle="tooltip" data-placement="top" title="Lihat data!"><i class="fas fa-angle-double-right"></i></a>
                                 </td>
 
                                 {{-- <td class="text-center babeng-min-row">

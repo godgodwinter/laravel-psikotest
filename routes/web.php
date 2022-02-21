@@ -503,6 +503,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //klasifikasijabatan
       Route::get('/bk/klasifikasijabatan', [bkklasifikasijabatancontroller::class, 'index'])->name('bk.klasifikasijabatan');
       Route::get('/bk/klasifikasijabatan/cari', [bkklasifikasijabatancontroller::class, 'cari'])->name('bk.klasifikasijabatan.cari');
+      Route::get('/bk/klasifikasijabatan/detail/{data}', [bkklasifikasijabatancontroller::class, 'klasifikasijabatandetail'])->name('bk.klasifikasijabatan.detail');
 
 
         //penjurusan
@@ -630,6 +631,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //klasifikasijabatan
         Route::get('/yayasan/klasifikasijabatan', [yayasansekolahcontroller::class, 'klasifikasijabatan'])->name('yayasan.klasifikasijabatan');
         Route::get('/yayasan/klasifikasijabatan/cari', [yayasansekolahcontroller::class, 'klasifikasijabatancari'])->name('yayasan.klasifikasijabatan.cari');
+        Route::get('/yayasan/klasifikasijabatan/detail/{data}', [yayasansekolahcontroller::class, 'klasifikasijabatandetail'])->name('yayasan.klasifikasijabatan.detail');
 
         //referensi
         Route::get('/yayasan/referensi', [yayasansekolahcontroller::class, 'referensi'])->name('yayasan.referensi');
@@ -661,6 +663,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         //klasifikasijabatan
         Route::get('/siswa/klasifikasijabatan', [siswahasilpsikologicontroller::class, 'klasifikasijabatan'])->name('siswa.klasifikasijabatan');
         Route::get('/siswa/klasifikasijabatan/cari', [siswahasilpsikologicontroller::class, 'klasifikasijabatancari'])->name('siswa.klasifikasijabatan.cari');
+        Route::get('/siswa/klasifikasijabatan/detail/{data}', [siswahasilpsikologicontroller::class, 'klasifikasijabatandetail'])->name('siswa.klasifikasijabatan.detail');
 
         //referensi
         Route::get('/siswa/referensi', [siswahasilpsikologicontroller::class, 'referensi'])->name('siswa.referensi');

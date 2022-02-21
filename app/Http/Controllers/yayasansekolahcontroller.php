@@ -827,6 +827,13 @@ class yayasansekolahcontroller extends Controller
 
         return view('pages.yayasan.sekolah.klasifikasijabatan.index',compact('pages','request','datas'));
     }
+
+    public function klasifikasijabatandetail(klasifikasijabatan $data)
+    {
+        $pages='klasifikasijabatan';
+
+        return view('pages.admin.klasifikasijabatan.detail',compact('pages','data'));
+    }
     public function klasifikasijabatancari(Request $request)
     {
         // if($this->checkauth('admin')==='404'){
