@@ -60,6 +60,25 @@
 
                         </div>
                       </div>
+
+                      <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Wali Kelas</label>
+                        <div class="col-sm-6 col-md-9">
+
+                            <select class="js-example-basic-single form-control-sm @error('gurubk_id')
+                                is-invalid
+                            @enderror" name="gurubk_id"  style="width: 75%" >
+                                <option disabled selected value=""> Pilih Guru BK</option>
+                                @foreach ($gurubk as $t)
+                                    <option value="{{ $t->id }}"> {{ $t->nama }}</option>
+                                @endforeach
+                              </select>
+
+                          @error('gurubk_id')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                      </div>
                       </div>
 
 

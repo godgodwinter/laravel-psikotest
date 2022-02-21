@@ -18,6 +18,7 @@ class kelas extends Model
         protected $fillable = [
             'nama',
             'walikelas_id',
+            'gurubk_id',
             // 'tipe',
             'sekolah_id'
         ];
@@ -25,5 +26,9 @@ class kelas extends Model
         public function walikelas()
         {
             return $this->belongsTo('App\Models\walikelas');
+        }
+        public function gurubk()
+        {
+            return $this->belongsTo('App\Models\gurubk');
         }
 }

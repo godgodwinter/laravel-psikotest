@@ -1,14 +1,15 @@
 
                 <div class="card" id="settings-card">
                   {{-- <div class="card-header">
-                    <h4>Kelas </h4>
+                    <h4>Walikelas </h4>
                   </div> --}}
                   <div class="card-body">
                     <div class="d-flex bd-highlight mb-0 align-items-center">
                         <div class="p-2 bd-highlight">
 
-                            <form action="{{route('sekolah.kelas.cari',$id->id)}}" method="GET">
+                            <form action="{{route('sekolah.gurubk.cari',$id->id)}}" method="GET">
                                 <input type="text" class="babeng babeng-select  ml-0" name="cari">
+
                             </div>
                             <div class="p-2 bd-highlight">
                                 <span>
@@ -17,10 +18,11 @@
                                 </span>
                             </div>
                             <div class="ml-auto p-2 bd-highlight">
-                                <a href="{{route('sekolah.kelas.create',$id->id)}}" type="submit" value="Import"
+
+                                 <a href="{{route('sekolah.gurubk.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                             class="fas fa-download"></i> Tambah </span></a>
-                                           {{--  <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
+                                   {{--         <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
                                                 data-toggle="modal" data-target="#importExcel"><i class="fas fa-upload"></i>
                                                 Import
                                             </button>
@@ -31,18 +33,16 @@
                         </div>
                     </div>
 
-                    <x-jsmultidel link="{{route('sekolah.kelas.multidel',$id)}}" />
+                    <x-jsmultidel link="{{route('sekolah.gurubk.multidel',$id)}}" />
                     @if($datas->count()>0)
                         <x-jsdatatable/>
                     @endif
             <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                 <thead>
                     <tr>
-                        <th  class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                        <th>Nama kelas</th>
-                        <th>Wali kelas</th>
-                        <th>Guru BK</th>
-                        <th class="text-center">Aksi</th>
+                        <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
+                        <th>Nama Guru BK</th>
+                        <th  class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,22 +51,13 @@
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->nama,25,' ...')}}
-                                </td>
-                                <td>
-                                    {{$data->walikelas!=null ? $data->walikelas->nama : 'Data tidak ditemukan'}}
-                                    {{-- {{$data->walikelas->nama}} --}}
-                                </td>
-                                <td>
-                                    {{$data->gurubk!=null ? $data->gurubk->nama : 'Data tidak ditemukan'}}
-                                    {{-- {{$data->walikelas->nama}} --}}
+                                <td>{{$data->nomerinduk}} - {{Str::limit($data->nama,25,' ...')}}
                                 </td>
 
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
-                            <a class="btn btn-sm btn-info" href="{{route('sekolah.kelas.cetak',[$id->id,$data->id])}}"><i class="fas fa-print"></i></a>
-                                    <x-button-edit link="{{ route('sekolah.kelas.edit',[$id->id,$data->id])}}" />
-                                    <x-button-delete link="{{ route('sekolah.kelas.edit',[$id->id,$data->id])}}" />
+                                    <x-button-edit link="{{ route('sekolah.gurubk.edit',[$id->id,$data->id])}}" />
+                                    <x-button-delete link="{{ route('sekolah.gurubk.edit',[$id->id,$data->id])}}" />
                                 </td>
                             </tr>
                 @empty
@@ -104,7 +95,6 @@ $kelas_nama=$request->kelas_nama;
         </a>
     </div>
 </div>
-
 
                         </div>
                     </div>

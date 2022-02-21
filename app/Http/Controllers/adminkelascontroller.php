@@ -36,7 +36,7 @@ class adminkelascontroller extends Controller
         // ->orderBy('nama','asc')
         // ->paginate(Fungsi::paginationjml());
 
-        $datas = kelas::with('walikelas')
+        $datas = kelas::with('walikelas')->with('gurubk')
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')
         ->paginate(Fungsi::paginationjml());
@@ -51,7 +51,11 @@ class adminkelascontroller extends Controller
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')->get();
 
-        return view('pages.admin.sekolah.pages.kelas_create',compact('pages','id','walikelas'));
+        $gurubk=DB::table('gurubk')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')->get();
+
+        return view('pages.admin.sekolah.pages.kelas_create',compact('pages','id','walikelas','gurubk'));
     }
 
     public function store(sekolah $id,Request $request)
@@ -87,6 +91,7 @@ class adminkelascontroller extends Controller
                    'nama'     =>   $request->nama,
                 //    'tipe'     =>   $request->tipe,
                    'walikelas_id'     =>   $request->walikelas_id,
+                   'gurubk_id'     =>   $request->gurubk_id,
                    'sekolah_id'     =>   $id->id,
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
@@ -103,7 +108,11 @@ class adminkelascontroller extends Controller
         ->where('sekolah_id',$id->id)
         ->orderBy('nama','asc')->get();
 
-        return view('pages.admin.sekolah.pages.kelas_edit',compact('pages','id','data','walikelas'));
+        $gurubk=DB::table('gurubk')->whereNull('deleted_at')
+        ->where('sekolah_id',$id->id)
+        ->orderBy('nama','asc')->get();
+
+        return view('pages.admin.sekolah.pages.kelas_edit',compact('pages','id','data','walikelas','gurubk'));
     }
     public function update(sekolah $id,kelas $data,Request $request)
     {
@@ -131,6 +140,7 @@ class adminkelascontroller extends Controller
             'nama'     =>   $request->nama,
             // 'tipe'     =>   $request->tipe,
             'walikelas_id'     =>   $request->walikelas_id,
+            'gurubk_id'     =>   $request->gurubk_id,
             'sekolah_id'     =>   $id->id,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);

@@ -9,6 +9,7 @@ use App\Http\Controllers\admincetakcontroller;
 use App\Http\Controllers\admindashboardcontroller;
 use App\Http\Controllers\admindeteksicontroller;
 use App\Http\Controllers\admingrafikcontroller;
+use App\Http\Controllers\admingurubkcontroller;
 use App\Http\Controllers\adminhasilpsikologicontroller;
 use App\Http\Controllers\admininformasipsikologicontroller;
 use App\Http\Controllers\admininputminatbakatcontroller;
@@ -157,6 +158,17 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::put('/admin/sekolah/{id}/walikelas/{data}', [adminwalikelascontroller::class, 'update'])->name('sekolah.walikelas.update');
     Route::delete('/admin/sekolah/{id}/walikelas/{data}', [adminwalikelascontroller::class, 'destroy'])->name('sekolah.walikelas.destroy');
     Route::delete('/admin/sekolah/walikelas/multidel/{id}', [adminwalikelascontroller::class, 'multidel'])->name('sekolah.walikelas.multidel');
+
+
+    //gurubk
+    Route::get('/admin/sekolah/{id}/gurubk', [admingurubkcontroller::class, 'index'])->name('sekolah.gurubk');
+    Route::get('/admin/sekolah/{id}/gurubk/create', [admingurubkcontroller::class, 'create'])->name('sekolah.gurubk.create');
+    Route::post('/admin/sekolah/{id}/gurubk/create', [admingurubkcontroller::class, 'store'])->name('sekolah.gurubk.store');
+    Route::get('/admin/sekolah/{id}/gurubk/cari', [admingurubkcontroller::class, 'cari'])->name('sekolah.gurubk.cari');
+    Route::get('/admin/sekolah/{id}/gurubk/{data}', [admingurubkcontroller::class, 'edit'])->name('sekolah.gurubk.edit');
+    Route::put('/admin/sekolah/{id}/gurubk/{data}', [admingurubkcontroller::class, 'update'])->name('sekolah.gurubk.update');
+    Route::delete('/admin/sekolah/{id}/gurubk/{data}', [admingurubkcontroller::class, 'destroy'])->name('sekolah.gurubk.destroy');
+    Route::delete('/admin/sekolah/gurubk/multidel/{id}', [admingurubkcontroller::class, 'multidel'])->name('sekolah.gurubk.multidel');
 
       //kelas
       Route::get('/admin/sekolah/{id}/kelas', [adminkelascontroller::class, 'index'])->name('sekolah.kelas');
