@@ -134,85 +134,85 @@ let aspekkepribadian=[
 
 
     var aspekKepribadianRank =[
-        {nama:'Faktor Sikap Dingin',rank:dataSertifikat.hspq_a_kr_rank
+        {nama:'Faktor Sikap Dingin',rank:dataSertifikat.hspq_a_kr_rank,positif_diungkap:dataSertifikat.hspq_a_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_a_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Emosi Labil',rank:dataSertifikat.hspq_c_kr_rank
+        {nama:'Faktor Sikap Emosi Labil',rank:dataSertifikat.hspq_c_kr_rank,positif_diungkap:dataSertifikat.hspq_c_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_c_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Sulit Bergairah',rank:dataSertifikat.hspq_d_kr_rank
+        {nama:'Faktor Sikap Sulit Bergairah',rank:dataSertifikat.hspq_d_kr_rank,positif_diungkap:dataSertifikat.hspq_d_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_d_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Patuh atau Tunduk',rank:dataSertifikat.hspq_e_kr_rank
+        {nama:'Faktor Patuh atau Tunduk',rank:dataSertifikat.hspq_e_kr_rank,positif_diungkap:dataSertifikat.hspq_e_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_d_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sungguh-sungguh',rank:dataSertifikat.hspq_f_kr_rank
+        {nama:'Faktor Sungguh-sungguh',rank:dataSertifikat.hspq_f_kr_rank,positif_diungkap:dataSertifikat.hspq_f_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_f_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Menolak Peraturan',rank:dataSertifikat.hspq_g_kr_rank
+        {nama:'Faktor Menolak Peraturan',rank:dataSertifikat.hspq_g_kr_rank,positif_diungkap:dataSertifikat.hspq_g_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_g_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Keras Hati',rank:dataSertifikat.hspq_h_kr_rank
+        {nama:'Faktor Sikap Keras Hati',rank:dataSertifikat.hspq_h_kr_rank,positif_diungkap:dataSertifikat.hspq_h_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_h_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Pemalu',rank:dataSertifikat.hspq_i_kr_rank
+        {nama:'Faktor Sikap Pemalu',rank:dataSertifikat.hspq_i_kr_rank,positif_diungkap:dataSertifikat.hspq_i_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_i_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Bersemangat',rank:dataSertifikat.hspq_j_kr_rank
+        {nama:'Faktor Sikap Bersemangat',rank:dataSertifikat.hspq_j_kr_rank,positif_diungkap:dataSertifikat.hspq_j_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_j_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Percaya Diri',rank:dataSertifikat.hspq_o_kr_rank
+        {nama:'Faktor Sikap Percaya Diri',rank:dataSertifikat.hspq_o_kr_rank,positif_diungkap:dataSertifikat.hspq_o_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_o_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Kurang Mandiri',rank:dataSertifikat.hspq_q2_kr_rank
+        {nama:'Faktor Sikap Kurang Mandiri',rank:dataSertifikat.hspq_q2_kr_rank,positif_diungkap:dataSertifikat.hspq_q2_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_q2_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Kurang Disiplin',rank:dataSertifikat.hspq_q3_kr_rank
+        {nama:'Faktor Sikap Kurang Disiplin',rank:dataSertifikat.hspq_q3_kr_rank,positif_diungkap:dataSertifikat.hspq_q3_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_q3_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Rileks atau santai',rank:dataSertifikat.hspq_q4_kr_rank
+        {nama:'Faktor Sikap Rileks atau santai',rank:dataSertifikat.hspq_q4_kr_rank,positif_diungkap:dataSertifikat.hspq_q4_kr_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_q4_kr_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Hangat',rank:dataSertifikat.hspq_a_kn_rank
+        {nama:'Faktor Sikap Hangat',rank:dataSertifikat.hspq_a_kn_rank,positif_diungkap:dataSertifikat.hspq_a_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_a_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Emosi Stabil',rank:dataSertifikat.hspq_c_kn_rank
+        {nama:'Faktor Sikap Emosi Stabil',rank:dataSertifikat.hspq_c_kn_rank,positif_diungkap:dataSertifikat.hspq_c_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_c_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Bergairah',rank:dataSertifikat.hspq_d_kn_rank
+        {nama:'Faktor Sikap Bergairah',rank:dataSertifikat.hspq_d_kn_rank,positif_diungkap:dataSertifikat.hspq_d_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_d_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Dominasi',rank:dataSertifikat.hspq_e_kn_rank
+        {nama:'Faktor Sikap Dominasi',rank:dataSertifikat.hspq_e_kn_rank,positif_diungkap:dataSertifikat.hspq_e_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_e_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Keceriaan',rank:dataSertifikat.hspq_f_kn_rank
+        {nama:'Faktor Sikap Keceriaan',rank:dataSertifikat.hspq_f_kn_rank,positif_diungkap:dataSertifikat.hspq_f_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_f_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Taat Peraturan',rank:dataSertifikat.hspq_g_kn_rank
+        {nama:'Faktor Sikap Taat Peraturan',rank:dataSertifikat.hspq_g_kn_rank,positif_diungkap:dataSertifikat.hspq_g_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_g_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Lembut Hati / Peka',rank:dataSertifikat.hspq_h_kn_rank
+        {nama:'Faktor Sikap Lembut Hati / Peka',rank:dataSertifikat.hspq_h_kn_rank,positif_diungkap:dataSertifikat.hspq_h_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_h_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Pemberani',rank:dataSertifikat.hspq_i_kn_rank
+        {nama:'Faktor Sikap Pemberani',rank:dataSertifikat.hspq_i_kn_rank,positif_diungkap:dataSertifikat.hspq_i_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_i_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Menarik Diri',rank:dataSertifikat.hspq_j_kn_rank
+        {nama:'Faktor Sikap Menarik Diri',rank:dataSertifikat.hspq_j_kn_rank,positif_diungkap:dataSertifikat.hspq_j_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_j_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Ketakutan',rank:dataSertifikat.hspq_o_kn_rank
+        {nama:'Faktor Sikap Ketakutan',rank:dataSertifikat.hspq_o_kn_rank,positif_diungkap:dataSertifikat.hspq_o_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_o_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Mandiri',rank:dataSertifikat.hspq_q2_kn_rank
+        {nama:'Faktor Sikap Mandiri',rank:dataSertifikat.hspq_q2_kn_rank,positif_diungkap:dataSertifikat.hspq_q2_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_q2_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Disiplin',rank:dataSertifikat.hspq_q3_kn_rank
+        {nama:'Faktor Sikap Disiplin',rank:dataSertifikat.hspq_q3_kn_rank,positif_diungkap:dataSertifikat.hspq_q3_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_q3_kn_aspek_negatif_di_ungkap
         },
-        {nama:'Faktor Sikap Tegang',rank:dataSertifikat.hspq_q4_kn_rank
+        {nama:'Faktor Sikap Tegang',rank:dataSertifikat.hspq_q4_kn_rank,positif_diungkap:dataSertifikat.hspq_q4_kn_aspek_positif_di_ungkap,negatif_diungkap:dataSertifikat.hspq_q4_kn_aspek_negatif_di_ungkap
         },
         ];
         aspekKepribadianRank.sort(function (a,b) {
         return a.rank - b.rank;
      })
-    //  console.log(aspekKepribadianRank);
+     console.log(aspekKepribadianRank);
 
         for(let i=0;i<aspekkepribadian.length;i++){
                     document.getElementById(aspekkepribadian[i]).innerText = dataSertifikat[aspekkepribadian[i]];
         }
 
-                    document.getElementById('hspq_rank_1').innerText += ' '+dataSertifikat.hspq_rank_1;
-                    document.getElementById('hspq_rank_2').innerText += ' '+dataSertifikat.hspq_rank_2;
-                    document.getElementById('hspq_rank_3').innerText += ' '+dataSertifikat.hspq_rank_3;
-                    document.getElementById('hspq_rank_4').innerText += ' '+dataSertifikat.hspq_rank_4;
-                    document.getElementById('hspq_rank_5').innerText += ' '+dataSertifikat.hspq_rank_5;
+                    document.getElementById('hspq_rank_1').innerText += ' '+aspekKepribadianRank[0].nama;
+                    document.getElementById('hspq_rank_2').innerText += ' '+aspekKepribadianRank[1].nama;
+                    document.getElementById('hspq_rank_3').innerText += ' '+aspekKepribadianRank[2].nama;
+                    document.getElementById('hspq_rank_4').innerText += ' '+aspekKepribadianRank[3].nama;
+                    document.getElementById('hspq_rank_5').innerText += ' '+aspekKepribadianRank[4].nama;
 
-                    document.getElementById('hspq_rank_1_positif').innerText += ' 1. '+dataSertifikat.hspq_rank_1_positif;
-                    document.getElementById('hspq_rank_2_positif').innerText += ' 2. '+dataSertifikat.hspq_rank_2_positif;
-                    document.getElementById('hspq_rank_3_positif').innerText += ' 3. '+dataSertifikat.hspq_rank_3_positif;
-                    document.getElementById('hspq_rank_4_positif').innerText += ' 4. '+dataSertifikat.hspq_rank_4_positif;
-                    document.getElementById('hspq_rank_5_positif').innerText += ' 5. '+dataSertifikat.hspq_rank_5_positif;
+                    document.getElementById('hspq_rank_1_positif').innerText += ' 1. '+aspekKepribadianRank[0].positif_diungkap;
+                    document.getElementById('hspq_rank_2_positif').innerText += ' 2. '+aspekKepribadianRank[1].positif_diungkap;
+                    document.getElementById('hspq_rank_3_positif').innerText += ' 3. '+aspekKepribadianRank[2].positif_diungkap;
+                    document.getElementById('hspq_rank_4_positif').innerText += ' 4. '+aspekKepribadianRank[3].positif_diungkap;
+                    document.getElementById('hspq_rank_5_positif').innerText += ' 5. '+aspekKepribadianRank[4].positif_diungkap;
 
-                    document.getElementById('hspq_rank_1_negatif').innerText += ' 1. '+dataSertifikat.hspq_rank_1_negatif;
-                    document.getElementById('hspq_rank_2_negatif').innerText += ' 2. '+dataSertifikat.hspq_rank_2_negatif;
-                    document.getElementById('hspq_rank_3_negatif').innerText += ' 3. '+dataSertifikat.hspq_rank_3_negatif;
-                    document.getElementById('hspq_rank_4_negatif').innerText += ' 4. '+dataSertifikat.hspq_rank_4_negatif;
-                    document.getElementById('hspq_rank_5_negatif').innerText += ' 5. '+dataSertifikat.hspq_rank_5_negatif;
+                    document.getElementById('hspq_rank_1_negatif').innerText += ' 1. '+aspekKepribadianRank[0].negatif_diungkap;
+                    document.getElementById('hspq_rank_2_negatif').innerText += ' 2. '+aspekKepribadianRank[1].negatif_diungkap;
+                    document.getElementById('hspq_rank_3_negatif').innerText += ' 3. '+aspekKepribadianRank[2].negatif_diungkap;
+                    document.getElementById('hspq_rank_4_negatif').innerText += ' 4. '+aspekKepribadianRank[3].negatif_diungkap;
+                    document.getElementById('hspq_rank_5_negatif').innerText += ' 5. '+aspekKepribadianRank[4].negatif_diungkap;
 
                     document.getElementById('tipe_bakat_1').innerText = '- '+dataSertifikat.tipe_bakat_1;
                     document.getElementById('tipe_bakat_2').innerText = '- '+dataSertifikat.tipe_bakat_2;
