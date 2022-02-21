@@ -114,8 +114,8 @@ Klasifikasi Akademis & Profesi
                             <label for="bidangstudi" class="form-control-label col-sm-3 text-md-right">Pekerjaan & Keterangan </label>
                             <div class="col-sm-6 col-md-9">
 
-                              <input type="text" class="form-control  @error('bidangstudi') is-invalid @enderror" name="bidangstudi" required  value="{{old('bidangstudi')}}">
-
+                              {{-- <input type="text" class="form-control  @error('bidangstudi') is-invalid @enderror" name="bidangstudi" required  value="{{old('bidangstudi')}}"> --}}
+                              <textarea  class="form-control" style=" min-width:500px; max-width:100%;min-height:50px;height:100%;width:100%;" name="bidangstudi" required rows="5" cols="50">{{old('bidangstudi')}}</textarea>
                               @error('bidangstudi')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
 
