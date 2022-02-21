@@ -98,7 +98,7 @@ Klasifikasi Akademis & Profesi
                         </div>
 
                         <div class="form-group row align-items-center">
-                            <label for="jurusan" class="form-control-label col-sm-3 text-md-right">Jurusan </label>
+                            <label for="jurusan" class="form-control-label col-sm-3 text-md-right">Jurusan & Bidang Studi yang ditekuni </label>
                             <div class="col-sm-6 col-md-9">
 
                               <input type="text" class="form-control  @error('jurusan') is-invalid @enderror" name="jurusan" required  value="{{old('jurusan')}}">
@@ -111,7 +111,7 @@ Klasifikasi Akademis & Profesi
 
 
                         <div class="form-group row align-items-center">
-                            <label for="bidangstudi" class="form-control-label col-sm-3 text-md-right">Bidang Studi yang ditekuni </label>
+                            <label for="bidangstudi" class="form-control-label col-sm-3 text-md-right">Pekerjaan & Keterangan </label>
                             <div class="col-sm-6 col-md-9">
 
                               <input type="text" class="form-control  @error('bidangstudi') is-invalid @enderror" name="bidangstudi" required  value="{{old('bidangstudi')}}">

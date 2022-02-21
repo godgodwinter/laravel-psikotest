@@ -81,8 +81,8 @@ Klasifikasi Akademis dan Profesi
                             <th >Profesi</th>
                             <th >Nilai Standart</th>
                             <th >IQ Standart</th>
-                            <th >Jurusan</th>
-                            <th >Bidang Studi yang ditekuni</th>
+                            <th >Jurusan & Bidang Studi yang ditekuni</th>
+                            <th >Pekerjaan & Keterangan</th>
                             <th >Link</th>
                             {{-- <th class="text-center">Aksi</th> --}}
                         </tr>
