@@ -122,9 +122,12 @@
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kesimpulan dan Saran </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('kesimpulandansaran') is-invalid @enderror" name="kesimpulandansaran" required  value="{{old('kesimpulandansaran') ? old('kesimpulandansaran') : $data->kesimpulandansaran}}">
+                      {{-- <input type="text" class="form-control  @error('kesimpulandansaran') is-invalid @enderror" name="kesimpulandansaran" required  value="{{old('kesimpulandansaran') ? old('kesimpulandansaran') : $data->kesimpulandansaran}}"> --}}
 
-                      @error('kesimpulandansaran')<div class="invalid-feedback"> {{$message}}</div>
+                      {{-- @error('kesimpulandansaran')<div class="invalid-feedback"> {{$message}}</div> --}}
+                      {{-- @enderror --}}
+                      <textarea  class="form-control" style=" min-width:500px; max-width:100%;min-height:50px;height:100%;width:100%;" name="kesimpulandansaran" required rows="5" cols="50">{{old('kesimpulandansaran')?old('kesimpulandansaran'):$datas->kesimpulandansaran}}</textarea>
+                          @error('kesimpulandansaran')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>
