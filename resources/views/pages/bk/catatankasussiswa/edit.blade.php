@@ -30,7 +30,7 @@ Catatan Kasus Siswa
             </div>
             <div class="card-body">
 
-           <form id="setting-form" method="POST" action="{{route('bk.catatankasussiswa.update',[$datasa->id])}}">
+           <form id="setting-form" method="POST" action="{{route('bk.catatankasussiswa.update',[$datas->id])}}">
             @method('put')
             @csrf
             <div class="card" id="settings-card">
@@ -61,7 +61,7 @@ Catatan Kasus Siswa
                     </div>
                   </div>
 
-                  <div class="form-group row align-items-center">
+                  {{-- <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelas</label>
                     <div class="col-sm-6 col-md-9">
 
@@ -79,7 +79,7 @@ Catatan Kasus Siswa
                       @enderror
 
                     </div>
-                  </div>
+                  </div> --}}
 
                   <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal Kasus</label>
@@ -196,9 +196,8 @@ Catatan Kasus Siswa
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan </label>
                     <div class="col-sm-6 col-md-9">
 
-                      <input type="text" class="form-control  @error('keterangan') is-invalid @enderror" name="keterangan" required  value="{{old('keterangan') ? old('keterangan') : $datas->keterangan}}">
-
-                      @error('keterangan')<div class="invalid-feedback"> {{$message}}</div>
+                        <textarea  class="form-control" style=" min-width:500px; max-width:100%;min-height:50px;height:100%;width:100%;" name="keterangan" required rows="5" cols="50">{{old('keterangan')?old('keterangan'):$datas->keterangan}}</textarea>
+                        @error('keterangan')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
 
                     </div>

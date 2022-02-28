@@ -61,7 +61,7 @@ Catatan Prestasi Siswa
                     </div>
                   </div>
 
-                  <div class="form-group row align-items-center">
+                  {{-- <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kelas</label>
                     <div class="col-sm-6 col-md-9">
 
@@ -79,7 +79,7 @@ Catatan Prestasi Siswa
                       @enderror
 
                     </div>
-                  </div>
+                  </div> --}}
 
                   <div class="form-group row align-items-center">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Tanggal

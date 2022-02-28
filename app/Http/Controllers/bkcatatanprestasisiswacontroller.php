@@ -287,7 +287,8 @@ class bkcatatanprestasisiswacontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $datas = catatanprestasisiswa::with('siswa')->with('kelas')
+        $datas = catatanprestasisiswa::with('siswa')
+        // ->with('kelas')
             ->where('id', $data->id)
             ->where('sekolah_id', $sekolah_id)
             ->orderBy('siswa_id', 'asc')

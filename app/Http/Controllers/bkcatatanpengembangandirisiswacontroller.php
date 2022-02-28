@@ -95,6 +95,9 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
     {
         $pages = 'bk-catatanpengembangandirisiswa';
 
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $sekolah_id=$pengguna->sekolah_id;
         $datas = catatanpengembangandirisiswa::with('siswa')
             ->where('siswa_id', $data->id)
             ->orderBy('tanggal', 'asc')
