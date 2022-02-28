@@ -26,12 +26,12 @@ Klasifikasi Akademis & Profesi
     <div class="section-body">
         <div class="card">
             <div class="card-header">
-                <h5>Tambah</h5>
+                <h5>Lihat</h5>
             </div>
             <div class="card-body">
             <div class="card" id="settings-card">
               <div class="card-header">
-                <h4>klasifikasijabatan </h4>
+                {{-- <h4>klasifikasijabatan </h4> --}}
               </div>
               <div class="card-body">
 
