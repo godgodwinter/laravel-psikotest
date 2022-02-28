@@ -112,6 +112,8 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
         $pages = 'bk-catatanpengembangandirisiswa';
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+
+
         $sekolah_id=$pengguna->sekolah_id;
         $this->cari=$request->kelas_id;
         $cari=null;
@@ -168,7 +170,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
 
         $datas=$dataakhir;
         $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
-        return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama'));
+        return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama','sekolah_id'));
     }
     public function caribackup( Request $request)
     {
