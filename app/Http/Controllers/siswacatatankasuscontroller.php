@@ -36,7 +36,7 @@ class siswacatatankasuscontroller extends Controller
         $id=sekolah::where('id',$siswa->sekolah_id)->first();
         $datas=catatankasussiswa::with('siswa')->where('siswa_id',$siswa->id)->orderBy('tanggal','desc')->get();
         $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatankasus.cetakpersiswa',compact('datas'))->setPaper('a4', 'potrait');
+        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatankasus.cetakpersiswa',compact('datas','data'))->setPaper('a4', 'potrait');
         return $pdf->stream('catatan'.$tgl.'.pdf');
     }
 }
