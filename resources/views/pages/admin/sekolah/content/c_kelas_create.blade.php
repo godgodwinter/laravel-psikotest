@@ -84,7 +84,7 @@
 
 
 
-                  <div class="card-footer bg-whitesmoke text-md-right">
+                  <div class="card-footer bg-whitesmoke text-md-right ">
                     <button class="btn btn-primary" id="save-btn">Simpan</button>
                   </div>
                 </div>
