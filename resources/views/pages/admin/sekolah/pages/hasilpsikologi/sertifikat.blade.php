@@ -343,38 +343,38 @@ kesimpulanEqSq=getKesimpulanEqSq((dataSertifikat.eq_persen+dataSertifikat.sq_per
     }
 
     function getKesimpulanIq(item=null){
-        hasil="Kurang lancar";
+        hasil="Kurang Lancar";
         if(item>119){
-            hasil="Sangat lancar sekali";
+            hasil="Sangat Lancar Sekali";
         }else if((120>item) && (item>=110)){
-            hasil="Lancar sekali";
+            hasil="Lancar Sekali";
         }else if((110>item) && (item>=105)){
             hasil="Lancar";
         }else if((105>item) && (item>=90)){
-            hasil="Cukup lancar";
+            hasil="Cukup Lancar";
         }else if((90>item) && (item>=80)){
-            hasil="Kurang lancar";
+            hasil="Kurang Lancar";
         }else{
-            hasil="Kurang lancar";
+            hasil="Tidak Lancar";
         }
         return hasil;
     }
 
 
     function getKesimpulanEqSq(item=null){
-        hasil="Lebih tinggi";
+        hasil="Lebih Tinggi";
         if(item>119){
-            hasil="Seimbang dan lebih tinggi";
+            hasil="Seimbang dan Lebih Tinggi";
         }else if((120>item) && (item>=110)){
-            hasil="Seimbang dan lebih tinggi";
+            hasil="Seimbang dan Lebih Tinggi";
         }else if((110>item) && (item>=105)){
-            hasil="Seimbang dan lebih tinggi";
+            hasil="Seimbang dan Lebih Tinggi";
         }else if((105>item) && (item>=90)){
-             hasil="Lebih tinggi";
+             hasil="Lebih Tinggi";
         }else if((90>item) && (item>=80)){
-            hasil="Lebih tinggi";
+            hasil="Lebih Tinggi";
         }else{
-              hasil="Lebih tinggi";
+              hasil="Lebih Tinggi";
         }
         return hasil;
     }
