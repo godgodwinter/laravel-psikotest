@@ -190,7 +190,7 @@ let aspekkepribadian=[
         aspekKepribadianRank.sort(function (a,b) {
         return a.rank - b.rank;
      })
-     console.log(aspekKepribadianRank);
+    //  console.log(aspekKepribadianRank);
 
         for(let i=0;i<aspekkepribadian.length;i++){
                     document.getElementById(aspekkepribadian[i]).innerText = dataSertifikat[aspekkepribadian[i]];
@@ -308,8 +308,13 @@ let aspekkepribadian=[
 
 kesimpulanIq=getKesimpulanIq(dataSertifikat.iq);
 kesimpulanEqSq=getKesimpulanEqSq((dataSertifikat.eq_persen+dataSertifikat.sq_persen)/2);
+kesimpulankelasakhir='';
+if({{$filterkelas}}>0){
+    kesimpulankelasakhir=`Dalam kelanjutan studi <b>${kesimpulanIq}</b> tapi perlu ditunjang oleh EQ dan SQ <b>${kesimpulanEqSq}</b> dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Kelanjutan studi disarankan masuk Fakultas <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Fakultas <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
+}
+
         kesimpulandansaran=`<label>
-                        Potensi kecerdasan subyek yang dapat digunakan saat ini <b> ${iqket(dataSertifikat.iq)} </b>,(IQ=<b>${dataSertifikat.iq} </b>, IST KM=<b>${dataSertifikat.km_persen}%)</b> artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong <b>${dataSertifikat.kmh}</b>. Dalam belajar subyek disarankan menggunakan  <b> ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}</b>, sedangkan yang perlu dilatih dan dibiasakan yaitu  <b> ${temp[6].nama} dan ${temp[7].nama}</b>. Kecerdasan Emosi nya <b>${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%)</b>. Kecerdasan Sosialnya <b>${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%)</b>. Karakter kepribadian subyek yang terkuat dan mempengaruhi aktivitas sehari-hari yaitu <b> ${aspekKepribadianRank[0].nama}, ${aspekKepribadianRank[1].nama}, ${aspekKepribadianRank[2].nama}, ${aspekKepribadianRank[3].nama}, dan ${aspekKepribadianRank[4].nama}  </b> terdiri dari aspek positif dan perlu ditingkatkan, dikembangkan, dan dipertahankan, sedangkan aspek negatif perlu dirubah dan dikendalikan supaya tidak menghambat prestasi subyek. Dalam kelanjutan studi <b>${kesimpulanIq}</b> tapi perlu ditunjang oleh EQ dan SQ <b>${kesimpulanEqSq}</b> dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Kelanjutan studi disarankan masuk Fakultas <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Fakultas <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.
+                        Potensi kecerdasan subyek yang dapat digunakan saat ini <b> ${iqket(dataSertifikat.iq)} </b>,(IQ=<b>${dataSertifikat.iq} </b>, IST KM=<b>${dataSertifikat.km_persen}%)</b> artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong <b>${dataSertifikat.kmh}</b>. Dalam belajar subyek disarankan menggunakan  <b> ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}</b>, sedangkan yang perlu dilatih dan dibiasakan yaitu  <b> ${temp[6].nama} dan ${temp[7].nama}</b>. Kecerdasan Emosi nya <b>${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%)</b>. Kecerdasan Sosialnya <b>${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%)</b>. Karakter kepribadian subyek yang terkuat dan mempengaruhi aktivitas sehari-hari yaitu <b> ${aspekKepribadianRank[0].nama}, ${aspekKepribadianRank[1].nama}, ${aspekKepribadianRank[2].nama}, ${aspekKepribadianRank[3].nama}, dan ${aspekKepribadianRank[4].nama}  </b> terdiri dari aspek positif dan perlu ditingkatkan, dikembangkan, dan dipertahankan, sedangkan aspek negatif perlu dirubah dan dikendalikan supaya tidak menghambat prestasi subyek. ${kesimpulankelasakhir}
                     </label>`;
                     $( "#kesimpulandansaran" ).append(kesimpulandansaran);
 

@@ -260,7 +260,11 @@ class adminhasilpsikologicontroller extends Controller
         $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
         $pages='sekolah';
         $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
-        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+        $kelas=$datasiswa->kelas->nama;
+        // $kelasangka=Fungsi::getkelasangka($kelas);
+        $filterkelas=Fungsi::filterkelas($kelas);
+        // dd(Fungsi::filterkelas($kelas));
+        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa','filterkelas','kelas'));
     }
     public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
     {

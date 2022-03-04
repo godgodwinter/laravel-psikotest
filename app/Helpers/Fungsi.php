@@ -14,6 +14,31 @@ class Fungsi {
     //     $user = DB::table('users')->where('userid', $user_id)->first();
     //     return (isset($user->username) ? $user->username : '');
     // }
+    public static function filterkelas($item=0){
+            // }
+$hasil=0;
+        $kelas = ["9","12","IX","XII"];
+        $jmlkelas=count($kelas);
+        for($i=0;$jmlkelas>$i;$i++){
+
+            if(strpos($item, $kelas[$i]) !== false){
+               $hasil++;
+            } else{
+                }
+        }
+
+        return $hasil;
+    }
+
+    public static function getkelasangka($item=0){
+        $hasil='0';
+            $arr = str_split($item);
+            // dd($arr[0]);
+            if(count($arr)>0){
+                $hasil=$arr[0];
+            }
+        return $hasil;
+    }
     public static function randomuserssiswa($item=0,$siswaid=0){
         $hasil='default';
         $faker = Faker::create('id_ID');
