@@ -351,7 +351,9 @@ class bkhasilpsikologicontroller extends Controller
         $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
         $pages='bk-hasilpsikologi';
         $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
-        return view('pages.bk.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+        $kelas=$datasiswa->kelas->nama;
+        $filterkelas=Fungsi::filterkelas($kelas);
+        return view('pages.bk.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','filterkelas','datasiswa'));
     }
     public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
     {
