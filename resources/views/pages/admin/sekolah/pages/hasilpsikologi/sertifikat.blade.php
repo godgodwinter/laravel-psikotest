@@ -360,7 +360,7 @@ if({{$filterkelas}}>0){
         }else if((90>item) && (item>=80)){
             hasil="Kurang Lancar";
         }else{
-            hasil="Tidak Lancar";
+            hasil="Sangat Kurang Lancar";
         }
         return hasil;
     }
