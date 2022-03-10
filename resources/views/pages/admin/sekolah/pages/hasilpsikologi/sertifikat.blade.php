@@ -96,9 +96,9 @@ Hasil Deteksi Psikologi
                     document.getElementById('iq').innerText = dataSertifikat.iq+ ' ';
                     document.getElementById('iqket').innerText =iqket(dataSertifikat.iq);
                     document.getElementById('eq_persen').innerText = dataSertifikat.eq_persen+ ' %';
-                    document.getElementById('eq_persen_keterangan').innerText = dataSertifikat.eq_persen_keterangan;
+                    document.getElementById('eq_persen_keterangan').innerText = kepanjangan(dataSertifikat.eq_persen_keterangan);
                     document.getElementById('scq_persen').innerText = dataSertifikat.scq_persen+ ' %';
-                    document.getElementById('scq_persen_keterangan').innerText = dataSertifikat.scq_persen_keterangan;
+                    document.getElementById('scq_persen_keterangan').innerText = kepanjangan(dataSertifikat.scq_persen_keterangan);
                     document.getElementById('iq_persen').innerText = 'IV. IQ (KM) 8 Kecerdasan '+ dataSertifikat.iq_persen+' % ' + dataSertifikat.iqh;
 
 
@@ -321,12 +321,35 @@ if({{$filterkelas}}>0){
 }
 
         kesimpulandansaran=`<label>
-                        Potensi kecerdasan subyek yang dapat digunakan saat ini <b> ${iqket(dataSertifikat.iq)} </b>,(IQ=<b>${dataSertifikat.iq} </b>, IST KM=<b>${dataSertifikat.km_persen}%)</b> artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong <b>${dataSertifikat.kmh}</b>. Dalam belajar subyek disarankan menggunakan  <b> ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}</b>, sedangkan yang perlu dilatih dan dibiasakan yaitu  <b> ${temp[6].nama} dan ${temp[7].nama}</b>. Kecerdasan Emosi nya <b>${dataSertifikat.eq_persen_keterangan},(${dataSertifikat.eq_persen}%)</b>. Kecerdasan Sosialnya <b>${dataSertifikat.scq_persen_keterangan} (ScQ=${dataSertifikat.scq_persen}%)</b>. Karakter kepribadian subyek yang terkuat dan mempengaruhi aktivitas sehari-hari yaitu <b> ${aspekKepribadianRank[0].nama}, ${aspekKepribadianRank[1].nama}, ${aspekKepribadianRank[2].nama}, ${aspekKepribadianRank[3].nama}, dan ${aspekKepribadianRank[4].nama}  </b> terdiri dari aspek positif dan perlu ditingkatkan, dikembangkan, dan dipertahankan, sedangkan aspek negatif perlu dirubah dan dikendalikan supaya tidak menghambat prestasi subyek. ${kesimpulankelasakhir}
+                        Potensi kecerdasan subyek yang dapat digunakan saat ini <b> ${iqket(dataSertifikat.iq)} </b>,(IQ=<b>${dataSertifikat.iq} </b>, IST KM=<b>${dataSertifikat.km_persen}%)</b> artinya dengan tingkat kemampuan menggunakan kecerdasan majemuk tergolong <b>${kepanjangan(dataSertifikat.kmh)}</b>. Dalam belajar subyek disarankan menggunakan  <b> ${temp[0].nama}, ${temp[1].nama}, ${temp[2].nama}</b>, sedangkan yang perlu dilatih dan dibiasakan yaitu  <b> ${temp[6].nama} dan ${temp[7].nama}</b>. Kecerdasan Emosi nya <b>${kepanjangan(dataSertifikat.eq_persen_keterangan)},(${dataSertifikat.eq_persen}%)</b>. Kecerdasan Sosialnya <b>${kepanjangan(dataSertifikat.scq_persen_keterangan)} (ScQ=${dataSertifikat.scq_persen}%)</b>. Karakter kepribadian subyek yang terkuat dan mempengaruhi aktivitas sehari-hari yaitu <b> ${aspekKepribadianRank[0].nama}, ${aspekKepribadianRank[1].nama}, ${aspekKepribadianRank[2].nama}, ${aspekKepribadianRank[3].nama}, dan ${aspekKepribadianRank[4].nama}  </b> terdiri dari aspek positif dan perlu ditingkatkan, dikembangkan, dan dipertahankan, sedangkan aspek negatif perlu dirubah dan dikendalikan supaya tidak menghambat prestasi subyek. ${kesimpulankelasakhir}
                     </label>`;
                     $( "#kesimpulandansaran" ).append(kesimpulandansaran);
 
     }
 
+    function kepanjangan(item=null) {
+        let hasil="Sangat Baik Sekali";
+        if(item=='SBS'){
+            hasil="Sangat Baik Sekali";
+        }else if(item=='BS'){
+            hasil="Baik Sekali";
+        }else if(item=='B'){
+            hasil="Baik";
+        }else if(item=='CB'){
+            hasil="Cukup Baik";
+        }else if(item=='C'){
+            hasil="Cukup";
+        }else if(item=='HC'){
+            hasil="Hampir Cukup";
+        }else if(item=='K'){
+            hasil="Kurang";
+        }else if(item=='KS'){
+            hasil="Kurang Sekali";
+        }else if(item=='SKS'){
+            hasil="Sangat Kurang Sekali";
+        }
+        return hasil;
+      }
     function iqket(item=null){
         hasil="Moron";
         if(item>139){
