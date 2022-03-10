@@ -305,12 +305,19 @@ let aspekkepribadian=[
             <td colspan="2">VII. Kemampuan Mengingat </td>
            ${silang}
         </tr>`);
+kesimpulansekolahlanjutan=`Kelanjutan studi disarankan masuk Fakultas <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Fakultas <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
+
+if({{$iskelas9==true}}){
+kesimpulansekolahlanjutan=`Kelanjutan studi disarankan masuk Sekolah <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Jurusan <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Sekolah <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Jurusan <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
+}
+
 
 kesimpulanIq=getKesimpulanIq(dataSertifikat.iq);
-kesimpulanEqSq=getKesimpulanEqSq((dataSertifikat.eq_persen+dataSertifikat.sq_persen)/2);
+// kesimpulanEqSq=getKesimpulanEqSq((dataSertifikat.eq_persen+dataSertifikat.sq_persen)/2);
+kesimpulanEqSq=getKesimpulanEqSq(dataSertifikat.iq);
 kesimpulankelasakhir='';
 if({{$filterkelas}}>0){
-    kesimpulankelasakhir=`Dalam kelanjutan studi <b>${kesimpulanIq}</b> tapi perlu ditunjang oleh EQ dan SQ <b>${kesimpulanEqSq}</b> dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. Kelanjutan studi disarankan masuk Fakultas <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Fakultas <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
+    kesimpulankelasakhir=`Dalam kelanjutan studi <b>${kesimpulanIq}</b> tapi perlu ditunjang oleh EQ dan SQ <b>${kesimpulanEqSq}</b> dari potensi kecerdasan yang dimiliki subyek dan menunjukkan adanya upaya keseimbangan antara potensi kecerdasan koqnitif - usaha / semangat didukung oleh emosi positif - kematangan kemampuan sosialnya. ${kesimpulansekolahlanjutan}`;
 }
 
         kesimpulandansaran=`<label>

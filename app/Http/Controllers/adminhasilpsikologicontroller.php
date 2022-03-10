@@ -264,7 +264,12 @@ class adminhasilpsikologicontroller extends Controller
         // $kelasangka=Fungsi::getkelasangka($kelas);
         $filterkelas=Fungsi::filterkelas($kelas);
         // dd(Fungsi::filterkelas($kelas));
-        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa','filterkelas','kelas'));
+        $iskelas9=false;
+        if(strpos($kelas,9) !== false || strpos($kelas,"IX") !== false){
+            $iskelas9=true;
+         }
+        //  dd($iskelas9);
+        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa','filterkelas','kelas','iskelas9'));
     }
     public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
     {

@@ -17,7 +17,7 @@ class Fungsi {
     public static function filterkelas($item=0){
             // }
 $hasil=0;
-        $kelas = ["11","12","XI","XII"];
+        $kelas = ["11","12","XI","XII","IX","9"];
         $jmlkelas=count($kelas);
         for($i=0;$jmlkelas>$i;$i++){
 
