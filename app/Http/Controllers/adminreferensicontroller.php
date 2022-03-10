@@ -45,7 +45,7 @@ class adminreferensicontroller extends Controller
         $request->validate([
             'nama'=>'required',
             'tipe'=>'required',
-            'file' => 'max:2000|mimes:pdf,png,jpeg,xml', //1MB
+            'file' => 'max:2000|mimes:pdf,png,jpeg,xml,xlsx,xls,docx,doc', //1MB
         ],
         [
             'nama.required'=>'Nama Harus diisi',
@@ -122,7 +122,7 @@ class adminreferensicontroller extends Controller
             $request->validate([
                 'nama'=>'required',
                 'tipe'=>'required',
-                'file' => 'max:2000|mimes:pdf,png,jpeg,xml', //1MB
+                'file' => 'max:2000|mimes:pdf,png,jpeg,xml,xlsx,xls,docx,doc', //1MB
             ],
             [
                 'nama.required'=>'Nama Harus diisi',
