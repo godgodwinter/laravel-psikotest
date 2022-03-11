@@ -99,7 +99,9 @@ Hasil Deteksi Psikologi
                     document.getElementById('eq_persen_keterangan').innerText = kepanjangan(dataSertifikat.eq_persen_keterangan);
                     document.getElementById('scq_persen').innerText = dataSertifikat.scq_persen+ ' %';
                     document.getElementById('scq_persen_keterangan').innerText = kepanjangan(dataSertifikat.scq_persen_keterangan);
-                    document.getElementById('iq_persen').innerText = 'IV. IQ (KM) 8 Kecerdasan '+ dataSertifikat.iq_persen+' % ' + dataSertifikat.iqh;
+                    // document.getElementById('iq_persen').innerText = 'IV. IQ (KM) 8 Kecerdasan <br>'+ dataSertifikat.iq_persen+' % <br>' + kepanjangan(dataSertifikat.iqh);
+                    let iq_persenString=`<div width="100%">IV. IQ (KM) 8 Kecerdasan </div><div> ${dataSertifikat.iq_persen} % </div> <div>Keterangan :  <b>${kepanjangan(dataSertifikat.iqh)}</b></div>`;
+                    $('#iq_persen').html(iq_persenString);
 
 
                     //kepribadian
@@ -476,21 +478,21 @@ if({{$filterkelas}}>0){
         <h3>ASPEK PSIKOLOGIS YANG DIUNGKAP</h3>
 
 
-    <table border="0" width="60%">
+    <table border="0" width="60%" >
         <tr><td>I. IQ (Intelegence Quotient) / IST </td><td>:</td><td id="iq"></td><td>/</td><td id="iqket"></td></tr>
         <tr><td>II. EQ (Emotional Quotient)  </td><td>:</td><td id="eq_persen"></td><td>/</td><td id="eq_persen_keterangan"></td></tr>
         <tr><td>III. Sc.Q (Social Quotient) </td><td>:</td><td id="scq_persen"></td><td>/</td><td id="scq_persen_keterangan"></td></tr>
     </table>
 
-    <table border="1" width="100%" id="kecerdasanTable" >
+    <table border="1" width="100%" id="kecerdasanTable" class="table table-striped table-bordered mt-1 table-sm">
         <tr>
-            <td id="iq_persen">IV. IQ (KM) 8 Kecerdasan </td>
+            <td id="iq_persen" class="babeng-min-row">IV. IQ (KM) 8 Kecerdasan </td>
             <td>Rank Nilai</td><td>Sangat Kurang Sekali</td><td>Kurang Sekali</td><td>Kurang</td><td>Hampir Cukup</td><td>Cukup</td><td>Kurang Baik</td>
             <td>Baik</td><td>Baik Sekali</td><td>Sangat Baik Sekali</td>
         </tr>
     </table>
 
-    <table border="1" width="100%" id="kepribadianTable"  class="mt-2">
+    <table border="1" width="100%" id="kepribadianTable"  class="mt-2 table table-striped table-bordered table-sm">
         <tr>
             <td>VIII. ASPEK KEPRIBADIAN </td>
             <td class="text-center babeng-min-row">&nbsp; % &nbsp;</td><td class="babeng-min-row">Keterangan</td><td class="babeng-min-row">Rank</td><td width="50%"><strong>Analisa Kepribadian Terkuat</strong></td>
@@ -653,7 +655,7 @@ if({{$filterkelas}}>0){
         </tr>
     </table>
 
-    <table border="1" width="100%" id="kepribadianTable"  class="mt-2">
+    <table border="1" width="100%" id="kepribadianTable"  class="mt-2 table table-striped table-bordered table-sm" >
         <tr>
             <td><strong>IX. Tipe Bakat yang disukai</strong> </td>
         </tr>
@@ -662,7 +664,7 @@ if({{$filterkelas}}>0){
         <tr><td id="tipe_bakat_3">-</td></tr>
     </table>
 
-    <table border="1" width="100%" id="kepribadianTable"  class="mt-2">
+    <table border="1" width="100%" id="kepribadianTable"  class="mt-2 table table-striped table-bordered table-sm">
         <tr>
             <td><strong>X. Minat Pekerjaan Terkuat</strong> </td>
         </tr>
