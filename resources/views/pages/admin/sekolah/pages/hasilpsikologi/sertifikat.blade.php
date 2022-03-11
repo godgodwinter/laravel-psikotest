@@ -363,6 +363,8 @@ if({{$filterkelas}}>0){
             hasil="Cukup";
         }else if(item=='CR'){
             hasil="Cukup Rendah";
+        }else if(item=='AR'){
+            hasil="Agak Rendah";
         }else if(item=='R'){
             hasil="Rendah";
         }else if(item=='RS'){
