@@ -331,7 +331,7 @@ if({{$filterkelas}}>0){
     }
 
     function kepanjangan(item=null) {
-        let hasil="Sangat Baik Sekali";
+        let hasil=item;
         if(item=='SBS'){
             hasil="Sangat Baik Sekali";
         }else if(item=='BS'){
