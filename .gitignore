@@ -3,6 +3,8 @@
 /public/bukudigital
 /public/file_temp
 /public/storage
+/public/infomasipsikologi
+/public/referensi
 /storage/framework/laravel-excel
 /storage/*.key
 /vendor

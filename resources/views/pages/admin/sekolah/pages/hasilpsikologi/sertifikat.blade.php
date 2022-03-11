@@ -350,6 +350,25 @@ if({{$filterkelas}}>0){
             hasil="Kurang Sekali";
         }else if(item=='SKS'){
             hasil="Sangat Kurang Sekali";
+            //tambahan
+        }else if(item=='STS'){
+            hasil="Sangat Tinggi Sekali";
+        }else if(item=='TS'){
+            hasil="Tinggi Sekali";
+        }else if(item=='T'){
+            hasil="Tinggi";
+        }else if(item=='CT'){
+            hasil="Cukup Tinggi";
+        }else if(item=='C'){
+            hasil="Cukup";
+        }else if(item=='CR'){
+            hasil="Cukup Rendah";
+        }else if(item=='R'){
+            hasil="Rendah";
+        }else if(item=='RS'){
+            hasil="Rendah Sekali";
+        }else if(item=='SRS'){
+            hasil="Sangat Rendah Sekali";
         }
         return hasil;
       }
