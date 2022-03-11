@@ -264,9 +264,9 @@ class adminhasilpsikologicontroller extends Controller
         // $kelasangka=Fungsi::getkelasangka($kelas);
         $filterkelas=Fungsi::filterkelas($kelas);
         // dd(Fungsi::filterkelas($kelas));
-        $iskelas9=false;
+        $iskelas9='bukan';
         if(strpos($kelas,9) !== false || strpos($kelas,"IX") !== false){
-            $iskelas9=true;
+            $iskelas9='ya';
          }
         //  dd($iskelas9);
         return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa','filterkelas','kelas','iskelas9'));

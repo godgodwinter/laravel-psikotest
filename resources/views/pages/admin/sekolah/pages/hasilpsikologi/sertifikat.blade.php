@@ -307,9 +307,10 @@ let aspekkepribadian=[
             <td colspan="2">VII. Kemampuan Mengingat </td>
            ${silang}
         </tr>`);
-kesimpulansekolahlanjutan=`Kelanjutan studi disarankan masuk Fakultas <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Fakultas <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
 
-if({{$iskelas9==true}}){
+kesimpulansekolahlanjutan=`Kelanjutan studi disarankan masuk Fakultas <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Fakultas <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Prodi <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
+let isKelas9 = '{{$iskelas9}}';
+if(isKelas9=='ya'){
 kesimpulansekolahlanjutan=`Kelanjutan studi disarankan masuk Sekolah <b> ${dataSertifikat.saran_fakultas_1} </b> dengan Jurusan <b> ${dataSertifikat.saran_fakultas_1_prodi}</b>, Sekolah <b> ${dataSertifikat.saran_fakultas_2} </b> dengan Jurusan <b> ${dataSertifikat.saran_fakultas_2_prodi}</b>.`;
 }
 
