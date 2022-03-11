@@ -353,7 +353,13 @@ class bkhasilpsikologicontroller extends Controller
         $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
         $kelas=$datasiswa->kelas->nama;
         $filterkelas=Fungsi::filterkelas($kelas);
-        return view('pages.bk.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','filterkelas','datasiswa'));
+        $iskelas9='bukan';
+        if(strpos($kelas,9) !== false || strpos($kelas,"IX") !== false){
+            $iskelas9='ya';
+         }
+         $id=sekolah::where('id',$id)->first();
+        // return view('pages.bk.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','filterkelas','datasiswa','iskelas9'));
+        return view('pages.admin.sekolah.pages.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','filterkelas','datasiswa','iskelas9'));
     }
     public function sertifikat_lihatapi(sekolah $id,siswa $siswa,Request $request)
     {
