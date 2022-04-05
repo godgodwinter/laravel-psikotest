@@ -7,7 +7,9 @@
 <li {{ $pages == 'sertifikat' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.hasilpsikologi.sertifikat_lihat') }}"><i class="far fa-star"></i>
         <span>Sertifikat</span></a></li>
-
+<li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
+        href="{{ route('siswa.hasilpsikologi.penjelasan_faktorkepribadian') }}"><i class="fas fa-info-circle"></i>
+            <span>Pengertian Karakter Positif</span></a></li>
 <li {{ $pages == 'catatankasus' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.catatankasus') }}"><i class="fas fa-clipboard"></i> <span>Catatan Kasus siswa</span></a>
 </li>
@@ -30,6 +32,4 @@
 <li {{ $pages == 'siswa-informasipsikologi' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.informasipsikologi') }}"><i class="fas fa-info-circle"></i>
         <span>Buletin Psikologi</span></a></li>
-<li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
-        href="{{ route('siswa.hasilpsikologi.penjelasan_faktorkepribadian') }}"><i class="fas fa-info-circle"></i>
-        <span>Pengertian Karakter Positif</span></a></li>
+

@@ -17,7 +17,8 @@
 
 <li {{$pages=='informasipsikologi' ? 'class=active' : ''}}><a href="{{route('informasipsikologi')}}"
         class="nav-link "> <i class="fas fa-info-circle"></i> <span>Buletin Psikologi</span> </a></li>
-
+<li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
+        href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Pengertian Karakter Positif</span></a></li>
 <li {{$pages=='masternilaipsikologi' ? 'class=active' : ''}}><a href="{{route('masternilaipsikologi')}}"
         class="nav-link "> <i class="fas fa-archway"></i> <span>Master Nilai Psikologi</span> </a></li>
 <li {{$pages=='minatbakat' ? 'class=active' : ''}}><a href="{{route('minatbakat')}}" class="nav-link "> <i
