@@ -27,8 +27,8 @@
             class="fas fa-user-shield"></i> <span>Administrator</span></a></li>
 
 <li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
-        href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Penjelasan Faktor
-            Kepribadian</span></a></li>
+        href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Pengertian
+            Karakter Positif</span></a></li>
 {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li>
 <li {{$pages=='example' ? 'class=active' : ''}}><a class="nav-link" href="{{route('testing.grafik')}}"><i
             class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li> --}}

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Penjelasan Faktor Kepribadian
+    Pengertian Karakter Positif
 @endsection
 
 @push('before-script')
@@ -67,8 +67,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                                <th>Nama</th>
-                                <th class="text-center">Kategori</th>
+                                <th>Nama Karakter </th>
+                                <th class="text-center">Pemahaman dan Pengertian</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -80,10 +80,10 @@
                                             value="{{ $data->id }}">
                                         {{ $loop->index + 1 + ($datas->currentPage() - 1) * $datas->perPage() }}
                                     </td>
-                                    <td> {{ Str::limit($data->namakarakter, 25, ' ...') }}
+                                    <td> {{ Str::limit($data->namakarakter, 100, ' ...') }}
                                     </td>
-                                    <td class="text-center">
-                                        {{ Str::limit($data->pemahaman, 25, ' ...') }}
+                                    <td class="text-left">
+                                        {{ Str::limit($data->pemahaman, 100, ' ...') }}
                                     </td>
 
                                     <td class="text-center babeng-min-row">

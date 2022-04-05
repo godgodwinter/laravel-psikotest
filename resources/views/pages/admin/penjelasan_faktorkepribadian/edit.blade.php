@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Penjelasan Faktor Kepribadian
+    Pengertian Karakter Positif
 @endsection
 
 @push('before-script')
