@@ -142,7 +142,9 @@ asdasd
                                 <td>
                                     <x-button-detail link="/admin/{{ $pages }}/{{$data->id}}/detail" text="{{Str::limit($data->nama,25,' ...')}}"/>
                                 </td>
-                                <td>{{Str::limit($data->alamat,25,' ...')}}</td>
+                                {{-- <td>{{Str::limit($data->alamat,25,' ...')}}</td> --}}
+                                <td>{{$data->alamat?substr($data->alamat, 0, 25) . '...':''}}</td>
+                                {{-- <td>{{substr($data->alamat, 0, 25) . '...'}}</td> --}}
                                 <td class="text-center">
                                     @php
                                         if($data->status=='Aktif'){
