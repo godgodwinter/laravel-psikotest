@@ -299,4 +299,21 @@ class adminhasilpsikologicontroller extends Controller
         dd('cetak Sertifikat');
     }
 
+    public function penjelasan_faktorkepribadian(sekolah $id,siswa $siswa,Request $request)
+    {
+        $getdatasertifikat=apiprobk_sertifikat::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='penjelasan_faktorkepribadian';
+        $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+        // return view('pages.siswa.hasilpsikologi.sertifikat',compact('pages','id','getdatasertifikat','datasiswa'));
+        $kelas=$datasiswa->kelas->nama;
+        // $kelasangka=Fungsi::getkelasangka($kelas);
+        $filterkelas=Fungsi::filterkelas($kelas);
+        // dd(Fungsi::filterkelas($kelas));
+        $iskelas9='bukan';
+        if(strpos($kelas,9) !== false || strpos($kelas,"IX") !== false){
+            $iskelas9='ya';
+         }
+        return view('pages.admin.sekolah.pages.hasilpsikologi.penjelasan_faktorkepribadian',compact('pages','id','getdatasertifikat','datasiswa','filterkelas','kelas','iskelas9'));
+     }
+
 }
