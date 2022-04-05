@@ -2,9 +2,9 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
-                paging: false,
-                info: false,
-                searching: false,
+                paging: true,
+                info: true,
+                searching: true,
             });
         });
     </script>

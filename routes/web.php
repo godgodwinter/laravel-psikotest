@@ -20,6 +20,7 @@ use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminminatbakatcontroller;
 use App\Http\Controllers\adminpenggunacontroller;
+use App\Http\Controllers\adminpenjelasanfaktorkepribadiancontroller;
 use App\Http\Controllers\adminpenjurusancontroller;
 use App\Http\Controllers\adminreferensicontroller;
 use App\Http\Controllers\adminseedercontroller;
@@ -373,8 +374,15 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::delete('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'destroy'])->name('minatbakat.destroy');
       Route::delete('/admin/minatbakat', [adminminatbakatcontroller::class, 'multidel'])->name('minatbakat.multidel');
 
-
-
+      //penjelasanfaktorkepribadian
+      Route::get('/admin/penjelasanfaktorkepribadian', [adminpenjelasanfaktorkepribadiancontroller::class, 'index'])->name('penjelasanfaktorkepribadian');
+      Route::get('/admin/penjelasanfaktorkepribadian/create', [adminpenjelasanfaktorkepribadiancontroller::class, 'create'])->name('penjelasanfaktorkepribadian.create');
+      Route::post('/admin/penjelasanfaktorkepribadian/create', [adminpenjelasanfaktorkepribadiancontroller::class, 'store'])->name('penjelasanfaktorkepribadian.store');
+      Route::get('/admin/penjelasanfaktorkepribadian/cari', [adminpenjelasanfaktorkepribadiancontroller::class, 'cari'])->name('penjelasanfaktorkepribadian.cari');
+      Route::get('/admin/penjelasanfaktorkepribadian/{data}', [adminpenjelasanfaktorkepribadiancontroller::class, 'edit'])->name('penjelasanfaktorkepribadian.edit');
+      Route::put('/admin/penjelasanfaktorkepribadian/{data}', [adminpenjelasanfaktorkepribadiancontroller::class, 'update'])->name('penjelasanfaktorkepribadian.update');
+      Route::delete('/admin/penjelasanfaktorkepribadian/{data}', [adminpenjelasanfaktorkepribadiancontroller::class, 'destroy'])->name('penjelasanfaktorkepribadian.destroy');
+      Route::delete('/admin/penjelasanfaktorkepribadian', [adminpenjelasanfaktorkepribadiancontroller::class, 'multidel'])->name('penjelasanfaktorkepribadian.multidel');
 
       //masternilaibidangstudi
       Route::get('/admin/sekolah/{id}/masternilaibidangstudi', [adminmasternilaibidangstudicontroller::class, 'index'])->name('sekolah.masternilaibidangstudi');

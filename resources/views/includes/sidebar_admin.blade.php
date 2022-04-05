@@ -1,33 +1,37 @@
-<li {{$pages=='dashboard' ? 'class=active' : ''}}><a class="nav-link" href="{{route('dashboard')}}"><i
+<li {{ $pages == 'dashboard' ? 'class=active' : '' }}><a class="nav-link" href="{{ route('dashboard') }}"><i
             class="fas fa-home"></i> <span>Dashboard</span></a></li>
-<li {{$pages=='settings' ? 'class=active' : ''}}><a class="nav-link" href="{{route('settings')}}"><i
+<li {{ $pages == 'settings' ? 'class=active' : '' }}><a class="nav-link" href="{{ route('settings') }}"><i
             class="fas fa-cog"></i> <span>Pengaturan</span></a>
 <li class="menu-header">Menu</li>
 
-<li {{$pages=='sekolah' ? 'class=active' : ''}}><a class="nav-link" href="{{route('sekolah')}}"><i
+<li {{ $pages == 'sekolah' ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sekolah') }}"><i
             class="fas fa-school"></i> <span>Sekolah</span></a></li>
-<li {{$pages=='yayasan' ? 'class=active' : ''}}><a href="{{route('yayasan')}}"
-        class="nav-link "> <i class="far fa-address-card"></i> <span>Yayasan/Dinas</span> </a></li>
+<li {{ $pages == 'yayasan' ? 'class=active' : '' }}><a href="{{ route('yayasan') }}" class="nav-link "> <i
+            class="far fa-address-card"></i> <span>Yayasan/Dinas</span> </a></li>
 
-<li {{$pages=='klasifikasijabatan' ? 'class=active' : ''}}><a href="{{route('klasifikasijabatan')}}"
+<li {{ $pages == 'klasifikasijabatan' ? 'class=active' : '' }}><a href="{{ route('klasifikasijabatan') }}"
         class="nav-link "> <i class="far fa-address-card"></i> <span>Klasifikasi Akademis & Profesi</span> </a></li>
 
-<li {{$pages=='referensi' ? 'class=active' : ''}}><a href="{{route('referensi')}}" class="nav-link "> <i
-            class="fas fa-greater-than-equal"></i> <span>Referensi Studi & Kerja</span> </a></li>
+<li {{ $pages == 'referensi' ? 'class=active' : '' }}><a href="{{ route('referensi') }}" class="nav-link ">
+        <i class="fas fa-greater-than-equal"></i> <span>Referensi Studi & Kerja</span> </a></li>
 
-<li {{$pages=='informasipsikologi' ? 'class=active' : ''}}><a href="{{route('informasipsikologi')}}"
+<li {{ $pages == 'informasipsikologi' ? 'class=active' : '' }}><a href="{{ route('informasipsikologi') }}"
         class="nav-link "> <i class="fas fa-info-circle"></i> <span>Buletin Psikologi</span> </a></li>
 
-<li {{$pages=='masternilaipsikologi' ? 'class=active' : ''}}><a href="{{route('masternilaipsikologi')}}"
+<li {{ $pages == 'masternilaipsikologi' ? 'class=active' : '' }}><a href="{{ route('masternilaipsikologi') }}"
         class="nav-link "> <i class="fas fa-archway"></i> <span>Master Nilai Psikologi</span> </a></li>
-<li {{$pages=='minatbakat' ? 'class=active' : ''}}><a href="{{route('minatbakat')}}" class="nav-link "> <i
-            class="fas fa-air-freshener"></i> <span>Minat Bakat </span> </a></li>
+<li {{ $pages == 'minatbakat' ? 'class=active' : '' }}><a href="{{ route('minatbakat') }}" class="nav-link ">
+        <i class="fas fa-air-freshener"></i> <span>Minat Bakat </span> </a></li>
 
-<li {{$pages=='users' ? 'class=active' : ''}}><a class="nav-link" href="{{route('users')}}"><i
+<li {{ $pages == 'users' ? 'class=active' : '' }}><a class="nav-link" href="{{ route('users') }}"><i
             class="fas fa-user-shield"></i> <span>Administrator</span></a></li>
+
+<li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
+        href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Penjelasan Faktor
+            Kepribadian</span></a></li>
 {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li>
 <li {{$pages=='example' ? 'class=active' : ''}}><a class="nav-link" href="{{route('testing.grafik')}}"><i
-            class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li>--}}
+            class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li> --}}
 {{-- <li class="nav-item dropdown ">
     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-school"></i>
         <span>Sekolah</span></a>
