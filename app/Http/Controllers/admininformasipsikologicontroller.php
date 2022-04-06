@@ -44,7 +44,7 @@ class admininformasipsikologicontroller extends Controller
         $request->validate([
             'nama'=>'required',
             'tipe'=>'required',
-            'file' => 'max:2000|mimes:pdf,png,jpeg,xml,xlsx,xls,docx,doc', //1MB
+            'file' => 'max:5000|mimes:pdf,png,jpeg,xml,xlsx,xls,docx,doc', //5MB
         ],
         [
             'nama.required'=>'Nama Harus diisi',
@@ -120,7 +120,7 @@ class admininformasipsikologicontroller extends Controller
             $request->validate([
                 'nama'=>'required',
                 'tipe'=>'required',
-                'file' => 'max:2000|mimes:pdf,png,jpeg,xml,xlsx,xls,docx,doc', //1MB
+                'file' => 'max:5000|mimes:pdf,png,jpeg,xml,xlsx,xls,docx,doc', //5MB
             ],
             [
                 'nama.required'=>'Nama Harus diisi',
