@@ -22,6 +22,12 @@ Beranda
             </div>
             </div>
 
+            <div class="mlaku">
+              <div class="section-header-mlaku">
+                <marquee><h4>	Tiada yang boleh mengancam diri Anda selain pemberontakan untuk menghasilkan sesuatu yang lebih dari sekarang</h4></marquee>
+              </div>
+            </div>
+
             <div class="section-body">
             <h2 class="section-title">Beranda</h2>
             <p class="section-lead">Halaman awal setelah login.</p>

@@ -52,6 +52,7 @@ use App\Http\Controllers\bkinputminatbakatcontroller;
 use App\Http\Controllers\bkklasifikasijabatancontroller;
 use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
+use App\Http\Controllers\katabijakcontroller;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\profilecontroller;
 use App\Http\Controllers\prosescontroller;
@@ -398,6 +399,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'update'])->name('sekolah.masternilaibidangstudi.update');
       Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
       Route::delete('/admin/sekolah/{id}/masternilaibidangstudi/{data}', [adminmasternilaibidangstudicontroller::class, 'destroy'])->name('sekolah.masternilaibidangstudi.destroy');
+
+      //katabijak
+      Route::get('/admin/menukatabijak', [katabijakcontroller::class, 'index'])->name('katabijak');
+      Route::get('/admin/menukatabijak/create', [katabijakcontroller::class, 'create'])->name('katabijak.create');
+      Route::post('/admin/menukatabijak/create', [katabijakcontroller::class, 'store'])->name('katabijak.store');
+      Route::get('/admin/menukatabijak/cari', [katabijakcontroller::class, 'cari'])->name('katabijak.cari');
+      Route::get('/admin/menukatabijak/{data}', [katabijakcontroller::class, 'edit'])->name('katabijak.edit');
+      Route::put('/admin/menukatabijak/{data}', [katabijakcontroller::class, 'update'])->name('katabijak.update');
+      Route::delete('/admin/menukatabijak/{data}', [katabijakcontroller::class, 'destroy'])->name('katabijak.destroy');
+      Route::delete('/admin/menukatabijak', [katabijakcontroller::class, 'multidel'])->name('katabijak.multidel');
 
 
         // Proses

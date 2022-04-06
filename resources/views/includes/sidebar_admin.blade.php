@@ -29,6 +29,10 @@
 <li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Pengertian
             Karakter Positif</span></a></li>
+
+<li {{ $pages == 'katabijak' ? 'class=active' : '' }}><a class="nav-link"
+        href="{{ route('katabijak') }}"><i class="fas fa-user-shield"></i> <span>Kata-kata Bijak</span></a></li>
+
 {{-- <li><a class="nav-link" href="#"><i class="fas fa-chart-area"></i> <span>Analisa</span></a></li>
 <li {{$pages=='example' ? 'class=active' : ''}}><a class="nav-link" href="{{route('testing.grafik')}}"><i
             class="fas fa-chart-area"></i> <span>Testing Grafik</span></a></li> --}}
