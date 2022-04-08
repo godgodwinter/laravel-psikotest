@@ -64,16 +64,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
         $cek=DB::table('penjelasan_faktorkepribadian')->whereNull('deleted_at')->where('namakarakter',$request->namakarakter)
         ->count();
         // dd($cek);
-            if($cek>0){
-                    $request->validate([
-                    'namakarakter'=>'required|unique:penjelasan_faktorkepribadian,namakarakter',
-
-                    ],
-                    [
-                        'namakarakter.unique'=>'Nama sudah digunakan',
-                    ]);
-
-            }
+           
 
             $request->validate([
                 'namakarakter'=>'required',
@@ -108,17 +99,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
     }
     public function update(penjelasan_faktorkepribadian $data,Request $request)
     {
-        // dd($request);
-        if($request->namakarakter!==$data->namakarakter){
-
-            $request->validate([
-                'namakarakter' => "required|unique:penjelasan_faktorkepribadian,namakarakter,".$request->namakarakter,
-            ],
-            [
-                'namakarakter.unique'=>'Nama sudah digunakan',
-            ]);
-        }
-
+       
 
         $request->validate([
             'namakarakter'=>'required',
