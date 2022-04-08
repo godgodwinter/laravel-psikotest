@@ -1,7 +1,7 @@
 
 
-  
-  
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
   <script>
@@ -16,14 +16,14 @@ anime.timeline({loop: true})
     translateZ: 0,
     opacity: [0,1],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 12000,
     delay: (el, i) => 500 + 30 * i
   }).add({
     targets: '.ml12 .letter',
     translateX: [0,-30],
     opacity: [1,0],
     easing: "easeInExpo",
-    duration: 1100,
+    duration: 18000,
     delay: (el, i) => 100 + 30 * i
   });
 
