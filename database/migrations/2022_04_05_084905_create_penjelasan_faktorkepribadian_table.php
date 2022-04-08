@@ -19,7 +19,7 @@ class CreatePenjelasanFaktorkepribadianTable extends Migration
             $table->text('pemahaman');
             $table->text('pembiasaansikap');
             $table->text('tujuandanmanfaat');
-            $table->text('tipekarakter'); //positif/negatif
+            $table->text('tipekarakter')->nullable(); //positif/negatif
             $table->softDeletes();
             $table->timestamps();
         });
