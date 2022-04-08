@@ -91,7 +91,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
                    'pemahaman'     =>   $request->pemahaman,
                    'pembiasaansikap'     =>   $request->pembiasaansikap,
                    'tujuandanmanfaat'     =>   $request->tujuandanmanfaat,
-                   'tipekarakter'     =>   $request->tipekarakter,
+                   'tipekarakter'     =>  $request->tipekarakter?$request->tipekarakter:'Positif',
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
@@ -133,7 +133,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
             'pemahaman'     =>   $request->pemahaman,
             'pembiasaansikap'     =>   $request->pembiasaansikap,
             'tujuandanmanfaat'     =>   $request->tujuandanmanfaat,
-            'tipekarakter'     =>   $request->tipekarakter,
+            'tipekarakter'     =>   $request->tipekarakter?$request->tipekarakter:'Positif',
 
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
