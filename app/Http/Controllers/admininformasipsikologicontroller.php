@@ -41,6 +41,7 @@ class admininformasipsikologicontroller extends Controller
 
     public function store(Request $request)
     {
+        ini_set('max_execution_time', 3000);
         $request->validate([
             'nama'=>'required',
             'tipe'=>'required',
@@ -115,6 +116,7 @@ class admininformasipsikologicontroller extends Controller
     }
     public function update(informasipsikologi $data,Request $request)
     {
+        ini_set('max_execution_time', 3000);
         // dd($request);
         if($request->file!=null){
             $request->validate([
