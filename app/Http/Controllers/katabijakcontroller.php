@@ -180,4 +180,17 @@ public function multidel(Request $request)
 
     return view('katabijak.index',compact('pages','request','datas'));
 }
+
+public function mlaku(){
+    $pages='katabijak';
+    $datas=katabijak::whereNull('deleted_at')
+           ->where('id','6')
+           ->first();
+    $count=katabijak::count();
+    foreach($datas as $data){
+        $judul=$data->judul;
+        $penjelasan=$data->penjelasan;
+    }
+    return view('layouts.default',compact('pages','datas'));
+}
 }

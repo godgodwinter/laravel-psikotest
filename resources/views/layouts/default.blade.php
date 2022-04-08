@@ -69,6 +69,20 @@
 
       <!-- Main Content -->
       <div class="main-content">
+        <div class="section">
+        <div class="mlaku">
+              <div class="section-header-mlaku">
+                <marquee><h4>	
+                @php
+                  $datas=DB::table('katabijak')->where('judul', 'Tertawa')->first();
+                @endphp
+                @foreach($datas as $aa)
+                  {{ $aa->penjelasan }}
+                @endforeach
+                </h4></marquee>
+              </div>
+            </div>
+        </div>
         @yield('content')
         @yield('containermodal')
       </div>
