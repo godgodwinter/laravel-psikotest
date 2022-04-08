@@ -4,8 +4,8 @@
     <h1 class="ml12">
         <span class="text-wrapper">
             @php
-                $getCount=\App\Models\katabijak::count();
-                $item=\App\Models\katabijak::get();
+                $getCount=\App\Models\katabijak::where('status','Ditampilkan')->count();
+                $item=\App\Models\katabijak::where('status','Ditampilkan')->get();
                 $getTgl=date('d');
                 $hasilbagi=($getTgl%$getCount);
                 if($hasilbagi==0)
