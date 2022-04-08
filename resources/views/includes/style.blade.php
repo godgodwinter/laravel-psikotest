@@ -29,24 +29,16 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
-  .ml6 {
-      position: relative;
-      font-weight: 600;
-      font-size: 1.3em;
-  }
+.ml12 {
+  font-weight: 600;
+  font-size: 0.8em;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.5em;
+}
 
-  .ml6 .text-wrapper {
-      position: relative;
-      display: inline-block;
-      padding-top: 0.2em;
-      padding-right: 0.05em;
-      padding-bottom: 0.1em;
-      overflow: hidden;
-  }
-
-  .ml6 .letter {
-      display: inline-block;
-      line-height: 1em;
-  }
+.ml12 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
 
 </style>
