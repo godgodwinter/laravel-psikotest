@@ -20,16 +20,20 @@
 
 <body>
   <div id="app">
+    
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
-      <nav class="navbar navbar-expand-lg main-navbar">
+      <nav class="navbar navbar-expand-lg main-navbar position-fixed bg-primary">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+            {{-- <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li> --}}
           </ul>
         </form>
-        <ul class="navbar-nav navbar-right">
+        
+      @include('includes.katabijakfixed')
+      
+        <ul class="navbar-nav navbar-right  ml-auto">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('/') }}assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()!=null?Auth::user()->name:'' }}</div></a>
@@ -69,8 +73,8 @@
 
       <!-- Main Content -->
       <div class="main-content">
-        <div class="section">
-        <div class="mlaku">
+        {{-- <div class="section"> --}}
+        {{-- <div class="mlaku">
               <div class="section-header-mlaku">
                 <marquee><h4>	
                 @php
@@ -81,8 +85,8 @@
                 @endforeach
                 </h4></marquee>
               </div>
-            </div>
-        </div>
+            </div> --}}
+        {{-- </div> --}}
         @yield('content')
         @yield('containermodal')
       </div>

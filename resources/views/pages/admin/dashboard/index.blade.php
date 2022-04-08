@@ -30,6 +30,63 @@ Beranda
             <div class="card">
                 <div class="card-header">
                 <h4>Data Web BK</h4>
+
+                {{-- <h1 class="ml6">
+                  <span class="text-wrapper">
+                    <span class="letters">Beautiful Questions</span>
+                  </span>
+                </h1>
+        
+        
+        @push('before-script')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+          <script>
+        var textWrapper = document.querySelector('.ml6 .letters');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        
+        anime.timeline({loop: true})
+        .add({
+        targets: '.ml6 .letter',
+        translateY: ["1.1em", 0],
+        translateZ: 0,
+        duration: 750,
+        delay: (el, i) => 50 * i
+        }).add({
+        targets: '.ml6',
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 1000
+        });
+          </script>
+        @endpush
+        
+        
+        
+        @push('after-style')
+        <style>
+        
+        .ml6 {
+          position: relative;
+          font-weight: 900;
+          font-size: 3.3em;
+        }
+        
+        .ml6 .text-wrapper {
+          position: relative;
+          display: inline-block;
+          padding-top: 0.2em;
+          padding-right: 0.05em;
+          padding-bottom: 0.1em;
+          overflow: hidden;
+        }
+        
+        .ml6 .letter {
+          display: inline-block;
+          line-height: 1em;
+        }
+        </style>
+        @endpush --}}
                 </div>
                 <div class="card-body">
                     <div class="row">
