@@ -86,6 +86,30 @@
 
                     @push('before-script')
                         <script>
+                            function singkatan(item = 99) {
+                                hasil = "Cukup";
+                                if (item > 90) {
+                                    hasil = "Sangat Tinggi Sekali / Sangat Mengganggu Sekali";
+                                } else if ((91 > item) && (item >= 81)) {
+                                    hasil = "Tinggi Sekali / Mengganggu Sekali (TS)";
+                                } else if ((81 > item) && (item >= 71)) {
+                                    hasil = "Tinggi / Mengganggu";
+                                } else if ((71 > item) && (item >= 61)) {
+                                    hasil = "Cukup Tinggi / Cukup Mengganggu";
+                                } else if ((61 > item) && (item >= 41)) {
+                                    hasil = "Cukup / Terkendali ";
+                                } else if ((41 > item) && (item >= 31)) {
+                                    hasil = "Agak Rendah / Cukup Terkendali ";
+                                } else if ((31 > item) && (item >= 21)) {
+                                    hasil = "Rendah / Terkendali Baik ";
+                                } else if ((21 > item) && (item >= 11)) {
+                                    hasil = "Rendah Sekali / Terkendali Baik Sekali";
+
+                                } else {
+                                    hasil = "Sangat Rendah Sekali / Sangan Terkendali Baik Sekali ";
+                                }
+                                return hasil;
+                            }
                             //deklar var
                             var formCetak = [];
                             var jmlData = {{ count($masterdeteksi) }};
@@ -130,7 +154,7 @@
                                             let showTampilkanData = ``;
                                             for (i = 0; i < jmlTampilkanData; i++) {
                                                 showTampilkanData += `<div class="card-header">
-                        <h4>${i+1}.  ${tampilkanData[i].nama} - ${tampilkanData[i].score} % - ${tampilkanData[i].keterangan}</h4>
+                        <h4>${i+1}.  ${tampilkanData[i].nama} - ${tampilkanData[i].score} % - ${singkatan(tampilkanData[i].score)}</h4>
                     </div>`;
                                                 showTampilkanData += `<div class="card-body"><p>Keterangan</p></div>`;
                                             }
@@ -172,16 +196,16 @@
                                     @endforelse
                                 }
                                 createObjTampil().then(() => {
-                                    console.log(tampilkanData);
-                                    let jmlTampilkanData = tampilkanData.length;
-                                    let showTampilkanData = ``;
-                                    for (i = 0; i < jmlTampilkanData; i++) {
-                                        showTampilkanData += `<div class="card-header">
-                        <h4>${tampilkanData[i].nama}</h4>
-                    </div>`;
-                                    }
-                                    console.log(showTampilkanData);
-                                    document.getElementById('divTampilkanData').innerHTML = showTampilkanData;
+                                    //                         console.log(tampilkanData);
+                                    //                         let jmlTampilkanData = tampilkanData.length;
+                                    //                         let showTampilkanData = ``;
+                                    //                         //                 for (i = 0; i < jmlTampilkanData; i++) {
+                                    //                         //                     showTampilkanData += `<div class="card-header">
+            // //     <h4>${tampilkanData[i].nama}</h4>
+            // // </div>`;
+                                    //                         //                 }
+                                    //                         console.log(showTampilkanData);
+                                    //                         document.getElementById('divTampilkanData').innerHTML = showTampilkanData;
                                 });
 
                             });
