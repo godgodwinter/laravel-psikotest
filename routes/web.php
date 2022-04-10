@@ -19,6 +19,7 @@ use App\Http\Controllers\adminklasifikasijabatancontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminminatbakatcontroller;
+use App\Http\Controllers\adminpemecahanmasalahdeteksicontroller;
 use App\Http\Controllers\adminpenggunacontroller;
 use App\Http\Controllers\adminpenjelasanfaktorkepribadiancontroller;
 use App\Http\Controllers\adminpenjurusancontroller;
@@ -380,6 +381,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'update'])->name('minatbakat.update');
       Route::delete('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'destroy'])->name('minatbakat.destroy');
       Route::delete('/admin/minatbakat', [adminminatbakatcontroller::class, 'multidel'])->name('minatbakat.multidel');
+
+
+
+      //pemecahanmasalahdeteksi
+      Route::get('/admin/pemecahanmasalahdeteksi', [adminpemecahanmasalahdeteksicontroller::class, 'index'])->name('pemecahanmasalahdeteksi');
+      Route::get('/admin/pemecahanmasalahdeteksi/cari', [adminpemecahanmasalahdeteksicontroller::class, 'cari'])->name('pemecahanmasalahdeteksi.cari');
+      Route::get('/admin/pemecahanmasalahdeteksi/{data}', [adminpemecahanmasalahdeteksicontroller::class, 'edit'])->name('pemecahanmasalahdeteksi.edit');
+      Route::put('/admin/pemecahanmasalahdeteksi/{data}', [adminpemecahanmasalahdeteksicontroller::class, 'update'])->name('pemecahanmasalahdeteksi.update');
 
       //penjelasanfaktorkepribadian
       Route::get('/admin/penjelasanfaktorkepribadian', [adminpenjelasanfaktorkepribadiancontroller::class, 'index'])->name('penjelasanfaktorkepribadian');
