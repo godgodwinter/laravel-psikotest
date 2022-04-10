@@ -38,6 +38,18 @@ class yayasanhasilpsikologicontroller extends Controller
             $masterdeteksi=masterdeteksi::get();
         return view('pages.admin.sekolah.pages.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
     }
+    public function pemecahanmasalahdeteksi(sekolah $id,siswa $siswa,Request $request)
+    {
+        $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        foreach($getdatadeteksi as $item){
+            $datas[$item->kunci]=$item->isi;
+        }
+        $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='sekolah';
+            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+            $masterdeteksi=masterdeteksi::get();
+        return view('pages.admin.sekolah.pages.hasilpsikologi.pemecahanmasalahdeteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
+     }
     public function deteksi_cetak(Request $request)
     {
         dd('cetak deteksi',json_decode($request->data),$request);
