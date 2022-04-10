@@ -339,6 +339,23 @@ class bkhasilpsikologicontroller extends Controller
             $masterdeteksi=masterdeteksi::get();
         return view('pages.bk.hasilpsikologi.deteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
     }
+
+    public function pemecahanmasalahdeteksi(siswa $siswa,Request $request)
+    {
+        $users_id=Auth::user()->id;
+        $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
+        $id=$pengguna;
+        // dd($id);
+        $getdatadeteksi=apiprobk_deteksi::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        foreach($getdatadeteksi as $item){
+            $datas[$item->kunci]=$item->isi;
+        }
+        $deteksi_list=apiprobk_deteksi_list::where('apiprobk_id',$siswa->apiprobk_id)->get();
+        $pages='sekolah';
+            $datasiswa=siswa::with('sekolah')->where('id',$siswa->id)->first();
+            $masterdeteksi=masterdeteksi::get();
+        return view('pages.admin.sekolah.pages.hasilpsikologi.pemecahanmasalahdeteksi',compact('pages','id','datas','deteksi_list','datasiswa','masterdeteksi'));
+     }
     public function deteksi_cetak(Request $request)
     {
         dd('cetak deteksi',json_decode($request->data),$request);
