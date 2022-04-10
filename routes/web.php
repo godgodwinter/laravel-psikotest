@@ -239,7 +239,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
 // restapi
     Route::post('/admin/api/penjelasan_faktorkepribadian', [apihasilpsikologicontroller::class, 'penjelasan_faktorkepribadian_api'])->name('api.penjelasan_faktorkepribadian');
-
+    Route::post('/admin/api/pemecahanmasalah', [apihasilpsikologicontroller::class, 'deteksi_lihat_api_pemecahanmasalah'])->name('api.pemecahanmasalah');
     //export
     Route::get('/admin/datahasilpsikologi/{id}/export', [adminhasilpsikologicontroller::class, 'export'])->name('sekolah.hasilpsikologi.export');
     //import

@@ -140,15 +140,37 @@
                                     let data = await response.json();
                                     if (response.ok) {
                                         tempTampilkanData = {};
-                                        if (data.data.score > 54) {
+                                        if (data.data.score > 54.50) {
+
+                                            let batasatas = 70.00;
+                                            let batasbawah = 54.50;
                                             // console.log(data.data);
                                             tempTampilkanData['id'] = id;
                                             tempTampilkanData['nama'] = nama;
                                             tempTampilkanData['score'] = data.data.score;
                                             tempTampilkanData['rank'] = data.data.rank;
                                             tempTampilkanData['keterangan'] = data.data.keterangan;
+                                            tempTampilkanData['pemecahanmasalah'] = '';
 
+
+                                            // cari batasbawah dan atas
+                                            if (70.00 > data.data.score && data.data.score > 54.50) {
+                                                batasatas = 70.00;
+                                                batasbawah = 54.50;
+                                            } else if (80.00 > data.data.score && data.data.score > 71.00) {
+                                                batasatas = 80.00;
+                                                batasbawah = 71.00;
+                                            } else {
+                                                batasatas = 99.00;
+                                                batasbawah = 81.00;
+                                            }
+                                            // console.log(batasatas);
+                                            // console.log(batasbawah);
+                                            // callfungtiongetKEterangan (id,batasatas,batasbawah)
+                                            getKetPemecahanmasalah(id, batasatas, batasbawah);
                                             tampilkanData.push(tempTampilkanData);
+
+
 
                                             let jmlTampilkanData = tampilkanData.length;
                                             let showTampilkanData = ``;
@@ -156,7 +178,8 @@
                                                 showTampilkanData += `<div class="card-header">
                         <h4>${i+1}.  ${tampilkanData[i].nama} - ${tampilkanData[i].score} % - ${singkatan(tampilkanData[i].score)}</h4>
                     </div>`;
-                                                showTampilkanData += `<div class="card-body"><p>Keterangan</p></div>`;
+                                                showTampilkanData +=
+                                                    `<div class="card-body"><div id="keterangan_${tampilkanData[i].id}">${tampilkanData[i].pemecahanmasalah}</div></div>`;
                                             }
                                             document.getElementById('divTampilkanData').innerHTML = showTampilkanData;
                                         }
@@ -172,7 +195,7 @@
                                         //  $("#btnCetak").prop('disabled', false);
                                         $("#btnCetak").text('Data Berhasil dimuat');
                                         $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
-                                        $("#btnCetak").title('Data Berhasil dimuat');
+                                        // $("#btnCetak").title('Data Berhasil dimuat');
                                     }
                                 })();
                             }
@@ -183,6 +206,35 @@
 
                             function setGraph(id = null, isi = null) {
                                 $("#" + id).width(isi + "%");
+                            }
+
+                            function getKetPemecahanmasalah(id = null, batasatas = null, batasbawah = null) {
+                                (async () => {
+                                    const requestOptions = {
+                                        method: 'POST',
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Accept": "application/json",
+                                            "X-Requested-With": "XMLHttpRequest",
+                                            "X-CSRF-Token": $('input[name="_token"]').val()
+                                        },
+                                        body: JSON.stringify({
+                                            id: id,
+                                            batasatas: batasatas,
+                                            batasbawah: batasbawah,
+                                        })
+                                    };
+                                    const response = await fetch("{{ route('api.pemecahanmasalah') }}",
+                                        requestOptions);
+                                    let data = await response.json();
+                                    if (response.ok) {
+                                        // console.log(data.data);
+                                        document.getElementById(`keterangan_${id}`).innerHTML = data.data;
+
+                                    } else {
+                                        console.log('error!');
+                                    }
+                                })();
                             }
                         </script>
 
