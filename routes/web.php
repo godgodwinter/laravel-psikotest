@@ -230,13 +230,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
     Route::post('/admin/api/deteksi_lihat_api/{siswa}', [apihasilpsikologicontroller::class, 'deteksi_lihat_api'])->name('api.deteksi_lihat_api');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [adminhasilpsikologicontroller::class, 'deteksi_lihat'])->name('sekolah.hasilpsikologi.deteksi_lihat');
-    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/pemecahanmasalahdeteksi', [adminhasilpsikologicontroller::class, 'pemecahanmasalahdeteksi'])->name('sekolah.hasilpsikologi.pemecahanmasalahdeteksi');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [adminhasilpsikologicontroller::class, 'deteksi_cetak'])->name('sekolah.hasilpsikologi.deteksi_cetak');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihat', [adminhasilpsikologicontroller::class, 'sertifikat_lihat'])->name('sekolah.hasilpsikologi.sertifikat_lihat');
     Route::post('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihatapi', [apihasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('sekolah.hasilpsikologi.sertifikat_lihatapi');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_cetak', [adminhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('sekolah.hasilpsikologi.sertifikat_cetak');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/penjelasan_faktorkepribadian', [adminhasilpsikologicontroller::class, 'penjelasan_faktorkepribadian'])->name('sekolah.hasilpsikologi.penjelasan_faktorkepribadian');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/pemecahanmasalahdeteksi', [adminhasilpsikologicontroller::class, 'pemecahanmasalahdeteksi'])->name('sekolah.hasilpsikologi.pemecahanmasalahdeteksi');
 
+    
 // restapi
     Route::post('/admin/api/penjelasan_faktorkepribadian', [apihasilpsikologicontroller::class, 'penjelasan_faktorkepribadian_api'])->name('api.penjelasan_faktorkepribadian');
     Route::post('/admin/api/pemecahanmasalah', [apihasilpsikologicontroller::class, 'deteksi_lihat_api_pemecahanmasalah'])->name('api.pemecahanmasalah');
