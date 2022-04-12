@@ -29,7 +29,7 @@ Kata-kata Bijak
                 <h5>Tambah</h5>
             </div>
             <div class="card-body">
-           <form id="setting-form" method="POST" action="{{route('katabijak.update',[$data->id])}}" enctype="multipart/form-data">
+           <form id="setting-form" method="POST" action="{{route('katabijakdetail.update',[$katas->id,$data->id])}}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="card" id="settings-card">
@@ -41,39 +41,18 @@ Kata-kata Bijak
 
                 
                 <div class="form-group row align-items-center">
-                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Judul </label>
+                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Penjelasan </label>
                             <div class="col-sm-6 col-md-9">
 
                             
-                              <textarea  class="form-control" style=" min-width:500px; max-width:100%;min-height:50px;height:100%;width:100%;" name="judul" required rows="5" cols="50">{{old('judul')!=null ? old('judul') : $data->judul}}</textarea>
-                              @error('judul')<div class="invalid-feedback"> {{$message}}</div>
+                              <textarea  class="form-control" style=" min-width:500px; max-width:100%;min-height:50px;height:100%;width:100%;" name="penjelasan" required rows="5" cols="50">{{old('penjelasan')!=null ? old('penjelasan') : $data->penjelasan}}</textarea>
+                              @error('penjelasan')<div class="invalid-feedback"> {{$message}}</div>
                               @enderror
 
                             </div>
                           </div>
                 
-                          <div class="form-group row align-items-center">
-                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Status </label>
-                            <div class="col-sm-6 col-md-9">
-
-                                <select class="form-control @error('status') is-invalid @enderror" name="status"  required id="statusselect">
-                                    <option disabled selected value=""> Pilih status</option>
-                                    @if (old('jenis'))
-                                      <option selected>{{old('status')}}</option>
-                                    @else
-                                      <option selected>{{$data->status}}</option>
-                                    @endif
-                                    <option>Ditampilkan</option>
-                                    <option>Sembunyikan</option>
-
-                                </select>
-
-                                  @error('status')<div class="invalid-feedback"> {{$message}}</div>
-                                  @enderror
-
-                            </div>
-                          </div>
-
+                          <input type="text" name="judul" value="" readonly>
                 <div class="form-group row align-items-center" id="inputan">
 
                 </div>

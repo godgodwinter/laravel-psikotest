@@ -53,6 +53,7 @@ use App\Http\Controllers\bkklasifikasijabatancontroller;
 use App\Http\Controllers\bkpenjurusancontroller;
 use App\Http\Controllers\bksettingpenggunacontroller;
 use App\Http\Controllers\katabijakcontroller;
+use App\Http\Controllers\katabijakdetailcontroller;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\profilecontroller;
 use App\Http\Controllers\prosescontroller;
@@ -409,6 +410,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/menukatabijak/{data}', [katabijakcontroller::class, 'update'])->name('katabijak.update');
       Route::delete('/admin/menukatabijak/{data}', [katabijakcontroller::class, 'destroy'])->name('katabijak.destroy');
       Route::delete('/admin/menukatabijak', [katabijakcontroller::class, 'multidel'])->name('katabijak.multidel');
+
+      //katabijakdetail
+      Route::get('/admin/kabi/{katas}/menukatabijak_detail', [katabijakdetailcontroller::class, 'index'])->name('katabijakdetail');
+      Route::get('/admin/kabi/{katas}/menukatabijak_detail/create', [katabijakdetailcontroller::class, 'create'])->name('katabijakdetail.create');
+      Route::post('/admin/kabi/{katas}/menukatabijak_detail/create', [katabijakdetailcontroller::class, 'store'])->name('katabijakdetail.store');
+      Route::get('/admin/kabi/{katas}/menukatabijak_detail/cari', [katabijakdetailcontroller::class, 'cari'])->name('katabijakdetail.cari');
+      Route::get('/admin/kabi/{katas}/menukatabijak_detail/edit/{data}', [katabijakdetailcontroller::class, 'edit'])->name('katabijakdetail.edit');
+      Route::put('/admin/kabi/{katas}/menukatabijak_detail/{data}', [katabijakdetailcontroller::class, 'update'])->name('katabijakdetail.update');
+      Route::delete('/admin/menukatabijak/{katas}/detail/{data}', [katabijakdetailcontroller::class, 'destroy'])->name('katabijakdetail.destroy');
+      Route::delete('/admin/menukatabijak_detail', [katabijakdetailcontroller::class, 'multidel'])->name('katabijakdetail.multidel');
 
 
         // Proses

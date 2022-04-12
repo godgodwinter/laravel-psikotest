@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Kata-kata Bijak
+Penjelasan Kata-kata Bijak
 @endsection
 
 @push('before-script')
@@ -52,7 +52,7 @@ Kata-kata Bijak
                         </div>
                     <div class="ml-auto p-2 bd-highlight">
 
-                            <a href="{{route('katabijak.create')}}" type="submit" value="Import"
+                    <a href="{{route('katabijakdetail.create',$katas->id)}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
                             {{-- <button type="button" class="btn btn-icon btn-primary btn-sm ml-0 ml-sm-0"
@@ -67,18 +67,19 @@ Kata-kata Bijak
                     </div>
                 </div>
 
-                <x-jsmultidel link="{{route('katabijak.multidel')}}" />
+                <x-jsmultidel link="{{route('katabijakdetail.multidel',$id->id)}}" />
                 @if($datas->count()>0)
                     <x-jsdatatable/>
                 @endif
-
+                Penjelasan dari Judul : 
                 <table id="example" class="table table-striped table-bordered mt-1 table-sm" style="width:100%">
                     <thead>
                         <tr>
                             <th class="text-center babeng-min-row"> <input type="checkbox" id="chkCheckAll"> All</th>
-                            <th >Judul</th>
+                            
                             <th >Penjelasan</th>
-                            <th >Status</th>
+                           
+                            
                           
                             
                             <th class="text-center">Aksi</th>
@@ -90,21 +91,18 @@ Kata-kata Bijak
                                 <td class="text-center">
                                     <input type="checkbox" name="ids" class="checkBoxClass " value="{{ $data->id }}">
                                     {{ ((($loop->index)+1)+(($datas->currentPage()-1)*$datas->perPage())) }}</td>
-                                <td> {{Str::limit($data->judul,25,' ...')}}
+
+                                <td> {{Str::limit($data->penjelasan,25,' ...')}}
                                 </td>
                             
-                                <td class="text-center">
-                                   <a href="{{ route('katabijakdetail',$data->id) }}" ><i class="fas fa-align-justify"></i></a>
-                                </td>
+                                
 
-                                <td class="text-center">
-                                    {{Str::limit($data->status,25,' ...')}}
-                                </td>
+                              
                                
                                 <td class="text-center babeng-min-row">
                                     
-                                    <x-button-edit link="{{ route('katabijak.edit',$data->id)}}" />
-                                    <x-button-delete link="{{ route('katabijak.destroy',$data->id)}}" />
+                                    <x-button-edit link="{{ route('katabijakdetail.edit',[$katas->id,$data->id])}}" />
+                                    <x-button-delete link="{{ route('katabijakdetail.destroy',[$katas->id,$data->id])}}" />
                                 </td>
                             </tr>
                 @empty

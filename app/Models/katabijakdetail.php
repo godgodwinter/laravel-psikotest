@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 // use App\Models\walikelas;
 
-class katabijak extends Model
+class katabijakdetail extends Model
 {
-        public $table = "katabijak";
+        public $table = "katabijakdetail";
 
         use SoftDeletes;
         use HasFactory;
 
         protected $fillable = [
+            
+            'penjelasan',
             'judul',
-           
-            'status',
+            
         ];
+        public function katabijak()
+        {
+            return $this->belongsTo('App\Models\katabijak');
+        }
 
 }

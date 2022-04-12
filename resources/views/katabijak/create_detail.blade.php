@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Kata-kata Bijak
+Penjelasan Kata-kata Bijak
 @endsection
 
 @push('before-script')
@@ -33,14 +33,14 @@ Kata-kata Bijak
 
 
 
-                <form id="setting-form" method="POST" action="{{route('katabijak.store')}}" enctype="multipart/form-data">
+                <form id="setting-form" method="POST" action="{{route('katabijakdetail.store',$katas->id)}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card" id="settings-card">
 
                       <div class="card-body">
 
                       <div class="form-group row align-items-center">
-                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Judul </label>
+                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Penjelasan </label>
                             <div class="col-sm-6 col-md-9">
 
                             
@@ -51,22 +51,7 @@ Kata-kata Bijak
                             </div>
                           </div>
                           
-                          <div class="form-group row align-items-center">
-                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Status </label>
-                            <div class="col-sm-6 col-md-9">
-
-                                <select class="form-control @error('status') is-invalid @enderror" name="status"  required id="statusselect">
-                                    <option disabled selected value=""> Pilih status</option>
-                                    <option>Ditampilkan</option>
-                                    <option>Sembunyikan</option>
-
-                                </select>
-
-                                  @error('status')<div class="invalid-feedback"> {{$message}}</div>
-                                  @enderror
-
-                            </div>
-                          </div>
+                     <input type="text" name="judul" value="{{$katas->id}}">
                         
 
 
