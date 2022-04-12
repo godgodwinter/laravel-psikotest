@@ -19,7 +19,7 @@ anime.timeline({loop: true})
     opacity: [1,0],
     easing: "easeInExpo",
     duration: 2200,
-    delay: (el, i) => 100 + 30 * i
++ 30 * i
   });
 
 </script>

@@ -4,6 +4,9 @@
 <li {{ $pages == 'deteksi' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.hasilpsikologi.deteksi_lihat') }}"><i class="fas fa-diagnoses"></i> <span>Hasil
             Deteksi</span></a></li>
+<li {{ $pages == 'siswa-pemecahanmasalahdeteksi' ? 'class=active' : '' }}><a class="nav-link"
+        href="{{ route('siswa.hasilpsikologi.pemecahanmasalahdeteksi') }}"><i class="fas fa-info-circle"></i>
+            <span>Pemecahan Masalah Hasil Deteksi </span></a></li>
 <li {{ $pages == 'sertifikat' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.hasilpsikologi.sertifikat_lihat') }}"><i class="far fa-star"></i>
         <span>Sertifikat</span></a></li>
@@ -32,6 +35,4 @@
 <li {{ $pages == 'siswa-informasipsikologi' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.informasipsikologi') }}"><i class="fas fa-info-circle"></i>
         <span>Buletin Psikologi</span></a></li>
-<li {{ $pages == 'siswa-pemecahanmasalahdeteksi' ? 'class=active' : '' }}><a class="nav-link"
-        href="{{ route('siswa.hasilpsikologi.pemecahanmasalahdeteksi') }}"><i class="fas fa-info-circle"></i>
-        <span>Pemecahan Masalah Hasil Deteksi </span></a></li>
+

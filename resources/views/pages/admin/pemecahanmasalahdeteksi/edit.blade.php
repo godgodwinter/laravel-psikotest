@@ -44,7 +44,7 @@
                                 ->first();
                             $ket1 = $getKet1->keterangan;
                         }
-                        
+
                         $cekKet2 = App\Models\masterdeteksi_pemecahanmasalah::where('batasbawah', 71.0)
                             ->where('batasatas', 80.0)
                             ->where('masterdeteksi_id', $data->id)
@@ -56,7 +56,7 @@
                                 ->first();
                             $ket2 = $getKet2->keterangan;
                         }
-                        
+
                         $cekKet3 = App\Models\masterdeteksi_pemecahanmasalah::where('batasbawah', 81.0)
                             ->where('batasatas', 99.0)
                             ->where('masterdeteksi_id', $data->id)
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="form-group row align-items-center">
                                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan 1
-                                        (54,4 - 70)</label>
+                                        (54,5 - 70)</label>
                                     <div class="col-sm-6 col-md-9">
 
                                         <textarea class="form-control" style=" min-width:500px; max-width:100%;min-height:50px;height:100%;width:100%;"
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row align-items-center">
-                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan 3
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan 2
                                         (71 - 80)</label>
                                     <div class="col-sm-6 col-md-9">
 
@@ -121,7 +121,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row align-items-center">
-                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan 2
+                                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Keterangan 3
                                         (81 - 99)</label>
                                     <div class="col-sm-6 col-md-9">
 
