@@ -106,6 +106,7 @@
                                             No</th>
                                         <th class="text-center"> Nama </th>
                                         <th class="text-center"> Hasil Deteksi </th>
+                                        <th class="text-center"> Pemecahan Masalah </th>
                                         <th class="text-center"> Sertifikat </th>
                                         <th class="text-center"> Faktor Karakter </th>
                                         {{-- <th class="text-center" > Aksi </th> --}}
@@ -125,6 +126,13 @@
                                                 <a class="btn btn-sm btn-info"
                                                     href="{{ route('yayasan.hasilpsikologi.deteksi_lihat', [$id->id, $data->id]) }}">
                                                     Lihat Deteksi</a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-sm btn-info"
+                                                    href="{{ route('yayasan.hasilpsikologi.pemecahanmasalahdeteksi', [$id->id, $data->id]) }}">
+                                                    Pemecahan Masalah</a>
+
+
                                             </td>
                                             <td class="text-center">
                                                 <a class="btn btn-sm btn-info"

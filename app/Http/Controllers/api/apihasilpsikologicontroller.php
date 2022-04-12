@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\apiprobk_deteksi_list;
 use App\Models\apiprobk_sertifikat;
+use App\Models\masterdeteksi;
+use App\Models\masterdeteksi_pemecahanmasalah;
 use App\Models\penjelasan_faktorkepribadian;
 use App\Models\sekolah;
 use App\Models\siswa;
@@ -74,6 +76,30 @@ class apihasilpsikologicontroller extends Controller
             'success' => $status,
             'message' => $msg,
             'data' => $datas,
+        ], 200);
+
+    }
+
+    public function deteksi_lihat_api_pemecahanmasalah (Request $request)
+    {
+        // dd($siswa);
+        $datas=null;
+        $status=false;
+        $msg="Data gagal di muat!";
+
+        $datas=masterdeteksi_pemecahanmasalah::where('batasatas',$request->batasatas)
+        ->where('batasbawah',$request->batasbawah)
+        ->where('masterdeteksi_id',$request->id)
+        ->first();
+        if($datas!=null){
+            $status=true;
+            $msg="Ambil data berhasil";
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg,
+            'data' => $datas?$datas->keterangan:null,
         ], 200);
 
     }

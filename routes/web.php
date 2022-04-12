@@ -19,6 +19,7 @@ use App\Http\Controllers\adminklasifikasijabatancontroller;
 use App\Http\Controllers\adminmasternilaibidangstudicontroller;
 use App\Http\Controllers\adminmasternilaipsikologicontroller;
 use App\Http\Controllers\adminminatbakatcontroller;
+use App\Http\Controllers\adminpemecahanmasalahdeteksicontroller;
 use App\Http\Controllers\adminpenggunacontroller;
 use App\Http\Controllers\adminpenjelasanfaktorkepribadiancontroller;
 use App\Http\Controllers\adminpenjurusancontroller;
@@ -235,10 +236,12 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_lihatapi', [apihasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('sekolah.hasilpsikologi.sertifikat_lihatapi');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/sertifikat_cetak', [adminhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('sekolah.hasilpsikologi.sertifikat_cetak');
     Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/penjelasan_faktorkepribadian', [adminhasilpsikologicontroller::class, 'penjelasan_faktorkepribadian'])->name('sekolah.hasilpsikologi.penjelasan_faktorkepribadian');
+    Route::get('/admin/sekolah/{id}/hasilpsikologi/{siswa}/pemecahanmasalahdeteksi', [adminhasilpsikologicontroller::class, 'pemecahanmasalahdeteksi'])->name('sekolah.hasilpsikologi.pemecahanmasalahdeteksi');
+
 
 // restapi
     Route::post('/admin/api/penjelasan_faktorkepribadian', [apihasilpsikologicontroller::class, 'penjelasan_faktorkepribadian_api'])->name('api.penjelasan_faktorkepribadian');
-
+    Route::post('/admin/api/pemecahanmasalah', [apihasilpsikologicontroller::class, 'deteksi_lihat_api_pemecahanmasalah'])->name('api.pemecahanmasalah');
     //export
     Route::get('/admin/datahasilpsikologi/{id}/export', [adminhasilpsikologicontroller::class, 'export'])->name('sekolah.hasilpsikologi.export');
     //import
@@ -380,6 +383,14 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
       Route::put('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'update'])->name('minatbakat.update');
       Route::delete('/admin/minatbakat/{data}', [adminminatbakatcontroller::class, 'destroy'])->name('minatbakat.destroy');
       Route::delete('/admin/minatbakat', [adminminatbakatcontroller::class, 'multidel'])->name('minatbakat.multidel');
+
+
+
+      //pemecahanmasalahdeteksi
+      Route::get('/admin/pemecahanmasalahdeteksi', [adminpemecahanmasalahdeteksicontroller::class, 'index'])->name('pemecahanmasalahdeteksi');
+      Route::get('/admin/pemecahanmasalahdeteksi/cari', [adminpemecahanmasalahdeteksicontroller::class, 'cari'])->name('pemecahanmasalahdeteksi.cari');
+      Route::get('/admin/pemecahanmasalahdeteksi/{data}', [adminpemecahanmasalahdeteksicontroller::class, 'edit'])->name('pemecahanmasalahdeteksi.edit');
+      Route::put('/admin/pemecahanmasalahdeteksi/{data}', [adminpemecahanmasalahdeteksicontroller::class, 'update'])->name('pemecahanmasalahdeteksi.update');
 
       //penjelasanfaktorkepribadian
       Route::get('/admin/penjelasanfaktorkepribadian', [adminpenjelasanfaktorkepribadiancontroller::class, 'index'])->name('penjelasanfaktorkepribadian');
@@ -529,6 +540,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::get('/bk/hasilpsikologi/{siswa}/sertifikat_cetak', [bkhasilpsikologicontroller::class, 'sertifikat_cetak'])->name('bk.hasilpsikologi.sertifikat_cetak');
 
         Route::get('/bk/hasilpsikologi/{siswa}/penjelasan_faktorkepribadian', [bkhasilpsikologicontroller::class, 'penjelasan_faktorkepribadian'])->name('bk.hasilpsikologi.penjelasan_faktorkepribadian');
+        Route::get('/bk/hasilpsikologi/{siswa}/pemecahanmasalahdeteksi', [bkhasilpsikologicontroller::class, 'pemecahanmasalahdeteksi'])->name('bk.hasilpsikologi.pemecahanmasalahdeteksi');
 
 
 
@@ -632,6 +644,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
         Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_lihat', [yayasanhasilpsikologicontroller::class, 'deteksi_lihat'])->name('yayasan.hasilpsikologi.deteksi_lihat');
 
+        Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/pemecahanmasalahdeteksi', [yayasanhasilpsikologicontroller::class, 'pemecahanmasalahdeteksi'])->name('yayasan.hasilpsikologi.pemecahanmasalahdeteksi');
+
         Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/penjelasan_faktorkepribadian', [yayasanhasilpsikologicontroller::class, 'penjelasan_faktorkepribadian'])->name('yayasan.hasilpsikologi.penjelasan_faktorkepribadian');
 
         Route::get('/yayasan/sekolah/{id}/hasilpsikologi/{siswa}/deteksi_cetak', [yayasanhasilpsikologicontroller::class, 'deteksi_cetak'])->name('yayasan.hasilpsikologi.deteksi_cetak');
@@ -692,6 +706,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
         Route::post('/siswa/sekolah/hasilpsikologi/sertifikat_lihatapi', [siswahasilpsikologicontroller::class, 'sertifikat_lihatapi'])->name('siswa.hasilpsikologi.sertifikat_lihatapi');
         Route::get('/siswa/sekolah/hasilpsikologi/sertifikat_cetak', [siswahasilpsikologicontroller::class, 'sertifikat_cetak'])->name('siswa.hasilpsikologi.sertifikat_cetak');
         Route::get('/siswa/sekolah/hasilpsikologi/penjelasan_faktorkepribadian', [siswahasilpsikologicontroller::class, 'penjelasan_faktorkepribadian'])->name('siswa.hasilpsikologi.penjelasan_faktorkepribadian');
+
+        Route::get('/siswa/sekolah/hasilpsikologi/pemecahanmasalahdeteksi', [siswahasilpsikologicontroller::class, 'pemecahanmasalahdeteksi'])->name('siswa.hasilpsikologi.pemecahanmasalahdeteksi');
 
 
         //klasifikasijabatan
