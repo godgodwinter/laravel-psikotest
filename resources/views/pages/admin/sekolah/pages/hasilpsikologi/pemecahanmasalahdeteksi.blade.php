@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Pemecahan Masalah Hasil Deteksi Psikologi
+    Penanganan Deteksi Masalah
 @endsection
 
 @push('before-script')
@@ -243,7 +243,7 @@
                                 async function createObjTampil() {
                                     @forelse ($masterdeteksi as $master)
                                         await gettData("{{ $master->nama }}",{{ $master->id }});
-                                    
+
                                     @empty
                                     @endforelse
                                 }

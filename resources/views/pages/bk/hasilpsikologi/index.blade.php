@@ -90,9 +90,9 @@
                                 No</th>
                             <th class="text-center"> Nama </th>
                             <th class="text-center"> Hasil Deteksi </th>
-                            <th class="text-center"> Pemecahan Masalah </th>
+                            <th class="text-center"> Penanganan Deteksi Masalah </th>
                             <th class="text-center"> Sertifikat </th>
-                            <th class="text-center"> Faktor Karakter </th>
+                            <th class="text-center"> Terapis Karakter Positif </th>
                             {{-- <th class="text-center" > Aksi </th> --}}
 
                         </tr>
@@ -114,7 +114,7 @@
                                 <td class="text-center">
                                     <a class="btn btn-sm btn-info"
                                         href="{{ route('bk.hasilpsikologi.pemecahanmasalahdeteksi', [$data->id]) }}">
-                                        Pemecahan Masalah</a>
+                                        Lihat Penanganan Deteksi</a>
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-sm btn-info"
@@ -126,7 +126,7 @@
                                 <td class="text-center">
                                     <a class="btn btn-sm btn-info"
                                         href="{{ route('bk.hasilpsikologi.penjelasan_faktorkepribadian', [$data->id]) }}">
-                                        Pengertian</a>
+                                        Lihat Terapis Karakter</a>
 
 
                                 </td>

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Hasil Deteksi Psikologi
+    Hasil Sertifikat Psikologi
 @endsection
 
 @push('before-script')

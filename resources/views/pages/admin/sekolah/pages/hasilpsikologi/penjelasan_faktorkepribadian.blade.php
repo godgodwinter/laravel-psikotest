@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Faktor Kepribadian Subyek Terkuat Positif (+)
+    Terapis Karakter Positif
 @endsection
 
 @push('before-script')
@@ -315,11 +315,11 @@
                                     document.getElementById(hspq).innerHTML += `
                                     <div class="px-4">
                                     <h5>Pemahaman dan Pengertian</h5>
-                                    <p>${data.data.pemahaman}</p>   
+                                    <p>${data.data.pemahaman}</p>
                                     <h5>Pembiasaan sikap</h5>
-                                    <p>${data.data.pembiasaansikap}</p>  
+                                    <p>${data.data.pembiasaansikap}</p>
                                     <h5>Tujuan dan Manfaat</h5>
-                                    <p>${data.data.tujuandanmanfaat}</p> 
+                                    <p>${data.data.tujuandanmanfaat}</p>
                                     </div>
 
                                     `;

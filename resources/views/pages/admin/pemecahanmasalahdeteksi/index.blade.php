@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Pemecahan Masalah Deteksi
+    Penanganan Deteksi Masalah
 @endsection
 
 @push('before-script')

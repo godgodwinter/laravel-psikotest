@@ -6,21 +6,20 @@
             Deteksi</span></a></li>
 <li {{ $pages == 'siswa-pemecahanmasalahdeteksi' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.hasilpsikologi.pemecahanmasalahdeteksi') }}"><i class="fas fa-info-circle"></i>
-            <span>Pemecahan Masalah Hasil Deteksi </span></a></li>
+            <span>Penanganan Deteksi Masalah</span></a></li>
 <li {{ $pages == 'sertifikat' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.hasilpsikologi.sertifikat_lihat') }}"><i class="far fa-star"></i>
         <span>Sertifikat</span></a></li>
 <li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.hasilpsikologi.penjelasan_faktorkepribadian') }}"><i class="fas fa-info-circle"></i>
-        <span>Pengertian Karakter Positif</span></a></li>
+        <span>Terapis Karakter Positif</span></a></li>
 <li {{ $pages == 'catatankasus' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.catatankasus') }}"><i class="fas fa-clipboard"></i> <span>Catatan Kasus siswa</span></a>
 </li>
 
 <li {{ $pages == 'catatanpengembangandirisiswa' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.catatanpengembangandiri') }}"><i class="far fa-clipboard"></i> <span>Catatan
-            Pengembangan
-            Diri Siswa</span></a></li>
+            Pengembangan Diri Siswa</span></a></li>
 
 <li {{ $pages == 'catatanprestasisiswa' ? 'class=active' : '' }}><a class="nav-link"
         href="{{ route('siswa.catatanprestasi') }}"><i class="fas fa-book-reader"></i> <span>Catatan Prestasi

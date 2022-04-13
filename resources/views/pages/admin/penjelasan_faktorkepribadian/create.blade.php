@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Pengertian Karakter Positif
+    Terapis Karakter Positif
 @endsection
 
 @push('before-script')
