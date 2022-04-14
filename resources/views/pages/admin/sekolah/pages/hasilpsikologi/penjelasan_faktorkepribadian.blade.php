@@ -316,10 +316,10 @@
                                     <div class="px-4">
                                     <h5>Pemahaman dan Pengertian</h5>
                                     <p>${data.data.pemahaman}</p>
-                                    <h5>Pembiasaan sikap</h5>
-                                    <p>${data.data.pembiasaansikap}</p>
                                     <h5>Tujuan dan Manfaat</h5>
                                     <p>${data.data.tujuandanmanfaat}</p>
+                                    <h5>Pembiasaan Sikap dan Penerapan</h5>
+                                    <p>${data.data.pembiasaansikap}</p>
                                     </div>
 
                                     `;
