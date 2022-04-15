@@ -288,33 +288,49 @@
                         }
 
                         //fungsi
+                        function splitNamaKarakter(namakarakter = '') {
+                            let tempHasil = '';
+                            let hasil = '';
+                            tempHasil = namakarakter.split(':');
+                            hasil = tempHasil[1].split(',');
+                            return hasil
+                        }
+
                         function getPenjelasanFaktorKepribadian(nomer = '1', hspq = 'hspq_rank_1_positif', namakarakter = '') {
 
-                            document.getElementById(hspq).innerHTML = ` <div class="card-header">
-                        <h4>${nomer}.  ${namakarakter}</h4>
+                            // console.log(splitNamaKarakter(namakarakter));
+                            let fetchData = splitNamaKarakter(namakarakter);
+                            for (let i = 0; i < fetchData.length; i++) {
+
+                                document.getElementById(hspq).innerHTML = ` <div class="card-header">
+                        <h4>${namakarakter}</h4>
                     </div>`;
-                            //fetch data with 2 request
-                            (async () => {
-                                const requestOptions = {
-                                    method: 'POST',
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        "Accept": "application/json",
-                                        "X-Requested-With": "XMLHttpRequest",
-                                        "X-CSRF-Token": $('input[name="_token"]').val()
-                                    },
-                                    body: JSON.stringify({
-                                        namakarakter: namakarakter,
-                                    })
-                                };
-                                const response = await fetch("{{ route('api.penjelasan_faktorkepribadian') }}",
-                                    requestOptions);
-                                let data = await response.json();
-                                // console.log(response);
-                                if (response.ok) {
-                                    document.getElementById(hspq).innerHTML += `
+                                //fetch data
+                                (async () => {
+                                    const requestOptions = {
+                                        method: 'POST',
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Accept": "application/json",
+                                            "X-Requested-With": "XMLHttpRequest",
+                                            "X-CSRF-Token": $('input[name="_token"]').val()
+                                        },
+                                        body: JSON.stringify({
+                                            namakarakter: fetchData[i],
+                                        })
+                                    };
+                                    const response = await fetch("{{ route('api.penjelasan_faktorkepribadian') }}",
+                                        requestOptions);
+                                    let data = await response.json();
+                                    // console.log(response);
+                                    if (response.ok) {
+                                        document.getElementById(hspq).innerHTML += `
                                     <div class="px-4">
-                                    <h5>Pemahaman dan Pengertian</h5>
+                                        <div class="card-header">
+                                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z"/></svg> ${fetchData[i]}</h4>
+                                    </div>
+                                        <div class="container">
+                                            <h5>Pemahaman dan Pengertian</h5>
                                     <p>${data.data.pemahaman}</p>
                                     <h5>Tujuan dan Manfaat</h5>
                                     <p>${data.data.tujuandanmanfaat}</p>
@@ -322,15 +338,18 @@
                                     <p>${data.data.pembiasaansikap}</p>
                                     </div>
 
+                                    </div>
+
                                     `;
-                                    // console.log(data.data);
+                                        // console.log(data.data);
 
 
-                                } else {
-                                    console.log('error!');
-                                }
+                                    } else {
+                                        console.log('error!');
+                                    }
 
-                            })();
+                                })();
+                            }
                         }
                     </script>
                 @endpush

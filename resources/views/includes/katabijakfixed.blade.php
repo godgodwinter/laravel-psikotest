@@ -16,7 +16,8 @@
                     }
                 @endphp
 
-                <span class="letters">{{ $item[$hasilbagi - 1]->judul }} : {{ $item[$hasilbagi - 1]->penjelasan }}
+                <span class="letters">{{ $item[$hasilbagi - 1]->judul }} :
+                    {{ $item[$hasilbagi - 1]->penjelasan }}
                     {{-- - {{$hasilbagi}} --}}
                     {{-- - {{$getCount}} - {{$getTgl}} --}}
                 </span>

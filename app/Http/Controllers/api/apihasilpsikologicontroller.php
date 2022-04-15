@@ -64,9 +64,14 @@ class apihasilpsikologicontroller extends Controller
         $datas=null;
         $status=false;
         $msg="Data gagal di muat!";
-
-        $datas=penjelasan_faktorkepribadian::where('namakarakter',$request->namakarakter)
+        // $list=penjelasan_faktorkepribadian::query();
+        // $list->where('namakarakter','like',"%".$request->namakarakter."%");
+        // $list->whereRaw('namakarakter', 'LIKE', '% ' . strtolower($request->namakarakter) . '%');
+        $datas=penjelasan_faktorkepribadian::where('namakarakter','like',"".$request->namakarakter."")
+        // $datas=penjelasan_faktorkepribadian::where('namakarakter',$request->namakarakter)
+        ->orderBy('created_at','desc')
         ->first();
+        // $list->first();
         if($datas!=null){
             $status=true;
             $msg="Ambil data berhasil";
@@ -75,7 +80,7 @@ class apihasilpsikologicontroller extends Controller
         return response()->json([
             'success' => $status,
             'message' => $msg,
-            'data' => $datas,
+            'data' => $datas    
         ], 200);
 
     }
