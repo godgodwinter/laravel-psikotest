@@ -291,8 +291,12 @@
                         function splitNamaKarakter(namakarakter = '') {
                             let tempHasil = '';
                             let hasil = '';
-                            tempHasil = namakarakter.split(':');
-                            hasil = tempHasil[1].split(',');
+                            // tempHasil = namakarakter.split(':');
+                            if (namakarakter != 'Sikap Positif Tidak ada') {
+                                tempHasil = namakarakter.replace('Sikap', '');
+                                tempHasil = tempHasil.replace(':', '');
+                                hasil = tempHasil.split(',');
+                            }
                             return hasil
                         }
 
@@ -300,11 +304,12 @@
 
                             // console.log(splitNamaKarakter(namakarakter));
                             let fetchData = splitNamaKarakter(namakarakter);
-                            for (let i = 0; i < fetchData.length; i++) {
-
-                                document.getElementById(hspq).innerHTML = ` <div class="card-header">
+                            document.getElementById(hspq).innerHTML = ` <div class="card-header">
                         <h4>${namakarakter}</h4>
                     </div>`;
+                            for (let i = 0; i < fetchData.length; i++) {
+
+                                // console.log(fetchData[0]);
                                 //fetch data
                                 (async () => {
                                     const requestOptions = {
@@ -349,6 +354,7 @@
                                     }
 
                                 })();
+
                             }
                         }
                     </script>

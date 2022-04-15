@@ -18,14 +18,16 @@
 <li {{ $pages == 'informasipsikologi' ? 'class=active' : '' }}><a href="{{ route('informasipsikologi') }}"
         class="nav-link "> <i class="fas fa-info-circle"></i> <span>Buletin Psikologi</span> </a></li>
 
-<li {{ $pages == 'penjelasan_faktorkepribadian' ? 'class=active' : '' }}><a class="nav-link"
-        href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Terapis Karakter Positif</span></a></li>
+<li {{ $pages == 'penjelasan_faktorkepribadianpages' ? 'class=active' : '' }}><a class="nav-link"
+        href="{{ route('penjelasanfaktorkepribadian') }}"><i class="fas fa-user-shield"></i> <span>Terapis Karakter
+            Positif</span></a></li>
 
 <li {{ $pages == 'pemecahanmasalahdeteksi' ? 'class=active' : '' }}><a class="nav-link"
-        href="{{ route('pemecahanmasalahdeteksi') }}"><i class="fas fa-user-shield"></i> <span>Penanganan Deteksi Masalah</span></a></li>
+        href="{{ route('pemecahanmasalahdeteksi') }}"><i class="fas fa-user-shield"></i> <span>Penanganan Deteksi
+            Masalah</span></a></li>
 
 <li {{ $pages == 'katabijak' ? 'class=active' : '' }}><a class="nav-link" href="{{ route('katabijak') }}"><i
-        class="fas fa-user-shield"></i> <span>Kata-kata Bijak</span></a></li>
+            class="fas fa-user-shield"></i> <span>Kata-kata Bijak</span></a></li>
 
 <li {{ $pages == 'masternilaipsikologi' ? 'class=active' : '' }}><a href="{{ route('masternilaipsikologi') }}"
         class="nav-link "> <i class="fas fa-archway"></i> <span>Master Nilai Psikologi</span> </a></li>

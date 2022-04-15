@@ -24,7 +24,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
     }
     public function index(Request $request)
     {
-        $pages='penjelasan_faktorkepribadian';
+        $pages='penjelasan_faktorkepribadianpages';
         $datas = DB::table('penjelasan_faktorkepribadian')->whereNull('deleted_at')
         ->orderBy('namakarakter','asc')
         ->paginate(Fungsi::paginationjml());
@@ -41,7 +41,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
 
         $cari=$request->cari;
         #WAJIB
-        $pages='penjelasan_faktorkepribadian';
+        $pages='penjelasan_faktorkepribadianpages';
         $datas=DB::table('penjelasan_faktorkepribadian')
         ->whereNull('deleted_at')
         ->where('namakarakter','like',"%".$cari."%")
@@ -93,7 +93,7 @@ class adminpenjelasanfaktorkepribadiancontroller extends Controller
 
     public function edit(penjelasan_faktorkepribadian $data)
     {
-        $pages='penjelasan_faktorkepribadian';
+        $pages='penjelasan_faktorkepribadianpages';
 
         return view('pages.admin.penjelasan_faktorkepribadian.edit',compact('pages','data'));
     }
