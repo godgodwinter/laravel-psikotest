@@ -19,4 +19,8 @@ class katabijak extends Model
         'judul',
         'status',
     ];
+    public function katabijakdetail()
+    {
+        return $this->hasMany('App\Models\katabijakdetail');
+    }
 }

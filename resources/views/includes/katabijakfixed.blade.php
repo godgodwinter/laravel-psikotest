@@ -4,11 +4,16 @@
     <h1 class="ml12">
         <span class="text-wrapper">
             @php
-                $getCount = \App\Models\katabijak::where('status', 'Ditampilkan')->count();
+                $getCount = \App\Models\katabijakdetail::whereHas('katabijak', function ($query) {
+                    $query->where('katabijak.status', 'like', '%' . 'Ditampilkan' . '%');
+                })->count();
+                // dd($getCount);
             @endphp
             @if ($getCount > 0)
                 @php
-                    $item = \App\Models\katabijak::where('status', 'Ditampilkan')->get();
+                    $item = \App\Models\katabijakdetail::whereHas('katabijak', function ($query) {
+                        $query->where('katabijak.status', 'like', '%' . 'Ditampilkan' . '%');
+                    })->get();
                     $getTgl = date('d');
                     $hasilbagi = $getTgl % $getCount;
                     if ($hasilbagi == 0) {
@@ -16,10 +21,8 @@
                     }
                 @endphp
 
-                <span class="letters">{{ $item[$hasilbagi - 1]->judul }} :
+                <span class="letters">{{ $item[$hasilbagi - 1]->katabijak->judul }} :
                     {{ $item[$hasilbagi - 1]->penjelasan }}
-                    {{-- - {{$hasilbagi}} --}}
-                    {{-- - {{$getCount}} - {{$getTgl}} --}}
                 </span>
             @endif
             {{-- <span class="letters">   Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui sint quia sapiente, at soluta magni aut enim fuga veritatis rem asperiores officiis sit aliquam nemo? Iusto quaerat ut eius dicta.
