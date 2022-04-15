@@ -10,15 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class katabijak extends Model
 {
-        public $table = "katabijak";
+    public $table = "katabijak";
 
-        use SoftDeletes;
-        use HasFactory;
+    use SoftDeletes;
+    use HasFactory;
 
-        protected $fillable = [
-            'judul',
-           
-            'status',
-        ];
-
+    protected $fillable = [
+        'judul',
+        'status',
+    ];
 }

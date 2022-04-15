@@ -10,20 +10,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class katabijakdetail extends Model
 {
-        public $table = "katabijakdetail";
+    public $table = "katabijakdetail";
 
-        use SoftDeletes;
-        use HasFactory;
+    use SoftDeletes;
+    use HasFactory;
 
-        protected $fillable = [
-            
-            'penjelasan',
-            'judul',
-            
-        ];
-        public function katabijak()
-        {
-            return $this->belongsTo('App\Models\katabijak');
-        }
+    protected $fillable = [
 
+        'penjelasan',
+        'katabijak_id',
+
+    ];
+    public function katabijak()
+    {
+        return $this->belongsTo('App\Models\katabijak');
+    }
 }

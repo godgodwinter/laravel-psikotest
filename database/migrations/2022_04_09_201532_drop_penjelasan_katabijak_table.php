@@ -13,10 +13,9 @@ class DropPenjelasanKatabijakTable extends Migration
      */
     public function up()
     {
-        Schema::table('katabijak', function($table) {
-           $table->dropColumn('penjelasan');
+        Schema::table('katabijak', function ($table) {
+            $table->dropColumn('penjelasan');
         });
-      
     }
 
     /**
