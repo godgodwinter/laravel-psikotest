@@ -11,6 +11,7 @@ use App\Models\penjelasan_faktorkepribadian;
 use App\Models\sekolah;
 use App\Models\siswa;
 use Illuminate\Http\Request;
+use PDF;
 
 class apihasilpsikologicontroller extends Controller
 {
@@ -110,6 +111,9 @@ class apihasilpsikologicontroller extends Controller
         // $jsonData = stripslashes(html_entity_decode($request->data0));
 
         // $k = json_decode($jsonData, true);
+        // $tgl = date("YmdHis");
+        // $pdf = PDF::loadview('pages.admin.cetak.cetakpenanganandeteksimasalah', compact('request'))->setPaper('a4', 'potrait');
+        // return $pdf->download('penanganandeteksimasalah' . $tgl . '-pdf');
         dd($request, $request->data[0]);
         // dd($request);
     }

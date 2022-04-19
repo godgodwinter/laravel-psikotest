@@ -174,7 +174,7 @@
                                             let tempPemecahanMasalah = getKetPemecahanmasalah(id, batasatas, batasbawah,
                                                 jmlTampilkanData);
                                             tempTampilkanData['pemecahanmasalah'] = tempPemecahanMasalah;
-                                            console.log(tempPemecahanMasalah);
+                                            // console.log(tempPemecahanMasalah);
                                             tampilkanData.push(tempTampilkanData);
 
 
@@ -265,7 +265,7 @@
 
                                         document.getElementById('inputanCetak').innerHTML +=
                                             `<input type="hidden" name="data[${jmlTampilkanData}][pemecahanmasalah]"  value="${(hasil)}">`;
-                                        console.log(hasil);
+                                        // console.log(hasil);
                                         return hasil;
                                     });
                             }
