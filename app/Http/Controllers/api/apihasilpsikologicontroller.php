@@ -109,8 +109,13 @@ class apihasilpsikologicontroller extends Controller
     public function cetakPenangananDeteksiMasalah(Request $request)
     {
 
+        // dd($request, $request->data[0]);
         $tgl = date("YmdHis");
-        $pdf = PDF::loadview('pages.admin.cetak.cetakpenanganandeteksimasalah', compact('tgl'))->setPaper('a4', 'potrait');
+        $data = $request->data;
+        $siswa = $request->siswa;
+        $totalData = $request->totalData;
+
+        $pdf = PDF::loadview('pages.admin.cetak.cetakpenanganandeteksimasalah', compact('tgl', 'siswa', 'data', 'totalData'))->setPaper('a4', 'potrait');
         return $pdf->stream('penanganandeteksimasalah' . $tgl . '-pdf');
         dd($request, $request->data[0]);
         // dd($request);

@@ -185,24 +185,26 @@
                                                 `<input type="hidden" name="totalData" value="${jmlTampilkanData}">`;
                                             for (i = 0; i < jmlTampilkanData; i++) {
                                                 showTampilkanData += `<div class="card-header">
-                        <h4>${i+1}.  ${tampilkanData[i].nama} - ${tampilkanData[i].score} % - ${singkatan(tampilkanData[i].score)}</h4>
+                        <h4 class="text-capitalize">${i+1}.  ${babengCapitalize(tampilkanData[i].nama)} - ${tampilkanData[i].score} % - ${singkatan(tampilkanData[i].score)}</h4>
                     </div>`;
                                                 showTampilkanData +=
-                                                    `<div class="card-body"><div id="keterangan_${tampilkanData[i].id}">${tampilkanData[i].pemecahanmasalah}</div></div>`;
+                                                    `<div class="card-body"><div class="text-capitalize" id="keterangan_${tampilkanData[i].id}">${tampilkanData[i].pemecahanmasalah}</div></div>`;
                                                 // append input ke cetak pdf
 
                                                 dataInputanCetak +=
                                                     `<input type="hidden" name="data[${i}][id]"  value="${(tampilkanData[i].id)}">`;
                                                 dataInputanCetak +=
-                                                    `<input type="hidden" name="data[${i}][nama]"  value="${(tampilkanData[i].nama)}">`;
+                                                    `<input type="hidden" name="data[${i}][nama]"  value="${babengCapitalize(tampilkanData[i].nama)}">`;
                                                 dataInputanCetak +=
                                                     `<input type="hidden" name="data[${i}][score]"  value="${(tampilkanData[i].score)}">`;
                                                 dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][scoresingkatan]"  value="${singkatan(tampilkanData[i].score)}">`;
+                                                dataInputanCetak +=
                                                     `<input type="hidden" name="data[${i}][rank]"  value="${(tampilkanData[i].rank)}">`;
                                                 dataInputanCetak +=
-                                                    `<input type="hidden" name="data[${i}][keterangan]"  value="${(tampilkanData[i].keterangan)}">`;
-                                                // dataInputanCetak +=
-                                                //     `<input type="hidden" name="data[${i}][pemecahanmasalah]"  value="${(tampilkanData[i].pemecahanmasalah)}">`;
+                                                    `<input type="hidden"  name="data[${i}][keterangan]"  value="${(tampilkanData[i].keterangan)}">`;
+                                                dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][pemecahanmasalah]"  value="">`;
 
 
 
@@ -212,6 +214,20 @@
                                             document.getElementById('inputanCetak').innerHTML = dataInputanCetak;
 
                                             // send to cetak pdf
+
+                                            document.getElementById('inputanCetak').innerHTML +=
+                                                `<input type="hidden" name="siswa[nomerinduk]"  value="{{ $datasiswa->nomerinduk }}">`;
+                                            document.getElementById('inputanCetak').innerHTML +=
+                                                `<input type="hidden" name="siswa[nama]"  value="{{ $datasiswa->nama }}">`;
+                                            document.getElementById('inputanCetak').innerHTML +=
+                                                `<input type="hidden" name="siswa[usia]"  value="{{ $datasiswa->usia }}">`;
+                                            document.getElementById('inputanCetak').innerHTML +=
+                                                `<input type="hidden" name="siswa[jeniskelamin]"  value="{{ $datasiswa->jeniskelamin }}">`;
+                                            document.getElementById('inputanCetak').innerHTML +=
+                                                `<input type="hidden" name="siswa[sekolah]"  value="{{ $datasiswa->sekolah->nama }}">`;
+                                            // document.getElementById('inputanCetak').innerHTML +=
+                                            //     `<input type="hidden" name="siswa[nama]"  value="${(hasil)}">`;
+
                                             // console.log(tampilkanData);
 
                                         }
@@ -260,14 +276,18 @@
                                         requestOptions)
                                     .then((response) => response.json())
                                     .then((data) => {
-                                        document.getElementById(`keterangan_${id}`).innerHTML = data.data;
+                                        document.getElementById(`keterangan_${id}`).innerHTML = babengCapitalize(data.data);
                                         hasil = data.data;
 
                                         document.getElementById('inputanCetak').innerHTML +=
-                                            `<input type="hidden" name="data[${jmlTampilkanData}][pemecahanmasalah]"  value="${(hasil)}">`;
+                                            `<input type="hidden" name="data[${jmlTampilkanData}][pemecahanmasalah]"  value="${babengCapitalize(hasil)}">`;
                                         // console.log(hasil);
                                         return hasil;
                                     });
+                            }
+
+                            function babengCapitalize(string) {
+                                return string[0].toUpperCase() + string.slice(1).toLowerCase();
                             }
                         </script>
 

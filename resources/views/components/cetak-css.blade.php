@@ -1,8 +1,7 @@
-
 <html>
 
-    <head>
-        <title></title>
+<head>
+    <title></title>
     <style type="text/css">
         table {
             border-spacing: 0;
@@ -96,7 +95,8 @@
             margin-top: 0px;
             height: 30px;
         }
-        table#tableBiasa tr td{
+
+        table#tableBiasa tr td {
             border: 1px white solid;
             border-collapse: collapse;
             margin-top: 0px;
@@ -111,17 +111,19 @@
             margin-top: 0px;
             height: 30px;
         }
-        table#tableBiasa2 tr td{
+
+        table#tableBiasa2 tr td {
             border: 1px black solid;
             border-collapse: collapse;
             margin-top: 0px;
         }
+
         div#judul,
         h2,
         p {
             padding: 0;
             margin: 0;
-            font-weight: 500;
+            /* font-weight: 500; */
         }
 
         div#judul2,
@@ -131,10 +133,24 @@
             margin: 0;
         }
 
-        .babeng-min-row{
-    width: 1%;
-    white-space: nowrap;
-}
+        .babeng-min-row {
+            width: 1%;
+            white-space: nowrap;
+        }
+
+
+
+
+        .capitalized:first-letter {
+            text-transform: uppercase
+        }
+
+        .capitalized {
+            display: inline-block;
+            /* Thanks to Fanky (https://stackoverflow.com/users/2095642/fanky) */
+
+            text-transform: lowercase
+        }
 
     </style>
-    </head>
+</head>
