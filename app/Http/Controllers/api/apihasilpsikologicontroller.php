@@ -132,6 +132,7 @@ class apihasilpsikologicontroller extends Controller
         // $pdf = PDF::loadview('pages.admin.cetak.cetakpenanganandeteksimasalah', compact('tgl', 'siswa', 'data', 'totalData'))->setPaper('a4', 'potrait');
         // return $pdf->stream('penanganandeteksimasalah' . $tgl . '-pdf');
         // dd($request, $request->data[0]);
+        // dd($request, json_decode($request->data[0]['detailData']));
         dd($request);
     }
 }

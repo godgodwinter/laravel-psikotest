@@ -380,17 +380,20 @@
                                             `<input type="hidden" name="data[${i}][id]"  value="${tampilkanData[i].id}">`;
                                         dataInputanCetak +=
                                             `<input type="hidden" name="data[${i}][nama]"  value="${tampilkanData[i].nama}">`;
+                                        // dataInputanCetak +=
+                                        //     `<input type="hidden" name="data[${i}][detailData]"  value="${tampilkanData[i].detailData}">`;
                                         for (let j = 0; j < tampilkanData[i].detailData.length; j++) {
                                             dataInputanCetak +=
-                                                `<input type="hidden" name="data[${i}][detailData][id]"  value="${tampilkanData[i].detailData[j].id}">`;
+                                                `<input type="hidden" name="data[${i}][detailData][${j}][id]"  value="${tampilkanData[i].detailData[j].id}">`;
                                             dataInputanCetak +=
-                                                `<input type="hidden" name="data[${i}][detailData][nama]"  value="${tampilkanData[i].detailData[j].nama}">`;
+                                                `<input type="hidden" name="data[${i}][detailData][${j}][nama]"  value="${tampilkanData[i].detailData[j].nama}">`;
                                             dataInputanCetak +=
-                                                `<input type="hidden" name="data[${i}][detailData][pemahaman]"  value="${tampilkanData[i].detailData[j].pemahaman}">`;
+                                                `<input type="hidden" name="data[${i}][detailData][${j}][pemahaman]"  value="${tampilkanData[i].detailData[j].pemahaman}">`;
                                             dataInputanCetak +=
-                                                `<input type="hidden" name="data[${i}][detailData][tujuandanmanfaat]"  value="${tampilkanData[i].detailData[j].tujuandanmanfaat}">`;
+                                                `<input type="hidden" name="data[${i}][detailData][${j}][tujuandanmanfaat]"  value="${tampilkanData[i].detailData[j].tujuandanmanfaat}">`;
                                             dataInputanCetak +=
-                                                `<input type="hidden" name="data[${i}][detailData][pembiasaansikap]"  value="${tampilkanData[i].detailData[j].pembiasaansikap}">`;
+                                                `<input type="hidden" name="data[${i}][detailData][${j}][pembiasaansikap]"  value="${tampilkanData[i].detailData[j].pembiasaansikap}">`;
+
 
                                         }
                                     }
@@ -409,6 +412,9 @@
                                 detailData: detailData
                             });
                         }
+                        $("#btnCetak").prop('disabled', false);
+                        $("#btnCetak").text('Cetak Data');
+                        $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
                     </script>
                 @endpush
                 @push('after-style')
@@ -421,7 +427,7 @@
                 @endpush
                 <div class="card" id="settings-card">
                     <div class="card-header">
-                        <form action="{{ route('api.cetakPenangananDeteksiMasalah') }}" method="post"
+                        <form action="{{ route('api.cetakPenjelasanFaktorKepribadian') }}" method="post"
                             class="d-inline">
                             @csrf
                             <div id="inputanCetak"></div>
