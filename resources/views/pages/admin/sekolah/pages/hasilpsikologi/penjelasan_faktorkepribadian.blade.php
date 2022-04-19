@@ -304,6 +304,8 @@
                         }
 
                         //fungsi
+
+
                         function splitNamaKarakter(namakarakter = '') {
                             let tempHasil = '';
                             let hasil = '';
@@ -327,7 +329,7 @@
                             for (let i = 0; i < fetchData.length; i++) {
                                 let tempDetailData = {
                                     id: i,
-                                    nama: fetchData[i],
+                                    nama: babengCapitalize(fetchData[i]),
                                     pemahaman: '',
                                     tujuan: '',
                                     pembiasaan: '',
@@ -401,7 +403,7 @@
                                             dataInputanCetak +=
                                                 `<input type="hidden" name="data[${i}][detailData][${j}][id]"  value="${tampilkanData[i].detailData[j].id}">`;
                                             dataInputanCetak +=
-                                                `<input type="hidden" name="data[${i}][detailData][${j}][nama]"  value="${tampilkanData[i].detailData[j].nama}">`;
+                                                `<input type="hidden" name="data[${i}][detailData][${j}][nama]"  value="${(tampilkanData[i].detailData[j].nama)}">`;
                                             dataInputanCetak +=
                                                 `<input type="hidden" name="data[${i}][detailData][${j}][pemahaman]"  value="${tampilkanData[i].detailData[j].pemahaman}">`;
                                             dataInputanCetak +=
@@ -432,6 +434,10 @@
                         $("#btnCetak").prop('disabled', false);
                         $("#btnCetak").text('Cetak Data');
                         $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
+
+                        function babengCapitalize(string) {
+                            return string[0].toUpperCase() + string.slice(1).toLowerCase();
+                        }
                     </script>
                 @endpush
                 @push('after-style')

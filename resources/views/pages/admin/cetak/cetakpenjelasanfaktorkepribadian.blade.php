@@ -12,6 +12,12 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        p.small {
+            text-indent: 25px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -47,16 +53,26 @@
     </table>
     <br>
 
-    {{-- @for ($i = 0; $i < $totalData; $i++)
-        <div class="pt-4">
-            <h5 class="text-capitalize">{{ $i + 1 }}. {{ ucfirst($data[$i]['nama']) }} -
-                {{ ucfirst($data[$i]['score']) }} -
-                {{ ucfirst($data[$i]['scoresingkatan']) }}</h5>
-            <p class="ml-4">
-                {{ $data[$i]['pemecahanmasalah'] != '' ? Str::ucfirst($data[$i]['pemecahanmasalah']) : '-' }}
-            </p>
+    @for ($i = 0; $i < count($data); $i++)
+        <div class="pt-0">
+            <h5 class="text-capitalize">{{ $i + 1 }}. {{ ucfirst($data[$i]['nama']) }} </h5>
+            @for ($j = 0; $j < count($data[$i]['detailData']); $j++)
+                <h4 class="text-capitalize">{{ ucfirst($data[$i]['detailData'][$j]['nama']) }}</h4>
+                <b>a. Pemahaman dan Pengertian</b>
+                <p class="small">
+                    {{ $data[$i]['detailData'][$j]['pemahaman'] != 'undefined' ? $data[$i]['detailData'][$j]['pemahaman'] : '' }}
+                </p>
+                <b>b. Tujuan dan Manfaat</b>
+                <p class="small">
+                    {{ $data[$i]['detailData'][$j]['tujuandanmanfaat'] != 'undefined'? $data[$i]['detailData'][$j]['tujuandanmanfaat']: '' }}
+                </p>
+                <b>c. Pembiasaan Sikap dan Penerapan</b>
+                <p class="small">
+                    {{ $data[$i]['detailData'][$j]['pembiasaansikap'] != 'undefined'? $data[$i]['detailData'][$j]['pembiasaansikap']: '' }}
+                </p>
+            @endfor
         </div>
-    @endfor --}}
+    @endfor
 
 
 
