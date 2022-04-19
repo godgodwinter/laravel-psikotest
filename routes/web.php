@@ -728,6 +728,8 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
   Route::get('/siswa/informasipsikologi/cari', [siswahasilpsikologicontroller::class, 'informasipsikologicari'])->name('siswa.informasipsikologi.cari');
 
 
+  Route::post('/admin/api/pemecahanmasalah/cetak', [apihasilpsikologicontroller::class, 'cetakPenangananDeteksiMasalah'])->name('api.cetakPenangananDeteksiMasalah');
+
   // restapi
   Route::post('/admin/api/penjelasan_faktorkepribadian', [apihasilpsikologicontroller::class, 'penjelasan_faktorkepribadian_api'])->name('api.penjelasan_faktorkepribadian');
   Route::post('/admin/api/pemecahanmasalah', [apihasilpsikologicontroller::class, 'deteksi_lihat_api_pemecahanmasalah'])->name('api.pemecahanmasalah');

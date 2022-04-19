@@ -48,14 +48,16 @@
 
                 <div class="card" id="settings-card">
                     <div class="card-header">
-                        {{-- <form action="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" method="get" class="d-inline"> --}}
-                        {{-- @csrf --}}
-                        <div id="inputanCetak"></div>
-                        <button class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
-                            title="Sedang memuat, Tunggu!" id="btnCetak" disabled><span class="pcoded-micon"> Menyiapkan
-                                Data</span></button>
-                        <label for="loadLabel" id="loadLabel"> 0/{{ count($masterdeteksi) }}</label>
-                        {{-- </form> --}}
+                        <form action="{{ route('api.cetakPenangananDeteksiMasalah') }}" method="post"
+                            class="d-inline">
+                            @csrf
+                            <div id="inputanCetak"></div>
+                            <button class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
+                                id="btnCetak" disabled><span class="pcoded-micon">
+                                    Menyiapkan
+                                    Data</span></button>
+                            <label for="loadLabel" id="loadLabel"> 0/{{ count($masterdeteksi) }}</label>
+                        </form>
                         {{-- <a href="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" class="btn btn-primary"> Cetak </a> --}}
                     </div>
                     <div class="card-body babengcontainer">
@@ -167,33 +169,63 @@
                                             // console.log(batasatas);
                                             // console.log(batasbawah);
                                             // callfungtiongetKEterangan (id,batasatas,batasbawah)
-                                            getKetPemecahanmasalah(id, batasatas, batasbawah);
+
+                                            let jmlTampilkanData = tampilkanData.length;
+                                            let tempPemecahanMasalah = getKetPemecahanmasalah(id, batasatas, batasbawah,
+                                                jmlTampilkanData);
+                                            tempTampilkanData['pemecahanmasalah'] = tempPemecahanMasalah;
+                                            console.log(tempPemecahanMasalah);
                                             tampilkanData.push(tempTampilkanData);
 
 
 
-                                            let jmlTampilkanData = tampilkanData.length;
                                             let showTampilkanData = ``;
+                                            let dataInputanCetak = '';
+                                            dataInputanCetak +=
+                                                `<input type="hidden" name="totalData" value="${jmlTampilkanData}">`;
                                             for (i = 0; i < jmlTampilkanData; i++) {
                                                 showTampilkanData += `<div class="card-header">
                         <h4>${i+1}.  ${tampilkanData[i].nama} - ${tampilkanData[i].score} % - ${singkatan(tampilkanData[i].score)}</h4>
                     </div>`;
                                                 showTampilkanData +=
                                                     `<div class="card-body"><div id="keterangan_${tampilkanData[i].id}">${tampilkanData[i].pemecahanmasalah}</div></div>`;
+                                                // append input ke cetak pdf
+
+                                                dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][id]"  value="${(tampilkanData[i].id)}">`;
+                                                dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][nama]"  value="${(tampilkanData[i].nama)}">`;
+                                                dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][score]"  value="${(tampilkanData[i].score)}">`;
+                                                dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][rank]"  value="${(tampilkanData[i].rank)}">`;
+                                                dataInputanCetak +=
+                                                    `<input type="hidden" name="data[${i}][keterangan]"  value="${(tampilkanData[i].keterangan)}">`;
+                                                // dataInputanCetak +=
+                                                //     `<input type="hidden" name="data[${i}][pemecahanmasalah]"  value="${(tampilkanData[i].pemecahanmasalah)}">`;
+
+
+
+
                                             }
                                             document.getElementById('divTampilkanData').innerHTML = showTampilkanData;
+                                            document.getElementById('inputanCetak').innerHTML = dataInputanCetak;
+
+                                            // send to cetak pdf
+                                            // console.log(tampilkanData);
+
                                         }
 
 
-                                        $("#dataCetak").val(JSON.stringify(formCetak));
+                                        // $("#dataCetak").val(JSON.stringify(formCetak));
                                     } else {
                                         console.log('error!');
                                     }
                                     jmlLoadData++;
                                     document.getElementById('loadLabel').innerText = jmlLoadData + "/" + jmlData;
                                     if (jmlLoadData == jmlData) {
-                                        //  $("#btnCetak").prop('disabled', false);
-                                        $("#btnCetak").text('Data Berhasil dimuat');
+                                        $("#btnCetak").prop('disabled', false);
+                                        $("#btnCetak").text('Cetak Data');
                                         $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
                                         // $("#btnCetak").title('Data Berhasil dimuat');
                                     }
@@ -208,33 +240,34 @@
                                 $("#" + id).width(isi + "%");
                             }
 
-                            function getKetPemecahanmasalah(id = null, batasatas = null, batasbawah = null) {
-                                (async () => {
-                                    const requestOptions = {
-                                        method: 'POST',
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                            "Accept": "application/json",
-                                            "X-Requested-With": "XMLHttpRequest",
-                                            "X-CSRF-Token": $('input[name="_token"]').val()
-                                        },
-                                        body: JSON.stringify({
-                                            id: id,
-                                            batasatas: batasatas,
-                                            batasbawah: batasbawah,
-                                        })
-                                    };
-                                    const response = await fetch("{{ route('api.pemecahanmasalah') }}",
-                                        requestOptions);
-                                    let data = await response.json();
-                                    if (response.ok) {
-                                        // console.log(data.data);
+                            function getKetPemecahanmasalah(id = null, batasatas = null, batasbawah = null, jmlTampilkanData = 0) {
+                                let hasil = '';
+                                const requestOptions = {
+                                    method: 'POST',
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "Accept": "application/json",
+                                        "X-Requested-With": "XMLHttpRequest",
+                                        "X-CSRF-Token": $('input[name="_token"]').val()
+                                    },
+                                    body: JSON.stringify({
+                                        id: id,
+                                        batasatas: batasatas,
+                                        batasbawah: batasbawah,
+                                    })
+                                };
+                                const address = fetch("{{ route('api.pemecahanmasalah') }}",
+                                        requestOptions)
+                                    .then((response) => response.json())
+                                    .then((data) => {
                                         document.getElementById(`keterangan_${id}`).innerHTML = data.data;
+                                        hasil = data.data;
 
-                                    } else {
-                                        console.log('error!');
-                                    }
-                                })();
+                                        document.getElementById('inputanCetak').innerHTML +=
+                                            `<input type="hidden" name="data[${jmlTampilkanData}][pemecahanmasalah]"  value="${(hasil)}">`;
+                                        console.log(hasil);
+                                        return hasil;
+                                    });
                             }
                         </script>
 
@@ -243,7 +276,7 @@
                                 async function createObjTampil() {
                                     @forelse ($masterdeteksi as $master)
                                         await gettData("{{ $master->nama }}",{{ $master->id }});
-
+                                    
                                     @empty
                                     @endforelse
                                 }
