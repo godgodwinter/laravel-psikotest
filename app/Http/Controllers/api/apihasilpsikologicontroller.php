@@ -123,16 +123,12 @@ class apihasilpsikologicontroller extends Controller
     public function cetakPenjelasanFaktorKepribadian(Request $request)
     {
 
-        // // dd($request, $request->data[0]);
-        // $tgl = date("YmdHis");
-        // $data = $request->data;
-        // $siswa = $request->siswa;
-        // $totalData = $request->totalData;
+        $tgl = date("YmdHis");
+        $data = $request->data;
+        $siswa = $request->siswa;
 
-        // $pdf = PDF::loadview('pages.admin.cetak.cetakpenanganandeteksimasalah', compact('tgl', 'siswa', 'data', 'totalData'))->setPaper('a4', 'potrait');
-        // return $pdf->stream('penanganandeteksimasalah' . $tgl . '-pdf');
-        // dd($request, $request->data[0]);
-        // dd($request, json_decode($request->data[0]['detailData']));
+        $pdf = PDF::loadview('pages.admin.cetak.cetakpenjelasanfaktorkepribadian', compact('tgl', 'siswa', 'data'))->setPaper('a4', 'potrait');
+        return $pdf->stream('terapiskarakter' . $tgl . '-pdf');
         dd($request);
     }
 }

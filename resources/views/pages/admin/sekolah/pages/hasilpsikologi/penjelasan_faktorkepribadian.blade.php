@@ -46,6 +46,19 @@
                 @push('before-script')
                     <script>
                         var tampilkanData = [];
+
+
+                        document.getElementById('inputanCetak').innerHTML +=
+                            `<input type="hidden" name="siswa[nomerinduk]"  value="{{ $datasiswa->nomerinduk }}">`;
+                        document.getElementById('inputanCetak').innerHTML +=
+                            `<input type="hidden" name="siswa[nama]"  value="{{ $datasiswa->nama }}">`;
+                        document.getElementById('inputanCetak').innerHTML +=
+                            `<input type="hidden" name="siswa[usia]"  value="{{ $datasiswa->usia }}">`;
+                        document.getElementById('inputanCetak').innerHTML +=
+                            `<input type="hidden" name="siswa[jeniskelamin]"  value="{{ $datasiswa->jeniskelamin }}">`;
+                        document.getElementById('inputanCetak').innerHTML +=
+                            `<input type="hidden" name="siswa[sekolah]"  value="{{ $datasiswa->sekolah->nama }}">`;
+
                         let dataSertifikat = {};
                         let testData = null;
                         // console.log(iqket(113));
@@ -375,6 +388,8 @@
                                     }
 
                                     let dataInputanCetak = '';
+
+
                                     for (let i = 0; i < tampilkanData.length; i++) {
                                         dataInputanCetak +=
                                             `<input type="hidden" name="data[${i}][id]"  value="${tampilkanData[i].id}">`;
@@ -397,7 +412,7 @@
 
                                         }
                                     }
-                                    document.getElementById('inputanCetak').innerHTML = dataInputanCetak;
+                                    document.getElementById('inputanCetak').innerHTML += dataInputanCetak;
                                 })();
 
 
@@ -412,6 +427,8 @@
                                 detailData: detailData
                             });
                         }
+
+
                         $("#btnCetak").prop('disabled', false);
                         $("#btnCetak").text('Cetak Data');
                         $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
