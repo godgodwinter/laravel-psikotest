@@ -729,6 +729,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
 
 
   Route::post('/admin/api/pemecahanmasalah/cetak', [apihasilpsikologicontroller::class, 'cetakPenangananDeteksiMasalah'])->name('api.cetakPenangananDeteksiMasalah');
+  Route::post('/admin/api/penjelasan_faktorkepribadian/cetak', [apihasilpsikologicontroller::class, 'cetakPenjelasanFaktorKepribadian'])->name('api.cetakPenjelasanFaktorKepribadian');
 
   // restapi
   Route::post('/admin/api/penjelasan_faktorkepribadian', [apihasilpsikologicontroller::class, 'penjelasan_faktorkepribadian_api'])->name('api.penjelasan_faktorkepribadian');

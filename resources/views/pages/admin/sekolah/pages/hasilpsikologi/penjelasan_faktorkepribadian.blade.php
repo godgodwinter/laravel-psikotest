@@ -45,6 +45,7 @@
                 @endif
                 @push('before-script')
                     <script>
+                        var tampilkanData = [];
                         let dataSertifikat = {};
                         let testData = null;
                         // console.log(iqket(113));
@@ -285,6 +286,8 @@
                             getPenjelasanFaktorKepribadian('3', 'hspq_rank_3_positif', aspekKepribadianRank[2].positif_diungkap)
                             getPenjelasanFaktorKepribadian('4', 'hspq_rank_4_positif', aspekKepribadianRank[3].positif_diungkap)
                             getPenjelasanFaktorKepribadian('5', 'hspq_rank_5_positif', aspekKepribadianRank[4].positif_diungkap)
+                            console.log(tampilkanData);
+
                         }
 
                         //fungsi
@@ -307,8 +310,15 @@
                             document.getElementById(hspq).innerHTML = ` <div class="card-header">
                         <h4>${namakarakter}</h4>
                     </div>`;
+                            let detailData = [];
                             for (let i = 0; i < fetchData.length; i++) {
-
+                                let tempDetailData = {
+                                    id: i,
+                                    nama: fetchData[i],
+                                    pemahaman: '',
+                                    tujuan: '',
+                                    pembiasaan: '',
+                                };
                                 // console.log(fetchData[0]);
                                 //fetch data
                                 (async () => {
@@ -329,6 +339,13 @@
                                     let data = await response.json();
                                     // console.log(response);
                                     if (response.ok) {
+                                        // tempDetailData = {
+                                        //     id: i,
+                                        //     nama: fetchData[i],
+                                        //     pemahaman: data.data.pemahaman ? data.data.pemahaman : '',
+                                        //     tujuan: data.data.tujuandanmanfaat ? data.data.tujuandanmanfaat : '',
+                                        //     pembiasaan: data.data.pembiasaansikap ? data.data.pembiasaansikap : '',
+                                        // };
                                         document.getElementById(hspq).innerHTML += `
                                     <div class="px-4">
                                         <div class="card-header">
@@ -349,13 +366,27 @@
                                         // console.log(data.data);
 
 
+                                        // detailData.push(tempDetailData);
+                                        detailData[i].pemahaman = data.data.pemahaman;
+                                        detailData[i].tujuandanmanfaat = data.data.tujuandanmanfaat;
+                                        detailData[i].pembiasaansikap = data.data.pembiasaansikap;
                                     } else {
                                         console.log('error!');
                                     }
 
                                 })();
 
+
+
+                                detailData.push(tempDetailData);
+                                // console.log(tempDetailData);
+
                             }
+                            tampilkanData.push({
+                                id: nomer,
+                                nama: namakarakter,
+                                detailData: detailData
+                            });
                         }
                     </script>
                 @endpush
@@ -368,9 +399,19 @@
                     </style>
                 @endpush
                 <div class="card" id="settings-card">
-                    {{-- <div class="card-header">
-                        <h4>Pengertian Karakter Positif</h4>
-                    </div> --}}
+                    <div class="card-header">
+                        <form action="{{ route('api.cetakPenangananDeteksiMasalah') }}" method="post"
+                            class="d-inline">
+                            @csrf
+                            <div id="inputanCetak"></div>
+                            <button class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
+                                id="btnCetak" disabled><span class="pcoded-micon">
+                                    Menyiapkan
+                                    Data</span></button>
+                            <label for="loadLabel" id="loadLabel"></label>
+                        </form>
+                        {{-- <a href="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" class="btn btn-primary"> Cetak </a> --}}
+                    </div>
                     <div class="ml-4">
                         <div id="hspq_rank_1_positif">
                         </div>
