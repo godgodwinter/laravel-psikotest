@@ -56,26 +56,28 @@
     @for ($i = 0; $i < count($data); $i++)
         <div class="pt-0">
             <h5 class="text-capitalize">{{ $i + 1 }}. {{ ucfirst($data[$i]['nama']) }} </h5>
-            @for ($j = 0; $j < count($data[$i]['detailData']); $j++)
-                <h4 class="text-capitalize">{{ ucfirst($data[$i]['detailData'][$j]['nama']) }}</h4>
-                <b>a. Pemahaman dan Pengertian</b>
-                <p class="small">
-                    {{ $data[$i]['detailData'][$j]['pemahaman'] != 'undefined' ? $data[$i]['detailData'][$j]['pemahaman'] : '' }}
-                </p>
-                <b>b. Tujuan dan Manfaat</b>
-                <p class="small">
-                    {{ $data[$i]['detailData'][$j]['tujuandanmanfaat'] != 'undefined'? $data[$i]['detailData'][$j]['tujuandanmanfaat']: '' }}
-                </p>
-                <b>c. Pembiasaan Sikap dan Penerapan</b>
-                <p class="small">
-                    {{ $data[$i]['detailData'][$j]['pembiasaansikap'] != 'undefined'? $data[$i]['detailData'][$j]['pembiasaansikap']: '' }}
-                </p>
-            @endfor
+            @isset($data[$i]['detailData'])
+                @for ($j = 0; $j < count($data[$i]['detailData']); $j++)
+                    <h4 class="text-capitalize">{{ ucfirst($data[$i]['detailData'][$j]['nama']) }}</h4>
+                    <b>a. Pemahaman dan Pengertian</b>
+                    <p class="small">
+                        {{ $data[$i]['detailData'][$j]['pemahaman'] != 'undefined' ? $data[$i]['detailData'][$j]['pemahaman'] : '' }}
+                    </p>
+                    <b>b. Tujuan dan Manfaat</b>
+                    <p class="small">
+                        {{ $data[$i]['detailData'][$j]['tujuandanmanfaat'] != 'undefined'? $data[$i]['detailData'][$j]['tujuandanmanfaat']: '' }}
+                    </p>
+                    <b>c. Pembiasaan Sikap dan Penerapan</b>
+                    <p class="small">
+                        {{ $data[$i]['detailData'][$j]['pembiasaansikap'] != 'undefined'? $data[$i]['detailData'][$j]['pembiasaansikap']: '' }}
+                    </p>
+                @endfor
+        @endif
         </div>
-    @endfor
+        @endfor
 
 
 
-</body>
+    </body>
 
-</html>
+    </html>
