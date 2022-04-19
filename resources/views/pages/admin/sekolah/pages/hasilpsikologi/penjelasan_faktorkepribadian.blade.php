@@ -374,6 +374,27 @@
                                         console.log('error!');
                                     }
 
+                                    let dataInputanCetak = '';
+                                    for (let i = 0; i < tampilkanData.length; i++) {
+                                        dataInputanCetak +=
+                                            `<input type="hidden" name="data[${i}][id]"  value="${tampilkanData[i].id}">`;
+                                        dataInputanCetak +=
+                                            `<input type="hidden" name="data[${i}][nama]"  value="${tampilkanData[i].nama}">`;
+                                        for (let j = 0; j < tampilkanData[i].detailData.length; j++) {
+                                            dataInputanCetak +=
+                                                `<input type="hidden" name="data[${i}][detailData][id]"  value="${tampilkanData[i].detailData[j].id}">`;
+                                            dataInputanCetak +=
+                                                `<input type="hidden" name="data[${i}][detailData][nama]"  value="${tampilkanData[i].detailData[j].nama}">`;
+                                            dataInputanCetak +=
+                                                `<input type="hidden" name="data[${i}][detailData][pemahaman]"  value="${tampilkanData[i].detailData[j].pemahaman}">`;
+                                            dataInputanCetak +=
+                                                `<input type="hidden" name="data[${i}][detailData][tujuandanmanfaat]"  value="${tampilkanData[i].detailData[j].tujuandanmanfaat}">`;
+                                            dataInputanCetak +=
+                                                `<input type="hidden" name="data[${i}][detailData][pembiasaansikap]"  value="${tampilkanData[i].detailData[j].pembiasaansikap}">`;
+
+                                        }
+                                    }
+                                    document.getElementById('inputanCetak').innerHTML = dataInputanCetak;
                                 })();
 
 
@@ -383,7 +404,7 @@
 
                             }
                             tampilkanData.push({
-                                id: nomer,
+                                id: nomer - 1,
                                 nama: namakarakter,
                                 detailData: detailData
                             });
