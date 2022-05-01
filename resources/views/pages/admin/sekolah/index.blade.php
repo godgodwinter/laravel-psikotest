@@ -164,7 +164,10 @@ asdasd
                                 <td class="text-center babeng-min-row">
                                     {{-- <x-button-reset-pass link="/admin/{{ $pages }}/{{$data->id}}/reset" /> --}}
                                     <x-button-edit link="/admin/{{ $pages }}/{{$data->id}}" />
-                                    {{-- <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" /> --}}
+                                        @if(Auth::user()->tipeuser == 'admin')
+                                    <x-button-delete link="/admin/{{ $pages }}/{{$data->id}}" />
+
+                                        @endif
                                 </td>
                             </tr>
                         @empty
