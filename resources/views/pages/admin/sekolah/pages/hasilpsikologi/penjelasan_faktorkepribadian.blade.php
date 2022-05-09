@@ -47,6 +47,7 @@
                     <script>
                         var tampilkanData = [];
                         var loadLabelProses=0;
+                        var totalData=0;
 
 
                         document.getElementById('inputanCetak').innerHTML +=
@@ -295,14 +296,21 @@
                             // document.getElementById('hspq_rank_3_positif').innerHTML += ' 3. ' + aspekKepribadianRank[2].positif_diungkap;
                             // document.getElementById('hspq_rank_4_positif').innerHTML += ' 4. ' + aspekKepribadianRank[3].positif_diungkap;
                             // document.getElementById('hspq_rank_5_positif').innerHTML += ' 5. ' + aspekKepribadianRank[4].positif_diungkap;
+                            getPenjelasanFaktorKepribadianCount('1', 'hspq_rank_1_positif', aspekKepribadianRank[0].positif_diungkap)
+                            getPenjelasanFaktorKepribadianCount('2', 'hspq_rank_2_positif', aspekKepribadianRank[1].positif_diungkap)
+                            getPenjelasanFaktorKepribadianCount('3', 'hspq_rank_3_positif', aspekKepribadianRank[2].positif_diungkap)
+                            getPenjelasanFaktorKepribadianCount('4', 'hspq_rank_4_positif', aspekKepribadianRank[3].positif_diungkap)
+                            getPenjelasanFaktorKepribadianCount('5', 'hspq_rank_5_positif', aspekKepribadianRank[4].positif_diungkap)
+
+                            console.log(totalData)
+                            document.getElementById('loadLabelCount').innerHTML = `/${totalData}`;
+
                             getPenjelasanFaktorKepribadian('1', 'hspq_rank_1_positif', aspekKepribadianRank[0].positif_diungkap)
                             getPenjelasanFaktorKepribadian('2', 'hspq_rank_2_positif', aspekKepribadianRank[1].positif_diungkap)
                             getPenjelasanFaktorKepribadian('3', 'hspq_rank_3_positif', aspekKepribadianRank[2].positif_diungkap)
                             getPenjelasanFaktorKepribadian('4', 'hspq_rank_4_positif', aspekKepribadianRank[3].positif_diungkap)
-                            getPenjelasanFaktorKepribadian('5', 'hspq_rank_5_positif', aspekKepribadianRank[4].positif_diungkap)
-                            console.log(tampilkanData.length);
+                            getPenjelasanFaktorKepribadian('5', 'hspq_rank_5_positif', aspekKepribadianRank[4].positif_diungkap);
 
-                            document.getElementById('loadLabelCount').innerHTML = `/${tampilkanData.length}`;
 
                         }
 
@@ -319,6 +327,12 @@
                                 hasil = tempHasil.split(',');
                             }
                             return hasil
+                        }
+
+                        function getPenjelasanFaktorKepribadianCount(nomer = '1', hspq = 'hspq_rank_1_positif', namakarakter = '') {
+
+                            let fetchData = splitNamaKarakter(namakarakter);
+                            totalData+=fetchData.length;
                         }
 
                         function getPenjelasanFaktorKepribadian(nomer = '1', hspq = 'hspq_rank_1_positif', namakarakter = '') {
@@ -369,7 +383,9 @@ var b = a.replace(/[^a-z0-9]/gi,'');
                                         //     tujuan: data.data.tujuandanmanfaat ? data.data.tujuandanmanfaat : '',
                                         //     pembiasaan: data.data.pembiasaansikap ? data.data.pembiasaansikap : '',
                                         // };
-                                        document.getElementById(hspq).innerHTML += `
+                                        // console.log(data.data);
+                                        if(data.data){
+                                            document.getElementById(hspq).innerHTML += `
                                     <div class="px-4">
                                         <div class="card-header">
                                     <h4 class="text-capitalize"><i class="fas fa-tag"></i> ${fetchData[i]}</h4>
@@ -393,6 +409,7 @@ var b = a.replace(/[^a-z0-9]/gi,'');
                                         detailData[i].pemahaman = data.data.pemahaman;
                                         detailData[i].tujuandanmanfaat = data.data.tujuandanmanfaat;
                                         detailData[i].pembiasaansikap = data.data.pembiasaansikap;
+                                        }
                                     } else {
                                         console.log('error!');
                                     }
@@ -422,11 +439,11 @@ var b = a.replace(/[^a-z0-9]/gi,'');
 
                                         }
                                     }
-                                    document.getElementById('inputanCetak').innerHTML += dataInputanCetak;
+                            document.getElementById('inputanCetak').innerHTML += dataInputanCetak;
                             loadLabelProses++;
                             // tambahprosesloading
                             document.getElementById('loadLabel').innerHTML = loadLabelProses;
-                            if(loadLabelProses==tampilkanData.length){
+                            if(loadLabelProses>=tampilkanData.length){
                                     $("#btnCetak").prop('disabled', false);
                                     $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
                             }else{
