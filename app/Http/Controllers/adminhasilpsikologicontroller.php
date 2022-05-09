@@ -49,7 +49,7 @@ class adminhasilpsikologicontroller extends Controller
             $cari = $this->cari;
 
             $kelaspertama = kelas::where('sekolah_id', $id->id)
-                ->where('id', $cari)
+                ->where('id', $cari)->orderBy('nama', 'asc')
                 ->first();
         }
 
