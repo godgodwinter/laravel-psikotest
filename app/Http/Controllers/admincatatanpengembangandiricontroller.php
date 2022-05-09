@@ -19,7 +19,7 @@ class admincatatanpengembangandiricontroller extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (Auth::user()->tipeuser != 'admin'   && Auth::user()->tipeuser!='owner') {
+            if (Auth::user()->tipeuser != 'admin'   && Auth::user()->tipeuser != 'owner') {
                 return redirect()->route('dashboard')->with('status', 'Halaman tidak ditemukan!')->with('tipe', 'danger');
             }
 
@@ -31,63 +31,63 @@ class admincatatanpengembangandiricontroller extends Controller
     {
         $pages = 'catatanpengembangandiri';
 
-        $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
-                        ->first();
-        if($this->cari!=null){
-            $cari=$this->cari;
+        $cari = null;
+        $kelaspertama = kelas::where('sekolah_id', $id->id)
+            ->first();
+        if ($this->cari != null) {
+            $cari = $this->cari;
 
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
-        ->where('id',$cari)
-        ->first();
+            $kelaspertama = kelas::where('sekolah_id', $id->id)
+                ->where('id', $cari)
+                ->first();
         }
 
-        if($kelaspertama!=null){
-            $kelas_id=$kelaspertama->id;
-        }else{
-            $kelas_id=0;
+        if ($kelaspertama != null) {
+            $kelas_id = $kelaspertama->id;
+        } else {
+            $kelas_id = 0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
-        ->where('kelas_id',$kelas_id)
-        ->where('sekolah_id',$id->id)
-        ->orderBy('nama','asc')
-        ->get();
+        $datasiswa = siswa::where('sekolah_id', $id->id)
+            ->where('kelas_id', $kelas_id)
+            ->where('sekolah_id', $id->id)
+            ->orderBy('nama', 'asc')
+            ->get();
 
 
-            $dataakhir = new Collection();
+        $dataakhir = new Collection();
 
-        foreach($datasiswa as $d){
-
-
+        foreach ($datasiswa as $d) {
 
 
-                $periksadata=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+
+
+            $periksadata = catatanpengembangandirisiswa::where('siswa_id', $d->id)
                 ->count();
 
 
-                // if($periksadata>0){
-                //     $ambil=catatanpengembangandirisiswa::where('siswa_id',$d->id)
-                //     ->first();
-                //     $nilai=$ambil->nilai;
-                // }else{
-                //     $nilai=null;
-                // }
+            // if($periksadata>0){
+            //     $ambil=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+            //     ->first();
+            //     $nilai=$ambil->nilai;
+            // }else{
+            //     $nilai=null;
+            // }
 
             $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'jmldata'=>$periksadata,
+                'id' => $d->id,
+                'nomerinduk' => $d->nomerinduk,
+                'nama' => $d->nama,
+                'siswa' => $d,
+                'jmldata' => $periksadata,
             ]);
         }
 
-        $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
-        return view('pages.admin.sekolah.pages.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+        $datas = $dataakhir;
+        $kelas = kelas::where('sekolah_id', $id->id)->orderBy('nama', 'asc')->get();
+        return view('pages.admin.sekolah.pages.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas', 'kelas', 'kelaspertama'));
     }
-    public function detail(sekolah $id,siswa $data, Request $request)
+    public function detail(sekolah $id, siswa $data, Request $request)
     {
         $pages = 'catatanpengembangandiri';
 
@@ -95,70 +95,70 @@ class admincatatanpengembangandiricontroller extends Controller
             ->where('siswa_id', $data->id)
             ->orderBy('tanggal', 'asc')
             ->paginate(Fungsi::paginationjml());
-            // dd($datas);
+        // dd($datas);
 
-        return view('pages.admin.sekolah.pages.catatanpengembangandiri.detail', compact('pages', 'id', 'request', 'datas','data'));
+        return view('pages.admin.sekolah.pages.catatanpengembangandiri.detail', compact('pages', 'id', 'request', 'datas', 'data'));
     }
 
     public function cari(sekolah $id, Request $request)
     {
         $pages = 'catatanpengembangandiri';
-        $this->cari=$request->kelas_id;
-        $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
-                        ->first();
-        if($this->cari!=null){
-            $cari=$this->cari;
+        $this->cari = $request->kelas_id;
+        $cari = null;
+        $kelaspertama = kelas::where('sekolah_id', $id->id)
+            ->first();
+        if ($this->cari != null) {
+            $cari = $this->cari;
 
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
-        ->where('id',$cari)
-        ->first();
+            $kelaspertama = kelas::where('sekolah_id', $id->id)
+                ->where('id', $cari)
+                ->first();
         }
 
-        if($kelaspertama!=null){
-            $kelas_id=$kelaspertama->id;
-        }else{
-            $kelas_id=0;
+        if ($kelaspertama != null) {
+            $kelas_id = $kelaspertama->id;
+        } else {
+            $kelas_id = 0;
         }
         // dd($this->cari,$cari,$kelaspertama);
-        $datasiswa=siswa::where('sekolah_id',$id->id)
-        ->where('kelas_id',$kelas_id)
-        ->where('sekolah_id',$id->id)
-        ->orderBy('nama','asc')
-        ->get();
+        $datasiswa = siswa::where('sekolah_id', $id->id)
+            ->where('kelas_id', $kelas_id)
+            ->where('sekolah_id', $id->id)
+            ->orderBy('nama', 'asc')
+            ->get();
 
 
-            $dataakhir = new Collection();
+        $dataakhir = new Collection();
 
-        foreach($datasiswa as $d){
-
-
+        foreach ($datasiswa as $d) {
 
 
-                $periksadata=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+
+
+            $periksadata = catatanpengembangandirisiswa::where('siswa_id', $d->id)
                 ->count();
 
 
-                // if($periksadata>0){
-                //     $ambil=catatanpengembangandirisiswa::where('siswa_id',$d->id)
-                //     ->first();
-                //     $nilai=$ambil->nilai;
-                // }else{
-                //     $nilai=null;
-                // }
+            // if($periksadata>0){
+            //     $ambil=catatanpengembangandirisiswa::where('siswa_id',$d->id)
+            //     ->first();
+            //     $nilai=$ambil->nilai;
+            // }else{
+            //     $nilai=null;
+            // }
 
             $dataakhir->push((object)[
-                'id'=>$d->id,
-                'nomerinduk'=>$d->nomerinduk,
-                'nama'=>$d->nama,
-                'siswa'=>$d,
-                'jmldata'=>$periksadata,
+                'id' => $d->id,
+                'nomerinduk' => $d->nomerinduk,
+                'nama' => $d->nama,
+                'siswa' => $d,
+                'jmldata' => $periksadata,
             ]);
         }
 
-        $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
-        return view('pages.admin.sekolah.pages.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
+        $datas = $dataakhir;
+        $kelas = kelas::where('sekolah_id', $id->id)->get();
+        return view('pages.admin.sekolah.pages.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas', 'kelas', 'kelaspertama'));
     }
     public function caribackup(sekolah $id, Request $request)
     {
@@ -192,8 +192,8 @@ class admincatatanpengembangandiricontroller extends Controller
             ->where('sekolah_id', $id->id)
             ->orderBy('nama', 'asc')->get();
 
-            $ambildata=siswa::where('id',$request->siswa_id)->first();
-        return view('pages.admin.sekolah.pages.catatanpengembangandiri.create', compact('pages', 'id', 'siswa', 'kelas','request','ambildata'));
+        $ambildata = siswa::where('id', $request->siswa_id)->first();
+        return view('pages.admin.sekolah.pages.catatanpengembangandiri.create', compact('pages', 'id', 'siswa', 'kelas', 'request', 'ambildata'));
     }
 
 
@@ -227,28 +227,29 @@ class admincatatanpengembangandiricontroller extends Controller
 
 
         $ambilsiswa = siswa::where('id', $request->siswa_id)
-        ->first();
+            ->first();
         //inser siswa
         DB::table('catatanpengembangandirisiswa')->insert(
             array(
-                'siswa_id'  =>$request->siswa_id,
+                'siswa_id'  => $request->siswa_id,
                 // 'kelas_id'  =>$request->kelas_id,
-                'tanggal'    =>$request->tanggal,
-                'idedanimajinasi'    =>$request->idedanimajinasi,
-                'ketrampilan'    =>$request->ketrampilan,
-                'kreatif'    =>$request->kreatif,
-                'organisasi'    =>$request->organisasi,
-                'kelanjutanstudi'    =>$request->kelanjutanstudi,
-                'hobi'    =>$request->hobi,
-                'citacita'    =>$request->citacita,
-                'kemampuankhusus'    =>$request->kemampuankhusus,
-                'keterangan'    =>$request->keterangan,
-                'sekolah_id'    =>$id->id,
-                'created_at'=>date("Y-m-d H:i:s"),
-                'updated_at'=>date("Y-m-d H:i:s"),
-            ));
+                'tanggal'    => $request->tanggal,
+                'idedanimajinasi'    => $request->idedanimajinasi,
+                'ketrampilan'    => $request->ketrampilan,
+                'kreatif'    => $request->kreatif,
+                'organisasi'    => $request->organisasi,
+                'kelanjutanstudi'    => $request->kelanjutanstudi,
+                'hobi'    => $request->hobi,
+                'citacita'    => $request->citacita,
+                'kemampuankhusus'    => $request->kemampuankhusus,
+                'keterangan'    => $request->keterangan,
+                'sekolah_id'    => $id->id,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            )
+        );
 
-        return redirect()->route('sekolah.catatanpengembangandiri.cari', [$id->id,'kelas_id'=>$ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
+        return redirect()->route('sekolah.catatanpengembangandiri.cari', [$id->id, 'kelas_id' => $ambilsiswa->kelas_id])->with('status', 'Data berhasil ditambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
 
     public function edit(sekolah $id, catatanpengembangandirisiswa $data)
@@ -291,24 +292,24 @@ class admincatatanpengembangandiricontroller extends Controller
             ]
         );
 
-        catatanpengembangandirisiswa::where('id',$data->id)
-        ->update([
-            'siswa_id'  =>$request->siswa_id,
-            // 'kelas_id'  =>$request->kelas_id,
-            'tanggal'    =>$request->tanggal,
-                'idedanimajinasi'    =>$request->idedanimajinasi,
-                'ketrampilan'    =>$request->ketrampilan,
-                'kreatif'    =>$request->kreatif,
-                'organisasi'    =>$request->organisasi,
-                'kelanjutanstudi'    =>$request->kelanjutanstudi,
-                'hobi'    =>$request->hobi,
-                'citacita'    =>$request->citacita,
-                'kemampuankhusus'    =>$request->kemampuankhusus,
-                'keterangan'    =>$request->keterangan,
-                'sekolah_id'    =>$id->id,
+        catatanpengembangandirisiswa::where('id', $data->id)
+            ->update([
+                'siswa_id'  => $request->siswa_id,
+                // 'kelas_id'  =>$request->kelas_id,
+                'tanggal'    => $request->tanggal,
+                'idedanimajinasi'    => $request->idedanimajinasi,
+                'ketrampilan'    => $request->ketrampilan,
+                'kreatif'    => $request->kreatif,
+                'organisasi'    => $request->organisasi,
+                'kelanjutanstudi'    => $request->kelanjutanstudi,
+                'hobi'    => $request->hobi,
+                'citacita'    => $request->citacita,
+                'kemampuankhusus'    => $request->kemampuankhusus,
+                'keterangan'    => $request->keterangan,
+                'sekolah_id'    => $id->id,
 
-            'updated_at'=>date("Y-m-d H:i:s"),
-        ]);
+                'updated_at' => date("Y-m-d H:i:s"),
+            ]);
 
         return redirect()->route('sekolah.catatanpengembangandiri', $id->id)->with('status', 'Data berhasil diubah!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
     }
@@ -337,11 +338,11 @@ class admincatatanpengembangandiricontroller extends Controller
 
         return view('pages.admin.sekolah.pages.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas'));
     }
-    public function cetakpersiswa(sekolah $id,siswa $data,Request $request){
-        $datas=catatanpengembangandirisiswa::with('siswa')->where('siswa_id',$data->id)->orderBy('tanggal','desc')->get();
-        $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatanpengembangandiri.cetakpersiswa',compact('datas','data'))->setPaper('a4', 'potrait');
-        return $pdf->stream('catatan'.$tgl.'.pdf');
+    public function cetakpersiswa(sekolah $id, siswa $data, Request $request)
+    {
+        $datas = catatanpengembangandirisiswa::with('siswa')->where('siswa_id', $data->id)->orderBy('tanggal', 'desc')->get();
+        $tgl = date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.sekolah.pages.catatanpengembangandiri.cetakpersiswa', compact('datas', 'data'))->setPaper('a4', 'potrait');
+        return $pdf->stream('catatan' . $tgl . '.pdf');
     }
-
 }
