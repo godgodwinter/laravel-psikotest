@@ -66,7 +66,7 @@ class adminhasilpsikologicontroller extends Controller
             ->get();
 
 
-        $kelas = kelas::where('sekolah_id', $id->id)->get();
+        $kelas = kelas::where('sekolah_id', $id->id)->orderBy('nama', 'asc')->get();
 
         return view('pages.admin.sekolah.pages.hasilpsikologi.index', compact('pages', 'id', 'request', 'datas', 'kelas', 'kelaspertama'));
     }
