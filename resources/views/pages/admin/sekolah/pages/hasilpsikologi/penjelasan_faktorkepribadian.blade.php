@@ -46,6 +46,7 @@
                 @push('before-script')
                     <script>
                         var tampilkanData = [];
+                        var loadLabelProses=0;
 
 
                         document.getElementById('inputanCetak').innerHTML +=
@@ -299,7 +300,9 @@
                             getPenjelasanFaktorKepribadian('3', 'hspq_rank_3_positif', aspekKepribadianRank[2].positif_diungkap)
                             getPenjelasanFaktorKepribadian('4', 'hspq_rank_4_positif', aspekKepribadianRank[3].positif_diungkap)
                             getPenjelasanFaktorKepribadian('5', 'hspq_rank_5_positif', aspekKepribadianRank[4].positif_diungkap)
-                            console.log(tampilkanData);
+                            console.log(tampilkanData.length);
+
+                            document.getElementById('loadLabelCount').innerHTML = `/${tampilkanData.length}`;
 
                         }
 
@@ -336,6 +339,11 @@
                                 };
                                 // console.log(fetchData[0]);
                                 //fetch data
+// remove other character and number or just charackter and number only
+var a = fetchData[i];
+var b = a.replace(/[^a-z0-9]/gi,'');
+// console.log(b);
+
                                 (async () => {
                                     const requestOptions = {
                                         method: 'POST',
@@ -346,7 +354,7 @@
                                             "X-CSRF-Token": $('input[name="_token"]').val()
                                         },
                                         body: JSON.stringify({
-                                            namakarakter: fetchData[i],
+                                            namakarakter: b,
                                         })
                                     };
                                     const response = await fetch("{{ route('api.penjelasan_faktorkepribadian') }}",
@@ -415,6 +423,16 @@
                                         }
                                     }
                                     document.getElementById('inputanCetak').innerHTML += dataInputanCetak;
+                            loadLabelProses++;
+                            // tambahprosesloading
+                            document.getElementById('loadLabel').innerHTML = loadLabelProses;
+                            if(loadLabelProses==tampilkanData.length){
+                                    $("#btnCetak").prop('disabled', false);
+                                    $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
+                            }else{
+                                $("#btnCetak").prop('disabled', true);
+                                // $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
+                            }
                                 })();
 
 
@@ -431,9 +449,9 @@
                         }
 
 
-                        $("#btnCetak").prop('disabled', false);
+                        $("#btnCetak").prop('disabled', true);
                         $("#btnCetak").text('Cetak Data');
-                        $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
+                        // $("#btnCetak").removeClass("btn-warning").addClass("btn-info");
 
                         function babengCapitalize(string) {
                             return string[0].toUpperCase() + string.slice(1).toLowerCase();
@@ -458,7 +476,8 @@
                                 id="btnCetak" disabled><span class="pcoded-micon">
                                     Menyiapkan
                                     Data</span></button>
-                            <label for="loadLabel" id="loadLabel"></label>
+                            <label for="loadLabel" id="loadLabel">0</label>
+                            <label for="loadLabelCount" id="loadLabelCount">/0</label>
                         </form>
                         {{-- <a href="{{route('sekolah.hasilpsikologi.deteksi_cetak',[$id->id,$datasiswa->id])}}" class="btn btn-primary"> Cetak </a> --}}
                     </div>
