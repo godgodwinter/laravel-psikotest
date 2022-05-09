@@ -65,9 +65,9 @@
                         No</th>
                     <th class="text-center"> Nama </th>
                     <th class="text-center"> Hasil Deteksi </th>
-                    <th class="text-center"> Penanganan Deteksi </th>
+                    <th class="text-center"> Penanganan Deteksi Masalah </th>
                     <th class="text-center"> Sertifikat </th>
-                    <th class="text-center"> Terapis Karakter </th>
+                    <th class="text-center"> Terapis Karakter Positif </th>
                     <th class="text-center"> Aksi </th>
 
                 </tr>
