@@ -148,7 +148,7 @@
 
                             {{ $datas->onEachSide(1)->links() }}
                         </div>
-                        {
+
                         <div>
 
                         </div>

@@ -13,7 +13,7 @@
               translateZ: 0,
               opacity: [0, 1],
               easing: "easeOutExpo",
-              duration: 2100,
+              duration: 21000,
               delay: (el, i) => 500 + 30 * i
           }).add({
               targets: '.ml12 .letter',
