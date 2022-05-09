@@ -90,7 +90,7 @@
                         <td class="text-center">
                             <a class="btn btn-sm btn-info"
                                 href="{{ route('sekolah.hasilpsikologi.pemecahanmasalahdeteksi', [$id->id, $data->id]) }}">
-                                Lihat Penanganan Deteksi</a>
+                                Lihat Penanganan Deteksi Masalah</a>
 
 
                         </td>
@@ -104,7 +104,7 @@
                         <td class="text-center">
                             <a class="btn btn-sm btn-info"
                                 href="{{ route('sekolah.hasilpsikologi.penjelasan_faktorkepribadian', [$id->id, $data->id]) }}">
-                                Lihat Terapis Karakter</a>
+                                Lihat Terapis Karakter Positif</a>
 
 
                         </td>
