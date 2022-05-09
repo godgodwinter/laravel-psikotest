@@ -26,7 +26,7 @@
 
             <div id="output-status"></div>
             <div class="row">
-                @if (Auth::user()->tipeuser == 'admin')
+                @if (Auth::user()->tipeuser == 'admin' || Auth::user()->tipeuser == 'owner')
                     <div class="col-md-3">
                         @include(
                             'pages.admin.sekolah.component.sidebarsekolah'
