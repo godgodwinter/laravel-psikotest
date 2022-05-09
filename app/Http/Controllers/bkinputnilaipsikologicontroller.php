@@ -31,7 +31,7 @@ class bkinputnilaipsikologicontroller extends Controller
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
 
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
@@ -50,7 +50,7 @@ class bkinputnilaipsikologicontroller extends Controller
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         // dd($datas);
         return view('pages.bk.inputnilaipsikologi.index',compact('pages','request','datas','kelas','kelaspertama','master'));
     }
@@ -62,7 +62,7 @@ class bkinputnilaipsikologicontroller extends Controller
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
 
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
@@ -82,7 +82,7 @@ class bkinputnilaipsikologicontroller extends Controller
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         // dd($collectionpenilaian);
         return view('pages.bk.inputnilaipsikologi.index',compact('pages','request','datas','kelas','kelaspertama','master'));
     }

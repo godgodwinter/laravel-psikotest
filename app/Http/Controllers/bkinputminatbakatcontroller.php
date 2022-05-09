@@ -36,7 +36,7 @@ class bkinputminatbakatcontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
@@ -57,7 +57,7 @@ class bkinputminatbakatcontroller extends Controller
 
 
 
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         // dd($collectionpenilaian);
         return view('pages.bk.inputminatbakat.index',compact('pages','request','datas','master','kelas','kelaspertama'));
     }
@@ -69,7 +69,7 @@ class bkinputminatbakatcontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->orderBy('nama', 'asc')->first();
         $kelas_id=$kelaspertama->id;
         $datas=DB::table('siswa')
         ->where('sekolah_id',$sekolah_id)
@@ -85,7 +85,7 @@ class bkinputminatbakatcontroller extends Controller
 
 
 
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         // dd($collectionpenilaian);
         return view('pages.bk.inputminatbakat.index',compact('pages','request','datas','master','kelas','kelaspertama'));
    }

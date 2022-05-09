@@ -40,7 +40,7 @@ class bkhasilpsikologicontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')
                         ->first();
         $pages='bk-hasilpsikologi';
         if($this->cari!=null){
@@ -92,7 +92,7 @@ class bkhasilpsikologicontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
 
         return view('pages.bk.hasilpsikologi.index',compact('pages','request','datas','kelas','kelaspertama'));
     }
@@ -105,7 +105,7 @@ class bkhasilpsikologicontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')
                         ->first();
         $pages='bk-hasilpsikologi';
         if($this->cari!=null){
@@ -159,7 +159,7 @@ class bkhasilpsikologicontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         // dd($datas);
 
         return view('pages.bk.hasilpsikologi.index',compact('pages','request','datas','kelas','kelaspertama'));

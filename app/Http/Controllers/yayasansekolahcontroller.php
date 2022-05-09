@@ -114,7 +114,7 @@ class yayasansekolahcontroller extends Controller
     {
         $pages='inputnilaipsikologi';
 
-        $kelaspertama=kelas::where('sekolah_id',$id->id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
@@ -133,7 +133,7 @@ class yayasansekolahcontroller extends Controller
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         // dd($datas);
         return view('pages.yayasan.sekolah.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
     }
@@ -145,7 +145,7 @@ class yayasansekolahcontroller extends Controller
 
         $this->cari=$request->kelas_id;
         $kelaspertama=kelas::where('id',$this->cari)
-        ->where('sekolah_id',$id->id)
+        ->where('sekolah_id',$id->id)->orderBy('nama', 'asc')
         ->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
@@ -165,7 +165,7 @@ class yayasansekolahcontroller extends Controller
         $master=DB::table('masternilaipsikologi')->whereNull('deleted_at')
         ->orderBy('id','asc')
         ->get();
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         // dd($datas);
         return view('pages.yayasan.sekolah.inputnilaipsikologi.index',compact('pages','request','datas','id','kelas','kelaspertama','master'));
 
@@ -174,7 +174,7 @@ class yayasansekolahcontroller extends Controller
     public function inputminatbakat(Request $request,sekolah $id)
     {
         $pages='inputminatbakat';
-        $kelaspertama=kelas::where('sekolah_id',$id->id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
@@ -195,7 +195,7 @@ class yayasansekolahcontroller extends Controller
 
 
 
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         // dd($collectionpenilaian);
         return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','master','kelas','kelaspertama'));
     }
@@ -205,7 +205,7 @@ class yayasansekolahcontroller extends Controller
         $pages='inputminatbakat';
         $this->cari=$request->kelas_id;
         $kelaspertama=kelas::where('id',$this->cari)
-        ->where('sekolah_id',$id->id)
+        ->where('sekolah_id',$id->id)->orderBy('nama', 'asc')
         ->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
@@ -227,21 +227,21 @@ class yayasansekolahcontroller extends Controller
 
 
 
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         // dd($collectionpenilaian);
         return view('pages.yayasan.sekolah.inputminatbakat.index',compact('pages','request','datas','id','master','kelas','kelaspertama'));
     }
     public function penjurusan(Request $request,sekolah $id)
     {
         $pages='penjurusan';
-        $kelaspertama=kelas::where('sekolah_id',$id->id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
             $kelas_id=0;
         }
 
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
 
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
@@ -261,14 +261,14 @@ class yayasansekolahcontroller extends Controller
         $pages='penjurusan';
         $this->cari=$request->kelas_id;
         $kelaspertama=kelas::where('id',$this->cari)
-        ->where('sekolah_id',$id->id)
+        ->where('sekolah_id',$id->id)->orderBy('nama', 'asc')
         ->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
             $kelas_id=0;
         }
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
 
         $datas=DB::table('siswa')
         ->where('sekolah_id',$id->id)
@@ -288,7 +288,7 @@ class yayasansekolahcontroller extends Controller
     {
         $pages='hasilpsikologi';
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         $pages='hasilpsikologi';
         if($this->cari!=null){
@@ -312,7 +312,7 @@ class yayasansekolahcontroller extends Controller
         ->get();
 
 
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
     }
 
@@ -327,7 +327,7 @@ class yayasansekolahcontroller extends Controller
         if($this->cari!=null){
             $cari=$this->cari;
 
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
         ->where('id',$cari)
         ->first();
         }
@@ -345,7 +345,7 @@ class yayasansekolahcontroller extends Controller
         ->get();
 
 
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         // dd($datas);
 
         return view('pages.yayasan.sekolah.hasilpsikologi.index',compact('pages','id','request','datas','kelas','kelaspertama'));
@@ -419,7 +419,7 @@ class yayasansekolahcontroller extends Controller
         $pages = 'catatankasus';
 
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -471,7 +471,7 @@ class yayasansekolahcontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
 
@@ -481,7 +481,7 @@ class yayasansekolahcontroller extends Controller
         $pages = 'catatankasus';
 
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -533,7 +533,7 @@ class yayasansekolahcontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.catatankasus.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
     public function catatankasusdetail(sekolah $id,siswa $data, Request $request)
@@ -546,7 +546,7 @@ class yayasansekolahcontroller extends Controller
             ->orderBy('siswa_id', 'asc')
             ->paginate(Fungsi::paginationjml());
 
-            $kelas=kelas::where('sekolah_id',$id->id)->get();
+            $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
     return view('pages.yayasan.sekolah.catatankasus.detail', compact('pages', 'id', 'request', 'datas','kelas','data'));
     }
 
@@ -556,7 +556,7 @@ class yayasansekolahcontroller extends Controller
         $pages = 'catatanpengembangandiri';
 
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -608,7 +608,7 @@ class yayasansekolahcontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
     public function catatanpengembangandiridetail(sekolah $id,siswa $data, Request $request)
@@ -629,7 +629,7 @@ class yayasansekolahcontroller extends Controller
         $pages = 'catatanpengembangandiri';
         $this->cari=$request->kelas_id;
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -681,7 +681,7 @@ class yayasansekolahcontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.catatanpengembangandiri.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
 
@@ -690,7 +690,7 @@ class yayasansekolahcontroller extends Controller
         $pages = 'catatanprestasi';
 
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -742,7 +742,7 @@ class yayasansekolahcontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
 
@@ -751,7 +751,7 @@ class yayasansekolahcontroller extends Controller
         $pages = 'catatanprestasi';
         $this->cari=$request->kelas_id;
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$id->id)
+        $kelaspertama=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -803,7 +803,7 @@ class yayasansekolahcontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$id->id)->get();
+        $kelas=kelas::where('sekolah_id',$id->id)->orderBy('nama', 'asc')->get();
         return view('pages.yayasan.sekolah.catatanprestasi.index', compact('pages', 'id', 'request', 'datas','kelas','kelaspertama'));
     }
     public function catatanprestasidetail(sekolah $id,siswa $data, Request $request)

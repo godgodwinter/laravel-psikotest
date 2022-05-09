@@ -34,14 +34,14 @@ class bkpenjurusancontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
             $kelas_id=0;
         }
 
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
 
         $datas=DB::table('siswa')
         ->where('sekolah_id',$sekolah_id)
@@ -63,14 +63,14 @@ class bkpenjurusancontroller extends Controller
         $users_id=Auth::user()->id;
         $pengguna=DB::table('pengguna')->where('users_id',$users_id)->first();
         $sekolah_id=$pengguna->sekolah_id;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->first();
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->where('id',$request->kelas_id)->orderBy('nama', 'asc')->first();
         if($kelaspertama!=null){
             $kelas_id=$kelaspertama->id;
         }else{
             $kelas_id=0;
         }
 
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
 
         $datas=DB::table('siswa')
         ->where('sekolah_id',$sekolah_id)

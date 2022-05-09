@@ -36,7 +36,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
         $sekolah_id=$pengguna->sekolah_id;
 
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -88,7 +88,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama','sekolah_id'));
     }
     public function detail(siswa $data, Request $request)
@@ -117,7 +117,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
         $sekolah_id=$pengguna->sekolah_id;
         $this->cari=$request->kelas_id;
         $cari=null;
-        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)
+        $kelaspertama=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')
                         ->first();
         if($this->cari!=null){
             $cari=$this->cari;
@@ -169,7 +169,7 @@ class bkcatatanpengembangandirisiswacontroller extends Controller
         }
 
         $datas=$dataakhir;
-        $kelas=kelas::where('sekolah_id',$sekolah_id)->get();
+        $kelas=kelas::where('sekolah_id',$sekolah_id)->orderBy('nama', 'asc')->get();
         return view('pages.bk.catatanpengembangandirisiswa.index', compact('pages', 'request', 'datas','kelas','kelaspertama','sekolah_id'));
     }
     public function caribackup( Request $request)
