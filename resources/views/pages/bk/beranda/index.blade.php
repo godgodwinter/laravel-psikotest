@@ -48,7 +48,7 @@ Detail Sekolah
                       </div>
                     </div>
 
-                <form action="{{route('sekolah.update',$id->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('bk.beranda.update',$id->id)}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <div class="profile-widget-description">
@@ -169,7 +169,248 @@ Detail Sekolah
                                     </div>
                                   </div>
 
+                                  <input type="hidden" name="provinsi_nama" id="provinsi_nama" value="{{old('provinsi_nama')?old('provinsi_nama'):$id->provinsi}}">
+                    <input type="hidden" name="kabupaten_nama" id="kabupaten_nama" value="{{old('kabupaten_nama')?old('kabupaten_nama'):$id->kabupaten}}">
+                    <input type="hidden" name="kecamatan_nama" id="kecamatan_nama" value="{{old('kecamatan_nama')?old('kecamatan_nama'):$id->kecamatan}}">
 
+                    <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Provinsi</label>
+                        <div class="col-sm-3 col-md-9">
+                            @if ($id->provinsi!=null AND $id->provinsi!=null)
+                            @php
+                                $datasebelumnya=$id->provinsi;
+                            @endphp
+                            @else
+                            @php
+                                $datasebelumnya='Data tidak ditemukan';
+                            @endphp
+                            @endif
+                            <select class="js-example-basic-single form-control-sm @error('provinsi')
+                                is-invalid
+                            @enderror" name="provinsi"  style="width: 75%" id="dataProvinsi" onchange="getDataKabupaten(this)" required>
+                                <option  selected value="{{old('provinsi_nama')?old('provinsi_nama'):$datasebelumnya}}"> {{old('provinsi_nama')?old('provinsi_nama'):$datasebelumnya}}</option>
+
+                              </select>
+
+                          @error('provinsi')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                        </div>
+
+
+                        @push('before-script')
+                        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                        {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+// variable
+let provinsi_nama=document.getElementById("provinsi_nama");
+let kabupaten_nama=document.getElementById("kabupaten_nama");
+let kecamatan_nama=document.getElementById("kecamatan_nama");
+
+let dataProvinsi=document.getElementById("dataProvinsi");
+let dataKabupaten=document.getElementById("dataKabupaten");
+let kab = document.getElementsByClassName("kab");
+let kec = document.getElementsByClassName("kec");
+
+//fungsi
+// function addOption(id='0',data='Data tidak ditemukan'){
+// //     var node = document.createElement("OPTION");
+// //     var textSelect= document.createTextNode(data);
+// //     var idSelect= document.createIdNode(idc);
+// //     node.appendChild(textSelect);
+// //     dataprovinsi.appendChild(node);
+
+// }
+
+//Select2
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            // theme: "classic",
+            // allowClear: true,
+            width: "resolve"
+        });
+    });
+
+
+// console.log(dataprovinsi);
+
+    //ambildatanconst
+getDatas = async () => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get('https://dev.farizdotid.com/api/daerahindonesia/provinsi')
+ .then(response => {
+  let datas =  response.data.provinsi;
+
+//   dataKabupaten.remove();
+//     dataKecamatan.remove();
+// dataKabupaten.innerHTML=`<option disabled selected value=""> Pilih Kabupaten</option>`;
+// dataKecamatan.innerHTML=`<option disabled selected value=""> Pilih Kecamatan</option>`;
+  datas.forEach(function(data){
+    // console.log(data);
+    // addOption(data.id,data.nama);
+
+    dataProvinsi.innerHTML += `
+    <option value="${data.id}"> ${data.nama}</option>
+    `;
+  })
+//   console.log(`GET data`, datas);
+
+})
+ .catch(error => console.error(error));
+};
+
+//ambildataKab
+getDatasKab = async (id='1') => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${id}`)
+ .then(response => {
+  let datas =  response.data.kota_kabupaten;
+
+dataKabupaten.innerHTML=`<option disabled selected value=""> Pilih Kabupaten</option>`;
+dataKecamatan.innerHTML=`<option disabled selected value=""> Pilih Kecamatan</option>`;
+  datas.forEach(function(data){
+    // console.log(data);
+    dataKabupaten.innerHTML += `
+    <option value="${data.id}" class="kab"> ${data.nama}</option>
+    `;
+  })
+//   console.log(`GET data`, datas);
+
+})
+ .catch(error => console.error(error));
+};
+
+
+//ambildataKab
+getDatasKec = async (id='1') => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=${id}`)
+ .then(response => {
+  let datas =  response.data.kecamatan;
+
+// dataKecamatan.innerHTML=``;
+  datas.forEach(function(data){
+    // console.log(data);
+    dataKecamatan.innerHTML += `
+    <option value="${data.id}" class="kec"> ${data.nama}</option>
+    `;
+  })
+  console.log(`GET data`, datas);
+
+})
+ .catch(error => console.error(error));
+};
+
+
+//running
+getDatas();
+
+// onchange
+getDataKabupaten=(sel)=>{
+
+    let value = sel.value;
+    let text = sel.options[sel.selectedIndex].text;
+    provinsi_nama.value=text;
+//   console.log(value+' '+text);
+
+    //ambildataKabupaten
+    getDatasKab(value);
+
+
+}
+
+
+getDataKecamatan=(sel)=>{
+    let value = sel.value;
+    let text = sel.options[sel.selectedIndex].text;
+    getDatasKec(value);
+    kabupaten_nama.value=text;
+//   console.log(value+' '+text);
+}
+
+inputDataKecamatan=(sel)=>{
+    let value = sel.value;
+    let text = sel.options[sel.selectedIndex].text;
+    getDatasKec(value);
+    kecamatan_nama.value=text;
+//   console.log(value+' '+text);
+}
+
+// activities.addEventListener("click", function() {
+//     var options = activities.querySelectorAll("option");
+//     var count = options.length;
+//     if(typeof(count) === "undefined" || count < 2)
+//     {
+//         addActivityItem();
+//     }
+// });
+
+// activities.addEventListener("change", function() {
+//     if(activities.value == "addNew")
+//     {
+//         addActivityItem();
+//     }
+// });
+
+
+                            });
+                           </script>
+                        @endpush
+
+                        <div class="form-group row align-items-center">
+                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kabupaten</label>
+                            <div class="col-sm-3 col-md-9">
+
+                                @if ($id->kabupaten!=null || $id->kabupaten!='')
+                                @php
+                                    $datasebelumnya=$id->kabupaten;
+                                @endphp
+                                @else
+                                @php
+                                    $datasebelumnya='Data tidak ditemukan';
+                                @endphp
+                                @endif
+                            <select class="js-example-basic-single form-control-sm @error('kabupaten')
+                                is-invalid
+                            @enderror" name="kabupaten"  style="width: 75%" id="dataKabupaten" onchange="getDataKecamatan(this)"  required>
+                                <option selected value="{{old('kabupaten_nama')?old('kabupaten_nama'):$datasebelumnya}}">{{old('kabupaten_nama')?old('kabupaten_nama'):$datasebelumnya}}</option>
+
+                              </select>
+
+                          @error('kabupaten')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row align-items-center">
+                        <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kecamatan</label>
+                        <div class="col-sm-3 col-md-9">
+
+                            @if ($id->kecamatan!=null AND $id->kecamatan!=null)
+                            @php
+                                $datasebelumnya=$id->kecamatan;
+                            @endphp
+                            @else
+                            @php
+                                $datasebelumnya='Data tidak ditemukan';
+                            @endphp
+                            @endif
+                            <select class="js-example-basic-single form-control-sm @error('kecamatan')
+                                is-invalid
+                            @enderror" name="kecamatan"  style="width: 75%" id="dataKecamatan"  onchange="inputDataKecamatan(this)" required>
+                                <option selected value="{{old('kecamatan_nama')?old('kecamatan_nama'):$datasebelumnya}}">{{old('kecamatan_nama')?old('kecamatan_nama'):$datasebelumnya}}</option>
+
+                              </select>
+
+                          @error('kecamatan')<div class="invalid-feedback"> {{$message}}</div>
+                          @enderror
+
+                        </div>
+                    </div>
+                                  
                                 <div class="form-group row align-items-center">
 
                                     <div class="form-group row mb-4 mt-3 ml-5">

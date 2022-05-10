@@ -467,6 +467,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
   // bk
   //bk dashboard
   Route::get('/bk/beranda', [bkberandacontroller::class, 'index'])->name('bk.beranda');
+  Route::put('/bk/beranda', [bkberandacontroller::class, 'update'])->name('bk.beranda.update');
   Route::get('/bk/berandanon', [bkberandanonaktifcontroller::class, 'index'])->name('bk.non');
 
   Route::get('/bk/referensi', [bkberandacontroller::class, 'referensi'])->name('bk.referensi');
