@@ -407,7 +407,7 @@ inputDataKecamatan=(sel)=>{
                         @endpush
 
                         <div class="form-group row align-items-center">
-                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kabupaten</label>
+                            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Kabupaten/Kota</label>
                             <div class="col-sm-3 col-md-9">
 
                                 @if ($id->kabupaten!=null || $id->kabupaten!='')

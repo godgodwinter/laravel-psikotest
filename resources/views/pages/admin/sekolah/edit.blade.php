@@ -268,7 +268,7 @@ inputDataKecamatan=(sel)=>{
                         @endpush
 
                     <div class="form-group col-md-3 col-6 col-lg-3 mt-0 ml-0">
-                        <label for="status">Kabupaten <code>*)</code></label>
+                        <label for="status">Kabupaten/Kota <code>*)</code></label>
                         <div class="col-sm-6 col-md-12">
 
                             <select class="js-example-basic-single form-control-sm @error('kabupaten')
