@@ -18,7 +18,7 @@
                             </div>
                         <div class="ml-auto p-2 bd-highlight">
                             @if (Auth::user()->tipeuser == 'admin')
-                            <a href="{{route('sekolah.siswa.generate',$id->id)}}" class="btn btn-warning btn-sm">Generate Akun</a>
+                            <a href="{{route('sekolah.siswa.generateakun',$id->id)}}" class="btn btn-warning btn-sm">Generate Akun</a>
                             @endif
                                  <a href="{{route('sekolah.siswa.create',$id->id)}}" type="submit" value="Import"
                                     class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
