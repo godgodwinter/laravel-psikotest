@@ -355,7 +355,8 @@
                                 //fetch data
 // remove other character and number or just charackter and number only
 var a = fetchData[i];
-var b = a.replace(/[^a-z0-9]/gi,'');
+// var b = a.replace(/[^a-z0-9]/gi,'');
+var b = a.replace(/[^a-z0-9\s\-]/gi,'');
 // console.log(b);
 
                                 (async () => {
