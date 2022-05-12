@@ -8,18 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class pengguna extends Model
 {
-        public $table = "pengguna";
+    public $table = "pengguna";
 
-        use SoftDeletes;
-        use HasFactory;
+    use SoftDeletes;
+    use HasFactory;
 
-        protected $fillable = [
-            'nama',
-            'users_id',
-        ];
+    protected $fillable = [
+        'nama',
+        'users_id',
+        'sekolah_id',
+    ];
 
-        public function users()
-        {
-            return $this->belongsTo('App\Models\User');
-        }
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
