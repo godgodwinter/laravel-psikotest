@@ -24,7 +24,7 @@
     <x-cetak-kop-png></x-cetak-kop-png>
     <hr>
     <div style="margin-bottom: 0;text-align:center" id="judul">
-        <h5>TERAPIS KARAKTER</h5>
+        <h5>TERAPIS KARAKTER POSITIF</h5>
     </div>
 
 
