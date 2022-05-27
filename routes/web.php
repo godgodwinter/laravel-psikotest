@@ -86,6 +86,14 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 //halaman admin fixed
 Route::group(['middleware' => ['auth:web', 'verified']], function () {
 
+
+    Route::get('/export/klasifikasi', [prosescontroller::class, 'exportKlasifikasiJabatan'])->name('exportKlasifikasiJabatan');
+    Route::get('/export/buletin', [prosescontroller::class, 'exportBuletin'])->name('exportBuletin');
+    Route::get('/export/terapis', [prosescontroller::class, 'exportTerapis'])->name('exportTerapis');
+    Route::get('/export/penanganan', [prosescontroller::class, 'exportPenanganan'])->name('exportPenanganan');
+    Route::get('/export/katabijak', [prosescontroller::class, 'exportKatabijak'])->name('exportKatabijak');
+
+
     Route::get('/', [admindashboardcontroller::class, 'index'])->name('dashboard');
     Route::get('/dashboard/siswa', [admindashboardcontroller::class, 'siswa'])->name('dashboard.siswa');
     Route::put('/dashboard/siswastore', [admindashboardcontroller::class, 'siswastore'])->name('dashboard.siswa.store');

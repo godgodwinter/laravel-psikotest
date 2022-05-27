@@ -10,16 +10,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class masterdeteksi_pemecahanmasalah extends Model
 {
-        public $table = "masterdeteksi_pemecahanmasalah";
+    public $table = "masterdeteksi_pemecahanmasalah";
 
-        use SoftDeletes;
-        use HasFactory;
+    use SoftDeletes;
+    use HasFactory;
 
-        protected $fillable = [
-            'batasatas',
-            'batasbawah',
-            'keterangan',
-            'masterdeteksi_id',
-        ];
-
+    protected $fillable = [
+        'batasatas',
+        'batasbawah',
+        'keterangan',
+        'masterdeteksi_id',
+    ];
+    public function masterdeteksi()
+    {
+        return $this->belongsTo('App\Models\masterdeteksi');
+    }
 }

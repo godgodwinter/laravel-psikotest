@@ -52,6 +52,24 @@ Administrator
 
                         </div>
                         <div class="ml-auto p-2 bd-highlight">
+
+                            <a href="{{ route('exportKlasifikasiJabatan') }}" type="submit" value="Import"
+                                class="btn btn-icon btn-success btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Export Klasifikasi </span></a>
+                            <a href="{{ route('exportBuletin') }}" type="submit" value="Import"
+                                class="btn btn-icon btn-success btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Export Buletin </span></a>
+                            <a href="{{ route('exportTerapis') }}" type="submit" value="Import"
+                                class="btn btn-icon btn-success btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Export Terapis  </span></a>
+                            <a href="{{ route('exportPenanganan') }}" type="submit" value="Import"
+                                class="btn btn-icon btn-success btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Export Penanganan  </span></a>
+                            <a href="{{ route('exportKatabijak') }}" type="submit" value="Import"
+                                class="btn btn-icon btn-success btn-sm ml-2"><span class="pcoded-micon"> <i
+                                        class="fas fa-download"></i> Export Katabijak  </span></a>
+
+
                             <a href="{{route('users.create')}}" type="submit" value="Import"
                                 class="btn btn-icon btn-primary btn-sm ml-2"><span class="pcoded-micon"> <i
                                         class="fas fa-download"></i> Tambah </span></a>
